@@ -1,6 +1,8 @@
 # MentionFox Lens: Chrome Web Store listing (free)
 
-Filled in from the real manifest.json, UI and behaviour (build 3aedb16 plus tuning). Items marked OWNER CONFIRMS need a check in your own Chrome or dashboard.
+OWNER FILLS: none. This listing uses no on-device timing, so neither {{ON_DEVICE_SECONDS}} nor {{ON_DEVICE_FIRST_CLAIM_SECONDS}} appears here; only the Devpost text and the demo script need them.
+
+Filled in from the real manifest.json, UI and behaviour (version 0.1.1, build d4f4913 or later). Items marked OWNER CONFIRMS need a check in your own Chrome or dashboard.
 
 ## Name
 
@@ -8,22 +10,25 @@ MentionFox Lens
 
 ## Short description (limit 132 characters)
 
-Spot which claims on a page are checkable and which are vague, and see how an AI assistant would read it. Free, private.
+See which claims on a page are checkable and which are vague, on-device first. Free, open source, no account.
 
-(Length check: 120 characters, limit 132.)
+(Length check: 109 characters, limit 132.)
 
 ## Detailed description
 
 MentionFox Lens helps you read any page the way a careful reviewer would. Click the icon and Lens works on the text of the page you are looking at.
 
 Claim X-ray
-Finds the factual claims on the page (a profile, a bio, a press release, a pitch, a post), highlights each one in place, and labels it specific-and-checkable or vague, with a one-line reason. A side panel lists them all; click one and the page jumps to that exact sentence.
+Reads the main content of the page (navigation, infobox, references and footnote markers are left out), finds its factual claims, highlights each one in place and labels it specific-and-checkable or vague, with a one-line reason. Quotes are verbatim. A claim with a date, number, amount, named place, organisation or event stays checkable; it is called vague only when it has no such anchor. A side panel lists every claim; click one and the page jumps to that exact sentence. One matcher, tolerant of case, quotes, dashes, spacing and small rewording, drives both the highlight and the jump, and a card says "Not found on the page" only when the quote truly cannot be located.
+
+Streaming and longer pages
+On-device, Lens reads the page in chunks of about 1,500 characters and shows each claim card and highlight as soon as its chunk is done, with a "First claim in N seconds" line. One press reads about 6,000 characters on-device (a 12,000-character window in the cloud); "Analyze more of this page" reads the next part.
 
 GEO lens
 Shows how an AI assistant would summarise the page: the people, companies and products it would pick up, the facts it would state, what is missing or ambiguous, three concrete fixes, and a score from 0 to 100 with what each point means.
 
 Private by design
-Lens uses Firebase AI Logic hybrid inference. When your Chrome has its built-in on-device model (Gemini Nano), the analysis runs on your computer and the badge says On-device. When it does not, Lens falls back to the cloud through Firebase AI Logic, and the badge says Cloud. Either way you can see which mode ran and how long it took in milliseconds.
+Lens uses Firebase AI Logic hybrid inference. When your Chrome has its built-in on-device model (Gemini Nano), the analysis runs on your computer, the mode bar says "On-device · N seconds" and "Your page stayed in this browser." When it does not, Lens falls back to the cloud through Firebase AI Logic and the bar says "Cloud · N seconds". Either way you can see which mode ran and how many seconds it took.
 
 Nothing from the page is sent to MentionFox. No account, no sign-up, no ads. Lens only reads the page when you click.
 
@@ -80,7 +85,7 @@ Note for the reviewer field: the on-device path sends nothing off the machine. T
 
 ## Package and images (built by scripts, version 0.1.1)
 
-Package: release/mentionfox-lens-0.1.1.zip, built by `powershell -File scripts/package.ps1` from the release build. manifest.json is at the zip root, 13 files, no source maps, no .env files, no App Check debug token. The zip is not committed: the owner builds it, or uses the copy in the main checkout release/ folder.
+Package: release/mentionfox-lens-0.1.1.zip (version 0.1.1), built by `powershell -File scripts/package.ps1` from the release build. manifest.json is at the zip root, 13 files, no source maps, no .env files, no App Check debug token. The zip is not committed: the owner builds it, or uses the copy in the main checkout release/ folder.
 
 Images are in store/ (made by `node scripts/store-images.mjs`; 24-bit PNG, no alpha). Page text, claims and AI-view text are the saved real runs in docs/real-runs/ on real saved pages (Wikipedia Patrick Collison, Wikipedia Sam Bankman-Fried, archived Theranos FDA press release). The test mock supplies only the mode state.
 
