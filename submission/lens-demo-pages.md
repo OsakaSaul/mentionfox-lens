@@ -1,6 +1,6 @@
 # Lens demo pages: hype pages (task T2970, 2026-11-23)
 
-Goal: pages where Lens shows a lot of amber. Method: Wayback Machine snapshots of company pages written before the company collapsed. Raw bytes saved in `fixtures/demo/` (see its README). Runs used the current main code (T2960 matcher and anchor rule, T2963 extraction) on the cloud path, `node scripts/live-probe.mjs --fixture <file>`; results in `docs/demo/t2970-*`. The model varies per run, so the counts below are ranges over all runs.
+Goal: pages where Lens shows a lot of amber. Method: Wayback Machine snapshots of company pages written before the company collapsed. Raw bytes saved in `fixtures/demo/` (see its README; one third-party public map token was replaced by REDACTED-MAPBOX-TOKEN in the WeWork file). Runs used the current main code (T2960 matcher and anchor rule, T2963 extraction) on the cloud path, `node scripts/live-probe.mjs --fixture <file>`; results in `docs/demo/t2970-*`. The model varies per run, so the counts below are ranges over all runs.
 
 URL verification (curl -sIL, browser User-Agent, final status): 2026-11-23T05:50Z.
 
