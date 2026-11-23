@@ -1,0 +1,200 @@
+{
+  "fixture": "theranos-2.html",
+  "source_url": null,
+  "run_at": "2026-11-23T03:44:26.598Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "News - Posts | Theranos",
+    "url": "http://127.0.0.1:54198/",
+    "textLength": 14145,
+    "rootTag": "BODY"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3432,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Theranos Wellness Centers, currently located in 42 locations in Arizona, one in Palo Alto, California and one in Harrisburg, Pennsylvania.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader could check the number and locations of these wellness centers against public records.\"\n    },\n    {\n      \"quote\": \"Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices, all compared against an FDA cleared, commercially available reference method.\",\n      \"kind\": \"specific\",\n      \"why\": \"A third party could verify the study participant count and methodology in FDA submission documents.\"\n    },\n    {\n      \"quote\": \"Theranos’ HSV-1 studies included matrix comparison studies across 69 Theranos devices.\",\n      \"kind\": \"specific\",\n      \"why\": \"The exact number of devices used in the matrix comparison studies can be checked against regulatory filings.\"\n    },\n    {\n      \"quote\": \"Theranos’ HSV-1 clinical studies also included sensitivity and specificity studies with hundreds of human samples – both capillary and venous, CDC panel testing – which demonstrated 100% agreement with the results provided by CDC, low-prevalence population tests, and other studies.\",\n      \"kind\": \"specific\",\n      \"why\": \"The claim of 100% agreement with CDC panel testing results is a checkable statistical metric.\"\n    },\n    {\n      \"quote\": \"Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes.\",\n      \"kind\": \"specific\",\n      \"why\": \"Corporate registration records can verify the founding year and founder's name.\"\n    },\n    {\n      \"quote\": \"The waiver means FDA determined the Theranos test and technology is reliable and accurate and can be used in a broader set of locations outside of a traditional CLIA certified laboratory, including Theranos Wellness Centers.\",\n      \"kind\": \"specific\",\n      \"why\": \"FDA regulatory determinations and waiver permissions can be verified through public agency databases.\"\n    },\n    {\n      \"quote\": \"Theranos is leading transparency in lab testing, including committing to FDA review of all of its LDTs and publishing its prices, lab proficiency testing scores, customer satisfaction scores, guest visit times, and more, to realize a system in which individuals become more engaged and early detection and prevention of disease become realities.\",\n      \"kind\": \"vague\",\n      \"why\": \"The assertion of leading transparency and other subjective adjectives are unverifiable marketing claims.\"\n    },\n    {\n      \"quote\": \"The FDA’s review process for 510(k) notifications is widely recognized as one of the most rigorous regulatory hurdles in the world for evaluation of the performance, accuracy, and intended use of diagnostic tests.\",\n      \"kind\": \"vague\",\n      \"why\": \"Phrases like most rigorous regulatory hurdles in the world represent subjective puffery.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Theranos Wellness Centers, currently located in 42 locations in Arizona, one in Palo Alto, California and one in Harrisburg, Pennsylvania.",
+        "kind": "specific",
+        "why": "A reader could check the number and locations of these wellness centers against public records."
+      },
+      {
+        "id": "c2",
+        "quote": "Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices, all compared against an FDA cleared, commercially ",
+        "kind": "specific",
+        "why": "A third party could verify the study participant count and methodology in FDA submission documents."
+      },
+      {
+        "id": "c3",
+        "quote": "Theranos’ HSV-1 studies included matrix comparison studies across 69 Theranos devices.",
+        "kind": "specific",
+        "why": "The exact number of devices used in the matrix comparison studies can be checked against regulatory filings."
+      },
+      {
+        "id": "c4",
+        "quote": "Theranos’ HSV-1 clinical studies also included sensitivity and specificity studies with hundreds of human samples – both capillary and venous, CDC panel testing – which demonstrated 100% agreement with the results provided by CDC, low-prevalence population tests, and other studies.",
+        "kind": "specific",
+        "why": "The claim of 100% agreement with CDC panel testing results is a checkable statistical metric."
+      },
+      {
+        "id": "c5",
+        "quote": "Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes.",
+        "kind": "specific",
+        "why": "Corporate registration records can verify the founding year and founder's name."
+      },
+      {
+        "id": "c6",
+        "quote": "The waiver means FDA determined the Theranos test and technology is reliable and accurate and can be used in a broader set of locations outside of a traditional CLIA certified laboratory, including Theranos Wellness Centers.",
+        "kind": "specific",
+        "why": "FDA regulatory determinations and waiver permissions can be verified through public agency databases."
+      },
+      {
+        "id": "c7",
+        "quote": "Theranos is leading transparency in lab testing, including committing to FDA review of all of its LDTs and publishing its prices, lab proficiency testing scores, customer satisfaction scores, guest visit times, and more, to realize a system in which individuals become more engaged and early detectio",
+        "kind": "vague",
+        "why": "The assertion of leading transparency and other subjective adjectives are unverifiable marketing claims."
+      },
+      {
+        "id": "c8",
+        "quote": "The FDA’s review process for 510(k) notifications is widely recognized as one of the most rigorous regulatory hurdles in the world for evaluation of the performance, accuracy, and intended use of diagnostic tests.",
+        "kind": "vague",
+        "why": "Phrases like most rigorous regulatory hurdles in the world represent subjective puffery."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c6",
+      "text": "The waiver means FDA determined the Theranos test and technology is reliable and accurate and can be used in a broader set of locations outside of a traditional CLIA certified laboratory, including Theranos Wellness Centers"
+    },
+    {
+      "id": "c1",
+      "text": "Theranos Wellness Centers, currently located in 42 locations in Arizona, one in Palo Alto, California and one in Harrisburg, Pennsylvania"
+    },
+    {
+      "id": "c2",
+      "text": "Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices, all compared against an FDA cleared, commercially"
+    },
+    {
+      "id": "c3",
+      "text": "Theranos’ HSV-1 studies included matrix comparison studies across 69 Theranos devices"
+    },
+    {
+      "id": "c4",
+      "text": "Theranos’ HSV-1 clinical studies also included sensitivity and specificity studies with hundreds of human samples – both capillary and venous, CDC panel testing – which demonstrated 100% agreement with the results provided by CDC, low-prevalence population tests, and other studies"
+    },
+    {
+      "id": "c8",
+      "text": "The FDA’s review process for 510(k) notifications is widely recognized as one of the most rigorous regulatory hurdles in the world for evaluation of the performance, accuracy, and intended use of diagnostic tests"
+    },
+    {
+      "id": "c7",
+      "text": "Theranos is leading transparency in lab testing, including committing to FDA review of all of its LDTs and publishing its prices, lab proficiency testing scores, customer satisfaction scores, guest visit times, and more, to realize a system in which individuals become more engaged and early detectio"
+    },
+    {
+      "id": "c5",
+      "text": "Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3908,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"U.S. Food and Drug Administration\",\n      \"type\": \"other\"\n    },\n    {\n      \"name\": \"Lauren Vroom\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Theranos Nanotainer Tubes\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Theranos received a CLIA Waiver from the FDA for its herpes simplex 1 virus IgG (HSV-1) test and test system on July 16, 2015.\",\n    \"The FDA cleared the Theranos HSV-1 test and test system on July 2, 2015.\",\n    \"The CLIA waiver permits the use of the HSV-1 test in locations outside of traditional clinical laboratories, including Theranos Wellness Centers.\",\n    \"Theranos provided study data from 818 subjects of varying age and ethnicity demonstrating accurate system performance using finger sticks and venous draws.\",\n    \"Theranos Wellness Centers are located in Arizona, Palo Alto in California, and Harrisburg in Pennsylvania.\",\n    \"Theranos was founded in 2003 by Elizabeth Holmes.\"\n  ],\n  \"missing\": [\n    \"External independent verification or commentary on the CLIA waiver decision\",\n    \"Specific details regarding the exact test performance metrics or error rates\",\n    \"Comprehensive list of all 42 Arizona Wellness Center locations\",\n    \"Financial or operational impact data following the waiver\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Theranos, Inc. today announced that its test and Theranos test system for the herpes simplex 1 virus IgG (HSV-1), which was cleared by the U.S. Food and Drug Administration (FDA) on July 2, 2015, has now received a Clinical Laboratory Improvement Amendments (CLIA) Waiver from FDA, permitting its use in locations outside of traditional clinical laboratories.\\\", add a brief citation to the official FDA database notice if available.\",\n    \"In the sentence \\\"Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices, all compared against an FDA cleared, commercially available reference method.\\\", add the exact demographic age range of the 818 subjects.\",\n    \"In the sentence \\\"Theranos offers lab tests in convenient locations in its Wellness Centers in Arizona, Pennsylvania and California, with plans to expand throughout the country.\\\", add the exact number of Wellness Centers in Arizona instead of just stating 42 locations vaguely.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 3,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "U.S. Food and Drug Administration",
+          "type": "other"
+        },
+        {
+          "name": "Lauren Vroom",
+          "type": "person"
+        },
+        {
+          "name": "Theranos Nanotainer Tubes",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Theranos received a CLIA Waiver from the FDA for its herpes simplex 1 virus IgG (HSV-1) test and test system on July 16, 2015.",
+        "The FDA cleared the Theranos HSV-1 test and test system on July 2, 2015.",
+        "The CLIA waiver permits the use of the HSV-1 test in locations outside of traditional clinical laboratories, including Theranos Wellness Centers.",
+        "Theranos provided study data from 818 subjects of varying age and ethnicity demonstrating accurate system performance using finger sticks and venous draws.",
+        "Theranos Wellness Centers are located in Arizona, Palo Alto in California, and Harrisburg in Pennsylvania.",
+        "Theranos was founded in 2003 by Elizabeth Holmes."
+      ],
+      "missing": [
+        "External independent verification or commentary on the CLIA waiver decision",
+        "Specific details regarding the exact test performance metrics or error rates",
+        "Comprehensive list of all 42 Arizona Wellness Center locations",
+        "Financial or operational impact data following the waiver"
+      ],
+      "fixes": [
+        "In the sentence \"Theranos, Inc. today announced that its test and Theranos test system for the herpes simplex 1 virus IgG (HSV-1), which was cleared by the U.S. Food and Drug Administration (FDA) on July 2, 2015, has now received a Clinical",
+        "In the sentence \"Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Thera",
+        "In the sentence \"Theranos offers lab tests in convenient locations in its Wellness Centers in Arizona, Pennsylvania and California, with plans to expand throughout the country.\", add the exact number of Wellness Centers in Arizona instead o"
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 3,
+        "ambiguity": 3
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+date: 2026-11-23T03:47:02.987Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+url: https://web.archive.org/web/20151023195450/https://www.theranos.com/news/posts/theranos-recognizes-milestone-in-new-era-of-preventive-health
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: cloud fallback
+status after Analyze: Done. 6 claims. Click a claim to jump to it.
+claims mode badge: Cloud
+page body text length: 7599
+claims: 6, highlighted: 6, claims 3292 ms, geo 3068 ms
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

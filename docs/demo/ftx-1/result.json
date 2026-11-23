@@ -1,0 +1,240 @@
+{
+  "fixture": "ftx-1.html",
+  "source_url": null,
+  "run_at": "2026-11-23T03:44:54.729Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "End of Year 2021 :: FTX Research",
+    "url": "http://127.0.0.1:49160/",
+    "textLength": 32587,
+    "rootTag": "MAIN"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3304,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Spot volumes saw the largest increase year over year with a total of $719,000,000,000 traded, marking a near 2400% increase over 2020 volumes.\",\n      \"kind\": \"specific\",\n      \"why\": \"A third party can check the reported spot trading volume and percentage increase against financial records.\"\n    },\n    {\n      \"quote\": \"FTX raised over $1.4B in Series B and B-1 from notable investors like Temasek, Sequoia, Paradigm, SoftBank, Tiger Global and almost 100 other illustrious partners at a final equity valuation of $25B.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can verify the funding amount, investor names, and final valuation from public investment reports.\"\n    },\n    {\n      \"quote\": \"In 2021 FTX obtained licensure in the Bahamas under the D.A.R.E Act of 2020.\",\n      \"kind\": \"specific\",\n      \"why\": \"A third party could check regulatory records in the Bahamas for the issuance of this license.\"\n    },\n    {\n      \"quote\": \"By the end of 2021 FTX contributed over $10,000,000 to various organizations throughout the Bahamas.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader could verify charitable donation amounts through organizational records or public filings.\"\n    },\n    {\n      \"quote\": \"FTX has spent over $100 million dollars on the acquisition of real estate, residences and land for the FTX headquarters.\",\n      \"kind\": \"specific\",\n      \"why\": \"Property purchase records and filings could be checked to verify the real estate expenditure.\"\n    },\n    {\n      \"quote\": \"As part of that launch, we announced that 1% of all fees generated on FTX will be donated to charity.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check official company policy announcements regarding the fee percentage dedicated to charity.\"\n    },\n    {\n      \"quote\": \"Spanning 112 episodes to date with over 500,000 views and listens, people have tuned in to listen to notable guests such as our own Sam Bankman-Fried\",\n      \"kind\": \"specific\",\n      \"why\": \"Podcast hosting metrics can be audited to verify the episode count and total view or listen numbers.\"\n    },\n    {\n      \"quote\": \"Heading into 2022, the marketing and advertising team has expanded to include leading specialists in performance advertising, influencer, affiliate marketing and more.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is subjective puffery describing the marketing team members as leading specialists.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Spot volumes saw the largest increase year over year with a total of $719,000,000,000 traded, marking a near 2400% increase over 2020 volumes.",
+        "kind": "specific",
+        "why": "A third party can check the reported spot trading volume and percentage increase against financial records."
+      },
+      {
+        "id": "c2",
+        "quote": "FTX raised over $1.4B in Series B and B-1 from notable investors like Temasek, Sequoia, Paradigm, SoftBank, Tiger Global and almost 100 other illustrious partners at a final equity valuation of $25B.",
+        "kind": "specific",
+        "why": "A reader can verify the funding amount, investor names, and final valuation from public investment reports."
+      },
+      {
+        "id": "c3",
+        "quote": "In 2021 FTX obtained licensure in the Bahamas under the D.A.R.E Act of 2020.",
+        "kind": "specific",
+        "why": "A third party could check regulatory records in the Bahamas for the issuance of this license."
+      },
+      {
+        "id": "c4",
+        "quote": "By the end of 2021 FTX contributed over $10,000,000 to various organizations throughout the Bahamas.",
+        "kind": "specific",
+        "why": "A reader could verify charitable donation amounts through organizational records or public filings."
+      },
+      {
+        "id": "c5",
+        "quote": "FTX has spent over $100 million dollars on the acquisition of real estate, residences and land for the FTX headquarters.",
+        "kind": "specific",
+        "why": "Property purchase records and filings could be checked to verify the real estate expenditure."
+      },
+      {
+        "id": "c6",
+        "quote": "As part of that launch, we announced that 1% of all fees generated on FTX will be donated to charity.",
+        "kind": "specific",
+        "why": "A reader can check official company policy announcements regarding the fee percentage dedicated to charity."
+      },
+      {
+        "id": "c7",
+        "quote": "Spanning 112 episodes to date with over 500,000 views and listens, people have tuned in to listen to notable guests such as our own Sam Bankman-Fried",
+        "kind": "specific",
+        "why": "Podcast hosting metrics can be audited to verify the episode count and total view or listen numbers."
+      },
+      {
+        "id": "c8",
+        "quote": "Heading into 2022, the marketing and advertising team has expanded to include leading specialists in performance advertising, influencer, affiliate marketing and more.",
+        "kind": "vague",
+        "why": "This is subjective puffery describing the marketing team members as leading specialists."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c5",
+      "found": false,
+      "method": null
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Spot volumes saw the largest increase year over year with a total of "
+    },
+    {
+      "id": "c1",
+      "text": "$719,000,000,000 traded"
+    },
+    {
+      "id": "c1",
+      "text": ", marking a near "
+    },
+    {
+      "id": "c1",
+      "text": "2400% increase"
+    },
+    {
+      "id": "c1",
+      "text": " over 2020 volumes"
+    },
+    {
+      "id": "c2",
+      "text": "FTX raised over "
+    },
+    {
+      "id": "c2",
+      "text": "$1.4B in Series B and B-1"
+    },
+    {
+      "id": "c2",
+      "text": " from notable investors like Temasek, Sequoia, Paradigm, SoftBank, Tiger Global and almost 100 other illustrious partners at a final equity valuation of $25B"
+    },
+    {
+      "id": "c3",
+      "text": "In 2021 FTX obtained licensure in the Bahamas under the D.A.R.E Act of 2020"
+    },
+    {
+      "id": "c4",
+      "text": "By the end of 2021 FTX contributed over $10,000,000 to various organizations throughout the Bahamas"
+    },
+    {
+      "id": "c8",
+      "text": "Heading into 2022, the marketing and advertising team has expanded to include leading specialists in performance advertising, influencer, affiliate marketing and more"
+    },
+    {
+      "id": "c6",
+      "text": "As part of that launch, we announced that 1% of all fees generated on FTX will be donated to charity"
+    },
+    {
+      "id": "c7",
+      "text": "Spanning 112 episodes to date with over 500,000 views and listens, people have tuned in to listen to notable guests such as our own Sam Bankman-Fried"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3158,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"FTX\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"FTX US\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Brett Harrison\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Mark Wetjen\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Jonathan Cheesman\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Ryne Miller\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Nick Beckstead\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Sam Bankman-Fried\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"FTX Foundation\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Tom Brady\",\n      \"type\": \"person\"\n    }\n  ],\n  \"facts\": [\n    \"FTX ended 2021 with a valuation of $25 billion and over 5 million users.\",\n    \"Spot volumes reached $719 billion in 2021, representing a near 2400% increase over 2020.\",\n    \"FTX raised over $1.4 billion in Series B and B-1 funding rounds.\",\n    \"The company obtained licensing for crypto derivatives in the Bahamas under the D.A.R.E Act of 2020.\",\n    \"FTX launched the FTX Foundation in January 2021, dedicating 1% of all fees generated to charity.\",\n    \"The exchange's workforce nearly tripled heading into 2022 from a starting count of 72 employees.\"\n  ],\n  \"missing\": [\n    \"Exact founding date or month of FTX prior to its two-year mark in 2021\",\n    \"Specific details regarding the retail-focused FTX App features cut off in the text\",\n    \"A full breakdown of the 100 other investors who participated in the Series B and B-1 funding rounds\",\n    \"Specific launch dates for the new L1 blockchain support integrations\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Going into it we were valued at $1bn with no VC investment, had yet to hit the million user mark...\\\", add the specific founding month and year of FTX.\",\n    \"In the sentence \\\"Our goal is to create a retail-frien\\\", complete the truncated word and sentence to explain the specific purpose of the FTX App.\",\n    \"In the sentence \\\"FTX raised over $1.4B in Series B and B-1 from notable investors like Temasek, Sequoia, Paradigm, SoftBank, Tiger Global and almost 100 other illustrious partners at a final equity valuation of $25B.\\\", add the exact month and year when the funding round closed.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 2,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "FTX",
+          "type": "company"
+        },
+        {
+          "name": "FTX US",
+          "type": "company"
+        },
+        {
+          "name": "Brett Harrison",
+          "type": "person"
+        },
+        {
+          "name": "Mark Wetjen",
+          "type": "person"
+        },
+        {
+          "name": "Jonathan Cheesman",
+          "type": "person"
+        },
+        {
+          "name": "Ryne Miller",
+          "type": "person"
+        },
+        {
+          "name": "Nick Beckstead",
+          "type": "person"
+        },
+        {
+          "name": "Sam Bankman-Fried",
+          "type": "person"
+        },
+        {
+          "name": "FTX Foundation",
+          "type": "company"
+        },
+        {
+          "name": "Tom Brady",
+          "type": "person"
+        }
+      ],
+      "facts": [
+        "FTX ended 2021 with a valuation of $25 billion and over 5 million users.",
+        "Spot volumes reached $719 billion in 2021, representing a near 2400% increase over 2020.",
+        "FTX raised over $1.4 billion in Series B and B-1 funding rounds.",
+        "The company obtained licensing for crypto derivatives in the Bahamas under the D.A.R.E Act of 2020.",
+        "FTX launched the FTX Foundation in January 2021, dedicating 1% of all fees generated to charity.",
+        "The exchange's workforce nearly tripled heading into 2022 from a starting count of 72 employees."
+      ],
+      "missing": [
+        "Exact founding date or month of FTX prior to its two-year mark in 2021",
+        "Specific details regarding the retail-focused FTX App features cut off in the text",
+        "A full breakdown of the 100 other investors who participated in the Series B and B-1 funding rounds",
+        "Specific launch dates for the new L1 blockchain support integrations"
+      ],
+      "fixes": [
+        "In the sentence \"Going into it we were valued at $1bn with no VC investment, had yet to hit the million user mark...\", add the specific founding month and year of FTX.",
+        "In the sentence \"Our goal is to create a retail-frien\", complete the truncated word and sentence to explain the specific purpose of the FTX App.",
+        "In the sentence \"FTX raised over $1.4B in Series B and B-1 from notable investors like Temasek, Sequoia, Paradigm, SoftBank, Tiger Global and almost 100 other illustrious partners at a final equity valuation of $25B.\", add the exact month a"
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 2,
+        "ambiguity": 3
+      }
+    }
+  }
+}

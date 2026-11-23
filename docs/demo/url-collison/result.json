@@ -1,0 +1,304 @@
+{
+  "fixture": null,
+  "source_url": "https://en.wikipedia.org/wiki/Patrick_Collison",
+  "run_at": "2026-11-23T03:46:15.174Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Patrick Collison - Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Patrick_Collison",
+    "textLength": 16776,
+    "rootTag": "MAIN"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3235,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Patrick Collison (born 9 September 1988) is an Irish entrepreneur, investor, and philanthropist.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check his birth date, nationality, and profession against public biographical records.\"\n    },\n    {\n      \"quote\": \"In 2021, he co-founded Arc Institute, a nonprofit research organization, with bioscientists Silvana Konermann and Patrick Hsu.\",\n      \"kind\": \"specific\",\n      \"why\": \"One could check the founding year, organizational details, and co-founders of Arc Institute.\"\n    },\n    {\n      \"quote\": \"In 2026, he co-founded the Rhine Group, a policy forum and think tank, with former Italian prime minister Mario Draghi.\",\n      \"kind\": \"specific\",\n      \"why\": \"Public records can verify the establishment of the Rhine Group and its co-founders.\"\n    },\n    {\n      \"quote\": \"In November 2016, the Collison brothers became the world's youngest self-made billionaires, worth at least $1.1 billion\",\n      \"kind\": \"specific\",\n      \"why\": \"Financial publications and wealth indices can verify this milestone and valuation claim.\"\n    },\n    {\n      \"quote\": \"Collison joined the board of Meta Platforms in April 2025.\",\n      \"kind\": \"specific\",\n      \"why\": \"Corporate filings and press releases for Meta Platforms can confirm this board appointment date.\"\n    },\n    {\n      \"quote\": \"In April 2022, Collison married Swiss-American biochemist and Stanford University professor Silvana Konermann\",\n      \"kind\": \"specific\",\n      \"why\": \"Marriage records and university directories can verify this biographical detail.\"\n    },\n    {\n      \"quote\": \"In April 2020, Collison and Cowen launched Fast Grants to fund COVID-19-related science.\",\n      \"kind\": \"specific\",\n      \"why\": \"Public announcements and foundation records can check the launch date and purpose of Fast Grants.\"\n    },\n    {\n      \"quote\": \"Collison lives in San Francisco, California.\",\n      \"kind\": \"specific\",\n      \"why\": \"Public records or interviews could verify his current place of residence.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Patrick Collison (born 9 September 1988) is an Irish entrepreneur, investor, and philanthropist.",
+        "kind": "specific",
+        "why": "A reader can check his birth date, nationality, and profession against public biographical records."
+      },
+      {
+        "id": "c2",
+        "quote": "In 2021, he co-founded Arc Institute, a nonprofit research organization, with bioscientists Silvana Konermann and Patrick Hsu.",
+        "kind": "specific",
+        "why": "One could check the founding year, organizational details, and co-founders of Arc Institute."
+      },
+      {
+        "id": "c3",
+        "quote": "In 2026, he co-founded the Rhine Group, a policy forum and think tank, with former Italian prime minister Mario Draghi.",
+        "kind": "specific",
+        "why": "Public records can verify the establishment of the Rhine Group and its co-founders."
+      },
+      {
+        "id": "c4",
+        "quote": "In November 2016, the Collison brothers became the world's youngest self-made billionaires, worth at least $1.1 billion",
+        "kind": "specific",
+        "why": "Financial publications and wealth indices can verify this milestone and valuation claim."
+      },
+      {
+        "id": "c5",
+        "quote": "Collison joined the board of Meta Platforms in April 2025.",
+        "kind": "specific",
+        "why": "Corporate filings and press releases for Meta Platforms can confirm this board appointment date."
+      },
+      {
+        "id": "c6",
+        "quote": "In April 2022, Collison married Swiss-American biochemist and Stanford University professor Silvana Konermann",
+        "kind": "specific",
+        "why": "Marriage records and university directories can verify this biographical detail."
+      },
+      {
+        "id": "c7",
+        "quote": "In April 2020, Collison and Cowen launched Fast Grants to fund COVID-19-related science.",
+        "kind": "specific",
+        "why": "Public announcements and foundation records can check the launch date and purpose of Fast Grants."
+      },
+      {
+        "id": "c8",
+        "quote": "Collison lives in San Francisco, California.",
+        "kind": "specific",
+        "why": "Public records or interviews could verify his current place of residence."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Patrick Collison"
+    },
+    {
+      "id": "c1",
+      "text": " (born 9 September 1988) is an Irish entrepreneur, investor, and "
+    },
+    {
+      "id": "c1",
+      "text": "philanthropist"
+    },
+    {
+      "id": "c2",
+      "text": "In 2021, he co-founded "
+    },
+    {
+      "id": "c2",
+      "text": "Arc Institute"
+    },
+    {
+      "id": "c2",
+      "text": ", a nonprofit research organization, with bioscientists "
+    },
+    {
+      "id": "c2",
+      "text": "Silvana Konermann"
+    },
+    {
+      "id": "c2",
+      "text": " and "
+    },
+    {
+      "id": "c2",
+      "text": "Patrick Hsu"
+    },
+    {
+      "id": "c3",
+      "text": "In 2026, he co-founded the "
+    },
+    {
+      "id": "c3",
+      "text": "Rhine Group"
+    },
+    {
+      "id": "c3",
+      "text": ", a policy forum and "
+    },
+    {
+      "id": "c3",
+      "text": "think tank"
+    },
+    {
+      "id": "c3",
+      "text": ", with former Italian prime minister "
+    },
+    {
+      "id": "c3",
+      "text": "Mario Draghi"
+    },
+    {
+      "id": "c4",
+      "text": "In November 2016, the Collison brothers became the world's youngest self-made billionaires, worth at least $1.1 billion"
+    },
+    {
+      "id": "c5",
+      "text": "Collison joined the board of "
+    },
+    {
+      "id": "c5",
+      "text": "Meta Platforms"
+    },
+    {
+      "id": "c5",
+      "text": " in April 2025"
+    },
+    {
+      "id": "c7",
+      "text": "In April 2020, Collison and Cowen launched "
+    },
+    {
+      "id": "c7",
+      "text": "Fast Grants"
+    },
+    {
+      "id": "c7",
+      "text": " to fund "
+    },
+    {
+      "id": "c7",
+      "text": "COVID-19"
+    },
+    {
+      "id": "c7",
+      "text": "-related science"
+    },
+    {
+      "id": "c6",
+      "text": "In April 2022, Collison married Swiss-American biochemist and "
+    },
+    {
+      "id": "c6",
+      "text": "Stanford University"
+    },
+    {
+      "id": "c6",
+      "text": " professor "
+    },
+    {
+      "id": "c6",
+      "text": "Silvana Konermann"
+    },
+    {
+      "id": "c8",
+      "text": "Collison lives in "
+    },
+    {
+      "id": "c8",
+      "text": "San Francisco"
+    },
+    {
+      "id": "c8",
+      "text": ", California"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2615,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Patrick Collison\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Stripe\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Arc Institute\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"John Collison\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Silvana Konermann\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Meta Platforms\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Fast Grants\",\n      \"type\": \"other\"\n    },\n    {\n      \"name\": \"Rhine Group\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Patrick Collison is an Irish entrepreneur, investor, and philanthropist born on September 9, 1988.\",\n    \"He co-founded the payment processing company Stripe with his brother John Collison in 2010.\",\n    \"He won Ireland's Young Scientist and Technology Exhibition in 2005 at the age of sixteen.\",\n    \"He co-founded the nonprofit research organization Arc Institute in 2021 with Silvana Konermann and Patrick Hsu.\",\n    \"He joined the board of directors of Meta Platforms in April 2025.\",\n    \"He married Swiss-American biochemist Silvana Konermann in April 2022.\"\n  ],\n  \"missing\": [\n    \"Details about his current educational degrees or specific coursework completed at MIT.\",\n    \"Specific financial figures for his early investments prior to Stripe becoming a multibillion-dollar company.\",\n    \"The precise location of his current residence outside of San Francisco.\",\n    \"Further context regarding the exact scope and mission of the Rhine Group.\"\n  ],\n  \"fixes\": [\n    \"In the sentence 'He attended Massachusetts Institute of Technology, but eventually dropped out in 2009 after starting businesses.', add his major or field of study.\",\n    \"In the sentence 'In 2026, he co-founded the Rhine Group, a policy forum and think tank, with former Italian prime minister Mario Draghi.', add the specific month.\",\n    \"In the sentence 'Collison lives in San Francisco, California.', add the neighborhood.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 4,\n    \"ambiguity\": 4\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Patrick Collison",
+          "type": "person"
+        },
+        {
+          "name": "Stripe",
+          "type": "company"
+        },
+        {
+          "name": "Arc Institute",
+          "type": "company"
+        },
+        {
+          "name": "John Collison",
+          "type": "person"
+        },
+        {
+          "name": "Silvana Konermann",
+          "type": "person"
+        },
+        {
+          "name": "Meta Platforms",
+          "type": "company"
+        },
+        {
+          "name": "Fast Grants",
+          "type": "other"
+        },
+        {
+          "name": "Rhine Group",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Patrick Collison is an Irish entrepreneur, investor, and philanthropist born on September 9, 1988.",
+        "He co-founded the payment processing company Stripe with his brother John Collison in 2010.",
+        "He won Ireland's Young Scientist and Technology Exhibition in 2005 at the age of sixteen.",
+        "He co-founded the nonprofit research organization Arc Institute in 2021 with Silvana Konermann and Patrick Hsu.",
+        "He joined the board of directors of Meta Platforms in April 2025.",
+        "He married Swiss-American biochemist Silvana Konermann in April 2022."
+      ],
+      "missing": [
+        "Details about his current educational degrees or specific coursework completed at MIT.",
+        "Specific financial figures for his early investments prior to Stripe becoming a multibillion-dollar company.",
+        "The precise location of his current residence outside of San Francisco.",
+        "Further context regarding the exact scope and mission of the Rhine Group."
+      ],
+      "fixes": [
+        "In the sentence 'He attended Massachusetts Institute of Technology, but eventually dropped out in 2009 after starting businesses.', add his major or field of study.",
+        "In the sentence 'In 2026, he co-founded the Rhine Group, a policy forum and think tank, with former Italian prime minister Mario Draghi.', add the specific month.",
+        "In the sentence 'Collison lives in San Francisco, California.', add the neighborhood."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 4,
+        "ambiguity": 4
+      }
+    }
+  }
+}

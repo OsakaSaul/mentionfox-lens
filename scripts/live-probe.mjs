@@ -20,8 +20,9 @@ const argv = process.argv.slice(2);
 const opt = (name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : null; };
 const fixtureArg = opt("--fixture");
 const fixturePath = fixtureArg ? resolve(process.cwd(), fixtureArg) : resolve(root, "test/fixtures/company-site.html");
-const fixtureName = basename(fixturePath).replace(/\.html?$/, "");
-const outDir = fixtureArg ? resolve(root, opt("--out") || `docs/real-runs/${fixtureName}`) : null;
+const urlArg = opt("--url"); // live page instead of a fixture (scripts kept, so client-side rendering works)
+const fixtureName = urlArg ? (opt("--name") || "live-url") : basename(fixturePath).replace(/\.html?$/, "");
+const outDir = fixtureArg || urlArg ? resolve(root, opt("--out") || `docs/real-runs/${fixtureName}`) : null;
 if (outDir) mkdirSync(outDir, { recursive: true });
 
 const log = [];
@@ -32,7 +33,7 @@ const out = (s) => { const r = redact(s); console.log(r); log.push(r); };
 if (!argv.includes("--no-build") && spawnSync(process.execPath, [resolve(root, "scripts/build.mjs"), "--dev"], { cwd: root, stdio: "ignore" }).status !== 0) process.exit(1);
 const mpath = resolve(root, "dist/manifest.json");
 const m = JSON.parse(readFileSync(mpath, "utf8"));
-m.host_permissions = ["http://127.0.0.1/*"]; // test only, so the probe can inject without a toolbar click
+m.host_permissions = urlArg ? [new URL(urlArg).origin + "/*"] : ["http://127.0.0.1/*"]; // test only, so the probe can inject without a toolbar click
 writeFileSync(mpath, JSON.stringify(m, null, 2));
 
 const base = join(os.homedir(), "AppData/Local/ms-playwright");
@@ -58,13 +59,16 @@ const ctx = await chromium.launchPersistentContext(dir, {
 out(`date: ${new Date().toISOString()}`);
 out(`browser: ${ctx.browser()?.version?.() ?? "chromium"} (${exe})`);
 out(`extra flags: ${flags.join(" ") || "none"}`);
+if (urlArg) out(`url: ${urlArg}`);
 if (fixtureArg) out(`fixture: ${basename(fixturePath)}${srcUrl ? ` (source ${srcUrl})` : ""}`);
 try {
   const sw = ctx.serviceWorkers()[0] || (await ctx.waitForEvent("serviceworker", { timeout: 15000 }));
   const extId = new URL(sw.url()).host;
   const page = await ctx.newPage();
-  await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: "load" }).catch(() => {});
-  const tabId = await sw.evaluate(async () => (await chrome.tabs.query({ url: "http://127.0.0.1/*" }))[0].id);
+  await page.goto(urlArg || `http://127.0.0.1:${port}/`, { waitUntil: "load", timeout: 90000 }).catch(() => {});
+  if (urlArg) await page.waitForTimeout(6000);
+  const tabPattern = urlArg ? new URL(urlArg).origin + "/*" : "http://127.0.0.1/*";
+  const tabId = await sw.evaluate(async (pat) => (await chrome.tabs.query({ url: pat }))[0].id, tabPattern);
   const panel = await ctx.newPage();
   await panel.setViewportSize({ width: 440, height: 900 });
   const consoleLines = [];
@@ -81,9 +85,11 @@ try {
   out(`claims mode badge: ${badge}`);
   const last = await panel.evaluate(() => window.__lensLast || null);
   if (outDir && last) {
+    const pageText = await page.evaluate(() => document.body.innerText.length);
+    out(`page body text length: ${pageText}`);
     const ground = await page.evaluate(() => [...document.querySelectorAll("mark.mfl-hl")].map((m) => ({ id: m.getAttribute("data-mfl-id"), text: m.textContent })));
     const result = {
-      fixture: basename(fixturePath), source_url: srcUrl || null, run_at: new Date().toISOString(), model_path: "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+      fixture: urlArg ? null : basename(fixturePath), source_url: urlArg || srcUrl || null, run_at: new Date().toISOString(), model_path: "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
       page: last.page,
       claims: { source: last.claims.source, ms: last.claims.ms, retried: last.claims.retried, raw: last.claims.raw, normalized: last.claims.value },
       highlight: last.highlight?.results || [],

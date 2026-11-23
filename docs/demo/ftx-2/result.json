@@ -1,0 +1,282 @@
+{
+  "fixture": "ftx-2.html",
+  "source_url": null,
+  "run_at": "2026-11-23T03:45:03.674Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "FTX in 2021H1 review :: FTX Research",
+    "url": "http://127.0.0.1:49175/",
+    "textLength": 25323,
+    "rootTag": "MAIN"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3836,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Exchange Volumes: In just this half year alone, we’ve witnessed enormous growth in volume with over $1,875,000,000,000 in total volume and an average daily volume (ADV) of $10,965,000,000 (934% increase since January).\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check the reported trading volume figures and percentage increase against exchange records.\"\n    },\n    {\n      \"quote\": \"Users: It’s official: FTX has received >1 million user sign-ups within the last 6 months.\",\n      \"kind\": \"specific\",\n      \"why\": \"A third party could verify the number of user sign-ups recorded during the specified six-month period.\"\n    },\n    {\n      \"quote\": \"In the past six months, we welcomed 38 new employees globally to bring our total headcount to 110.\",\n      \"kind\": \"specific\",\n      \"why\": \"An auditor or researcher could check the company's hiring records and total employee headcount.\"\n    },\n    {\n      \"quote\": \"Brett Harrison joined in May as FTX.us’s President to lead our US-regulated exchange.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can verify the employment start date and title of Brett Harrison.\"\n    },\n    {\n      \"quote\": \"In the last six months, FTX Foundation—FTX, its affiliates, and its employees—have raised more than $10 million in charitable donations for the causes you voted on.\",\n      \"kind\": \"specific\",\n      \"why\": \"A third party could audit the total charitable donations raised by the foundation.\"\n    },\n    {\n      \"quote\": \"Nevertheless, careful consideration on what we’ve done right this year allows us to identify the next steps towards becoming the best crypto company and brand in the world.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is subjective puffery about becoming the best crypto company in the world.\"\n    },\n    {\n      \"quote\": \"The numbers don’t lie. In these six months, we achieved figures that reflect non-stop explosive growth, aggressive and smart expansion, proven resiliency, and successfully meeting our users’ needs.\",\n      \"kind\": \"vague\",\n      \"why\": \"This contains boastful marketing language about non-stop explosive growth and proven resiliency.\"\n    },\n    {\n      \"quote\": \"Our fundraising in February of 2020 valued FTX at $1B, representing an incredible milestone and making FTX the quickest company to reach unicorn status in history.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader could check the valuation amount from the February 2020 fundraising and historical records for unicorn startups.\"\n    },\n    {\n      \"quote\": \"Followers learned this July that FTX completed a Series B fundraising round that values our exchange at $18B.\",\n      \"kind\": \"specific\",\n      \"why\": \"Financial news or corporate filings could verify the Series B valuation of 18 billion dollars.\"\n    },\n    {\n      \"quote\": \"We tirelessly strive towards delivering the best crypto and trading experience, bridging the gap between the crypto and TradFi worlds, and leading by example in innovation, customer service, and care for our communities.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is general promotional puffery describing an aspiration to deliver the best experience.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Exchange Volumes: In just this half year alone, we’ve witnessed enormous growth in volume with over $1,875,000,000,000 in total volume and an average daily volume (ADV) of $10,965,000,000 (934% increase since January).",
+        "kind": "specific",
+        "why": "A reader can check the reported trading volume figures and percentage increase against exchange records."
+      },
+      {
+        "id": "c2",
+        "quote": "Users: It’s official: FTX has received >1 million user sign-ups within the last 6 months.",
+        "kind": "specific",
+        "why": "A third party could verify the number of user sign-ups recorded during the specified six-month period."
+      },
+      {
+        "id": "c3",
+        "quote": "In the past six months, we welcomed 38 new employees globally to bring our total headcount to 110.",
+        "kind": "specific",
+        "why": "An auditor or researcher could check the company's hiring records and total employee headcount."
+      },
+      {
+        "id": "c4",
+        "quote": "Brett Harrison joined in May as FTX.us’s President to lead our US-regulated exchange.",
+        "kind": "specific",
+        "why": "A reader can verify the employment start date and title of Brett Harrison."
+      },
+      {
+        "id": "c5",
+        "quote": "In the last six months, FTX Foundation—FTX, its affiliates, and its employees—have raised more than $10 million in charitable donations for the causes you voted on.",
+        "kind": "specific",
+        "why": "A third party could audit the total charitable donations raised by the foundation."
+      },
+      {
+        "id": "c6",
+        "quote": "Nevertheless, careful consideration on what we’ve done right this year allows us to identify the next steps towards becoming the best crypto company and brand in the world.",
+        "kind": "vague",
+        "why": "This is subjective puffery about becoming the best crypto company in the world."
+      },
+      {
+        "id": "c7",
+        "quote": "The numbers don’t lie. In these six months, we achieved figures that reflect non-stop explosive growth, aggressive and smart expansion, proven resiliency, and successfully meeting our users’ needs.",
+        "kind": "vague",
+        "why": "This contains boastful marketing language about non-stop explosive growth and proven resiliency."
+      },
+      {
+        "id": "c8",
+        "quote": "Our fundraising in February of 2020 valued FTX at $1B, representing an incredible milestone and making FTX the quickest company to reach unicorn status in history.",
+        "kind": "specific",
+        "why": "A reader could check the valuation amount from the February 2020 fundraising and historical records for unicorn startups."
+      },
+      {
+        "id": "c9",
+        "quote": "Followers learned this July that FTX completed a Series B fundraising round that values our exchange at $18B.",
+        "kind": "specific",
+        "why": "Financial news or corporate filings could verify the Series B valuation of 18 billion dollars."
+      },
+      {
+        "id": "c10",
+        "quote": "We tirelessly strive towards delivering the best crypto and trading experience, bridging the gap between the crypto and TradFi worlds, and leading by example in innovation, customer service, and care for our communities.",
+        "kind": "vague",
+        "why": "This is general promotional puffery describing an aspiration to deliver the best experience."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c9",
+      "found": false,
+      "method": null
+    },
+    {
+      "id": "c10",
+      "found": true,
+      "method": "wrap"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c6",
+      "text": "Nevertheless, careful consideration on what we’ve done right this year allows us to identify the next steps towards becoming the best crypto company and brand in the world"
+    },
+    {
+      "id": "c7",
+      "text": "The numbers don’t lie. In these six months, we achieved figures that reflect non-stop explosive growth, aggressive and smart expansion, proven resiliency, and successfully meeting our users’ needs"
+    },
+    {
+      "id": "c1",
+      "text": "Exchange Volumes:"
+    },
+    {
+      "id": "c1",
+      "text": " In just this half year alone, we’ve witnessed enormous growth in volume with over "
+    },
+    {
+      "id": "c1",
+      "text": "\\$1,875,000,000,000"
+    },
+    {
+      "id": "c1",
+      "text": " in total volume and an average daily volume (ADV) of "
+    },
+    {
+      "id": "c1",
+      "text": "\\$10,965,000,000"
+    },
+    {
+      "id": "c1",
+      "text": " (934% increase since January)"
+    },
+    {
+      "id": "c2",
+      "text": "Users:"
+    },
+    {
+      "id": "c2",
+      "text": " It’s official: FTX has received >1 million user sign-ups within the last 6 months"
+    },
+    {
+      "id": "c8",
+      "text": "Our fundraising in February of 2020 valued FTX at \\$1B, representing an incredible milestone and making FTX the quickest company to reach unicorn status in history"
+    },
+    {
+      "id": "c3",
+      "text": "In the past six months, we welcomed 38 new employees globally to bring our total headcount to 110"
+    },
+    {
+      "id": "c4",
+      "text": "Brett Harrison joined in May as FTX.us’s President to lead our US-regulated exchange"
+    },
+    {
+      "id": "c5",
+      "text": "In the last six months, "
+    },
+    {
+      "id": "c5",
+      "text": "FTX Foundation"
+    },
+    {
+      "id": "c5",
+      "text": "—FTX, its affiliates, and its employees—have raised more than $10 million in charitable donations for the causes "
+    },
+    {
+      "id": "c5",
+      "text": "you voted on"
+    },
+    {
+      "id": "c10",
+      "text": "We tirelessly strive towards delivering the best crypto and trading experience, bridging the gap between the crypto and TradFi worlds, and leading by example in innovation, customer service, and care for our communities"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3087,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"FTX\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"FTX.us\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Brett Harrison\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Jonathan Cheesman\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Graham Williams\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Dan Chapsky\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Alfarida Mohammed\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Stephanie Lennox\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Adam Jacobs\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Sam Bankman-Fried\",\n      \"type\": \"person\"\n    }\n  ],\n  \"facts\": [\n    \"FTX recorded over $1,875,000,000,000 in total exchange volume and an average daily volume of $10,965,000,000 in the first half of 2021.\",\n    \"FTX completed a Series B fundraising round that valued the exchange at $18B and raised $900 million.\",\n    \"FTX received over 1 million user sign-ups within the first six months of 2021.\",\n    \"Brett Harrison joined FTX.us as President in May to lead the US-regulated exchange.\",\n    \"FTX global headcount reached 110 employees following the addition of 38 new staff members in the first half of 2021.\",\n    \"The FTX Foundation raised more than $10 million in charitable donations for voted causes.\"\n  ],\n  \"missing\": [\n    \"The specific date in 2021 when this half-year review was published.\",\n    \"Exact details about the Robinhood-related market product cut off at the end of the text.\",\n    \"The exact start date or month of the Series B fundraising round announced in July.\",\n    \"Specific details or criteria regarding the mentioned FTX Dota Charity event.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Followers learned this July that FTX completed a Series B fundraising round that values our exchange at $18B.\\\", add the specific calendar day of July when the round was completed.\",\n    \"In the section discussing the new markets where the text cuts off with \\\"Almost immediately after Robinhoo\\\", complete the sentence or paragraph to state which market was listed and when.\",\n    \"In the sentence \\\"It was also recently announced that we will be hosting our FTX Dota Charity event on July 17...\\\", add the specific starting time of the event.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 2,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "FTX",
+          "type": "company"
+        },
+        {
+          "name": "FTX.us",
+          "type": "company"
+        },
+        {
+          "name": "Brett Harrison",
+          "type": "person"
+        },
+        {
+          "name": "Jonathan Cheesman",
+          "type": "person"
+        },
+        {
+          "name": "Graham Williams",
+          "type": "person"
+        },
+        {
+          "name": "Dan Chapsky",
+          "type": "person"
+        },
+        {
+          "name": "Alfarida Mohammed",
+          "type": "person"
+        },
+        {
+          "name": "Stephanie Lennox",
+          "type": "person"
+        },
+        {
+          "name": "Adam Jacobs",
+          "type": "person"
+        },
+        {
+          "name": "Sam Bankman-Fried",
+          "type": "person"
+        }
+      ],
+      "facts": [
+        "FTX recorded over $1,875,000,000,000 in total exchange volume and an average daily volume of $10,965,000,000 in the first half of 2021.",
+        "FTX completed a Series B fundraising round that valued the exchange at $18B and raised $900 million.",
+        "FTX received over 1 million user sign-ups within the first six months of 2021.",
+        "Brett Harrison joined FTX.us as President in May to lead the US-regulated exchange.",
+        "FTX global headcount reached 110 employees following the addition of 38 new staff members in the first half of 2021.",
+        "The FTX Foundation raised more than $10 million in charitable donations for voted causes."
+      ],
+      "missing": [
+        "The specific date in 2021 when this half-year review was published.",
+        "Exact details about the Robinhood-related market product cut off at the end of the text.",
+        "The exact start date or month of the Series B fundraising round announced in July.",
+        "Specific details or criteria regarding the mentioned FTX Dota Charity event."
+      ],
+      "fixes": [
+        "In the sentence \"Followers learned this July that FTX completed a Series B fundraising round that values our exchange at $18B.\", add the specific calendar day of July when the round was completed.",
+        "In the section discussing the new markets where the text cuts off with \"Almost immediately after Robinhoo\", complete the sentence or paragraph to state which market was listed and when.",
+        "In the sentence \"It was also recently announced that we will be hosting our FTX Dota Charity event on July 17...\", add the specific starting time of the event."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 2,
+        "ambiguity": 3
+      }
+    }
+  }
+}

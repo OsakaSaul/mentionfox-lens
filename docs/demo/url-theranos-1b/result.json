@@ -1,0 +1,226 @@
+{
+  "fixture": null,
+  "source_url": "https://web.archive.org/web/20151218013228/https://www.theranos.com/news/posts/theranos-receives-fda-clearance-and-review-and-validation-of-revolutionary-finger-stick-technology-test-and-associated-test-system",
+  "run_at": "2026-11-23T03:47:57.340Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "News - Posts | Theranos",
+    "url": "https://web.archive.org/web/20151218013228/https://www.theranos.com/news/posts/theranos-receives-fda-clearance-and-review-and-validation-of-revolutionary-finger-stick-technology-test-and-associated-test-system",
+    "textLength": 12645,
+    "rootTag": "BODY"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3965,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Theranos today announced that it has received the U.S. Food and Drug Administration’s clearance of its test system and test for herpes simplex 1 virus IgG.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check official FDA records to confirm whether this test system and virus test received clearance.\"\n    },\n    {\n      \"quote\": \"Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices\",\n      \"kind\": \"specific\",\n      \"why\": \"A third party could verify the study participant count and testing data submitted to the regulatory agency.\"\n    },\n    {\n      \"quote\": \"Theranos’ HSV-1 studies included matrix comparison studies across sixty-nine Theranos devices.\",\n      \"kind\": \"specific\",\n      \"why\": \"The exact number of devices used in the matrix comparison studies can be checked against company study documentation.\"\n    },\n    {\n      \"quote\": \"Theranos’ HSV-1 clinical studies also included sensitivity and specificity studies with hundreds of human samples – both capillary and venous, CDC panel testing – which demonstrated 100% agreement with the results provided by CDC\",\n      \"kind\": \"specific\",\n      \"why\": \"A researcher could verify the stated 100% agreement rate with the CDC panel testing results.\"\n    },\n    {\n      \"quote\": \"Theranos is the first lab to voluntarily commit to submitting all of its LDTs to the FDA for review.\",\n      \"kind\": \"specific\",\n      \"why\": \"Regulatory records and public announcements could verify if Theranos was indeed the first laboratory to make this specific commitment.\"\n    },\n    {\n      \"quote\": \"Theranos’ HSV-1 test costs $9.07 and is one of 153 tests Theranos makes available for less than $10.\",\n      \"kind\": \"specific\",\n      \"why\": \"A customer or auditor can check the published price list to verify the exact cost and number of tests under ten dollars.\"\n    },\n    {\n      \"quote\": \"Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes.\",\n      \"kind\": \"specific\",\n      \"why\": \"Corporate registration records can verify the founding year and founder's name.\"\n    },\n    {\n      \"quote\": \"The FDA’s decision provides independent validation of patented finger stick and venous blood testing technology and the ground breaking Theranos System\",\n      \"kind\": \"vague\",\n      \"why\": \"Calling the system ground breaking is subjective marketing language rather than a measurable fact.\"\n    },\n    {\n      \"quote\": \"FDA’s review process for 510(k) notifications is widely recognized as one of the most rigorous regulatory hurdles in the world for evaluation of the performance, accuracy, and intended use of diagnostic tests.\",\n      \"kind\": \"vague\",\n      \"why\": \"The description of the review process as one of the most rigorous in the world is a generalized opinion.\"\n    },\n    {\n      \"quote\": \"Theranos offers lab tests in convenient locations in its Wellness Centers in Arizona and California, with plans to expand throughout the country.\",\n      \"kind\": \"vague\",\n      \"why\": \"The term convenient is an unverifiable subjective claim about the location of the wellness centers.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Theranos today announced that it has received the U.S. Food and Drug Administration’s clearance of its test system and test for herpes simplex 1 virus IgG.",
+        "kind": "specific",
+        "why": "A reader can check official FDA records to confirm whether this test system and virus test received clearance."
+      },
+      {
+        "id": "c2",
+        "quote": "Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices",
+        "kind": "specific",
+        "why": "A third party could verify the study participant count and testing data submitted to the regulatory agency."
+      },
+      {
+        "id": "c3",
+        "quote": "Theranos’ HSV-1 studies included matrix comparison studies across sixty-nine Theranos devices.",
+        "kind": "specific",
+        "why": "The exact number of devices used in the matrix comparison studies can be checked against company study documentation."
+      },
+      {
+        "id": "c4",
+        "quote": "Theranos’ HSV-1 clinical studies also included sensitivity and specificity studies with hundreds of human samples – both capillary and venous, CDC panel testing – which demonstrated 100% agreement with the results provided by CDC",
+        "kind": "specific",
+        "why": "A researcher could verify the stated 100% agreement rate with the CDC panel testing results."
+      },
+      {
+        "id": "c5",
+        "quote": "Theranos is the first lab to voluntarily commit to submitting all of its LDTs to the FDA for review.",
+        "kind": "specific",
+        "why": "Regulatory records and public announcements could verify if Theranos was indeed the first laboratory to make this specific commitment."
+      },
+      {
+        "id": "c6",
+        "quote": "Theranos’ HSV-1 test costs $9.07 and is one of 153 tests Theranos makes available for less than $10.",
+        "kind": "specific",
+        "why": "A customer or auditor can check the published price list to verify the exact cost and number of tests under ten dollars."
+      },
+      {
+        "id": "c7",
+        "quote": "Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes.",
+        "kind": "specific",
+        "why": "Corporate registration records can verify the founding year and founder's name."
+      },
+      {
+        "id": "c8",
+        "quote": "The FDA’s decision provides independent validation of patented finger stick and venous blood testing technology and the ground breaking Theranos System",
+        "kind": "vague",
+        "why": "Calling the system ground breaking is subjective marketing language rather than a measurable fact."
+      },
+      {
+        "id": "c9",
+        "quote": "FDA’s review process for 510(k) notifications is widely recognized as one of the most rigorous regulatory hurdles in the world for evaluation of the performance, accuracy, and intended use of diagnostic tests.",
+        "kind": "vague",
+        "why": "The description of the review process as one of the most rigorous in the world is a generalized opinion."
+      },
+      {
+        "id": "c10",
+        "quote": "Theranos offers lab tests in convenient locations in its Wellness Centers in Arizona and California, with plans to expand throughout the country.",
+        "kind": "vague",
+        "why": "The term convenient is an unverifiable subjective claim about the location of the wellness centers."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": false,
+      "method": null
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c9",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c10",
+      "found": true,
+      "method": "wrap"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c8",
+      "text": "The FDA’s decision provides independent validation of Theranos’ patented finger stick and venous blood testing technology and the ground breaking Theranos System"
+    },
+    {
+      "id": "c9",
+      "text": "FDA’s review process for 510(k) notifications is widely recognized as one of the most rigorous regulatory hurdles in the world for evaluation of the performance, accuracy, and intended use of diagnostic tests"
+    },
+    {
+      "id": "c2",
+      "text": "Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices"
+    },
+    {
+      "id": "c3",
+      "text": "Theranos’ HSV-1 studies included matrix comparison studies across sixty-nine Theranos devices"
+    },
+    {
+      "id": "c4",
+      "text": "Theranos’ HSV-1 clinical studies also included sensitivity and specificity studies with hundreds of human samples – both capillary and venous, CDC panel testing – which demonstrated 100% agreement with the results provided by CDC"
+    },
+    {
+      "id": "c5",
+      "text": "Theranos is the first lab to voluntarily commit to submitting all of its LDTs to the FDA for review"
+    },
+    {
+      "id": "c6",
+      "text": "Theranos’ HSV-1 test costs $9.07 and is one of 153 tests Theranos makes available for less than $10"
+    },
+    {
+      "id": "c7",
+      "text": "Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes"
+    },
+    {
+      "id": "c10",
+      "text": "Theranos offers lab tests in convenient locations in its Wellness Centers in Arizona and California, with plans to expand throughout the country"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3027,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"U.S. Food and Drug Administration\",\n      \"type\": \"other\"\n    },\n    {\n      \"name\": \"Nanotainer\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Theranos System\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Theranos announced receiving FDA clearance for its herpes simplex 1 virus IgG test system on July 2, 2015.\",\n    \"The FDA clearance includes the use of Nanotainer Tubes for blood collection via a finger prick.\",\n    \"The company provided study data from 818 subjects of varying age and ethnicity to the FDA.\",\n    \"The HSV-1 test costs $9.07, and Theranos offers 153 tests for less than $10.\",\n    \"Theranos was founded in 2003 by Elizabeth Holmes.\",\n    \"Theranos offers lab tests in Wellness Centers located in Arizona and California.\"\n  ],\n  \"missing\": [\n    \"Detailed regulatory feedback documents from the FDA.\",\n    \"External independent scientific replication or peer-reviewed publication data.\",\n    \"Specific details on the exact methodology of the CDC panel testing.\",\n    \"A comprehensive list of all 153 tests offered for under $10.\"\n  ],\n  \"fixes\": [\n    \"In the sentence 'Theranos announced that it has received the U.S. Food and Drug Administration’s (FDA) clearance of its test system and test for herpes simplex 1 virus IgG.', add the specific 510(k) clearance number.\",\n    \"In the sentence 'Theranos provided study data from 818 subjects of varying age and ethnicity...', add the specific age range of the subjects.\",\n    \"In the sentence 'Theranos’ HSV-1 studies included matrix comparison studies across sixty-nine Theranos devices.', add the specific model version of the devices.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 2,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "U.S. Food and Drug Administration",
+          "type": "other"
+        },
+        {
+          "name": "Nanotainer",
+          "type": "product"
+        },
+        {
+          "name": "Theranos System",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Theranos announced receiving FDA clearance for its herpes simplex 1 virus IgG test system on July 2, 2015.",
+        "The FDA clearance includes the use of Nanotainer Tubes for blood collection via a finger prick.",
+        "The company provided study data from 818 subjects of varying age and ethnicity to the FDA.",
+        "The HSV-1 test costs $9.07, and Theranos offers 153 tests for less than $10.",
+        "Theranos was founded in 2003 by Elizabeth Holmes.",
+        "Theranos offers lab tests in Wellness Centers located in Arizona and California."
+      ],
+      "missing": [
+        "Detailed regulatory feedback documents from the FDA.",
+        "External independent scientific replication or peer-reviewed publication data.",
+        "Specific details on the exact methodology of the CDC panel testing.",
+        "A comprehensive list of all 153 tests offered for under $10."
+      ],
+      "fixes": [
+        "In the sentence 'Theranos announced that it has received the U.S. Food and Drug Administration’s (FDA) clearance of its test system and test for herpes simplex 1 virus IgG.', add the specific 510(k) clearance number.",
+        "In the sentence 'Theranos provided study data from 818 subjects of varying age and ethnicity...', add the specific age range of the subjects.",
+        "In the sentence 'Theranos’ HSV-1 studies included matrix comparison studies across sixty-nine Theranos devices.', add the specific model version of the devices."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 2,
+        "ambiguity": 3
+      }
+    }
+  }
+}

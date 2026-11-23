@@ -1,54 +1,64 @@
 # MentionFox Lens: demo video script (#BuildHybridAI)
 
-Target length: 2:50 (hard limit 3:00, the contest evaluates only the first 3 minutes). Language: English. Upload to YouTube as public, then paste the link in the Devpost form. Record on Chrome desktop with the unpacked build loaded.
+Target length: 2:45 (hard limit 3:00, the contest evaluates only the first 3 minutes). Language: English. Upload to YouTube as public, then paste the link in the Devpost form. Record on Chrome desktop with the unpacked build loaded.
 
-Filled in from the real build. Items marked OWNER CONFIRMS need your own Chrome (Gemini Nano was not available on the build machine, so no on-device run was seen). Do not read a latency number aloud until it has been measured on the recording machine. For reference, cloud runs on the build machine took about 3 to 4 s for the claims and 2.3 to 2.8 s for the AI view.
+Spoken text is about 355 words, about 2:22 at 150 words per minute, plus about 23 s of silent screen time (waiting for the answer, scrolling, clicking), so the cut ends at about 2:45.
 
-## Pages to use (fetched and confirmed to resolve on 2026-11-23, HTTP 200)
+Items marked OWNER CONFIRMS need your own Chrome (Gemini Nano was not available on the build machine, so no on-device run was seen). Do not read a latency number aloud until you have read it off your screen. On the build machine the cloud path took 3.3 to 4.2 s for the claims and 2.6 to 3.1 s for the AI view (2026-11-23 runs on the pages below).
 
-- Founder bio: https://en.wikipedia.org/wiki/Patrick_Collison (a real, public founder biography full of dates, roles and figures: good for specific-and-checkable claims, and for a few vague ones).
-- Press release: https://www.apple.com/newsroom/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/ (a real public press release mixing hard specs with superlatives: good for the vague/puffery label).
-- GEO lens page: the same Apple press release. (Both pages were run in the real build on 2026-11-23: Wikipedia returned 9 claims, all green, no amber; the Apple release returned 10 claims, 9 green and 1 amber, all highlighted.) The demo only labels claims as checkable or vague; it never says a real person or company is wrong.
+Hackathon requirements, where they appear: the hybrid inference mode badge on screen (scenes 2 and 5), the code snippet showing Firebase AI Logic (scene 5), the open-source repo (scene 7).
+
+## Pages to use (all load in a normal browser, HTTP 200, confirmed 2026-11-23)
+
+- Opening page (top pick): Theranos press release of 2 July 2015, as saved by the Internet Archive: https://web.archive.org/web/20151218013228/https://www.theranos.com/news/posts/theranos-receives-fda-clearance-and-review-and-validation-of-revolutionary-finger-stick-technology-test-and-associated-test-system
+  Real 2015 company copy with hard numbers (818 subjects, sixty-nine devices, $9.07, 153 tests, founded 2003) next to adjectives ("ground breaking", "most rigorous ... in the world"). Three runs: 10 claims, 7 green and 3 amber, 9 of 10 highlighted (the first card, "Theranos today announced...", is not found on the page because the model dropped a parenthesis; do not click it, click the $9.07 card).
+- Contrast page: https://en.wikipedia.org/wiki/Patrick_Collison (8 to 9 claims, all green, no amber in our two runs).
+- Runner-up if the Archive is slow on the day: FTX blog "FTX in 2021H1 review", https://web.archive.org/web/20220521211157/https://blog.ftx.com/blog/mid_year_review_2021/ (10 to 11 claims, 7 to 9 green, 2 to 3 amber).
+- Saved copies of every candidate are in fixtures/demo/ (see fixtures/demo/README.md), with the runs in docs/demo/. Do not use the saved copies on camera; open the Archive URL.
+
+The demo only labels claims as checkable or vague. It never says a real person or company is right or wrong, and the voiceover must not either: say what Lens does, not what the company did.
 
 ## Voiceover (spoken words, timed)
 
-0:00 Scene 1. "Every profile, bio and press release is a pile of claims. Some you can check. Some are just fog. And now AI assistants read these pages and repeat them. This is MentionFox Lens: a free Chrome extension that shows you which is which, privately, using Firebase AI Logic hybrid inference."
+0:00 Scene 1. "Every company page is a pile of claims. Some you can check. Some are just fog. AI assistants read these pages and repeat them. This is MentionFox Lens, a free, open source Chrome extension that shows you which is which, using Firebase AI Logic hybrid inference. Here is a real company press release from 2015, saved by the Internet Archive."
 
-0:20 Scene 2. "Here is a founder biography. I click Analyze. Watch the badge: On-device, private. Gemini Nano is running inside Chrome, so the page text never leaves this laptop. It took a moment, and the latency is shown right here."
+0:25 Scene 2. "I click Lens, then Analyze. One click. Watch the badge: it says where the model ran, on-device inside Chrome with Gemini Nano, or in the cloud, and the latency is right next to it. Now the claims. Green means specific and checkable: a date, a price, a count. Amber means vague: ground breaking, most rigorous in the world. Each card has a one-line reason."
 
-0:45 Scene 3. "Every factual claim is highlighted in place. Green means specific and checkable: a date, a role, a figure. Amber, which we will see on the next page, means vague. Each one has a one-line reason, so you see why it was marked, not just that it was. Tooltips explain every control. I click a claim in the side panel and the page jumps to exactly that sentence and lights it up."
+0:55 Scene 3. "I click the price claim. The page jumps to that exact sentence and lights it up. A reader could check that figure against pricing records. The amber one next to it has no number to check at all. Lens does not decide who is right. It only separates claims you can verify from words you cannot."
 
-1:15 Scene 4. "Now a press release. Same click. Specs, dates and figures come out green. Statements like the most pro lineup we have ever created, the best iPhone camera system yet, come out amber, because nobody can check them. In a pitch or a bio, that is exactly the difference between a claim and a slogan, and Lens puts it in front of you in seconds."
+1:22 Scene 4. "For contrast, a founder biography on Wikipedia. Same click. Almost everything comes out green: dates, roles, figures. A page full of checkable facts looks very different from a page full of adjectives."
 
-1:40 Scene 5. "Hybrid means the app never assumes. On a browser with no local model, the same click falls back. The badge flips to Cloud, the request goes through Firebase AI Logic, protected by App Check, and the result looks the same. Same code, same answer shape, the privacy of on-device when it is available, and the reach of the cloud when it is not."
+1:40 Scene 5. "Under the hood, this is the hackathon requirement. The code calls getGenerativeModel from Firebase AI Logic with prefer on-device mode. If Gemini Nano is in this browser, the badge says On-device and the page text never leaves the laptop. If not, the same call falls back to the cloud, protected by App Check, and the badge says Cloud. Same code, same answer shape."
 
-2:05 Scene 6. "Next, GEO lens. It shows how an AI assistant would summarise this page: the people, companies and products it picks up, the facts it would state, what is missing, and three concrete fixes, with a score out of one hundred and what each point means."
+2:08 Scene 6. "The second tab, AI view, shows how an assistant would summarise the page: the people, companies and products it picks up, the facts it would state, what is missing, and a score out of one hundred. That score measures how readable the page is to an AI, not whether it is true."
 
-2:30 Scene 7. "Nothing here needs an account, and nothing from the page is ever sent to MentionFox. If you want to verify these claims against public registers, there is an optional link that opens in a new tab. Lens is free and open source, under the MIT licence. Built by one person in Osaka with Firebase AI Logic, Gemini Nano and App Check. Install it from GitHub, and tell me what you would check first. Thank you."
+2:30 Scene 7. "No account, nothing sent to MentionFox, MIT licensed, on GitHub. Built by one person in Osaka. Tell me what you would check first. Thank you."
+
+Timeline (spoken seconds at 150 wpm): scene 1 24 s, 2 26 s, 3 24 s, 4 13 s, 5 25 s, 6 21 s, 7 10 s: 142 s of speech in a 165 s cut.
 
 ## Shot list
 
-| Scene | Screen | Action | Voiceover line | Duration |
-| --- | --- | --- | --- | --- |
-| 1 | Title card, then Chrome with the MentionFox Lens toolbar icon (the family fox head) visible | Show the repo name, MentionFox Lens logo and the words Firebase AI Logic hybrid inference. Cut to the Wikipedia page. | "Every profile, bio and press release is a pile of claims..." | 0:00 to 0:20 |
-| 2 | Patrick Collison Wikipedia page, Lens side panel open | Click the Lens icon, click Open Lens side panel, then Analyze this page (one click runs both checks; the Claim X-ray tab opens first). Zoom on the mode badge reading On-device (private) with the latency in ms next to it [OWNER CONFIRMS: not seen on the build machine; read the real label and number on your Chrome]. | "Here is a founder biography..." | 0:20 to 0:45 |
-| 3 | Same page, highlights visible | Scroll slowly past the green highlights (the Wikipedia page returned no amber ones). Hover a tooltip. Click a claim in the side panel list: the page scrolls to and flashes that sentence. | "Every factual claim is highlighted in place..." | 0:45 to 1:15 |
-| 4 | Apple iPhone 15 Pro press release | Click Analyze this page. Pause on one green spec claim, for example the 3-nanometer chip or the 14 countries sentence, then on the amber sentence "This is the most pro lineup we have ever created..." with its one-line reason. | "Now a press release..." | 1:15 to 1:40 |
-| 5 | A browser state with no Gemini Nano available: a second Chrome profile or a Chromium where the built-in model is not installed (the build has no dev toggle; the status chip then reads "On-device not available ...: cloud fallback") | Click Analyze this page. Badge shows Cloud and the latency in ms (about 3 to 4 s in the build machine's runs). Show the same result layout. Do not show any key or token on screen. | "Hybrid means the app never assumes..." | 1:40 to 2:05 |
-| 6 | Press release page, AI view tab (GEO lens) | Open the AI view tab (the GEO lens). Show the 0 to 100 score with its band and what each range means, then the headings "People, companies and products it would pick up", "Facts it would state", "Missing or ambiguous", "3 fixes" and "How the score is built". | "Next, GEO lens..." | 2:05 to 2:30 |
-| 7 | Side panel footer, then GitHub repo page | Scroll to "Go further" and hover the optional link "Verify these claims against public registers" (opens the MentionFox Source Check page in a new tab), then show the GitHub README and MIT license in the About box (the repo is public). End card: repo URL. | "Nothing here needs an account..." | 2:30 to 2:50 |
+| Scene | Screen | Action | Duration |
+| --- | --- | --- | --- |
+| 1 | Title card (repo name, MentionFox Lens logo, "Firebase AI Logic hybrid inference"), then Chrome on the opening page | Cut to the Archive URL above. Let the page load fully (about 5 s; the Archive toolbar shows at the top, that is normal). | 0:00 to 0:25 |
+| 2 | Same page, Lens side panel | Click the Lens icon, click Open Lens side panel, click Analyze this page (one click runs both checks). Wait about 4 s. Zoom on the mode badge and the latency in ms [OWNER CONFIRMS: read the real label on your Chrome; On-device (private) if Gemini Nano is ready, otherwise Cloud]. Show the green and amber cards. | 0:25 to 0:55 |
+| 3 | Same page, highlights | In the Claim X-ray tab click the card that quotes the price ("Theranos' HSV-1 test costs $9.07 ..."). The page scrolls to the sentence and flashes it. Then click the amber card ("The FDA's decision provides independent validation ... ground breaking ...") and show its one-line reason. | 0:55 to 1:22 |
+| 4 | Patrick Collison Wikipedia page | Open the page, click Analyze this page, scroll past the green highlights (no amber). | 1:22 to 1:40 |
+| 5 | Side panel plus the code | Show the mode badge again, then the code: src/ai.js, the getGenerativeModel call with InferenceMode.PREFER_ON_DEVICE (README table "How hybrid inference is used" has the line numbers). If you have a browser without Gemini Nano, run Analyze there once to show the Cloud badge. Do not show any key or token on screen. | 1:40 to 2:08 |
+| 6 | Opening page, AI view tab | Open the AI view tab: the 0 to 100 score and its band, then the headings for the people, companies and products, the facts, what is missing, and the 3 fixes. Do not dwell on the "missing" list. | 2:08 to 2:30 |
+| 7 | GitHub repo page, README and MIT licence | End card with the repo URL: github.com/OsakaSaul/mentionfox-lens | 2:30 to 2:45 |
 
 ## Recording notes
 
 - Show the on-device badge on a machine where the built-in model is already downloaded, so the demo does not wait on a download. First-run behaviour in the build: when the model is downloadable, Analyze starts the download from the click, shows a progress bar, and the cloud answers meanwhile [OWNER CONFIRMS: not seen on the build machine].
 - Never show the Firebase config, App Check debug token or any key on screen.
+- Model output varies a little from run to run (claim count 8 to 11 on the same page). Judge the take by what you see; if the first card on the opening page is "Not found on the page", just do not click it.
 - Add English captions. Keep the final export under 3:00.
-- Do not claim speed, accuracy or privacy beyond what the build does: the privacy line is true only if the build sends the page text nowhere except the on-device model or, on fallback, Firebase AI Logic.
+- Do not claim speed, accuracy or privacy beyond what the build does: the privacy line is true only if the page text goes nowhere except the on-device model or, on fallback, Firebase AI Logic.
 
 ## OWNER CONFIRMS
 
 1. The On-device (private) badge and its real latency in your Chrome 139+ with Gemini Nano (README, "What the owner must test"). Read the number off the screen; do not state one from this script.
 2. First-run model download behaviour on your machine (progress bar, then badge).
 3. How you force the Cloud badge for scene 5 (second profile or browser without the model).
-4. Final voiceover word count after any label changes (this draft is about 390 words, spoken in about 2:45 at a calm pace).
-5. If the on-device result on Wikipedia or Apple looks different from the cloud one, change the scene wording to what you see.
+4. If the on-device result on these pages looks different from the cloud one, change the scene wording to what you see.

@@ -1,0 +1,49 @@
+{
+  "fixture": "ftx-3.html",
+  "source_url": null,
+  "run_at": "2026-11-23T03:45:10.029Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "",
+    "url": "http://127.0.0.1:53348/",
+    "textLength": 5265,
+    "rootTag": "BODY"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2182,
+    "retried": false,
+    "raw": "{\"claims\":[]}",
+    "normalized": []
+  },
+  "highlight": [],
+  "highlighted_text": [],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2113,
+    "retried": false,
+    "raw": "{\n  \"entities\": [],\n  \"facts\": [],\n  \"missing\": [\n    \"The page contains no readable text, only binary or corrupted character garbage.\",\n    \"No subject, author, or publisher is identified anywhere in the document.\",\n    \"There are no factual statements, data, or arguments presented on the page.\",\n    \"No contact details, dates, or source attributions are provided.\"\n  ],\n  \"fixes\": [\n    \"Replace the entire content of the page with readable text about a specific topic.\",\n    \"Add a clear title and introductory paragraph defining the subject of the page.\",\n    \"Provide factual information and structured paragraphs so that content can be summarized.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 0,\n    \"fact_density\": 0,\n    \"structure\": 0,\n    \"trust_signals\": 0,\n    \"ambiguity\": 0\n  }\n}",
+    "normalized": {
+      "entities": [],
+      "facts": [],
+      "missing": [
+        "The page contains no readable text, only binary or corrupted character garbage.",
+        "No subject, author, or publisher is identified anywhere in the document.",
+        "There are no factual statements, data, or arguments presented on the page.",
+        "No contact details, dates, or source attributions are provided."
+      ],
+      "fixes": [
+        "Replace the entire content of the page with readable text about a specific topic.",
+        "Add a clear title and introductory paragraph defining the subject of the page.",
+        "Provide factual information and structured paragraphs so that content can be summarized."
+      ],
+      "ratings": {
+        "entity_clarity": 0,
+        "fact_density": 0,
+        "structure": 0,
+        "trust_signals": 0,
+        "ambiguity": 0
+      }
+    }
+  }
+}

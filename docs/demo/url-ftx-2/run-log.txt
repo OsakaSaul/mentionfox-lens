@@ -1,0 +1,19 @@
+date: 2026-11-23T03:46:33.174Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+url: https://web.archive.org/web/20220521211157/https://blog.ftx.com/blog/mid_year_review_2021/
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: cloud fallback
+status after Analyze: Done. 11 claims. Click a claim to jump to it.
+claims mode badge: Cloud
+page body text length: 25447
+claims: 11, highlighted: 11, claims 4187 ms, geo 2981 ms
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

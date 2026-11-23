@@ -1,0 +1,178 @@
+{
+  "fixture": null,
+  "source_url": "https://web.archive.org/web/20151023195450/https://www.theranos.com/news/posts/theranos-recognizes-milestone-in-new-era-of-preventive-health",
+  "run_at": "2026-11-23T03:47:33.317Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "News - Posts | Theranos",
+    "url": "https://web.archive.org/web/20151023195450/https://www.theranos.com/news/posts/theranos-recognizes-milestone-in-new-era-of-preventive-health",
+    "textLength": 14640,
+    "rootTag": "BODY"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3292,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Theranos lab tests are available in forty-two Theranos Wellness Centers in the Phoenix area, and Theranos is now expanding throughout the state.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader could check the number of Wellness Centers operating in the Phoenix area at that time.\"\n    },\n    {\n      \"quote\": \"The legislation that enabled this change makes Arizona the first state to institute this comprehensive framework for laboratory testing, expressly recognizing individual’s rights to their own health information.\",\n      \"kind\": \"specific\",\n      \"why\": \"One could verify if Arizona was chronologically the first state to pass this specific framework.\"\n    },\n    {\n      \"quote\": \"Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader could verify the founding year and founder of the company.\"\n    },\n    {\n      \"quote\": \"Lab test data drive more than 70% of health decisions.\",\n      \"kind\": \"specific\",\n      \"why\": \"One could check medical statistics to see if lab data accounts for this exact percentage of health decisions.\"\n    },\n    {\n      \"quote\": \"Theranos’ revolutionary lab services make tests more efficient, convenient, and affordable than ever before.\",\n      \"kind\": \"vague\",\n      \"why\": \"This contains unverifiable puffery regarding efficiency and affordability.\"\n    },\n    {\n      \"quote\": \"Theranos brings a much needed innovative technology to the healthcare industry.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is a subjective statement praising the technology without offering measurable proof in the sentence.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Theranos lab tests are available in forty-two Theranos Wellness Centers in the Phoenix area, and Theranos is now expanding throughout the state.",
+        "kind": "specific",
+        "why": "A reader could check the number of Wellness Centers operating in the Phoenix area at that time."
+      },
+      {
+        "id": "c2",
+        "quote": "The legislation that enabled this change makes Arizona the first state to institute this comprehensive framework for laboratory testing, expressly recognizing individual’s rights to their own health information.",
+        "kind": "specific",
+        "why": "One could verify if Arizona was chronologically the first state to pass this specific framework."
+      },
+      {
+        "id": "c3",
+        "quote": "Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes.",
+        "kind": "specific",
+        "why": "A reader could verify the founding year and founder of the company."
+      },
+      {
+        "id": "c4",
+        "quote": "Lab test data drive more than 70% of health decisions.",
+        "kind": "specific",
+        "why": "One could check medical statistics to see if lab data accounts for this exact percentage of health decisions."
+      },
+      {
+        "id": "c5",
+        "quote": "Theranos’ revolutionary lab services make tests more efficient, convenient, and affordable than ever before.",
+        "kind": "vague",
+        "why": "This contains unverifiable puffery regarding efficiency and affordability."
+      },
+      {
+        "id": "c6",
+        "quote": "Theranos brings a much needed innovative technology to the healthcare industry.",
+        "kind": "vague",
+        "why": "This is a subjective statement praising the technology without offering measurable proof in the sentence."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c5",
+      "text": "Theranos’ revolutionary lab services make tests more efficient, convenient, and affordable than ever before"
+    },
+    {
+      "id": "c1",
+      "text": "Theranos lab tests are available in forty-two Theranos Wellness Centers in the Phoenix area, and Theranos is now expanding throughout the state"
+    },
+    {
+      "id": "c2",
+      "text": "The legislation that enabled this change makes Arizona the first state to institute this comprehensive framework for laboratory testing, expressly recognizing individual’s rights to their own health information"
+    },
+    {
+      "id": "c6",
+      "text": "Theranos brings a much needed innovative technology to the healthcare industry"
+    },
+    {
+      "id": "c4",
+      "text": "Lab test data drive more than 70% of health decisions"
+    },
+    {
+      "id": "c3",
+      "text": "Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3068,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Doug Ducey\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Heather Carter\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Nancy Barto\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Matthew Baral\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Jagdish Patel\",\n      \"type\": \"person\"\n    }\n  ],\n  \"facts\": [\n    \"Arizona passed a Direct Access law allowing individuals to directly pay for laboratory tests without a physician's order or insurance eligibility.\",\n    \"The law protects physicians from liability associated with individually directed testing.\",\n    \"Theranos lab tests were available in forty-two Theranos Wellness Centers in the Phoenix area.\",\n    \"Theranos prices were stated to be always at least 50-80% below Medicare reimbursement rates.\",\n    \"Theranos, Inc. was founded in 2003 by Elizabeth Holmes.\",\n    \"Lab test data drive more than 70% of health decisions according to the text.\"\n  ],\n  \"missing\": [\n    \"Specific details on the exact underlying technology or device used by Theranos to perform the blood tests from a finger-stick.\",\n    \"Exact names or descriptions of the specific laboratory tests available at the Wellness Centers.\",\n    \"Financial performance metrics or audited validation data for the laboratory testing accuracy.\",\n    \"Detailed descriptions of the specific regulatory certifications held by Theranos laboratories.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Theranos lab tests are available in forty-two Theranos Wellness Centers in the Phoenix area, and Theranos is now expanding throughout the state.\\\", add the specific names of the partner retail chains such as Walgreens mentioned later in the text.\",\n    \"In the sentence \\\"Theranos offers testing at a fraction of the typical price, and holds the same certifications as conventional labs.\\\", add the specific names or regulatory bodies issuing those certifications.\",\n    \"In the sentence \\\"Dr. Matthew Baral, who testified on behalf of the new direct access testing legislation in front of the Arizona State Senate said...\\\", add Dr. Matthew Baral's medical specialty and professional affiliation.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 2,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "Doug Ducey",
+          "type": "person"
+        },
+        {
+          "name": "Heather Carter",
+          "type": "person"
+        },
+        {
+          "name": "Nancy Barto",
+          "type": "person"
+        },
+        {
+          "name": "Matthew Baral",
+          "type": "person"
+        },
+        {
+          "name": "Jagdish Patel",
+          "type": "person"
+        }
+      ],
+      "facts": [
+        "Arizona passed a Direct Access law allowing individuals to directly pay for laboratory tests without a physician's order or insurance eligibility.",
+        "The law protects physicians from liability associated with individually directed testing.",
+        "Theranos lab tests were available in forty-two Theranos Wellness Centers in the Phoenix area.",
+        "Theranos prices were stated to be always at least 50-80% below Medicare reimbursement rates.",
+        "Theranos, Inc. was founded in 2003 by Elizabeth Holmes.",
+        "Lab test data drive more than 70% of health decisions according to the text."
+      ],
+      "missing": [
+        "Specific details on the exact underlying technology or device used by Theranos to perform the blood tests from a finger-stick.",
+        "Exact names or descriptions of the specific laboratory tests available at the Wellness Centers.",
+        "Financial performance metrics or audited validation data for the laboratory testing accuracy.",
+        "Detailed descriptions of the specific regulatory certifications held by Theranos laboratories."
+      ],
+      "fixes": [
+        "In the sentence \"Theranos lab tests are available in forty-two Theranos Wellness Centers in the Phoenix area, and Theranos is now expanding throughout the state.\", add the specific names of the partner retail chains such as Walgreens mentio",
+        "In the sentence \"Theranos offers testing at a fraction of the typical price, and holds the same certifications as conventional labs.\", add the specific names or regulatory bodies issuing those certifications.",
+        "In the sentence \"Dr. Matthew Baral, who testified on behalf of the new direct access testing legislation in front of the Arizona State Senate said...\", add Dr. Matthew Baral's medical specialty and professional affiliation."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 2,
+        "ambiguity": 3
+      }
+    }
+  }
+}
