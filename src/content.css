@@ -1,0 +1,10 @@
+/* Injected with chrome.scripting.insertCSS (not subject to page CSP). */
+mark.mfl-hl { padding: 0 1px; color: inherit; scroll-margin: 25vh; }
+mark.mfl-flash { animation: mfl-flash 1.6s ease-out 1; outline: 3px solid #F27A3A; outline-offset: 2px; }
+@keyframes mfl-flash {
+  0% { outline-color: #F27A3A; filter: brightness(1.4); }
+  100% { outline-color: transparent; filter: none; }
+}
+::highlight(mfl-specific) { background-color: rgba(52, 211, 153, 0.35); }
+::highlight(mfl-vague) { background-color: rgba(245, 197, 66, 0.4); }
+::highlight(mfl-flash) { background-color: rgba(242, 122, 58, 0.65); }

@@ -1,0 +1,33 @@
+PASS  extension loads and service worker starts  foehpjhlmbefhnaominonkckhicmneeb
+PASS  linkedin-profile: analyze completes  Done. 5 claims, 1 not found on the page. Click a claim to jump to it.
+PASS  linkedin-profile: highlights wrapped in the page  8 marks
+PASS  linkedin-profile: mode badge shown (mock: device)  On-device (private)
+PASS  linkedin-profile: latency shown
+PASS  linkedin-profile: GEO score + badge shown
+PASS  linkedin-profile: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
+PASS  not-found claim is disabled with a message
+PASS  linkedin-profile: clear removes highlights
+PASS  x-post: analyze completes  Done. 3 claims. Click a claim to jump to it.
+PASS  x-post: highlights wrapped in the page  8 marks
+PASS  x-post: mode badge shown (mock: cloud)  Cloud
+PASS  x-post: latency shown
+PASS  x-post: GEO score + badge shown
+PASS  x-post: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
+PASS  x-post: clear removes highlights
+PASS  company-site: analyze completes  Done. 3 claims. Click a claim to jump to it.
+PASS  company-site: highlights wrapped in the page  3 marks
+PASS  company-site: mode badge shown (mock: cloud)  Cloud
+PASS  company-site: latency shown
+PASS  company-site: GEO score + badge shown
+PASS  company-site: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
+PASS  company-site: clear removes highlights
+PASS  news-article: analyze completes  Done. 3 claims. Click a claim to jump to it.
+PASS  news-article: highlights wrapped in the page  5 marks
+PASS  news-article: mode badge shown (mock: cloud)  Cloud
+PASS  news-article: latency shown
+PASS  news-article: GEO score + badge shown
+PASS  news-article: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
+PASS  news-article: clear removes highlights
+PASS  popup renders with open button
+
+31/31 passed (model mocked; extension shell only)

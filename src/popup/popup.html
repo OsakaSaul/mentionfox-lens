@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>MentionFox Lens</title>
+  <link rel="stylesheet" href="ui.css">
+  <style>
+    body { width: 340px; }
+    .pop { padding: 16px; display: grid; gap: 12px; }
+    .pop ul { margin: 0; padding-left: 18px; color: var(--text-dim); font-size: 13px; display: grid; gap: 4px; }
+    .link { font-size: 12.5px; color: var(--orange-ink); text-align: center; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <img class="logo" src="icons/icon48.png" width="36" height="36" alt="" aria-hidden="true">
+    <div class="titles">
+      <h1>MentionFox <span class="accent">Lens</span></h1>
+      <p class="tagline">Free claim X-ray and AI-readiness check</p>
+    </div>
+  </header>
+  <div class="pop">
+    <span id="deviceChip" class="chip chip-neutral" title="Whether your browser can run the private on-device model" aria-label="On-device model status">Checking this browser...</span>
+    <ul>
+      <li>Highlights the claims on the page, in place.</li>
+      <li>Shows how an AI assistant would read it.</li>
+      <li>Runs on your device when possible.</li>
+    </ul>
+    <button id="open" class="btn btn-primary" type="button" title="Open the Lens side panel for this tab" aria-label="Open the Lens side panel">Open Lens side panel</button>
+    <a class="link" target="_blank" rel="noopener noreferrer" href="https://github.com/OsakaSaul/mentionfox-lens" title="Open the source code on GitHub in a new tab" aria-label="Source code on GitHub (opens in a new tab)">Open source, MIT licensed</a>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

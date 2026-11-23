@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>MentionFox Lens</title>
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+  <header class="top">
+    <img class="logo" src="icons/icon48.png" width="36" height="36" alt="" aria-hidden="true">
+    <div class="titles">
+      <h1>MentionFox <span class="accent">Lens</span></h1>
+      <p class="tagline">Claim X-ray and AI-readiness check for the page you are on</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="device" aria-live="polite" aria-label="Private on-device model status">
+      <span id="deviceChip" class="chip chip-neutral" title="Whether your browser can run the private on-device model" aria-label="On-device model status">Checking this browser...</span>
+      <div id="progressWrap" class="progress" hidden title="Download progress of the private on-device model" aria-label="Download progress">
+        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+        <span id="progressText" class="progress-text">0%</span>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="analyze" class="btn btn-primary" type="button" title="Read this page and run both checks. The page text is analysed on your device when possible." aria-label="Analyze this page">Analyze this page</button>
+      <button id="clear" class="btn btn-ghost" type="button" title="Remove all highlights from the page" aria-label="Clear highlights" disabled>Clear</button>
+    </div>
+
+    <p id="status" class="status" role="status" aria-live="polite">Open a page you want to check, then click Analyze.</p>
+
+    <div class="tabs" role="tablist" aria-label="Results">
+      <button id="tab-claims" class="tab" role="tab" aria-selected="true" aria-controls="panel-claims" type="button" title="Claim X-ray: factual claims found on the page" aria-label="Claim X-ray tab">Claim X-ray <span id="claimCount" class="count" hidden>0</span></button>
+      <button id="tab-geo" class="tab" role="tab" aria-selected="false" aria-controls="panel-geo" tabindex="-1" type="button" title="AI view: how an AI assistant would summarise this page" aria-label="AI view tab">AI view <span id="geoCount" class="count" hidden></span></button>
+    </div>
+
+    <section id="panel-claims" class="panel" role="tabpanel" aria-labelledby="tab-claims">
+      <div id="claimsMode" class="modebar" hidden></div>
+      <p class="legend" id="claimsLegend" hidden>
+        <span class="pill pill-specific" title="Names a detail someone could check against a public source">Specific and checkable</span>
+        <span class="pill pill-vague" title="Puffery or a claim nobody could verify">Vague or puffery</span>
+      </p>
+      <ol id="claimsList" class="claims" aria-label="Claims found on the page"></ol>
+      <p id="claimsEmpty" class="empty">No claims yet. Click Analyze.</p>
+    </section>
+
+    <section id="panel-geo" class="panel" role="tabpanel" aria-labelledby="tab-geo" hidden>
+      <div id="geoMode" class="modebar" hidden></div>
+      <div id="geoBody"><p class="empty">No AI view yet. Click Analyze.</p></div>
+    </section>
+
+    <section class="upgrade" aria-label="Go further with MentionFox">
+      <h2>Go further</h2>
+      <p>Lens works fully on its own and stays free. These open MentionFox in a new tab.</p>
+      <a id="linkVerify" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="#" title="Open MentionFox to check claims like these against public registers" aria-label="Verify these claims against public registers (opens MentionFox in a new tab)">Verify these claims against public registers</a>
+      <a id="linkPeople" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="#" title="Open MentionFox to find the decision makers at a company" aria-label="Find the decision makers here (opens MentionFox in a new tab)">Find the decision makers here</a>
+    </section>
+  </main>
+
+  <footer>
+    <p id="privacy" class="privacy">Private by design: the page text is analysed on your device when your browser supports it. If not, it is sent to Firebase AI Logic only when you click Analyze. Nothing goes to MentionFox.</p>
+  </footer>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
