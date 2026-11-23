@@ -50,7 +50,7 @@ MentionFox Lens analyses the text of the page the user is viewing, only when the
 
 ## Permission justifications
 
-Checked against manifest.json (version 0.1.5): the permissions are exactly activeTab, scripting and sidePanel. There is no storage permission, no host permissions and no content_scripts entry.
+Checked against manifest.json (version 0.1.1): the permissions are exactly activeTab, scripting and sidePanel. There is no storage permission, no host permissions and no content_scripts entry.
 
 | Permission | Justification (draft) |
 | --- | --- |
@@ -78,9 +78,9 @@ Answers for the form (checked against the code: no analytics, telemetry or stora
 
 Note for the reviewer field: the on-device path sends nothing off the machine. The cloud fallback sends the page text to Google through Firebase AI Logic with App Check, subject to Google's terms.
 
-## Package and images (built by scripts, version 0.1.5)
+## Package and images (built by scripts, version 0.1.1)
 
-Package: release/mentionfox-lens-0.1.5.zip, built by `powershell -File scripts/package.ps1` from the release build. manifest.json is at the zip root, 13 files, no source maps, no .env files, no App Check debug token. The zip is not committed: the owner builds it, or uses the copy in the main checkout release/ folder.
+Package: release/mentionfox-lens-0.1.1.zip, built by `powershell -File scripts/package.ps1` from the release build. manifest.json is at the zip root, 13 files, no source maps, no .env files, no App Check debug token. The zip is not committed: the owner builds it, or uses the copy in the main checkout release/ folder.
 
 Images are in store/ (made by `node scripts/store-images.mjs`; 24-bit PNG, no alpha). Page text, claims and AI-view text are the saved real runs in docs/real-runs/ on real saved pages (Wikipedia Patrick Collison, Wikipedia Sam Bankman-Fried, archived Theranos FDA press release). The test mock supplies only the mode state.
 

@@ -1,11 +1,41 @@
 # Builds the RELEASE bundle and zips dist/ for the Chrome Web Store.
-#   powershell -File scripts/package.ps1      (run from the repo root, or anywhere)
+#   powershell -File scripts/package.ps1          (run from the repo root, or anywhere): packages the current version
+#   powershell -File scripts/package.ps1 -Bump    adds .1 to the LAST dotted segment first (0.1.1 -> 0.1.2, 0.1.9 -> 0.1.10)
+#   in manifest.json, package.json and package-lock.json together, then packages. Without -Bump nothing is changed.
 # Output: release/mentionfox-lens-<version>.zip with manifest.json at the archive root.
 # The release build never bakes an App Check debug token; this script also blanks the env var and
 # scans the finished zip for forbidden strings and source maps before it reports success.
+param([switch]$Bump, [string]$BumpTest)
 $ErrorActionPreference = 'Stop'
+
+# Increment the last dotted segment as an integer (never a decimal): 0.1.9 -> 0.1.10.
+function Get-BumpedVersion([string]$v) {
+  if ($v -notmatch '^\d+(\.\d+)*$') { throw "unexpected version format: $v" }
+  $parts = $v.Split('.')
+  $parts[$parts.Length - 1] = ([int]$parts[$parts.Length - 1] + 1).ToString()
+  return ($parts -join '.')
+}
+if ($BumpTest) { Write-Host (Get-BumpedVersion $BumpTest); exit 0 }
+
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
+
+if ($Bump) {
+  # Replace only the top-level version line(s) in place so the files keep their formatting and line endings.
+  $cur = (Get-Content -Raw -Path (Join-Path $root 'manifest.json') | ConvertFrom-Json).version
+  $next = Get-BumpedVersion $cur
+  foreach ($name in 'manifest.json', 'package.json', 'package-lock.json') {
+    $path = Join-Path $root $name
+    $text = [System.IO.File]::ReadAllText($path)
+    $cnt = if ($name -eq 'package-lock.json') { 2 } else { 1 }
+    $pat = '(?m)^(\s*"version":\s*")' + [regex]::Escape($cur) + '(")'
+    $re = New-Object System.Text.RegularExpressions.Regex($pat)
+    $new = $re.Replace($text, ('${1}' + $next + '${2}'), $cnt)
+    if ($new -eq $text) { throw "could not bump $name" }
+    [System.IO.File]::WriteAllText($path, $new, (New-Object System.Text.UTF8Encoding($false)))
+  }
+  Write-Host "bumped $cur -> $next"
+}
 
 $manifest = Get-Content -Raw -Path (Join-Path $root 'manifest.json') | ConvertFrom-Json
 $version = $manifest.version
