@@ -1,0 +1,20 @@
+date: 2026-11-23T05:03:16.204Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: wikipedia-patrick-collison.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 6.6 seconds on Cloud: 8 claims. First claim in 3.6 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 3.6 seconds
+page body text length: 8831
+claims: 8, highlighted: 8, claims 3596 ms, geo 2973 ms
+T2963 log: chars before extraction 8779, after 7516 (26 blocks, root DIV); cloud window 7516 of budget 12000 chars, 1 cloud call; on-device plan: 5 chunks of about 1500 chars over 5936 chars; claims 8; first claim in 3.6 seconds (cloud: arrives with the single answer), claims call 3.6 seconds, AI view 3.0 seconds; matched 8/8 (100%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

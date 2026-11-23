@@ -1,0 +1,20 @@
+date: 2026-11-23T05:03:06.600Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: wikipedia-sam-bankman-fried.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 6.7 seconds on Cloud: 9 claims. First claim in 3.6 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 3.6 seconds
+page body text length: 35831
+claims: 9, highlighted: 9, claims 3571 ms, geo 3138 ms
+T2963 log: chars before extraction 35693, after 33094 (61 blocks, root DIV); cloud window 11815 of budget 12000 chars, 1 cloud call; on-device plan: 4 chunks of about 1500 chars over 5825 chars; claims 9; first claim in 3.6 seconds (cloud: arrives with the single answer), claims call 3.6 seconds, AI view 3.1 seconds; matched 9/9 (100%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

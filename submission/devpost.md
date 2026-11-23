@@ -18,7 +18,7 @@ MentionFox Lens is a free, open-source Manifest V3 Chrome extension. It works on
 
 1. Claim X-ray (tab). Extracts the factual claims on the page (profile, bio, press release, pitch, post), highlights each one in place, and labels it specific-and-checkable or vague/puffery with a one-line reason. A side panel lists every claim, and clicking one scrolls to and highlights the exact sentence.
 2. GEO lens (tab named AI view). Shows how an AI assistant would summarise the page: the entities (people, companies, products) it would pick up, the facts it would state, what is missing or ambiguous, three concrete fixes, and a score from 0 to 100 with what each point means.
-3. Mode bar. A large colour bar at the top of both tabs shows On-device (private) or Cloud for each run, plus latency (for example Cloud · 3.5 s), so the hybrid behaviour is visible. A status chip above the button says whether the on-device model is ready (green), downloading (live percent) or not available so the cloud is used.
+3. Mode bar. A large colour bar at the top of both tabs shows On-device or Cloud for each run, plus latency (for example Cloud · 3.5 seconds), so the hybrid behaviour is visible. A status chip above the button says whether the on-device model is ready (green), downloading (live percent) or not available so the cloud is used.
 4. Optional outbound links to MentionFox ("Verify these claims against public registers" opens the MentionFox Source Check page; "Find contact details for a decision maker" opens the MentionFox Find Contact page). They open in a new tab. Nothing inside Lens needs an account or payment; the extension is free.
 
 Nothing from the page is sent to MentionFox servers.
@@ -45,7 +45,8 @@ On-device availability: Gemini Nano needs Chrome 139 or newer, enabled flags and
 
 ## Accomplishments
 
-- Runs end to end through Firebase AI Logic with App Check: on four real pages the cloud path returned claims in about 3.0 to 4.1 s and the AI view in about 2.3 to 2.8 s (cloud, measured on the build machine, one run each).
+- Speed work (T2963): on-device analysis reads the main content only, about 6,000 characters per press (the lead plus the viewport), in chunks of about 1,500 characters, streaming each claim card and highlight as it is written, with a warm-up when the panel opens and an Analyze more of this page button. On-device speed is not yet measured (owner to read the bar: total and First claim in X seconds); the streaming logic is proven with a mock model.
+- Runs end to end through Firebase AI Logic with App Check: on four real pages the cloud path returned claims in about 3.0 to 4.1 seconds and the AI view in about 2.3 to 2.8 seconds (cloud, measured on the build machine, one run each).
 - 36 of 36 returned claims on those pages were real text from the page and were highlighted in place; none were invented. Some are weak (bare statistics) and some labels are debatable; see the run notes.
 - Free, MIT licensed, public repo, no account, no MentionFox backend, permissions limited to activeTab, scripting and sidePanel.
 - No on-device speed or accuracy figure is claimed because on-device was not run.
@@ -101,7 +102,7 @@ The hackathon page lists four criteria. The Official Rules say they are equally 
 
 ## OWNER CONFIRMS
 
-1. On-device run: in your own Chrome 139+ with Gemini Nano enabled (README, "What the owner must test"), click Analyze and read the badge. It must say On-device (private) with a latency. Note the latency before recording; nothing on-device has been measured.
+1. On-device run: in your own Chrome 139+ with Gemini Nano enabled (README, "What the owner must test"), click Analyze and read the badge. It must say On-device with a latency. Note the latency before recording; nothing on-device has been measured.
 2. Forcing the Cloud badge in the video: use a second Chrome profile or browser without the built-in model (no dev toggle exists in the build).
 3. YouTube demo link and Chrome Web Store link (your accounts; none were created by this work).
 4. Submitting the App Check debug token: if the hackathon form asks for it, give it in the submission instructions only, never in the repo.

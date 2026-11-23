@@ -73,6 +73,7 @@ async function capture(key, { mock, ms, tab = "claims", jump = null, progress = 
   await panel.addInitScript((a) => { window.__MFL_MOCK__ = a.m; window.__MFL_MS__ = a.ms; }, { m: { claims: run.claims, geo: run.geo }, ms });
   await panel.setViewportSize({ width: SW, height: PH });
   await panel.goto(`chrome-extension://${extId}/sidepanel.html?target=${tabId}&mock=${mock}`);
+  await panel.addStyleTag({ content: ".mode-first{display:none}" }); // store images show the mode, not a mock first-claim time
   await panel.waitForFunction(() => { const s = document.getElementById("deviceChip").dataset.state; return s && s !== "checking"; });
   if (progress != null) await panel.evaluate((p) => window.__mflProgress(p), progress);
   await panel.click("#analyze");
@@ -83,6 +84,8 @@ async function capture(key, { mock, ms, tab = "claims", jump = null, progress = 
   else await page.evaluate(() => { const e = document.querySelector("mark.mfl-hl"); if (e) e.scrollIntoView({ block: "center" }); });
   // The privacy paragraph names the cloud provider; store images carry no model or provider names, so it is left out of the captures.
   await panel.evaluate(() => document.getElementById("privacy")?.remove());
+  // The mock has no real first-claim time: drop that sentence from the status line in the images.
+  await panel.evaluate(() => { const st = document.getElementById("status"); st.textContent = st.textContent.replace(/ First claim in [0-9.]+ seconds./, ""); });
   await page.waitForTimeout(400);
   texts.push(await panel.evaluate(() => document.body.innerText));
   const pageShot = await page.screenshot();

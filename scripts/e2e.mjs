@@ -115,8 +115,8 @@ try {
     const nMarks = await page.evaluate(() => document.querySelectorAll("mark.mfl-hl").length);
     check(`${name}: highlights wrapped in the page`, nMarks >= 2, `${nMarks} marks`);
     const badge = (await panel.textContent("#claimsMode .mode-main")).trim();
-    check(`${name}: mode bar shown (mock: ${mode})`, mode === "device" ? /^On-device \(private\) · \d+\.\d s$/.test(badge) : /^Cloud · \d+\.\d s$/.test(badge), badge);
-    check(`${name}: status line names mode and time`, mode === "device" ? /^Done in \d+\.\d s on-device \(private\): /.test(status) : /^Done in \d+\.\d s on Cloud: /.test(status), status);
+    check(`${name}: mode bar shown (mock: ${mode})`, mode === "device" ? /^On-device · \d+\.\d seconds$/.test(badge) : /^Cloud · \d+\.\d seconds$/.test(badge), badge);
+    check(`${name}: status line names mode and time`, mode === "device" ? /^Done in \d+\.\d seconds on-device: /.test(status) : /^Done in \d+\.\d seconds on Cloud: /.test(status), status);
     check(`${name}: GEO score + mode bar shown`, (await panel.locator(".score").count()) === 1 && (await panel.locator("#geoMode .mode-main").count()) === 1);
 
     // Jump: click the first claim card and expect the matching mark to flash and be scrolled into view.
@@ -137,7 +137,7 @@ try {
       check("news-article: highlight covers the page sentence", /said on Thursday it raised .40 million in a Series B round led by Northgate Capital/.test(markText), markText.slice(0, 160));
     }
     if (name === "linkedin-profile") {
-      check("not-found claim is disabled with a message", (await panel.locator(".claim.missing").count()) === 1);
+      check("not-found claim is disabled with a message", (await panel.locator(".claim.missing").count()) === 1, `${await panel.locator(".claim.missing").count()} missing of ${await panel.locator(".claim").count()}`);
       await page.screenshot({ path: join(shots, "e2e-linkedin-page-highlights.png") });
       await panel.screenshot({ path: join(shots, "e2e-sidepanel-claims.png") });
       await panel.click("#tab-geo");
@@ -182,9 +182,9 @@ try {
   await pn.evaluate(() => window.__mflProgress(0.42));
   check("progress 42: chip 'downloading 42%', bar 42% wide", (await txt(pn, "#deviceChip")) === "On-device model: downloading 42%" && (await pn.getAttribute("#progressBar", "aria-valuenow")) === "42" && /42%/.test(await pn.getAttribute("#progressBar", "style")), await txt(pn, "#progressText"));
   await analyzeDone(pn);
-  check(`cloud while downloading: claims bar 'Cloud (on-device not ready) ${DOT} 1.6 s'`, (await txt(pn, "#claimsMode .mode-main")) === `Cloud (on-device not ready) ${DOT} 1.6 s`, await txt(pn, "#claimsMode .mode-main"));
-  check("cloud while downloading: status line", (await txt(pn, "#status")).startsWith("Done in 3.2 s on Cloud (on-device not ready): "), await txt(pn, "#status"));
-  check("cloud while downloading: AI view bar too", (await txt(pn, "#geoMode .mode-main")) === `Cloud (on-device not ready) ${DOT} 1.6 s`);
+  check(`cloud while downloading: claims bar 'Cloud (on-device not ready) ${DOT} 1.6 seconds'`, (await txt(pn, "#claimsMode .mode-main")) === `Cloud (on-device not ready) ${DOT} 1.6 seconds`, await txt(pn, "#claimsMode .mode-main"));
+  check("cloud while downloading: status line", (await txt(pn, "#status")).startsWith("Done in 3.2 seconds on Cloud (on-device not ready): "), await txt(pn, "#status"));
+  check("cloud while downloading: AI view bar too", (await txt(pn, "#geoMode .mode-main")) === `Cloud (on-device not ready) ${DOT} 1.6 seconds`);
   check("download bar still visible after Analyze completes", (await pn.locator("#progressWrap").isVisible()) && /42%/.test(await txt(pn, "#deviceChip")));
   check("Run again button appears and is enabled", (await pn.locator("#rerun").isVisible()) && (await pn.locator("#rerun").isEnabled()));
   await pn.screenshot({ path: join(demo, "1-cloud-while-downloading.png") });
@@ -199,16 +199,16 @@ try {
   // 2. the next run uses the on-device model
   await pn.evaluate(() => { window.__MFL_MS__ = 1400; });
   await pn.click("#rerun");
-  await pn.waitForFunction(() => /^Done in 2\.8 s on-device/.test(document.getElementById("status").textContent), null, { timeout: 20000 });
-  check(`Run again after download: claims bar 'On-device (private) ${DOT} 1.4 s'`, (await txt(pn, "#claimsMode .mode-main")) === `On-device (private) ${DOT} 1.4 s`, await txt(pn, "#claimsMode .mode-main"));
-  check("Run again after download: status line", (await txt(pn, "#status")).startsWith("Done in 2.8 s on-device (private): "), await txt(pn, "#status"));
+  await pn.waitForFunction(() => /^Done in \d+\.\d seconds on-device/.test(document.getElementById("status").textContent), null, { timeout: 20000 });
+  check(`Run again after download: claims bar 'On-device ${DOT} N seconds'`, /^On-device · \d+\.\d seconds$/.test(await txt(pn, "#claimsMode .mode-main")), await txt(pn, "#claimsMode .mode-main"));
+  check("Run again after download: status line", /^Done in \d+\.\d seconds on-device: /.test(await txt(pn, "#status")), await txt(pn, "#status"));
   check("on-device and cloud bars have different colours", (await barBg(pn, "#claimsMode")) !== cloudBg);
   await pn.screenshot({ path: join(demo, "3-on-device-after-download.png") });
   await pn.emulateMedia({ colorScheme: "dark" });
   await pn.screenshot({ path: join(demo, "3c-on-device-dark.png") });
   await pn.emulateMedia({ colorScheme: "light" });
   await pn.click("#tab-geo");
-  check("AI view bar says on-device too", (await txt(pn, "#geoMode .mode-main")) === `On-device (private) ${DOT} 1.4 s`);
+  check("AI view bar says on-device too", (await txt(pn, "#geoMode .mode-main")) === `On-device ${DOT} 1.4 seconds`, await txt(pn, "#geoMode .mode-main"));
   await pn.screenshot({ path: join(demo, "3b-ai-view-on-device.png") });
   check("mode bars have tooltip and aria-label explaining hybrid inference", /prefers the private on-device model/.test(await pn.getAttribute("#geoMode", "title")) && /falls back to the cloud/.test(await pn.getAttribute("#claimsMode", "aria-label")));
   check("mode bars contain an inline svg icon", (await pn.locator("#claimsMode svg").count()) === 1 && (await pn.locator("#geoMode svg").count()) === 1);
@@ -218,15 +218,15 @@ try {
   pn = await openPanel("unavailable", 3200);
   check("unavailable: chip says using cloud", (await txt(pn, "#deviceChip")) === "On-device not available on this device: using cloud");
   await analyzeDone(pn);
-  check(`cloud when unavailable: bar 'Cloud ${DOT} 3.2 s'`, (await txt(pn, "#claimsMode .mode-main")) === `Cloud ${DOT} 3.2 s`, await txt(pn, "#claimsMode .mode-main"));
-  check("cloud when unavailable: status line", (await txt(pn, "#status")).startsWith("Done in 6.4 s on Cloud: "), await txt(pn, "#status"));
+  check(`cloud when unavailable: bar 'Cloud ${DOT} 3.2 seconds'`, (await txt(pn, "#claimsMode .mode-main")) === `Cloud ${DOT} 3.2 seconds`, await txt(pn, "#claimsMode .mode-main"));
+  check("cloud when unavailable: status line", (await txt(pn, "#status")).startsWith("Done in 6.4 seconds on Cloud: "), await txt(pn, "#status"));
   await pn.screenshot({ path: join(demo, "4-cloud-unavailable.png") });
   await pn.close();
 
   // 4. on-device attempted, failed, cloud took over
   pn = await openPanel("failed", 3200);
   await analyzeDone(pn);
-  check(`on-device failed then cloud: bar 'Cloud (on-device failed) ${DOT} 3.2 s'`, (await txt(pn, "#claimsMode .mode-main")) === `Cloud (on-device failed) ${DOT} 3.2 s`, await txt(pn, "#claimsMode .mode-main"));
+  check(`on-device failed then cloud: bar 'Cloud (on-device failed) ${DOT} N seconds'`, /^Cloud \(on-device failed\) · \d+\.\d seconds$/.test(await txt(pn, "#claimsMode .mode-main")), await txt(pn, "#claimsMode .mode-main"));
   await pn.screenshot({ path: join(demo, "5-on-device-failed-cloud.png") });
   await pn.close();
 
@@ -239,6 +239,106 @@ try {
   check("after Download click: chip shows percent and button is gone", /downloading 42%/.test(await txt(pn, "#deviceChip")) && !(await pn.locator("#download").isVisible()));
   await pn.close();
   await fxPage.close();
+
+  // ---- Speed (T2963): warm-up, main-content extraction, chunked streaming, progress, first claim, Analyze more. MOCK on-device model: it proves the
+  // ---- streaming and progress logic of the extension, NOT the speed of Gemini Nano. ----
+  const SBF = "wikipedia-sam-bankman-fried";
+  const sbfUrl = `http://127.0.0.1:${port}/${SBF}`;
+  const sbfPage = await ctx.newPage();
+  await sbfPage.goto(sbfUrl);
+  const sbfTab = await sw.evaluate(async (u) => (await chrome.tabs.query({ url: u + "*" }))[0].id, sbfUrl);
+  const sbfClaims = (arr) => ({ claims: { claims: arr.map(([quote, kind = "specific"]) => ({ quote, kind, why: "A date, number or name a reader can check against a public source." })) }, geo: MOCKS["company-site"].geo });
+  const setA = sbfClaims([
+    ["Samuel Benjamin Bankman-Fried (born March 5, 1992), commonly known as SBF, is an American entrepreneur convicted of fraud."],
+    ["In November 2022, as evidence of potential fraud began to surface, depositors quickly withdrew their assets from FTX, forcing the company into bankruptcy."],
+    ["He graduated from the Massachusetts Institute of Technology in 2014 with a bachelor's degree in physics and a minor in mathematics."],
+    ["In the summer of 2013, Bankman-Fried worked as an intern at Jane Street Capital, a proprietary trading firm, trading international ETFs."],
+    ["By 2021, Bankman-Fried owned approximately 90 percent of Alameda Research."],
+    ["Bankman-Fried founded the FTX cryptocurrency derivatives exchange in April 2019; it opened for business the following month."],
+    ["In September 2021, Bankman-Fried and the entire senior staff of FTX moved from Hong Kong to the Bahamas."],
+    ["His parents are Barbara Fried and Joseph Bankman, both professors at Stanford Law School."],
+  ]);
+  const setB = sbfClaims([
+    ["Bankman-Fried attended Canada/USA Mathcamp, a summer program for mathematically talented high-school students."],
+    ["He attended high school at the elite private Crystal Springs Uplands School in Hillsborough, California."],
+  ]);
+  const sp = await ctx.newPage();
+  await sp.addInitScript((a) => { window.__MFL_MOCK__ = a.m; window.__MFL_CHUNK_MS__ = 700; }, { m: setA });
+  await sp.setViewportSize({ width: 420, height: 900 });
+  await sp.goto(`chrome-extension://${extId}/sidepanel.html?target=${sbfTab}&mock=device`);
+  await sp.waitForFunction(() => document.getElementById("deviceChip").dataset.state === "ready");
+  const warm = await sp.evaluate(() => window.__mflWarm || null);
+  check("warm-up: the on-device session is created when the panel opens, before any Analyze click", !!warm && warm.clicked === false, JSON.stringify(warm));
+  await sp.evaluate(() => {
+    window.__rec = { status: [], firstCardAt: null, doneAt: null, clickAt: null };
+    const st = document.getElementById("status");
+    new MutationObserver(() => { window.__rec.status.push(st.textContent); if (/^Done/.test(st.textContent) && !window.__rec.doneAt) window.__rec.doneAt = performance.now(); }).observe(st, { childList: true, characterData: true, subtree: true });
+    new MutationObserver(() => { if (!window.__rec.firstCardAt && document.querySelector("#claimsList .claim")) window.__rec.firstCardAt = performance.now(); }).observe(document.getElementById("claimsList"), { childList: true, subtree: true });
+    document.getElementById("analyze").addEventListener("click", () => { window.__rec.clickAt = performance.now(); window.__mflClickedAt = window.__rec.clickAt; }, true);
+  });
+  await sp.click("#analyze");
+  await sp.waitForFunction(() => window.__rec.firstCardAt, null, { timeout: 15000 });
+  const midStatus = await sp.textContent("#status");
+  check("streaming: the first card is on screen while the run is still going", !/^Done/.test(midStatus) && (await sp.locator("#analyze").isDisabled()), midStatus);
+  await sp.waitForTimeout(400);
+  const marksMid = await sbfPage.evaluate(() => document.querySelectorAll("mark.mfl-hl").length);
+  const doneMid = await sp.evaluate(() => !!window.__rec.doneAt);
+  check("streaming: highlights land on the page while the run is still going", marksMid >= 1 && !doneMid, `${marksMid} marks`);
+  await sp.waitForFunction(() => /^Done/.test(document.getElementById("status").textContent), null, { timeout: 30000 });
+  const rec = await sp.evaluate(() => window.__rec);
+  check("streaming: first card appears at least one chunk-time before the run ends", rec.doneAt - rec.firstCardAt > 1200, `first card +${Math.round(rec.firstCardAt - rec.clickAt)} ms, done +${Math.round(rec.doneAt - rec.clickAt)} ms`);
+  const progress = rec.status.filter((t) => /^Finding claims: chunk/.test(t));
+  check("progress: 'chunk N of M, K claims so far' is shown and counts up", progress.some((t) => /^Finding claims: chunk 2 of \d+, [1-9]\d* claims? so far/.test(t)), progress.slice(0, 6).join(" | "));
+  const chunkLens = await sp.evaluate(() => window.__mflChunks);
+  check("chunks: about 1,500 characters each, 3 to 5 chunks for the first 6,000 characters", chunkLens.length >= 3 && chunkLens.length <= 5 && chunkLens.every((n) => n <= 1900), chunkLens.join(","));
+  const total1 = await txt(sp, "#claimsMode .mode-main");
+  check("mode bar: 'On-device · N seconds' (no '(private)')", /^On-device · \d+\.\d seconds$/.test(total1), total1);
+  const firstLine = await txt(sp, "#claimsMode .mode-first");
+  check("mode bar: 'First claim in X seconds' line", /^First claim in \d+\.\d seconds$/.test(firstLine), firstLine);
+  const sub1 = await txt(sp, "#claimsMode .mode-sub");
+  check("claims tab: 'Your page stayed in this browser.' visible under the bar", sub1 === "Your page stayed in this browser." && (await sp.locator("#claimsMode .mode-sub").isVisible()), sub1);
+  const status1 = await txt(sp, "#status");
+  check("status line: total and first claim, with the word seconds", /^Done in \d+\.\d seconds on-device: 8 claims\. First claim in \d+\.\d seconds\./.test(status1), status1);
+  const firstNum = Number(firstLine.match(/(\d+\.\d)/)[1]), totalNum = Number(status1.match(/^Done in (\d+\.\d)/)[1]);
+  check("first claim is earlier than the total", firstNum < totalNum, `${firstNum} < ${totalNum}`);
+  await sp.click("#tab-geo");
+  check("AI view tab: bar and 'Your page stayed in this browser.' visible", (await sp.locator("#geoMode .mode-sub").isVisible()) && (await txt(sp, "#geoMode .mode-sub")) === "Your page stayed in this browser." && /^On-device · \d+\.\d seconds$/.test(await txt(sp, "#geoMode .mode-main")));
+  await sp.click("#tab-claims");
+  const ids = await sp.locator("#claimsList .claim").evaluateAll((els) => els.map((e) => e.dataset.id));
+  check("claims are merged without duplicates and numbered", ids.length === 8 && new Set(ids).size === 8, ids.join(","));
+  const marks1 = await sbfPage.evaluate(() => new Set([...document.querySelectorAll("mark.mfl-hl")].map((m) => m.dataset.mflId)).size);
+  check("every card has its highlight on the page", marks1 === 8, `${marks1} highlighted`);
+  const geoPrompt = await sp.evaluate(() => window.__mflPrompts.geo);
+  check("on-device AI view input is capped (4,000 characters of main content) and has no site furniture", geoPrompt.length < 8500 && !/28 languages|Toggle the table of contents|Edit links/.test(geoPrompt), `${geoPrompt.length} chars of prompt`);
+  check("'Analyze more of this page' button is offered", (await sp.locator("#more").isVisible()) && (await txt(sp, "#more")) === "Analyze more of this page");
+  await sp.evaluate((m) => { window.__MFL_MOCK__ = m; window.__mflChunks = []; }, setB);
+  await sp.click("#more");
+  await sp.waitForFunction(() => /^Done/.test(document.getElementById("status").textContent) && !document.getElementById("analyze").disabled && document.querySelectorAll("#claimsList .claim").length > 8, null, { timeout: 30000 });
+  const ids2 = await sp.locator("#claimsList .claim").evaluateAll((els) => els.map((e) => e.dataset.id));
+  check("Analyze more: the next window adds claims to the list, ids continue", ids2.length === 10 && ids2[8] === "c9", ids2.join(","));
+  const chunks2 = await sp.evaluate(() => window.__mflChunks);
+  check("Analyze more: a new window of chunks is analysed", chunks2.length >= 3, chunks2.join(","));
+  const marks2 = await sbfPage.evaluate(() => new Set([...document.querySelectorAll("mark.mfl-hl")].map((m) => m.dataset.mflId)).size);
+  check("Analyze more: old highlights stay, new ones are added", marks2 === 10, `${marks2} highlighted`);
+  await sp.evaluate(() => window.scrollTo(0, 0));
+  await sp.screenshot({ path: join(demo, "7-streaming-on-device.png") });
+  await sp.close();
+
+  // Cloud: same extraction, bigger budget (12,000 characters), single call.
+  const cp = await ctx.newPage();
+  await cp.addInitScript((a) => { window.__MFL_MOCK__ = a.m; window.__MFL_MS__ = 3100; }, { m: setA });
+  await cp.setViewportSize({ width: 420, height: 900 });
+  await cp.goto(`chrome-extension://${extId}/sidepanel.html?target=${sbfTab}&mock=cloud`);
+  await cp.waitForFunction(() => document.getElementById("deviceChip").dataset.state !== "checking");
+  await sbfPage.evaluate(() => window.scrollTo(0, 0));
+  await cp.click("#analyze");
+  await cp.waitForFunction(() => /^Done/.test(document.getElementById("status").textContent), null, { timeout: 30000 });
+  const cloudPrompt = await cp.evaluate(() => window.__mflPrompts.claims);
+  check("cloud: one call, same main-content extraction, 12,000-character budget", cloudPrompt.length > 12000 && cloudPrompt.length < 16000 && !/28 languages|Toggle the table of contents|Edit links/.test(cloudPrompt) && /Samuel Benjamin Bankman-Fried \(born March 5, 1992\)/.test(cloudPrompt), `${cloudPrompt.length} chars of prompt`);
+  check("cloud: bar 'Cloud · 3.1 seconds'", (await txt(cp, "#claimsMode .mode-main")) === "Cloud · 3.1 seconds", await txt(cp, "#claimsMode .mode-main"));
+  check("cloud: 'First claim in X seconds' also shown, and the more button is offered", /^First claim in \d+\.\d seconds$/.test(await txt(cp, "#claimsMode .mode-first")) && (await cp.locator("#more").isVisible()));
+  await cp.close();
+  await sbfPage.close();
 
   // Popup renders and has every control labelled.
   const pop = await ctx.newPage();

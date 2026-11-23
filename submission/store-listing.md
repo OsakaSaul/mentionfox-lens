@@ -23,7 +23,7 @@ GEO lens
 Shows how an AI assistant would summarise the page: the people, companies and products it would pick up, the facts it would state, what is missing or ambiguous, three concrete fixes, and a score from 0 to 100 with what each point means.
 
 Private by design
-Lens uses Firebase AI Logic hybrid inference. When your Chrome has its built-in on-device model (Gemini Nano), the analysis runs on your computer and the badge says On-device (private). When it does not, Lens falls back to the cloud through Firebase AI Logic, and the badge says Cloud. Either way you can see which mode ran and how long it took in milliseconds.
+Lens uses Firebase AI Logic hybrid inference. When your Chrome has its built-in on-device model (Gemini Nano), the analysis runs on your computer and the badge says On-device. When it does not, Lens falls back to the cloud through Firebase AI Logic, and the badge says Cloud. Either way you can see which mode ran and how long it took in milliseconds.
 
 Nothing from the page is sent to MentionFox. No account, no sign-up, no ads. Lens only reads the page when you click.
 
@@ -89,7 +89,7 @@ Images are in store/ (made by `node scripts/store-images.mjs`; 24-bit PNG, no al
 | store/screenshot-1-claim-xray.png | 1280 by 800 | Highlights in the page, side panel list, mode bar (Cloud, from a real run) |
 | store/screenshot-2-jump-to-claim.png | 1280 by 800 | A claim selected in the panel and the exact sentence lit on the page |
 | store/screenshot-3-ai-view.png | 1280 by 800 | AI view tab with the 0 to 100 score |
-| store/screenshot-4-on-device.png | 1280 by 800 | On-device (private) mode bar (state rendered with the test mock; see OWNER CONFIRMS) |
+| store/screenshot-4-on-device.png | 1280 by 800 | On-device mode bar (state rendered with the test mock; see OWNER CONFIRMS) |
 | store/screenshot-5-never-blocked.png | 1280 by 800 | Download percent chip while the cloud answers (state rendered with the test mock) |
 | store/promo-tile-440x280.png | 440 by 280 | Small promo tile |
 | store/marquee-1400x560.png | 1400 by 560 | Marquee promo tile |

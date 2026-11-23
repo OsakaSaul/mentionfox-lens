@@ -27,6 +27,10 @@ for (const [run, pageFile] of [
   ["t2960-sam-bankman-fried", "test/fixtures/wikipedia-sam-bankman-fried.html"],
   ["t2960-patrick-collison", "test/fixtures/wikipedia-patrick-collison.html"],
   ["t2960-theranos-1", "fixtures/demo/theranos-1.html"],
+  // T2963: the same pages through the main-content extraction (cloud path, 12,000-character window)
+  ["t2963-sam-bankman-fried", "test/fixtures/wikipedia-sam-bankman-fried.html"],
+  ["t2963-patrick-collison", "test/fixtures/wikipedia-patrick-collison.html"],
+  ["t2963-theranos-1", "fixtures/demo/theranos-1.html"],
 ]) {
   const result = resolve(root, `docs/real-runs/${run}/result.json`);
   const page = resolve(root, pageFile);

@@ -21,8 +21,32 @@ export function mockEngine(modeName) {
       if (onProgress) listeners.add(onProgress);
       if (availability === "downloadable") availability = "downloading";
     },
-    runTask: async ({ key, normalize }) => {
+    // Warm-up (panel open): records that it ran and when, so the e2e can prove it happens before any Analyze click.
+    warmDevice: async () => { window.__mflWarm = { at: performance.now(), clicked: !!window.__mflClickedAt }; await new Promise((r) => setTimeout(r, 20)); return { ms: 20 }; },
+    // Chunked on-device run: canned claims are spread over the chunks (claim j goes to chunk j mod N) and streamed object by object,
+    // window.__MFL_CHUNK_MS__ per chunk (default 30), so the e2e can prove the first card appears before the last chunk is done.
+    streamChunk: async (chunk, onText, info) => {
+      (window.__mflChunks ||= []).push(chunk.length);
+      if (modeName === "failed") throw new Error("mock on-device failure");
       const t0 = performance.now();
+      const all = window.__MFL_MOCK__?.claims?.claims || [];
+      const mine = all.filter((_, j) => j % info.total === info.index).map((c) => JSON.stringify(c));
+      const per = Number(window.__MFL_CHUNK_MS__ ?? 30);
+      let text = '{"claims":[';
+      for (let k = 0; k < mine.length; k++) {
+        await new Promise((r) => setTimeout(r, per / (mine.length + 1)));
+        text += (k ? "," : "") + mine[k];
+        onText(text);
+      }
+      await new Promise((r) => setTimeout(r, per / (mine.length + 1)));
+      text += "]}";
+      onText(text);
+      (window.__mflChunkLog ||= []).push({ index: info.index, total: info.total, ms: Math.round(performance.now() - t0) });
+      return { text, source: InferenceSource.ON_DEVICE, ms: Math.round(performance.now() - t0) };
+    },
+    runTask: async ({ key, normalize, prompt }) => {
+      const t0 = performance.now();
+      (window.__mflPrompts ||= {})[key] = prompt; // lets the e2e check what text would have been sent
       const canned = window.__MFL_MOCK__?.[key];
       if (!canned) throw new Error("no mock for " + key);
       await new Promise((r) => setTimeout(r, 30));

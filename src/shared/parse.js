@@ -148,3 +148,31 @@ export function normalizeGeo(value) {
   if (!entities.length && !fixes.length && !list(value.facts, 1).length) throw new Error("GEO output is empty");
   return { entities, facts: list(value.facts, 8), missing: list(value.missing, 6), fixes, ratings };
 }
+
+/**
+ * Streaming helper: the claim objects that are COMPLETE in a partial model answer such as '{"claims":[{"quote":"a","kind":"specific","why":"b"},{"quote":"c',
+ * so a card can be shown the moment its closing brace arrives. Returns an array of parsed objects (never throws).
+ */
+export function extractCompleteClaimObjects(partial) {
+  const s = String(partial ?? "");
+  const m = /"claims"\s*:\s*\[/.exec(s);
+  let i = m ? m.index + m[0].length : s.indexOf("[") + 1;
+  if (!i) return [];
+  const out = [];
+  while (i < s.length) {
+    while (i < s.length && s[i] !== "{") { if (s[i] === "]") return out; i++; }
+    if (i >= s.length) break;
+    let depth = 0, inStr = false, esc = false, end = -1;
+    for (let j = i; j < s.length; j++) {
+      const c = s[j];
+      if (inStr) { if (esc) esc = false; else if (c === "\\") esc = true; else if (c === '"') inStr = false; continue; }
+      if (c === '"') inStr = true;
+      else if (c === "{") depth++;
+      else if (c === "}") { depth--; if (depth === 0) { end = j; break; } }
+    }
+    if (end < 0) break; // the object is still being written
+    try { out.push(JSON.parse(s.slice(i, end + 1))); } catch { /* skip a broken object */ }
+    i = end + 1;
+  }
+  return out;
+}

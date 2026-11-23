@@ -1,8 +1,10 @@
-import { runTask, initDevice, probeDevice, InferenceSource } from "../ai.js";
-import { CLAIMS_SCHEMA, GEO_SCHEMA, buildClaimsPrompt, buildGeoPrompt } from "../shared/prompts.js";
+import { runTask, initDevice, probeDevice, warmDevice, streamDeviceChunk, InferenceSource } from "../ai.js";
+import { CLAIMS_SCHEMA, GEO_SCHEMA, buildClaimsPrompt, buildGeoPrompt, MAX_PAGE_CHARS, DEVICE_WINDOW_CHARS, DEVICE_CHUNK_CHARS, DEVICE_GEO_CHARS } from "../shared/prompts.js";
+import { findAnchorIndex, pickWindow, chunkBlocks } from "../shared/extract.js";
+import { runChunkedClaims, mergeClaims, progressText } from "../shared/chunked.js";
 import { normalizeClaims, normalizeGeo } from "../shared/parse.js";
 import { geoScore, geoBand, GEO_BANDS, GEO_DIMENSION_LABELS } from "../shared/geo.js";
-import { modeInfo, statusLine, chipState } from "../shared/mode.js";
+import { modeInfo, statusLine, chipState, formatSeconds } from "../shared/mode.js";
 import { VERIFY_CLAIMS_URL, DECISION_MAKERS_URL } from "../shared/links.js";
 
 const $ = (id) => document.getElementById(id);
@@ -22,8 +24,8 @@ function h(tag, attrs = {}, ...kids) {
 $("linkVerify").href = VERIFY_CLAIMS_URL;
 $("linkPeople").href = DECISION_MAKERS_URL;
 
-let engine = { runTask, initDevice, probeDevice };
-let state = { tabId: null, claims: [] };
+let engine = { runTask, initDevice, probeDevice, warmDevice, streamChunk: streamDeviceChunk };
+let state = { tabId: null, claims: [], results: new Map(), page: null, covered: new Set(), remaining: 0, warm: null };
 
 /* ---------- status helpers ---------- */
 function setStatus(text, isError = false) {
@@ -66,7 +68,7 @@ function onDownloadProgress(p) {
   device.availability = p >= 1 ? "available" : "downloading";
   device.progress = p;
   renderDevice();
-  if (p >= 1) setTimeout(refreshDevice, 300);
+  if (p >= 1) setTimeout(() => refreshDevice().then(maybeWarm), 300);
   else if (!device.poll) device.poll = setInterval(refreshDevice, 2000);
 }
 
@@ -107,18 +109,18 @@ function renderModeBar(containerId, info) {
   c.setAttribute("aria-label", `Inference mode: ${info.text}. ${info.tip}`);
   c.replaceChildren(
     svgIcon(info.mode === "on_device" ? "on_device" : "cloud"),
-    h("div", { class: "mode-text" }, h("div", { class: "mode-main" }, info.label, info.seconds ? [" · ", h("span", { class: "nw" }, info.seconds)] : ""), h("div", { class: "mode-sub" }, info.sub)),
+    h("div", { class: "mode-text" }, h("div", { class: "mode-main" }, info.label, info.seconds ? [" · ", h("span", { class: "nw" }, info.seconds)] : ""), h("div", { class: "mode-sub" }, info.sub), info.first ? h("div", { class: "mode-first" }, info.first) : ""),
   );
 }
 
-function renderModePending(containerId) {
+function renderModePending(containerId, firstMs = null) {
   const c = $(containerId);
   c.hidden = false;
   c.className = "modebar mode-pending";
   c.dataset.mode = "pending";
   c.title = "Lens is choosing between the private on-device model and the cloud.";
   c.setAttribute("aria-label", "Inference mode: working");
-  c.replaceChildren(h("div", { class: "mode-text" }, h("div", { class: "mode-main" }, "Working..."), h("div", { class: "mode-sub" }, "Lens prefers the on-device model and falls back to the cloud.")));
+  c.replaceChildren(h("div", { class: "mode-text" }, h("div", { class: "mode-main" }, "Working..."), h("div", { class: "mode-sub" }, "Lens prefers the on-device model and falls back to the cloud."), firstMs != null ? h("div", { class: "mode-first" }, `First claim in ${formatSeconds(firstMs)}`) : ""));
 }
 
 /* ---------- tabs ---------- */
@@ -234,68 +236,199 @@ function renderGeo(geo, info) {
 
 /* ---------- main flow ---------- */
 let busy = false;
-async function analyze() {
+let warmStarted = false;
+let warmPromise = null;
+
+/** Load the on-device model into memory as soon as the panel is open and the model is already downloaded (no Analyze click needed). */
+function maybeWarm() {
+  if (warmStarted || device.availability !== "available" || !engine.warmDevice) return;
+  warmStarted = true;
+  warmPromise = engine.warmDevice().then((r) => { state.warm = r; return r; }).catch(() => null);
+}
+
+const asSeconds = (ms) => formatSeconds(ms);
+
+async function analyze({ more = false } = {}) {
   if (busy) return;
   busy = true;
+  const t0 = performance.now(); // the moment of the click: first-claim time and totals are measured from here
   const btn = $("analyze");
   btn.disabled = true;
   $("rerun").disabled = true;
+  $("more").disabled = true;
   try {
     setStatus("Reading the page...");
     const tab = await getTab();
     if (!tab?.id || !/^https?:|^file:/.test(tab.url || "")) throw new Error("Open a normal web page first (browser pages cannot be analysed).");
     state.tabId = tab.id;
-    try {
-      await ensureContent(tab.id);
-    } catch {
-      throw new Error("Lens needs permission for this tab. Click the Lens toolbar icon while on the page, then Analyze.");
+    if (!more || !state.page) {
+      try {
+        await ensureContent(tab.id);
+      } catch {
+        throw new Error("Lens needs permission for this tab. Click the Lens toolbar icon while on the page, then Analyze.");
+      }
+      const ex = await send(tab.id, { type: "extract" });
+      if (!ex?.ok || ex.page.textLength < 80) throw new Error("Not enough readable text on this page.");
+      state.page = ex.page;
+      state.covered = new Set();
+      state.claims = [];
+      state.results = new Map();
+      more = false;
     }
-    const ex = await send(tab.id, { type: "extract" });
-    if (!ex?.ok || ex.page.textLength < 80) throw new Error("Not enough readable text on this page.");
-    const page = ex.page;
+    const page = state.page;
 
     const deviceStatus = await engine.probeDevice();
     device.availability = deviceStatus;
     renderDevice();
     // User gesture is active here: allowed to start the on-device model download.
     const init = engine.initDevice(CLAIMS_SCHEMA, onDownloadProgress);
-    if (deviceStatus === "available") await init;
-    else if (deviceStatus === "downloadable") refreshDevice().then(() => {}); // chip flips to downloading right away
+    if (deviceStatus === "available") {
+      await init;
+      if (warmPromise) await warmPromise; // a warm-up already loading the model: wait for it instead of loading twice
+    } else if (deviceStatus === "downloadable") refreshDevice().then(() => {}); // chip flips to downloading right away
     renderModePending("claimsMode");
-    renderModePending("geoMode");
+    if (!more) renderModePending("geoMode");
 
-    setStatus("Finding claims...");
+    const onDevice = deviceStatus === "available" && !!engine.streamChunk;
+    const budget = onDevice ? DEVICE_WINDOW_CHARS : MAX_PAGE_CHARS;
+    const anchorIdx = more ? -1 : findAnchorIndex(page.blocks, page.anchorText);
+    const win = pickWindow(page.blocks, { budget, covered: state.covered, anchorIdx });
+    if (!win.indices.length) throw new Error("Nothing more to analyse on this page.");
+    for (const i of win.indices) state.covered.add(i);
+    state.remaining = win.remaining;
+
     $("claimsEmpty").textContent = "Working...";
-    const cres = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildClaimsPrompt(page.text), normalize: normalizeClaims, deviceStatus });
-    const cinfo = modeInfo({ source: cres.source, ms: cres.ms, deviceStatus, retried: cres.retried });
-    state.claims = cres.value;
-    setStatus("Highlighting claims on the page...");
-    const hres = await send(tab.id, { type: "highlight", claims: cres.value });
-    renderClaims(cres.value, hres?.results);
+    $("more").hidden = true;
+    const before = state.claims.length;
+    let firstMs = null;
+    const claimsStart = performance.now();
+    let cres;
+    let hlQueue = Promise.resolve();
+    const showCards = () => renderClaims(state.claims, [...state.results.values()]);
+    const highlightNew = (added) => {
+      hlQueue = hlQueue.then(async () => {
+        try {
+          const r = await send(tab.id, { type: "highlightAdd", claims: added });
+          for (const x of r?.results || []) state.results.set(x.id, x);
+          showCards();
+        } catch { /* page gone: the cards stay, unmarked */ }
+      });
+    };
+    const onFirst = () => { if (firstMs == null) { firstMs = performance.now() - t0; renderModePending("claimsMode", firstMs); } };
+
+    if (onDevice) {
+      // Chunked and streamed: about 1,500 characters at a time; each card (and its highlight) appears the moment the model finishes writing it.
+      if (!more) { try { await send(tab.id, { type: "clear" }); } catch { /* nothing to clear */ } }
+      const chunks = chunkBlocks(win.indices.map((i) => page.blocks[i]), DEVICE_CHUNK_CHARS);
+      state.chunks = chunks.length;
+      let raw = "";
+      setStatus(progressText({ chunk: 1, total: chunks.length, claims: state.claims.length }));
+      const run = await runChunkedClaims({
+        chunks,
+        claims: state.claims,
+        streamChunk: async (c, onText, info) => {
+          const r = await engine.streamChunk(c, onText, info);
+          raw += r.text + "\n";
+          return r;
+        },
+        onClaims: (added) => { onFirst(); showCards(); highlightNew(added); },
+        onProgress: (p) => setStatus(progressText(p)),
+      });
+      await hlQueue;
+      const allDevice = run.sources.length > 0 && run.sources.every((s) => s === InferenceSource.ON_DEVICE);
+      if (run.failed >= chunks.length && state.claims.length === before) {
+        // Every on-device chunk failed: the cloud redoes the window (labelled "on-device failed").
+        setStatus("The on-device model could not answer. Trying the cloud...");
+        const cloudWin = pickWindow(page.blocks, { budget: MAX_PAGE_CHARS, covered: new Set(), anchorIdx });
+        const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildClaimsPrompt(cloudWin.text), normalize: normalizeClaims, deviceStatus });
+        mergeClaims(state.claims, r.value);
+        if (!more) { const h = await send(tab.id, { type: "highlight", claims: state.claims }); state.results = new Map((h?.results || []).map((x) => [x.id, x])); }
+        onFirst();
+        cres = { source: r.source, retried: true, raw: r.raw };
+      } else {
+        cres = { source: allDevice ? InferenceSource.ON_DEVICE : InferenceSource.IN_CLOUD, retried: !allDevice && run.sources.length > 0, raw };
+        if (run.firstClaimAt != null && firstMs == null) firstMs = run.firstClaimAt - t0;
+      }
+      cres.chunks = chunks.length;
+      cres.failedChunks = run.failed;
+    } else {
+      setStatus("Finding claims...");
+      const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildClaimsPrompt(win.text), normalize: normalizeClaims, deviceStatus });
+      const added = mergeClaims(state.claims, r.value);
+      showCards();
+      onFirst();
+      setStatus("Highlighting claims on the page...");
+      if (!more) {
+        const h = await send(tab.id, { type: "highlight", claims: state.claims });
+        state.results = new Map((h?.results || []).map((x) => [x.id, x]));
+      } else if (added.length) {
+        const h = await send(tab.id, { type: "highlightAdd", claims: added });
+        for (const x of h?.results || []) state.results.set(x.id, x);
+      }
+      cres = { source: r.source, retried: r.retried, raw: r.raw, chunks: 1, failedChunks: 0 };
+      cres.ms = r.ms; // time the model call took
+    }
+    cres.ms = cres.ms ?? Math.round(performance.now() - claimsStart);
+    if (typeof __E2E__ !== "undefined" && __E2E__ && onDevice && window.__MFL_MS__ != null) cres.ms = Number(window.__MFL_MS__); // test harness only: fixed latency for the mock
+    cres.firstMs = Math.round(firstMs ?? performance.now() - t0);
+    showCards();
+    const cinfo = modeInfo({ source: cres.source, ms: cres.ms, deviceStatus, retried: cres.retried, firstMs: cres.firstMs });
     renderModeBar("claimsMode", cinfo);
     $("clear").disabled = false;
-    const missing = (hres?.results || []).filter((r) => !r.found).length;
+    const missing = [...state.results.values()].filter((r) => !r.found).length;
+    $("more").hidden = !(state.remaining > 200);
+    $("more").title = `Analyze the next part of this page (about ${Math.min(state.remaining, budget).toLocaleString("en-US")} more characters of the ${page.textLength.toLocaleString("en-US")} in the main content)`;
 
-    setStatus("Checking how an AI assistant would read this page...");
-    const gres = await engine.runTask({ key: "geo", schema: GEO_SCHEMA, prompt: buildGeoPrompt(page.text, { title: page.title }), normalize: normalizeGeo, deviceStatus });
-    const ginfo = modeInfo({ source: gres.source, ms: gres.ms, deviceStatus, retried: gres.retried });
-    renderGeo(gres.value, ginfo);
+    let infos = [cinfo];
+    let totalMs = cres.ms;
+    let gres = null;
+    if (!more) {
+      setStatus("Checking how an AI assistant would read this page...");
+      const geoText = onDevice ? firstBlocksText(page.blocks, win.indices, DEVICE_GEO_CHARS) : win.text;
+      gres = await engine.runTask({ key: "geo", schema: GEO_SCHEMA, prompt: buildGeoPrompt(geoText, { title: page.title }), normalize: normalizeGeo, deviceStatus });
+      const ginfo = modeInfo({ source: gres.source, ms: gres.ms, deviceStatus, retried: gres.retried });
+      renderGeo(gres.value, ginfo);
+      infos = [cinfo, ginfo];
+      totalMs += gres.ms;
+    }
     // Dev builds only: expose the last run so scripts/live-probe.mjs can save the raw model output.
-    if (typeof __DEV_BUILD__ !== "undefined" && __DEV_BUILD__) window.__lensLast = { page: { title: page.title, url: page.url, textLength: page.textLength, rootTag: page.rootTag }, claims: cres, highlight: hres, geo: gres };
+    if (typeof __DEV_BUILD__ !== "undefined" && __DEV_BUILD__) {
+      window.__lensLast = {
+        page: { title: page.title, url: page.url, textLength: page.textLength, rawChars: page.rawChars, rootTag: page.rootTag, blocks: page.blocks.length },
+        window: { budget, chars: win.chars, blocks: win.indices.length, chunks: cres.chunks, remaining: win.remaining, anchored: anchorIdx >= 0, deviceWindow: (() => { const w = pickWindow(page.blocks, { budget: DEVICE_WINDOW_CHARS, anchorIdx }); return { chars: w.chars, chunks: chunkBlocks(w.indices.map((i) => page.blocks[i]), DEVICE_CHUNK_CHARS).length, chunkChars: DEVICE_CHUNK_CHARS }; })() },
+        claims: { source: cres.source, ms: cres.ms, firstMs: cres.firstMs, retried: cres.retried, raw: cres.raw, value: state.claims },
+        highlight: { results: [...state.results.values()] },
+        geo: gres ? { source: gres.source, ms: gres.ms, retried: gres.retried, raw: gres.raw, value: gres.value } : null,
+      };
+    }
     await refreshDevice();
-    const totalMs = cres.ms + gres.ms; // time spent in the two model runs
-    setStatus(statusLine({ totalMs, infos: [cinfo, ginfo], claims: cres.value.length, missing }));
+    setStatus(statusLine({ totalMs, infos, claims: state.claims.length, missing, firstMs: cres.firstMs }));
     $("rerun").hidden = false;
   } catch (err) {
+    $("claimsEmpty").hidden = state.claims.length > 0;
     $("claimsEmpty").textContent = "No claims yet. Click Analyze.";
     for (const id of ["claimsMode", "geoMode"]) if ($(id).dataset.mode === "pending") $(id).hidden = true;
     $("rerun").hidden = false;
+    $("more").hidden = !(state.remaining > 200) || !state.claims.length;
     setStatus(friendlyError(err), true);
   } finally {
     btn.disabled = false;
     $("rerun").disabled = false;
+    $("more").disabled = false;
     busy = false;
   }
+}
+
+/** The first blocks of a window up to a character budget, joined as text. */
+function firstBlocksText(blocks, indices, max) {
+  const out = [];
+  let n = 0;
+  for (const i of indices) {
+    if (n && n + blocks[i].length > max) break;
+    out.push(blocks[i]);
+    n += blocks[i].length + 1;
+  }
+  return out.join("\n");
 }
 
 function friendlyError(err) {
@@ -306,8 +439,9 @@ function friendlyError(err) {
   return m.slice(0, 240);
 }
 
-$("analyze").addEventListener("click", analyze);
-$("rerun").addEventListener("click", analyze);
+$("analyze").addEventListener("click", () => analyze());
+$("rerun").addEventListener("click", () => analyze());
+$("more").addEventListener("click", () => analyze({ more: true }));
 $("download").addEventListener("click", () => {
   // Click = user activation: the only moment Chrome lets the page start the download.
   device.availability = "downloading";
@@ -328,6 +462,7 @@ $("clear").addEventListener("click", async () => {
     engine = mod.mockEngine(params.get("mock"));
   }
   await refreshDevice();
+  maybeWarm();
   // Chrome may already be downloading (started earlier or elsewhere): attach to it to get live percent.
   if (device.availability === "downloading") engine.initDevice(CLAIMS_SCHEMA, onDownloadProgress);
 })();

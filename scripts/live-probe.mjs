@@ -91,7 +91,7 @@ try {
     const result = {
       fixture: urlArg ? null : basename(fixturePath), source_url: urlArg || srcUrl || null, run_at: new Date().toISOString(), model_path: "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
       page: last.page,
-      claims: { source: last.claims.source, ms: last.claims.ms, retried: last.claims.retried, raw: last.claims.raw, normalized: last.claims.value },
+      claims: { source: last.claims.source, ms: last.claims.ms, first_ms: last.claims.firstMs, retried: last.claims.retried, raw: last.claims.raw, normalized: last.claims.value },
       highlight: last.highlight?.results || [],
       highlighted_text: ground,
       geo: { source: last.geo.source, ms: last.geo.ms, retried: last.geo.retried, raw: last.geo.raw, normalized: last.geo.value },
@@ -106,6 +106,13 @@ try {
     await panel.click("#tab-geo");
     await panel.screenshot({ path: join(outDir, "panel-geo.png"), fullPage: true });
     out(`claims: ${last.claims.value.length}, highlighted: ${ground.length ? new Set(ground.map((g) => g.id)).size : 0}, claims ${last.claims.ms} ms, geo ${last.geo.ms} ms`);
+    // T2963 speed log (CLOUD path of this Chromium; the on-device model is unavailable here, so no on-device speed is measured):
+    const w = last.window || {};
+    const found = (last.highlight?.results || []).filter((r) => r.found).length;
+    const nClaims = last.claims.value.length;
+    out(`T2963 log: chars before extraction ${last.page.rawChars}, after ${last.page.textLength} (${last.page.blocks} blocks, root ${last.page.rootTag}); ` +
+      `cloud window ${w.chars} of budget ${w.budget} chars, ${w.chunks} cloud call; on-device plan: ${w.deviceWindow?.chunks} chunks of about ${w.deviceWindow?.chunkChars} chars over ${w.deviceWindow?.chars} chars; ` +
+      `claims ${nClaims}; first claim in ${(last.claims.firstMs / 1000).toFixed(1)} seconds (cloud: arrives with the single answer), claims call ${(last.claims.ms / 1000).toFixed(1)} seconds, AI view ${(last.geo.ms / 1000).toFixed(1)} seconds; matched ${found}/${nClaims} (${nClaims ? Math.round((found / nClaims) * 100) : 0}%)`);
   }
   out(`console (first 12 lines, token redacted):`);
   for (const l of consoleLines.slice(0, 12)) out("  " + l.slice(0, 300));

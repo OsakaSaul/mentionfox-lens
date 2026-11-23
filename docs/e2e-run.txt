@@ -1,30 +1,30 @@
-PASS  extension loads and service worker starts  foehpjhlmbefhnaominonkckhicmneeb
-PASS  linkedin-profile: analyze completes  Done in 0.1 s on-device (private): 5 claims, 1 not found on the page. Click a claim to jump to it.
+PASS  extension loads and service worker starts  lpjeonfphonnhmfpkhnafalahddhcfke
+PASS  linkedin-profile: analyze completes  Done in 0.1 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  linkedin-profile: highlights wrapped in the page  8 marks
-PASS  linkedin-profile: mode bar shown (mock: device)  On-device (private) · 0.0 s
-PASS  linkedin-profile: status line names mode and time  Done in 0.1 s on-device (private): 5 claims, 1 not found on the page. Click a claim to jump to it.
+PASS  linkedin-profile: mode bar shown (mock: device)  On-device · 0.1 seconds
+PASS  linkedin-profile: status line names mode and time  Done in 0.1 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  linkedin-profile: GEO score + mode bar shown
 PASS  linkedin-profile: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
-PASS  not-found claim is disabled with a message
+PASS  not-found claim is disabled with a message  1 missing of 5
 PASS  linkedin-profile: clear removes highlights
-PASS  x-post: analyze completes  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
+PASS  x-post: analyze completes  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  x-post: highlights wrapped in the page  8 marks
-PASS  x-post: mode bar shown (mock: cloud)  Cloud · 0.0 s
-PASS  x-post: status line names mode and time  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
+PASS  x-post: mode bar shown (mock: cloud)  Cloud · 0.0 seconds
+PASS  x-post: status line names mode and time  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  x-post: GEO score + mode bar shown
 PASS  x-post: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  x-post: clear removes highlights
-PASS  company-site: analyze completes  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
+PASS  company-site: analyze completes  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  company-site: highlights wrapped in the page  3 marks
-PASS  company-site: mode bar shown (mock: cloud)  Cloud · 0.0 s
-PASS  company-site: status line names mode and time  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
+PASS  company-site: mode bar shown (mock: cloud)  Cloud · 0.0 seconds
+PASS  company-site: status line names mode and time  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  company-site: GEO score + mode bar shown
 PASS  company-site: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  company-site: clear removes highlights
-PASS  news-article: analyze completes  Done in 0.1 s on Cloud: 4 claims. Click a claim to jump to it.
+PASS  news-article: analyze completes  Done in 0.1 seconds on Cloud: 4 claims. First claim in 0.1 seconds. Click a claim to jump to it.
 PASS  news-article: highlights wrapped in the page  9 marks
-PASS  news-article: mode bar shown (mock: cloud)  Cloud · 0.0 s
-PASS  news-article: status line names mode and time  Done in 0.1 s on Cloud: 4 claims. Click a claim to jump to it.
+PASS  news-article: mode bar shown (mock: cloud)  Cloud · 0.0 seconds
+PASS  news-article: status line names mode and time  Done in 0.1 seconds on Cloud: 4 claims. First claim in 0.1 seconds. Click a claim to jump to it.
 PASS  news-article: GEO score + mode bar shown
 PASS  news-article: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  news-article: footnote + renamed quote is found, not disabled
@@ -34,24 +34,46 @@ PASS  news-article: clear removes highlights
 PASS  downloading: chip shows downloading, bar visible before Analyze
 PASS  progress 0: chip 'downloading 0%'  On-device model: downloading 0%
 PASS  progress 42: chip 'downloading 42%', bar 42% wide  Downloading private model 42%
-PASS  cloud while downloading: claims bar 'Cloud (on-device not ready) · 1.6 s'  Cloud (on-device not ready) · 1.6 s
-PASS  cloud while downloading: status line  Done in 3.2 s on Cloud (on-device not ready): 3 claims. Click a claim to jump to it.
+PASS  cloud while downloading: claims bar 'Cloud (on-device not ready) · 1.6 seconds'  Cloud (on-device not ready) · 1.6 seconds
+PASS  cloud while downloading: status line  Done in 3.2 seconds on Cloud (on-device not ready): 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  cloud while downloading: AI view bar too
 PASS  download bar still visible after Analyze completes
 PASS  Run again button appears and is enabled
 PASS  progress 100: chip turns green 'On-device model ready', bar hidden
-PASS  Run again after download: claims bar 'On-device (private) · 1.4 s'  On-device (private) · 1.4 s
-PASS  Run again after download: status line  Done in 2.8 s on-device (private): 3 claims. Click a claim to jump to it.
+PASS  Run again after download: claims bar 'On-device · N seconds'  On-device · 1.4 seconds
+PASS  Run again after download: status line  Done in 2.8 seconds on-device: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  on-device and cloud bars have different colours
-PASS  AI view bar says on-device too
+PASS  AI view bar says on-device too  On-device · 1.4 seconds
 PASS  mode bars have tooltip and aria-label explaining hybrid inference
 PASS  mode bars contain an inline svg icon
 PASS  unavailable: chip says using cloud
-PASS  cloud when unavailable: bar 'Cloud · 3.2 s'  Cloud · 3.2 s
-PASS  cloud when unavailable: status line  Done in 6.4 s on Cloud: 3 claims. Click a claim to jump to it.
-PASS  on-device failed then cloud: bar 'Cloud (on-device failed) · 3.2 s'  Cloud (on-device failed) · 3.2 s
+PASS  cloud when unavailable: bar 'Cloud · 3.2 seconds'  Cloud · 3.2 seconds
+PASS  cloud when unavailable: status line  Done in 6.4 seconds on Cloud: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
+PASS  on-device failed then cloud: bar 'Cloud (on-device failed) · N seconds'  Cloud (on-device failed) · 3.2 seconds
 PASS  downloadable: Download button shown with tooltip
 PASS  after Download click: chip shows percent and button is gone
+PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":30,"clicked":false}
+PASS  streaming: the first card is on screen while the run is still going  Finding claims: chunk 1 of 4, 0 claims so far...
+PASS  streaming: highlights land on the page while the run is still going  8 marks
+PASS  streaming: first card appears at least one chunk-time before the run ends  first card +267 ms, done +2916 ms
+PASS  progress: 'chunk N of M, K claims so far' is shown and counts up  Finding claims: chunk 1 of 4, 0 claims so far... | Finding claims: chunk 2 of 4, 2 claims so far... | Finding claims: chunk 3 of 4, 4 claims so far... | Finding claims: chunk 4 of 4, 6 claims so far... | Finding claims: chunk 4 of 4, 8 claims so far...
+PASS  chunks: about 1,500 characters each, 3 to 5 chunks for the first 6,000 characters  1481,1445,1448,1447
+PASS  mode bar: 'On-device · N seconds' (no '(private)')  On-device · 2.9 seconds
+PASS  mode bar: 'First claim in X seconds' line  First claim in 0.3 seconds
+PASS  claims tab: 'Your page stayed in this browser.' visible under the bar  Your page stayed in this browser.
+PASS  status line: total and first claim, with the word seconds  Done in 2.9 seconds on-device: 8 claims. First claim in 0.3 seconds. Click a claim to jump to it.
+PASS  first claim is earlier than the total  0.3 < 2.9
+PASS  AI view tab: bar and 'Your page stayed in this browser.' visible
+PASS  claims are merged without duplicates and numbered  c1,c2,c3,c4,c5,c6,c7,c8
+PASS  every card has its highlight on the page  8 highlighted
+PASS  on-device AI view input is capped (4,000 characters of main content) and has no site furniture  5453 chars of prompt
+PASS  'Analyze more of this page' button is offered
+PASS  Analyze more: the next window adds claims to the list, ids continue  c1,c2,c3,c4,c5,c6,c7,c8,c9,c10
+PASS  Analyze more: a new window of chunks is analysed  1489,1467,1419,1611
+PASS  Analyze more: old highlights stay, new ones are added  10 highlighted
+PASS  cloud: one call, same main-content extraction, 12,000-character budget  14130 chars of prompt
+PASS  cloud: bar 'Cloud · 3.1 seconds'  Cloud · 3.1 seconds
+PASS  cloud: 'First claim in X seconds' also shown, and the more button is offered
 PASS  popup renders with open button
 
-55/55 passed (model mocked; extension shell only)
+77/77 passed (model mocked; extension shell only)

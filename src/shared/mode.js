@@ -2,11 +2,11 @@
 
 export const HYBRID_TIP = "Lens prefers the private on-device model in your browser and falls back to the cloud when it is not ready.";
 
-/** 3200 -> "3.2 s". Missing or bad input gives "". */
+/** 3200 -> "3.2 seconds". Missing or bad input gives "". Always the word, never "s". */
 export function formatSeconds(ms) {
   const n = Number(ms);
   if (ms == null || !Number.isFinite(n) || n < 0) return "";
-  return (n / 1000).toFixed(1) + " s";
+  return (n / 1000).toFixed(1) + " seconds";
 }
 
 /**
@@ -15,13 +15,14 @@ export function formatSeconds(ms) {
  * retried: an on-device answer was unusable and the cloud redid it.
  * Returns {mode, label, seconds, text, tip, sub}.
  */
-export function modeInfo({ source, ms, deviceStatus, retried = false }) {
+export function modeInfo({ source, ms, deviceStatus, retried = false, firstMs = null }) {
   const seconds = formatSeconds(ms);
+  const firstSeconds = formatSeconds(firstMs);
   const onDevice = source === "on_device" && !retried;
   let label;
   let reason = "";
   if (onDevice) {
-    label = "On-device (private)";
+    label = "On-device";
   } else {
     label = "Cloud";
     if (retried || deviceStatus === "available") reason = "on-device failed";
@@ -35,24 +36,26 @@ export function modeInfo({ source, ms, deviceStatus, retried = false }) {
     mode: onDevice ? "on_device" : reason ? "cloud_fallback" : "cloud",
     label,
     seconds,
+    firstSeconds,
+    first: firstSeconds ? `First claim in ${firstSeconds}` : "",
     text: seconds ? `${label} · ${seconds}` : label,
     tip,
-    sub: onDevice ? "Your page text stayed in this browser." : "Hybrid AI: private on-device first, cloud as the fallback.",
+    sub: onDevice ? "Your page stayed in this browser." : "Hybrid AI: private on-device first, cloud as the fallback.",
   };
 }
 
 function statusName(info) {
-  return info.mode === "on_device" ? "on-device (private)" : info.label;
+  return info.mode === "on_device" ? "on-device" : info.label;
 }
 
-/** "Done in 3.2 s on Cloud: 10 claims, 2 not found on the page. Click a claim to jump to it." */
-export function statusLine({ totalMs, infos, claims, missing = 0 }) {
+/** "Done in 3.2 seconds on Cloud: 10 claims, 2 not found on the page. Click a claim to jump to it." */
+export function statusLine({ totalMs, infos, claims, missing = 0, firstMs = null }) {
   const list = Array.isArray(infos) ? infos : [infos];
   const names = [...new Set(list.map(statusName))];
   const where = names.length > 1 ? "Cloud and on-device" : names[0];
   const secs = formatSeconds(totalMs);
-  const join = where === "on-device (private)" ? "" : "on ";
-  return `Done${secs ? " in " + secs : ""} ${join}${where}: ${claims} claim${claims === 1 ? "" : "s"}${missing ? `, ${missing} not found on the page` : ""}. Click a claim to jump to it.`;
+  const join = where === "on-device" ? "" : "on ";
+  return `Done${secs ? " in " + secs : ""} ${join}${where}: ${claims} claim${claims === 1 ? "" : "s"}${missing ? `, ${missing} not found on the page` : ""}${formatSeconds(firstMs) ? `. First claim in ${formatSeconds(firstMs)}` : ""}. Click a claim to jump to it.`;
 }
 
 /**

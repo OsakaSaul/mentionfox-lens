@@ -2,9 +2,9 @@
 
 Target length: 2:45 (hard limit 3:00, the contest evaluates only the first 3 minutes). Language: English. Upload to YouTube as public, then paste the link in the Devpost form. Record on Chrome desktop with the unpacked build loaded.
 
-Spoken text is about 355 words, about 2:22 at 150 words per minute, plus about 23 s of silent screen time (waiting for the answer, scrolling, clicking), so the cut ends at about 2:45.
+Spoken text is about 355 words, about 2:22 at 150 words per minute, plus about 23 seconds of silent screen time (waiting for the answer, scrolling, clicking), so the cut ends at about 2:45.
 
-Items marked OWNER CONFIRMS need your own Chrome (Gemini Nano was not available on the build machine, so no on-device run was seen). Do not read a latency number aloud until you have read it off your screen. On the build machine the cloud path took 3.3 to 4.2 s for the claims and 2.6 to 3.1 s for the AI view (2026-11-23 runs on the pages below).
+Items marked OWNER CONFIRMS need your own Chrome (Gemini Nano was not available on the build machine, so no on-device run was seen). Do not read a latency number aloud until you have read it off your screen. On the build machine the cloud path took 3.3 to 4.2 seconds for the claims and 2.6 to 3.1 seconds for the AI view (2026-11-23 runs on the pages below).
 
 Hackathon requirements, where they appear: the hybrid inference mode bar on screen (scenes 2 and 5), the code snippet showing Firebase AI Logic (scene 5), the open-source repo (scene 7).
 
@@ -34,14 +34,14 @@ The demo only labels claims as checkable or vague. It never says a real person o
 
 2:30 Scene 7. "No account, nothing sent to MentionFox, MIT licensed, on GitHub. Built by one person in Osaka. Tell me what you would check first. Thank you."
 
-Timeline (spoken seconds at 150 wpm): scene 1 24 s, 2 26 s, 3 24 s, 4 13 s, 5 25 s, 6 21 s, 7 10 s: 142 s of speech in a 165 s cut.
+Timeline (spoken seconds at 150 wpm): scene 1 24 seconds, 2 26 seconds, 3 24 seconds, 4 13 seconds, 5 25 seconds, 6 21 seconds, 7 10 seconds: 142 seconds of speech in a 165 seconds cut.
 
 ## Shot list
 
 | Scene | Screen | Action | Duration |
 | --- | --- | --- | --- |
-| 1 | Title card (repo name, MentionFox Lens logo, "Firebase AI Logic hybrid inference"), then Chrome on the opening page | Cut to the Archive URL above. Let the page load fully (about 5 s; the Archive toolbar shows at the top, that is normal). | 0:00 to 0:25 |
-| 2 | Same page, Lens side panel | Click the Lens icon, click Open Lens side panel, click Analyze this page (one click runs both checks). Wait about 4 s. Zoom on the mode bar and the latency [OWNER CONFIRMS: read the real label on your Chrome; "On-device (private)" in teal if Gemini Nano is ready, otherwise "Cloud" in blue]. Show the green and amber cards. | 0:25 to 0:55 |
+| 1 | Title card (repo name, MentionFox Lens logo, "Firebase AI Logic hybrid inference"), then Chrome on the opening page | Cut to the Archive URL above. Let the page load fully (about 5 seconds; the Archive toolbar shows at the top, that is normal). | 0:00 to 0:25 |
+| 2 | Same page, Lens side panel | Click the Lens icon, click Open Lens side panel, click Analyze this page (one click runs both checks). Wait about 4 seconds on the cloud; on-device the claim cards now stream in one by one (target: first card in about 5 seconds, whole run under 30 seconds, NOT yet measured on a real device: read "First claim in X seconds" and the total off the bar, and say them as read). Zoom on the mode bar and the latency [OWNER CONFIRMS: read the real label on your Chrome; "On-device" in teal if Gemini Nano is ready, otherwise "Cloud" in blue]. Show the green and amber cards. | 0:25 to 0:55 |
 | 3 | Same page, highlights | In the Claim X-ray tab click the card that quotes the price ("Theranos' HSV-1 test costs $9.07 ..."). The page scrolls to the sentence and flashes it. Then click the amber card ("Theranos is deeply committed to transparency in the laboratory testing space.") and show its one-line reason. | 0:55 to 1:22 |
 | 4 | Patrick Collison Wikipedia page | Open the page, click Analyze this page, scroll past the green highlights (no amber). | 1:22 to 1:40 |
 | 5 | Side panel plus the code | Show the mode bar again, then the code: src/ai.js, the getGenerativeModel call with InferenceMode.PREFER_ON_DEVICE (README table "How hybrid inference is used" has the line numbers). If you have a browser without Gemini Nano, run Analyze there once to show the Cloud bar. Do not show any key or token on screen. | 1:40 to 2:08 |
@@ -58,7 +58,7 @@ Timeline (spoken seconds at 150 wpm): scene 1 24 s, 2 26 s, 3 24 s, 4 13 s, 5 25
 
 ## OWNER CONFIRMS
 
-1. The On-device (private) mode bar and its real latency in your Chrome 139+ with Gemini Nano (README, "What the owner must test"). Read the number off the screen; do not state one from this script.
+1. The On-device mode bar and its real latency in your Chrome 139+ with Gemini Nano (README, "What the owner must test"). Read the number off the screen; do not state one from this script.
 2. First-run model download behaviour on your machine (percent and progress bar, then the green ready chip, then Run again).
 3. How you show the Cloud bar for scene 5: run Analyze before the download finishes (see "How to show Cloud, then On-device" below).
 4. If the on-device result on these pages looks different from the cloud one, change the scene wording to what you see.
@@ -66,7 +66,7 @@ Timeline (spoken seconds at 150 wpm): scene 1 24 s, 2 26 s, 3 24 s, 4 13 s, 5 25
 
 ## How to show Cloud, then On-device (no switch needed)
 
-1. Cloud take: with the on-device model still downloading (chip: "On-device model: downloading NN%", progress bar visible), press Analyze. The bar is blue: "Cloud (on-device not ready) · X s" and the status line says "Done in X s on Cloud (on-device not ready): N claims." If the chip says "not downloaded yet", click **Download on-device model** first, or press Analyze (it starts the download too).
+1. Cloud take: with the on-device model still downloading (chip: "On-device model: downloading NN%", progress bar visible), press Analyze. The bar is blue: "Cloud (on-device not ready) · X seconds" and the status line says "Done in X seconds on Cloud (on-device not ready): N claims." If the chip says "not downloaded yet", click **Download on-device model** first, or press Analyze (it starts the download too).
 2. Wait until the chip turns green: "On-device model ready" (it updates by itself; no page reload).
-3. On-device take: press **Run again** next to the status line. The bar is teal with a shield: "On-device (private) · X s" and the status line says "Done in X s on-device (private): N claims."
+3. On-device take: press **Run again** next to the status line. The bar is teal with a shield: "On-device · X seconds" and the status line says "Done in X seconds on-device: N claims."
 4. Show both tabs: the same mode bar sits at the top of Claim X-ray and AI view.

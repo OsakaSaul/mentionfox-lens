@@ -5,6 +5,7 @@ import { initializeAppCheck, CustomProvider } from "firebase/app-check";
 import { getAI, getGenerativeModel, GoogleAIBackend, InferenceMode, InferenceSource, Schema } from "firebase/ai";
 import { firebaseConfig as baseConfig } from "./firebase-config.js";
 import { parseModelJson } from "./shared/parse.js";
+import { DEVICE_SYSTEM, DEVICE_CLAIMS_SCHEMA, buildDeviceChunkPrompt } from "./shared/prompts.js";
 
 /* __FIREBASE_OVERRIDE__ and __APPCHECK_DEBUG_TOKEN__ are replaced at build time (scripts/build.mjs). */
 const OVERRIDE = typeof __FIREBASE_OVERRIDE__ !== "undefined" ? __FIREBASE_OVERRIDE__ : {};
@@ -150,6 +151,74 @@ export async function runTask({ key, schema, prompt, normalize, deviceStatus }) 
     value = normalize(parseModelJson(out.text));
   }
   return { value, source: out.source, inferred: out.inferred, ms: Math.round(performance.now() - t0), retried, raw: out.text };
+}
+
+/**
+ * The on-device claims model: the short system prompt rides along as the Prompt API's system initial prompt (the SDK's on-device adapter
+ * ignores systemInstruction), and as the cloud systemInstruction in case the SDK routes a call to the cloud.
+ * The SDK creates one Chrome session per call and keeps the last one alive; it does not expose the session (no clone, no reuse).
+ */
+function createDeviceClaimsModel() {
+  return getGenerativeModel(getAiInstance(), {
+    mode: InferenceMode.PREFER_ON_DEVICE,
+    systemInstruction: DEVICE_SYSTEM,
+    onDeviceParams: {
+      createOptions: {
+        expectedInputs: TEXT_IO,
+        expectedOutputs: TEXT_IO,
+        initialPrompts: [{ role: "system", content: [{ type: "text", value: DEVICE_SYSTEM }] }],
+      },
+      promptOptions: { responseConstraint: DEVICE_CLAIMS_SCHEMA },
+    },
+    inCloudParams: {
+      model: CLOUD_MODEL,
+      generationConfig: { temperature: 0.2, responseMimeType: "application/json", responseSchema: toFirebaseSchema(DEVICE_CLAIMS_SCHEMA) },
+    },
+  });
+}
+let deviceClaimsModel = null;
+const getDeviceClaimsModel = () => (deviceClaimsModel ||= createDeviceClaimsModel());
+
+let warmPromise = null;
+/**
+ * Warm-up, called when the side panel opens (no user gesture needed once the model is downloaded): one tiny streamed call through the
+ * same model object that the real chunks use. That loads the model into memory (Chrome unloads an idle model) and leaves the SDK's session
+ * alive, so the first real chunk does not pay for the cold start. Resolves {ms} or {ms, error}; never rejects.
+ */
+export function warmDevice() {
+  if (warmPromise) return warmPromise;
+  const t0 = performance.now();
+  warmPromise = (async () => {
+    try {
+      const { stream } = await getDeviceClaimsModel().generateContentStream(buildDeviceChunkPrompt("Acme Corp was founded in 2019."));
+      for await (const c of stream) c.text(); // drain
+      return { ms: Math.round(performance.now() - t0) };
+    } catch (err) {
+      warmPromise = null; // allow a later retry
+      return { ms: Math.round(performance.now() - t0), error: String(err?.message || err).slice(0, 160) };
+    }
+  })();
+  return warmPromise;
+}
+
+/**
+ * Stream one on-device chunk. onText(fullTextSoFar) is called as text arrives. Resolves {text, source, ms, firstTokenMs}.
+ * Throws when the model cannot answer (the caller counts the chunk as failed).
+ */
+export async function streamDeviceChunk(chunkText, onText) {
+  const t0 = performance.now();
+  const { stream, response } = await getDeviceClaimsModel().generateContentStream(buildDeviceChunkPrompt(chunkText));
+  let text = "";
+  let source = null;
+  let firstTokenMs = null;
+  for await (const chunk of stream) {
+    if (firstTokenMs == null) firstTokenMs = Math.round(performance.now() - t0);
+    source = chunk.inferenceSource || source;
+    text += chunk.text();
+    try { onText(text); } catch { /* UI callback failed: keep streaming */ }
+  }
+  if (!source) { try { source = (await response).inferenceSource; } catch { /* no source */ } }
+  return { text, source: source || InferenceSource.IN_CLOUD, ms: Math.round(performance.now() - t0), firstTokenMs };
 }
 
 export { InferenceSource };

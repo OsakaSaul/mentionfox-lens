@@ -1,6 +1,6 @@
 # Real-page runs (2026-11-23)
 
-Four real public pages (saved in `fixtures/real/`, URLs and fetch date in `fixtures/real/README.md`) were analysed through the REAL Firebase AI Logic cloud path (cloud model `gemini-3.5-flash-lite`, `PREFER_ON_DEVICE` mode). On-device Gemini Nano was NOT run: Chromium 151 here reports `LanguageModel.availability() = unavailable`, so every answer below came from the cloud and the mode said "Cloud" (the badge was later replaced by the large mode bar, e.g. "Cloud · 3.1 s", plus a status line "Done in 5.7 s on Cloud: ..."). Nothing here says anything about on-device quality.
+Four real public pages (saved in `fixtures/real/`, URLs and fetch date in `fixtures/real/README.md`) were analysed through the REAL Firebase AI Logic cloud path (cloud model `gemini-3.5-flash-lite`, `PREFER_ON_DEVICE` mode). On-device Gemini Nano was NOT run: Chromium 151 here reports `LanguageModel.availability() = unavailable`, so every answer below came from the cloud and the mode said "Cloud" (the badge was later replaced by the large mode bar, e.g. "Cloud · 3.1 seconds", plus a status line "Done in 5.7 seconds on Cloud: ..."). Nothing here says anything about on-device quality.
 
 Run each page with: `node scripts/live-probe.mjs --fixture fixtures/real/<page>.html` (writes `docs/real-runs/<page>/`: `result.json` with the raw model text and normalised output, `panel-claims.png`, `page-highlights.png`, `panel-geo.png`, `run-log.txt`). The App Check token is read from `.env.local` and redacted from every output.
 
@@ -8,10 +8,10 @@ Run each page with: `node scripts/live-probe.mjs --fixture fixtures/real/<page>.
 
 | Page | Claims | Highlighted | Not on page / hallucinated | Weak or mislabelled | Latency claims / GEO | Notes |
 |---|---|---|---|---|---|---|
-| Founder bio (paulgraham.com/bio.html, 1,017 chars) | 7 | 7 | 0 | 0 | 3.5 s / 2.8 s | All seven are real sentences. Missed: the books line (On Lisp, ANSI Common Lisp, Hackers & Painters) and "programmer, writer, and investor". "the first software as a service company" is labelled specific; it is a checkable (and arguable) claim, so acceptable. |
-| Press release (Spotify Q4 2024 newsroom post, 1,560 chars) | 9 | 9 | 0 | 1 | 3.5 s / 2.5 s | Five metric sentences (green) and four vague statements (CEO quote, "stronger than ever"). One mixed claim, "closing Q4 stronger than ever ... first full year of profitability", is labelled vague although the second half is checkable. Page text itself reads "EUR 4.2billion" (no space) and the claim quotes it that way. |
-| Company homepage (basecamp.com, 5,940 chars) | 12 | 12 | 0 | 5 | 4.1 s / 2.8 s | Good: release year, "nearly a million" users, 99.99% uptime, plus puffery ("easiest-to-use", "famously affordable") and testimonials. Weak: four bare stat fragments ("84 million accounts", "5 petabytes of data", "233 countries", "52,000 cities") are real page text but not sentences. "industry-leading 99.99% uptime" is labelled specific (mixed). Missed: "we own and run our hardware", "over 1,000 customer testimonials". |
-| News article (BBC, Molly Meldrum obituary, 3,199 chars) | 8 | 8 | 0 | 0 | 3.1 s / 2.8 s | Five dated factual claims (age, 2011 injury, 1943 birth, 2014 ARIA Hall of Fame, 1977 interview) and three vague (family tribute, Elton John's opinion, "legacies"). The related-story headline that polluted the first run is gone. |
+| Founder bio (paulgraham.com/bio.html, 1,017 chars) | 7 | 7 | 0 | 0 | 3.5 seconds / 2.8 seconds | All seven are real sentences. Missed: the books line (On Lisp, ANSI Common Lisp, Hackers & Painters) and "programmer, writer, and investor". "the first software as a service company" is labelled specific; it is a checkable (and arguable) claim, so acceptable. |
+| Press release (Spotify Q4 2024 newsroom post, 1,560 chars) | 9 | 9 | 0 | 1 | 3.5 seconds / 2.5 seconds | Five metric sentences (green) and four vague statements (CEO quote, "stronger than ever"). One mixed claim, "closing Q4 stronger than ever ... first full year of profitability", is labelled vague although the second half is checkable. Page text itself reads "EUR 4.2billion" (no space) and the claim quotes it that way. |
+| Company homepage (basecamp.com, 5,940 chars) | 12 | 12 | 0 | 5 | 4.1 seconds / 2.8 seconds | Good: release year, "nearly a million" users, 99.99% uptime, plus puffery ("easiest-to-use", "famously affordable") and testimonials. Weak: four bare stat fragments ("84 million accounts", "5 petabytes of data", "233 countries", "52,000 cities") are real page text but not sentences. "industry-leading 99.99% uptime" is labelled specific (mixed). Missed: "we own and run our hardware", "over 1,000 customer testimonials". |
+| News article (BBC, Molly Meldrum obituary, 3,199 chars) | 8 | 8 | 0 | 0 | 3.1 seconds / 2.8 seconds | Five dated factual claims (age, 2011 injury, 1943 birth, 2014 ARIA Hall of Fame, 1977 interview) and three vague (family tribute, Elton John's opinion, "legacies"). The related-story headline that polluted the first run is gone. |
 
 Highlight success: 36 of 36 claims were found and wrapped in place (the matcher tolerates whitespace, case, curly quotes and dashes). Zero claims were absent from the page text; I never saw a hallucinated quote in any run.
 
@@ -54,7 +54,7 @@ Tuning iterations: four prompt versions were run on all four pages (initial; rul
 - Bare stat blocks on homepages come back as fragments ("233 countries"); they are real text but not sentences.
 - A sentence with both a number and puffery ("industry-leading 99.99% uptime") gets one label; the model is inconsistent on mixed claims.
 - GEO fixes name a real sentence but about one in three asks for trivia or a detail that does not belong on that kind of page. The model also types customers' employers as "company" when they are churches or schools.
-- Coverage on long pages comes from the first 70% of the budget plus a tail slice; the middle of a very long page is not read. Wikipedia and Apple press release pages were cut this way.
+- Coverage on long pages (T2963 changed this): one run reads a window of main content (6,000 characters on-device, 12,000 in the cloud: the lead plus the viewport), and Analyze more of this page reads the next window. Before T2963 it was the first 70% of the budget plus a tail slice.
 - Only one cloud model was tested. Gemini Nano on-device (smaller context, weaker instruction following) has NOT been run; expect lower quality and more JSON retries there. The code retries once in the cloud when an on-device answer cannot be parsed.
 - Label correctness ("specific" vs "vague") is my judgement from reading the pages, not an independent benchmark. Four pages is a small sample.
 - Pages were served locally with scripts removed and a `<base href>` for CSS; real sites with client-side hydration may differ (not tested on live sites).
@@ -77,3 +77,21 @@ Real cloud runs, new prompt (scripts/live-probe.mjs on saved pages, results in d
 | Theranos runs 2 and 3 | 8 and 8 | 8 and 8 | exact | 2 and 2 | the same sentence, plus "By doing so, Theranos is working to facilitate the early detection and prevention of disease, and to empower people to live their best lives": aspirational, nothing checkable. Right. |
 
 The cloud model now copies verbatim, so the fuzzy tiers are exercised by unit tests (the exact two owner sentences against the saved Bankman-Fried page both match, in tier "run": a name was expanded, a sentence was reworded) rather than by these runs. They matter most for on-device Gemini Nano, which has not been run (not available on the build machine). The anchor override did not fire on these runs (the model labelled correctly); it is covered by tests. Known side effect: a vague sentence that names an organisation (the Theranos "FDA's decision provides independent validation ... ground breaking" sentence) now counts as checkable, which is the rule as specified, and is why that sentence is no longer an amber card.
+
+## T2963: on-device speed (2026-11-23)
+
+Owner saw "On-device (private) · 165.3 s" on en.wikipedia.org/wiki/Sam_Bankman-Fried in Chrome 158 with Gemini Nano ready. Target: first claim card in about 5 seconds, full run under 30 seconds.
+
+What changed: main-content extraction (src/shared/extract.js), 6,000-character on-device window and 12,000-character cloud window, about 1,500-character sentence-boundary chunks run one after another with streaming cards and highlights, a short on-device prompt (system initial prompt, no summary field, 12-word reasons), a warm-up when the panel opens, "Analyze more of this page", "First claim in X seconds", and the word "seconds" everywhere (the "(private)" label is gone from the bar; "Your page stayed in this browser." sits under it).
+
+NOT measured: on-device speed. This Chromium reports LanguageModel.availability() = unavailable, so Gemini Nano cannot run here. What was measured, on the CLOUD path (real Firebase AI Logic, scripts/live-probe.mjs, one run per page, results in docs/real-runs/t2963-*):
+
+| Page | Chars before extraction | After | Cloud window | On-device plan (6,000-char window) | Claims | Matched | Claims call (cloud, first claim = single answer) | AI view |
+|---|---|---|---|---|---|---|---|---|
+| Sam Bankman-Fried (Wikipedia fixture) | 35,693 | 33,094 | 11,815 | 4 chunks of about 1,450 over 5,825 chars | 9 | 9 of 9 (100%) | 3.6 seconds | 3.1 seconds |
+| Patrick Collison (Wikipedia fixture) | 8,779 | 7,516 | 7,516 | 5 chunks over 5,936 chars | 8 | 8 of 8 (100%) | 3.6 seconds | 3.0 seconds |
+| Theranos FDA press release (Archive copy) | 12,463 | 11,741 | 11,741 | 4 chunks over 5,981 chars | 7 | 7 of 7 (100%) | 3.5 seconds | 2.7 seconds |
+
+The saved Wikipedia fixtures are already trimmed (no reference lists), so extraction removes only 6 to 14 percent of the text on them; the large saving on-device comes from the 6,000-character window (33,094 characters become a 5,825-character first window on the Bankman-Fried page). On a live Wikipedia page the reference list and navboxes are removed too (unit tests on a synthetic page).
+
+Streaming proof with a MOCK on-device model (not Gemini Nano): npm run e2e streams canned claims chunk by chunk with 700 ms per chunk and checks that the first card (and its highlight on the page) is on screen while the run is still going, at least one chunk-time before the end, with the progress text "Finding claims: chunk 2 of N, K claims so far...", the "First claim in X seconds" line, and Analyze more of this page. test/chunked.test.js does the same with a timer and asserts the first card arrives before the first chunk finishes. These prove the logic, not the speed of the model.
