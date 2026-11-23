@@ -8,9 +8,9 @@ MentionFox Lens
 
 ## Short description (limit 132 characters)
 
-Spot which claims on a page are checkable and which are vague, and see how an AI assistant would summarise it. Free, private.
+Spot which claims on a page are checkable and which are vague, and see how an AI assistant would read it. Free, private.
 
-(Length check: 125 characters; matches the final features.)
+(Length check: 120 characters, limit 132.)
 
 ## Detailed description
 
@@ -50,7 +50,7 @@ MentionFox Lens analyses the text of the page the user is viewing, only when the
 
 ## Permission justifications
 
-Checked against manifest.json (version 0.1.0): the permissions are exactly activeTab, scripting and sidePanel. There is no storage permission, no host permissions and no content_scripts entry.
+Checked against manifest.json (version 0.1.5): the permissions are exactly activeTab, scripting and sidePanel. There is no storage permission, no host permissions and no content_scripts entry.
 
 | Permission | Justification (draft) |
 | --- | --- |
@@ -78,33 +78,35 @@ Answers for the form (checked against the code: no analytics, telemetry or stora
 
 Note for the reviewer field: the on-device path sends nothing off the machine. The cloud fallback sends the page text to Google through Firebase AI Logic with App Check, subject to Google's terms.
 
-## Screenshot shot list (1280 by 800, up to 5)
+## Package and images (built by scripts, version 0.1.5)
 
-1. Claim X-ray on a founder biography (https://en.wikipedia.org/wiki/Patrick_Collison): highlights in the page, side panel list, mode badge On-device (private). [OWNER CONFIRMS: take this one on your Chrome with Gemini Nano; the build machine could only produce the Cloud badge. A Cloud-badge capture of the same page is in docs/real-runs/ if needed.]
-2. Claim X-ray on a press release (https://www.apple.com/newsroom/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/): green checkable claims and amber vague ones with reasons.
-3. Jump to highlight: a claim selected in the side panel and the exact sentence lit on the page.
-4. GEO lens: entities, facts, what is missing, 3 fixes and the 0 to 100 score.
-5. Mode badge showing Cloud with latency next to the on-device one (two crops side by side).
+Package: release/mentionfox-lens-0.1.5.zip, built by `powershell -File scripts/package.ps1` from the release build. manifest.json is at the zip root, 13 files, no source maps, no .env files, no App Check debug token. The zip is not committed: the owner builds it, or uses the copy in the main checkout release/ folder.
 
-Use real captures from the final build only. Do not show Firebase config, tokens or keys.
+Images are in store/ (made by `node scripts/store-images.mjs`; 24-bit PNG, no alpha). Page text, claims and AI-view text are the saved real runs in docs/real-runs/ on real saved pages (Wikipedia Patrick Collison, Wikipedia Sam Bankman-Fried, archived Theranos FDA press release). The test mock supplies only the mode state.
 
-## Promo tile text
+| File | Size | Shows |
+| --- | --- | --- |
+| store/screenshot-1-claim-xray.png | 1280 by 800 | Highlights in the page, side panel list, mode bar (Cloud, from a real run) |
+| store/screenshot-2-jump-to-claim.png | 1280 by 800 | A claim selected in the panel and the exact sentence lit on the page |
+| store/screenshot-3-ai-view.png | 1280 by 800 | AI view tab with the 0 to 100 score |
+| store/screenshot-4-on-device.png | 1280 by 800 | On-device (private) mode bar (state rendered with the test mock; see OWNER CONFIRMS) |
+| store/screenshot-5-never-blocked.png | 1280 by 800 | Download percent chip while the cloud answers (state rendered with the test mock) |
+| store/promo-tile-440x280.png | 440 by 280 | Small promo tile |
+| store/marquee-1400x560.png | 1400 by 560 | Marquee promo tile |
 
-Small tile (440 by 280):
-Headline: See the claims behind any page
-Subline: Free. On-device first. Open source.
+The images carry no model or provider names and use the extension's own icon from icons/. The privacy paragraph at the foot of the panel (it names the cloud provider) is left out of the captures.
 
-Marquee tile (1400 by 560):
-Headline: Checkable or just fog?
-Subline: MentionFox Lens highlights the claims on any page and shows how an AI assistant would summarise it.
-Footer line: Free, private, no account.
+## Promo text used
 
-Use the family fox head from the brand folder only; never draw a new fox.
+Small tile: Spot the claims. Check what is checkable. / Free. On-device first. Open source.
+Marquee: Spot the claims. Check what is checkable. / Highlights the claims on any page and shows how an AI assistant would read it. / Free. Private. No account.
 
 ## OWNER CONFIRMS
 
 1. Chrome Web Store account, developer fee and listing (your step; no account was created by this work).
 2. Category choice in the dashboard (Productivity or Search Tools).
-3. Screenshots and tiles from your final build; the On-device (private) screenshot needs your Chrome with Gemini Nano.
+3. Upload the images from store/ (swap in real on-device captures if you take them).
 4. Delete the storage row in the dashboard's permission form: the manifest does not request it.
-5. The privacy policy URL (https://foxapis.com/lens/privacy/) must be live before submitting; it was not checked by this work.
+5. Privacy policy URL: https://foxapis.com/lens/privacy/ was checked on 2026-11-23 and is live (HTTP 200, titled "MentionFox Lens Privacy"). Re-read it against the data disclosures above before submitting.
+6. Replace screenshot 4 (and ideally 5) with real captures from your Chrome with the on-device model: the shipped ones are mock-state renders of the real UI, not an on-device run.
+7. The release build has no App Check attestation provider, so cloud calls from the store build are rejected until an attestation path is added (a dev build with a registered debug token works). Decide before submitting; the on-device path is unaffected.

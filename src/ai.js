@@ -21,7 +21,7 @@ let aiInstance = null;
 /** App Check first, then AI Logic. Dev builds register the debug provider; production builds have no attestation provider. */
 export function getAiInstance() {
   if (aiInstance) return aiInstance;
-  if (IS_DEV) {
+  if (typeof __DEV_BUILD__ !== "undefined" && __DEV_BUILD__) { // literal check so the release build drops this branch
     // Dev builds only: App Check debug token. Without a baked-in token the SDK prints a fresh one in the console.
     self.FIREBASE_APPCHECK_DEBUG_TOKEN = DEBUG_TOKEN || true;
   }
