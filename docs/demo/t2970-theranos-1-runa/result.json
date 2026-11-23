@@ -1,0 +1,195 @@
+{
+  "fixture": "theranos-1.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:40:35.527Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "News - Posts | Theranos",
+    "url": "http://127.0.0.1:52784/",
+    "textLength": 11741,
+    "rawChars": 12463,
+    "rootTag": "BODY",
+    "blocks": 27
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 4259,
+    "first_ms": 4285,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"PALO ALTO, Cal. (July 2, 2015) – Theranos, Inc. (Theranos) today announced that it has received the U.S. Food and Drug Administration’s (FDA) clearance of its test system and test for herpes simplex 1 virus IgG.\",\n      \"kind\": \"specific\",\n      \"why\": \"It mentions the date July 2, 2015, and the organization FDA.\"\n    },\n    {\n      \"quote\": \"Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices, all compared against an FDA cleared, commercially available reference method.\",\n      \"kind\": \"specific\",\n      \"why\": \"It cites a specific number of subjects, 818.\"\n    },\n    {\n      \"quote\": \"Theranos’ HSV-1 test costs $9.07 and is one of 153 tests Theranos makes available for less than $10.\",\n      \"kind\": \"specific\",\n      \"why\": \"It gives specific monetary amounts and test counts.\"\n    },\n    {\n      \"quote\": \"Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes.\",\n      \"kind\": \"specific\",\n      \"why\": \"It names the founding year 2003 and founder Elizabeth Holmes.\"\n    },\n    {\n      \"quote\": \"“We are proud to have received our first FDA clearance,” said Elizabeth Holmes, the founder and CEO of Theranos.\",\n      \"kind\": \"specific\",\n      \"why\": \"It quotes the named person Elizabeth Holmes regarding FDA clearance.\"\n    },\n    {\n      \"quote\": \"Theranos’ HSV-1 studies included matrix comparison studies across sixty-nine Theranos devices.\",\n      \"kind\": \"specific\",\n      \"why\": \"It specifies the number sixty-nine devices used in studies.\"\n    },\n    {\n      \"quote\": \"Theranos is deeply committed to transparency in the laboratory testing space.\",\n      \"kind\": \"vague\",\n      \"why\": \"It lacks checkable anchors and relies on subjective claims of commitment.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "PALO ALTO, Cal. (July 2, 2015) – Theranos, Inc. (Theranos) today announced that it has received the U.S. Food and Drug Administration’s (FDA) clearance of its test system and test for herpes simplex 1 virus IgG.",
+        "kind": "specific",
+        "why": "It mentions the date July 2, 2015, and the organization FDA."
+      },
+      {
+        "id": "c2",
+        "quote": "Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices, all compared against an FDA cleared, commercially available reference method.",
+        "kind": "specific",
+        "why": "It cites a specific number of subjects, 818."
+      },
+      {
+        "id": "c3",
+        "quote": "Theranos’ HSV-1 test costs $9.07 and is one of 153 tests Theranos makes available for less than $10.",
+        "kind": "specific",
+        "why": "It gives specific monetary amounts and test counts."
+      },
+      {
+        "id": "c4",
+        "quote": "Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes.",
+        "kind": "specific",
+        "why": "It names the founding year 2003 and founder Elizabeth Holmes."
+      },
+      {
+        "id": "c5",
+        "quote": "“We are proud to have received our first FDA clearance,” said Elizabeth Holmes, the founder and CEO of Theranos.",
+        "kind": "specific",
+        "why": "It quotes the named person Elizabeth Holmes regarding FDA clearance."
+      },
+      {
+        "id": "c6",
+        "quote": "Theranos’ HSV-1 studies included matrix comparison studies across sixty-nine Theranos devices.",
+        "kind": "specific",
+        "why": "It specifies the number sixty-nine devices used in studies."
+      },
+      {
+        "id": "c7",
+        "quote": "Theranos is deeply committed to transparency in the laboratory testing space.",
+        "kind": "vague",
+        "why": "It lacks checkable anchors and relies on subjective claims of commitment."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "PALO ALTO, Cal. (July 2, 2015) – Theranos, Inc. (Theranos) today announced that it has received the U.S. Food and Drug Administration’s (FDA) clearance of its test system and test for herpes simplex 1 virus IgG"
+    },
+    {
+      "id": "c5",
+      "text": "We are proud to have received our first FDA clearance,” said Elizabeth Holmes, the founder and CEO of Theranos"
+    },
+    {
+      "id": "c2",
+      "text": "Specifically, Theranos provided study data from 818 subjects of varying age and ethnicity, demonstrating that its system could be run accurately using only a finger stick as well as a traditional venous draw across large numbers of Theranos devices, all compared against an FDA cleared, commercially available reference method"
+    },
+    {
+      "id": "c6",
+      "text": "Theranos’ HSV-1 studies included matrix comparison studies across sixty-nine Theranos devices"
+    },
+    {
+      "id": "c7",
+      "text": "Theranos is deeply committed to transparency in the laboratory testing space"
+    },
+    {
+      "id": "c3",
+      "text": "Theranos’ HSV-1 test costs $9.07 and is one of 153 tests Theranos makes available for less than $10"
+    },
+    {
+      "id": "c4",
+      "text": "Theranos, Inc. is a consumer health technology company founded in 2003 by Elizabeth Holmes"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2449,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"U.S. Food and Drug Administration\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Nanotainer\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Theranos System\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Theranos received FDA clearance for its test system and test for herpes simplex 1 virus (HSV-1) IgG on July 2, 2015.\",\n    \"The FDA clearance includes the use of Theranos Nanotainer Tubes for blood collection via a finger prick.\",\n    \"Theranos provided study data from 818 subjects of varying age and ethnicity for its FDA application.\",\n    \"The HSV-1 test costs $9.07.\",\n    \"Theranos was founded in 2003 by Elizabeth Holmes.\",\n    \"Theranos offers lab tests in Wellness Centers located in Arizona and California.\"\n  ],\n  \"missing\": [\n    \"Details on what the FDA clearance number or document reference is\",\n    \"Specific sensitivity and specificity percentage values beyond the CDC panel agreement\",\n    \"The exact dates when clinical trials for the HSV-1 test were conducted\",\n    \"Detailed descriptions of the analytical software components\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Theranos provided study data from 818 subjects of varying age and ethnicity...\\\", add the specific age range and ethnic breakdown of the subjects.\",\n    \"In the sentence \\\"Theranos’ HSV-1 clinical studies also included sensitivity and specificity studies with hundreds of human samples...\\\", add the exact number of human samples tested.\",\n    \"In the sentence \\\"Earlier this year, Theranos expressed its public support for the Agency’s proposal...\\\", add the exact month or date when the public support was expressed.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 3,\n    \"ambiguity\": 4\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "U.S. Food and Drug Administration",
+          "type": "company"
+        },
+        {
+          "name": "Nanotainer",
+          "type": "product"
+        },
+        {
+          "name": "Theranos System",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Theranos received FDA clearance for its test system and test for herpes simplex 1 virus (HSV-1) IgG on July 2, 2015.",
+        "The FDA clearance includes the use of Theranos Nanotainer Tubes for blood collection via a finger prick.",
+        "Theranos provided study data from 818 subjects of varying age and ethnicity for its FDA application.",
+        "The HSV-1 test costs $9.07.",
+        "Theranos was founded in 2003 by Elizabeth Holmes.",
+        "Theranos offers lab tests in Wellness Centers located in Arizona and California."
+      ],
+      "missing": [
+        "Details on what the FDA clearance number or document reference is",
+        "Specific sensitivity and specificity percentage values beyond the CDC panel agreement",
+        "The exact dates when clinical trials for the HSV-1 test were conducted",
+        "Detailed descriptions of the analytical software components"
+      ],
+      "fixes": [
+        "In the sentence \"Theranos provided study data from 818 subjects of varying age and ethnicity...\", add the specific age range and ethnic breakdown of the subjects.",
+        "In the sentence \"Theranos’ HSV-1 clinical studies also included sensitivity and specificity studies with hundreds of human samples...\", add the exact number of human samples tested.",
+        "In the sentence \"Earlier this year, Theranos expressed its public support for the Agency’s proposal...\", add the exact month or date when the public support was expressed."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 3,
+        "ambiguity": 4
+      }
+    }
+  }
+}

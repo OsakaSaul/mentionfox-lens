@@ -1,0 +1,195 @@
+{
+  "fixture": "enron-vision-values.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:52:20.226Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Enron: Vision and values -- What we believe",
+    "url": "http://127.0.0.1:62955/",
+    "textLength": 2255,
+    "rawChars": 2783,
+    "rootTag": "BODY",
+    "blocks": 39
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2741,
+    "first_ms": 2767,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Enron is a laboratory of innovation.\",\n      \"kind\": \"specific\",\n      \"why\": \"It mentions the named organization Enron.\"\n    },\n    {\n      \"quote\": \"Copyright 1997-2000 Enron Corp. All rights reserved.\",\n      \"kind\": \"specific\",\n      \"why\": \"It mentions a date range and the named organization Enron Corp.\"\n    },\n    {\n      \"quote\": \"That's why we employ the best and the brightest people.\",\n      \"kind\": \"vague\",\n      \"why\": \"It relies entirely on subjective praise without any checkable anchors.\"\n    },\n    {\n      \"quote\": \"Together we're creating the leading energy company in the world.\",\n      \"kind\": \"vague\",\n      \"why\": \"It uses subjective praise without any checkable anchors.\"\n    },\n    {\n      \"quote\": \"Together, we are defining the energy company of the future.\",\n      \"kind\": \"vague\",\n      \"why\": \"It contains subjective claims lacking any checkable anchors.\"\n    },\n    {\n      \"quote\": \"We will continue to raise the bar for everyone.\",\n      \"kind\": \"vague\",\n      \"why\": \"It uses subjective language without any checkable anchors.\"\n    },\n    {\n      \"quote\": \"The great fun here will be for all of us to discover just how good we can really be.\",\n      \"kind\": \"vague\",\n      \"why\": \"It lacks any checkable anchors and relies on subjective expression.\"\n    },\n    {\n      \"quote\": \"We believe in the inherent wisdom of open markets.\",\n      \"kind\": \"vague\",\n      \"why\": \"It expresses a subjective belief without checkable anchors.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Enron is a laboratory of innovation.",
+        "kind": "specific",
+        "why": "It mentions the named organization Enron."
+      },
+      {
+        "id": "c2",
+        "quote": "Copyright 1997-2000 Enron Corp. All rights reserved.",
+        "kind": "specific",
+        "why": "It mentions a date range and the named organization Enron Corp."
+      },
+      {
+        "id": "c3",
+        "quote": "That's why we employ the best and the brightest people.",
+        "kind": "vague",
+        "why": "It relies entirely on subjective praise without any checkable anchors."
+      },
+      {
+        "id": "c4",
+        "quote": "Together we're creating the leading energy company in the world.",
+        "kind": "vague",
+        "why": "It uses subjective praise without any checkable anchors."
+      },
+      {
+        "id": "c5",
+        "quote": "Together, we are defining the energy company of the future.",
+        "kind": "vague",
+        "why": "It contains subjective claims lacking any checkable anchors."
+      },
+      {
+        "id": "c6",
+        "quote": "We will continue to raise the bar for everyone.",
+        "kind": "vague",
+        "why": "It uses subjective language without any checkable anchors."
+      },
+      {
+        "id": "c7",
+        "quote": "The great fun here will be for all of us to discover just how good we can really be.",
+        "kind": "vague",
+        "why": "It lacks any checkable anchors and relies on subjective expression."
+      },
+      {
+        "id": "c8",
+        "quote": "We believe in the inherent wisdom of open markets.",
+        "kind": "vague",
+        "why": "It expresses a subjective belief without checkable anchors."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c6",
+      "text": "We \n\t\t\twill continue to raise the bar for everyone"
+    },
+    {
+      "id": "c7",
+      "text": "The great fun here \n\t\t\twill be for all of us to discover just how good we can really be"
+    },
+    {
+      "id": "c8",
+      "text": "We believe in the inherent wisdom of open markets"
+    },
+    {
+      "id": "c1",
+      "text": "Enron is a laboratory of innovation"
+    },
+    {
+      "id": "c3",
+      "text": "That's why we employ the \n\t\t\tbest and the brightest people"
+    },
+    {
+      "id": "c4",
+      "text": "Together we're creating the leading energy company in the world"
+    },
+    {
+      "id": "c5",
+      "text": "Together, we are defining the energy company of the future"
+    },
+    {
+      "id": "c2",
+      "text": "Copyright 1997-2000 Enron Corp.  All rights reserved"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2479,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Enron\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Enron states it values respect and does not tolerate abusive or disrespectful treatment.\",\n    \"The company believes in the inherent wisdom of open markets, consumer choice, and competition.\",\n    \"Enron describes itself as a laboratory of innovation that employs the best and brightest people.\",\n    \"The company measures its success by the success of its customers.\",\n    \"Enron commits to operating safely and with concern for the environment.\",\n    \"The page copyright is held by Enron Corp. for the years 1997-2000.\"\n  ],\n  \"missing\": [\n    \"Specific examples of innovative energy solutions or products offered by Enron.\",\n    \"Detailed descriptions of how Enron operates safely and protects the environment.\",\n    \"Information on leadership or specific corporate governance structures.\",\n    \"Contact details or physical addresses for Enron Corp.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Our success is measured by the success of our customers.\\\", add a specific example of an energy solution or service provided to customers.\",\n    \"In the sentence \\\"In everything we do, we operate safely and with concern for the environment.\\\", add a specific environmental policy or safety standard.\",\n    \"In the copyright notice \\\"Copyright 1997-2000 Enron Corp.\\\", add the corporate headquarters location.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 3,\n    \"fact_density\": 1,\n    \"structure\": 2,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Enron",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Enron states it values respect and does not tolerate abusive or disrespectful treatment.",
+        "The company believes in the inherent wisdom of open markets, consumer choice, and competition.",
+        "Enron describes itself as a laboratory of innovation that employs the best and brightest people.",
+        "The company measures its success by the success of its customers.",
+        "Enron commits to operating safely and with concern for the environment.",
+        "The page copyright is held by Enron Corp. for the years 1997-2000."
+      ],
+      "missing": [
+        "Specific examples of innovative energy solutions or products offered by Enron.",
+        "Detailed descriptions of how Enron operates safely and protects the environment.",
+        "Information on leadership or specific corporate governance structures.",
+        "Contact details or physical addresses for Enron Corp."
+      ],
+      "fixes": [
+        "In the sentence \"Our success is measured by the success of our customers.\", add a specific example of an energy solution or service provided to customers.",
+        "In the sentence \"In everything we do, we operate safely and with concern for the environment.\", add a specific environmental policy or safety standard.",
+        "In the copyright notice \"Copyright 1997-2000 Enron Corp.\", add the corporate headquarters location."
+      ],
+      "ratings": {
+        "entity_clarity": 3,
+        "fact_density": 1,
+        "structure": 2,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

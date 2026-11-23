@@ -1,0 +1,195 @@
+{
+  "fixture": "enron-our-businesses.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:43:24.338Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Enron: Inside Enron -- Our businesses",
+    "url": "http://127.0.0.1:52988/",
+    "textLength": 2564,
+    "rawChars": 2674,
+    "rootTag": "BODY",
+    "blocks": 12
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3297,
+    "first_ms": 3320,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Enron has capital and assets -- approximately $34 billion worth.\",\n      \"kind\": \"specific\",\n      \"why\": \"This can be checked against financial records using the mentioned dollar amount.\",\n      \"summary\": \"Enron possesses approximately $34 billion in capital and assets.\"\n    },\n    {\n      \"quote\": \"Enron has developed, owns or operates more than 14,350 megawatts of electricity worldwide.\",\n      \"kind\": \"specific\",\n      \"why\": \"This can be verified by checking the stated megawatt capacity across global operations.\",\n      \"summary\": \"The company manages over 14,350 megawatts of electricity globally.\"\n    },\n    {\n      \"quote\": \"Portland General Electric, an Enron subsidiary, is the largest electric company in the state of Oregon and a leading proponent of competitive energy markets.\",\n      \"kind\": \"specific\",\n      \"why\": \"This can be checked using data on electric companies in Oregon.\",\n      \"summary\": \"Portland General Electric is Oregon's largest electric company and an Enron subsidiary.\"\n    },\n    {\n      \"quote\": \"For four years running, Fortune magazine has named Enron the \\\"Most Innovative Company in America\\\" and last year named us one of the \\\"100 Best Companies to Work for in America.\\\"\",\n      \"kind\": \"specific\",\n      \"why\": \"This can be checked by reviewing past rankings published by Fortune magazine.\",\n      \"summary\": \"Fortune magazine repeatedly recognized Enron for innovation and as a top workplace.\"\n    },\n    {\n      \"quote\": \"We are the world's largest marketer of electricity and natural gas.\",\n      \"kind\": \"vague\",\n      \"why\": \"This claim relies on the superlative largest without providing specific verification metrics.\",\n      \"summary\": \"Enron claims to be the top global marketer of electricity and natural gas.\"\n    },\n    {\n      \"quote\": \"Enron is changing the way the world thinks about energy and communications.\",\n      \"kind\": \"vague\",\n      \"why\": \"This statement uses broad praise without any checkable anchors.\",\n      \"summary\": \"Enron claims to profoundly influence global perspectives on energy and communications.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Enron has capital and assets -- approximately $34 billion worth.",
+        "kind": "specific",
+        "why": "This can be checked against financial records using the mentioned dollar amount.",
+        "summary": "Enron possesses approximately $34 billion in capital and assets."
+      },
+      {
+        "id": "c2",
+        "quote": "Enron has developed, owns or operates more than 14,350 megawatts of electricity worldwide.",
+        "kind": "specific",
+        "why": "This can be verified by checking the stated megawatt capacity across global operations.",
+        "summary": "The company manages over 14,350 megawatts of electricity globally."
+      },
+      {
+        "id": "c3",
+        "quote": "Portland General Electric, an Enron subsidiary, is the largest electric company in the state of Oregon and a leading proponent of competitive energy markets.",
+        "kind": "specific",
+        "why": "This can be checked using data on electric companies in Oregon.",
+        "summary": "Portland General Electric is Oregon's largest electric company and an Enron subsidiary.",
+        "note": "contains a subjective word: leading"
+      },
+      {
+        "id": "c4",
+        "quote": "For four years running, Fortune magazine has named Enron the \"Most Innovative Company in America\" and last year named us one of the \"100 Best Companies to Work for in America.\"",
+        "kind": "specific",
+        "why": "This can be checked by reviewing past rankings published by Fortune magazine.",
+        "summary": "Fortune magazine repeatedly recognized Enron for innovation and as a top workplace.",
+        "note": "contains a subjective word: innovative"
+      },
+      {
+        "id": "c5",
+        "quote": "We are the world's largest marketer of electricity and natural gas.",
+        "kind": "vague",
+        "why": "This claim relies on the superlative largest without providing specific verification metrics.",
+        "summary": "Enron claims to be the top global marketer of electricity and natural gas."
+      },
+      {
+        "id": "c6",
+        "quote": "Enron is changing the way the world thinks about energy and communications.",
+        "kind": "vague",
+        "why": "This statement uses broad praise without any checkable anchors.",
+        "summary": "Enron claims to profoundly influence global perspectives on energy and communications."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c6",
+      "text": "Enron is changing the way the world thinks about energy and communications"
+    },
+    {
+      "id": "c5",
+      "text": "We are the world's largest marketer of electricity and natural gas"
+    },
+    {
+      "id": "c1",
+      "text": "Enron has capital and assets -- approximately $34 billion worth"
+    },
+    {
+      "id": "c2",
+      "text": "Enron has developed, owns or operates more than 14,350 megawatts of electricity worldwide"
+    },
+    {
+      "id": "c3",
+      "text": "Portland General Electric"
+    },
+    {
+      "id": "c3",
+      "text": ", an Enron subsidiary, is the largest electric company in the state of Oregon and a leading proponent of competitive energy markets"
+    },
+    {
+      "id": "c4",
+      "text": "For four years running, "
+    },
+    {
+      "id": "c4",
+      "text": "Fortune"
+    },
+    {
+      "id": "c4",
+      "text": " magazine has named Enron the \"Most Innovative Company in America\" and last year named us one of the \"100 Best Companies to Work for in America"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3183,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Enron\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Enron Communications\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Portland General Electric\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Fortune\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Enron is the world's largest marketer of electricity and natural gas.\",\n    \"The company has approximately $34 billion in capital and assets.\",\n    \"Enron has developed, owns or operates more than 14,350 megawatts of electricity worldwide.\",\n    \"Portland General Electric is an Enron subsidiary and the largest electric company in the state of Oregon.\",\n    \"Fortune magazine named Enron the Most Innovative Company in America for four years running.\",\n    \"Enron participates in energy markets in North America, South America, Northern Europe, the United Kingdom, Continental Europe, and Australia.\"\n  ],\n  \"missing\": [\n    \"Specific details on how the Intelligent Network technology works\",\n    \"Quantitative metrics regarding bandwidth trading volume\",\n    \"Detailed descriptions of the financial services offered\",\n    \"Specific examples of the infrastructure developed in Asia, Africa, and India\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Enron Communications' Intelligent Network technology enables businesses to speed data, voice and video over the web.\\\", add a specific technical definition or protocol used by the network.\",\n    \"In the sentence \\\"We also see opportunities in bandwidth trading, where standardized products will enable companies to efficiently buy and sell bandwidth capacity.\\\", add the specific currency or market index used for these standardized products.\",\n    \"In the sentence \\\"We offer a full range of financial services.\\\", add the specific types of financial instruments or products included in this range.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 3,\n    \"structure\": 3,\n    \"trust_signals\": 1,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Enron",
+          "type": "company"
+        },
+        {
+          "name": "Enron Communications",
+          "type": "company"
+        },
+        {
+          "name": "Portland General Electric",
+          "type": "company"
+        },
+        {
+          "name": "Fortune",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Enron is the world's largest marketer of electricity and natural gas.",
+        "The company has approximately $34 billion in capital and assets.",
+        "Enron has developed, owns or operates more than 14,350 megawatts of electricity worldwide.",
+        "Portland General Electric is an Enron subsidiary and the largest electric company in the state of Oregon.",
+        "Fortune magazine named Enron the Most Innovative Company in America for four years running.",
+        "Enron participates in energy markets in North America, South America, Northern Europe, the United Kingdom, Continental Europe, and Australia."
+      ],
+      "missing": [
+        "Specific details on how the Intelligent Network technology works",
+        "Quantitative metrics regarding bandwidth trading volume",
+        "Detailed descriptions of the financial services offered",
+        "Specific examples of the infrastructure developed in Asia, Africa, and India"
+      ],
+      "fixes": [
+        "In the sentence \"Enron Communications' Intelligent Network technology enables businesses to speed data, voice and video over the web.\", add a specific technical definition or protocol used by the network.",
+        "In the sentence \"We also see opportunities in bandwidth trading, where standardized products will enable companies to efficiently buy and sell bandwidth capacity.\", add the specific currency or market index used for these standardized produ",
+        "In the sentence \"We offer a full range of financial services.\", add the specific types of financial instruments or products included in this range."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 3,
+        "structure": 3,
+        "trust_signals": 1,
+        "ambiguity": 3
+      }
+    }
+  }
+}

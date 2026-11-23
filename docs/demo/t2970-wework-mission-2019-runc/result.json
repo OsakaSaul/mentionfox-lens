@@ -1,0 +1,206 @@
+{
+  "fixture": "wework-mission-2019.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:52:48.716Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Mission | WeWork",
+    "url": "http://127.0.0.1:63016/",
+    "textLength": 1705,
+    "rawChars": 3370,
+    "rootTag": "MAIN",
+    "blocks": 11
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2806,
+    "first_ms": 2832,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim mentions the founding year 2010 and the organisation WeWork.\",\n      \"summary\": \"The founders started WeWork in 2010 to build shared office spaces and a community.\"\n    },\n    {\n      \"quote\": \"Left: Miguel McKelvey, Adam Neumann, Rebekah Neumann\",\n      \"kind\": \"specific\",\n      \"why\": \"This lists specific named individuals associated with the company.\",\n      \"summary\": \"Miguel McKelvey, Adam Neumann, and Rebekah Neumann are listed as the founders.\"\n    },\n    {\n      \"quote\": \"We do what we love and are connected to something greater than ourselves.\",\n      \"kind\": \"vague\",\n      \"why\": \"This lacks any checkable anchors like dates, numbers, or specific places.\"\n    },\n    {\n      \"quote\": \"We are creators, leaders, and self-starters.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is subjective puffery with no verifiable anchors.\"\n    },\n    {\n      \"quote\": \"We try new things, we challenge convention, and we’re not afraid to fail.\",\n      \"kind\": \"vague\",\n      \"why\": \"This contains only vague statements about attitude rather than facts.\"\n    },\n    {\n      \"quote\": \"We are genuine to our brand, mission, and values.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is subjective self-praise lacking any checkable data.\"\n    },\n    {\n      \"quote\": \"We never settle.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is a vague slogan with no concrete facts to verify.\"\n    },\n    {\n      \"quote\": \"We are grateful for each other, our members, and to be part of this movement.\",\n      \"kind\": \"vague\",\n      \"why\": \"This expresses feelings without any verifiable anchors or statistics.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces.",
+        "kind": "specific",
+        "why": "This claim mentions the founding year 2010 and the organisation WeWork.",
+        "summary": "The founders started WeWork in 2010 to build shared office spaces and a community.",
+        "note": "contains a subjective word: beautiful"
+      },
+      {
+        "id": "c2",
+        "quote": "Left: Miguel McKelvey, Adam Neumann, Rebekah Neumann",
+        "kind": "specific",
+        "why": "This lists specific named individuals associated with the company.",
+        "summary": "Miguel McKelvey, Adam Neumann, and Rebekah Neumann are listed as the founders."
+      },
+      {
+        "id": "c3",
+        "quote": "We do what we love and are connected to something greater than ourselves.",
+        "kind": "vague",
+        "why": "This lacks any checkable anchors like dates, numbers, or specific places."
+      },
+      {
+        "id": "c4",
+        "quote": "We are creators, leaders, and self-starters.",
+        "kind": "vague",
+        "why": "This is subjective puffery with no verifiable anchors."
+      },
+      {
+        "id": "c5",
+        "quote": "We try new things, we challenge convention, and we’re not afraid to fail.",
+        "kind": "vague",
+        "why": "This contains only vague statements about attitude rather than facts."
+      },
+      {
+        "id": "c6",
+        "quote": "We are genuine to our brand, mission, and values.",
+        "kind": "vague",
+        "why": "This is subjective self-praise lacking any checkable data."
+      },
+      {
+        "id": "c7",
+        "quote": "We never settle.",
+        "kind": "vague",
+        "why": "This is a vague slogan with no concrete facts to verify."
+      },
+      {
+        "id": "c8",
+        "quote": "We are grateful for each other, our members, and to be part of this movement.",
+        "kind": "vague",
+        "why": "This expresses feelings without any verifiable anchors or statistics."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces"
+    },
+    {
+      "id": "c2",
+      "text": "Left: Miguel McKelvey, Adam Neumann, Rebekah Neumann"
+    },
+    {
+      "id": "c3",
+      "text": "We do what we love and are connected to something greater than ourselves"
+    },
+    {
+      "id": "c4",
+      "text": "We are creators, leaders, and self-starters"
+    },
+    {
+      "id": "c5",
+      "text": "We try new things, we challenge convention, and we’re not afraid to fail"
+    },
+    {
+      "id": "c6",
+      "text": "We are genuine to our brand, mission, and values"
+    },
+    {
+      "id": "c7",
+      "text": "We never settle"
+    },
+    {
+      "id": "c8",
+      "text": "We are grateful for each other, our members, and to be part of this movement"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2259,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"WeWork\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Miguel McKelvey\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Adam Neumann\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Rebekah Neumann\",\n      \"type\": \"person\"\n    }\n  ],\n  \"facts\": [\n    \"WeWork was started in 2010.\",\n    \"The company was founded by Miguel McKelvey, Adam Neumann, and Rebekah Neumann.\",\n    \"WeWork builds shared office spaces and communities.\",\n    \"The company mission is to create a world where people work to make a life, not just a living.\"\n  ],\n  \"missing\": [\n    \"The specific current leadership team of WeWork.\",\n    \"Details on how to join or contact the company.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces.\\\", add the founding city and country.\",\n    \"In the image caption \\\"Left: Miguel McKelvey, Adam Neumann, Rebekah Neumann\\\", add their respective founding roles or titles.\",\n    \"In the closing paragraph, add a contact email address or headquarters location.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 1,\n    \"structure\": 2,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "WeWork",
+          "type": "company"
+        },
+        {
+          "name": "Miguel McKelvey",
+          "type": "person"
+        },
+        {
+          "name": "Adam Neumann",
+          "type": "person"
+        },
+        {
+          "name": "Rebekah Neumann",
+          "type": "person"
+        }
+      ],
+      "facts": [
+        "WeWork was started in 2010.",
+        "The company was founded by Miguel McKelvey, Adam Neumann, and Rebekah Neumann.",
+        "WeWork builds shared office spaces and communities.",
+        "The company mission is to create a world where people work to make a life, not just a living."
+      ],
+      "missing": [
+        "The specific current leadership team of WeWork.",
+        "Details on how to join or contact the company."
+      ],
+      "fixes": [
+        "In the sentence \"When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces.\", add the founding city and country.",
+        "In the image caption \"Left: Miguel McKelvey, Adam Neumann, Rebekah Neumann\", add their respective founding roles or titles.",
+        "In the closing paragraph, add a contact email address or headquarters location."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 1,
+        "structure": 2,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

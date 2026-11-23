@@ -1,0 +1,20 @@
+date: 2026-11-23T05:48:11.840Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: enron-vision-values.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 4.7 seconds on Cloud: 4 claims. First claim in 2.7 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 2.6 seconds
+page body text length: 2584
+claims: 4, highlighted: 4, claims 2632 ms, geo 2053 ms
+T2963 log: chars before extraction 2783, after 2255 (39 blocks, root BODY); cloud window 2255 of budget 12000 chars, 1 cloud call; on-device plan: 2 chunks of about 1500 chars over 2255 chars; claims 4; first claim in 2.7 seconds (cloud: arrives with the single answer), claims call 2.6 seconds, AI view 2.1 seconds; matched 4/4 (100%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

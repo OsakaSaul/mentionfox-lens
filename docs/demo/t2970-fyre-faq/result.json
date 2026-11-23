@@ -1,0 +1,238 @@
+{
+  "fixture": "fyre-faq.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:37:01.744Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Fyre FestivalFAQ - Fyre Festival",
+    "url": "http://127.0.0.1:52591/",
+    "textLength": 18139,
+    "rawChars": 20258,
+    "rootTag": "BODY",
+    "blocks": 195
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 4530,
+    "first_ms": 4560,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Week 1: April 28th, 2017 to April 30th, 2017\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the dates April 28th, 2017 to April 30th, 2017.\",\n      \"summary\": \"Week one of the festival takes place from April 28th to April 30th in 2017.\"\n    },\n    {\n      \"quote\": \"Week 2: May 5th, 2017 to May 7th, 2017\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the dates May 5th, 2017 to May 7th, 2017.\",\n      \"summary\": \"Week two of the festival takes place from May 5th to May 7th in 2017.\"\n    },\n    {\n      \"quote\": \"Depending on the plane, there will be 30-50 people one each flight.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the number of people per flight between 30 and 50.\",\n      \"summary\": \"Each flight carries between 30 and 50 passengers depending on the aircraft.\"\n    },\n    {\n      \"quote\": \"There is 5-day grace period for monthly billing.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the 5-day grace period for monthly billing.\",\n      \"summary\": \"Customers are given a 5-day grace period for monthly billing.\"\n    },\n    {\n      \"quote\": \"In order to purchase alcohol, guests must be 21 year of age or older at the time of purchase.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the age requirement of 21 years or older.\",\n      \"summary\": \"Guests must be at least 21 years old to buy alcohol.\"\n    },\n    {\n      \"quote\": \"Tents will have charging stations and are configured with standard 110/220 Volt outlets.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the 110/220 Volt outlet specification.\",\n      \"summary\": \"Tents feature charging stations with standard 110/220 Volt outlets.\"\n    },\n    {\n      \"quote\": \"Tablelist is real time online reservation and venue management for nightclubs, lounges, bars and events.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check Tablelist as a real-time online reservation and venue management platform.\",\n      \"summary\": \"Tablelist provides real-time online reservations and venue management services.\"\n    },\n    {\n      \"quote\": \"Gorgeous, it’s really one of the best, best times of year to be in the Bahamas!\",\n      \"kind\": \"vague\",\n      \"why\": \"The claim relies on subjective praise rather than any checkable anchor.\"\n    },\n    {\n      \"quote\": \"A formal list of available experiences will be released closer to the date of the event.\",\n      \"kind\": \"vague\",\n      \"why\": \"The claim lacks a specific date for when the formal list will be released.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Week 1: April 28th, 2017 to April 30th, 2017",
+        "kind": "specific",
+        "why": "Check the dates April 28th, 2017 to April 30th, 2017.",
+        "summary": "Week one of the festival takes place from April 28th to April 30th in 2017."
+      },
+      {
+        "id": "c2",
+        "quote": "Week 2: May 5th, 2017 to May 7th, 2017",
+        "kind": "specific",
+        "why": "Check the dates May 5th, 2017 to May 7th, 2017.",
+        "summary": "Week two of the festival takes place from May 5th to May 7th in 2017."
+      },
+      {
+        "id": "c3",
+        "quote": "Depending on the plane, there will be 30-50 people one each flight.",
+        "kind": "specific",
+        "why": "Check the number of people per flight between 30 and 50.",
+        "summary": "Each flight carries between 30 and 50 passengers depending on the aircraft."
+      },
+      {
+        "id": "c4",
+        "quote": "There is 5-day grace period for monthly billing.",
+        "kind": "specific",
+        "why": "Check the 5-day grace period for monthly billing.",
+        "summary": "Customers are given a 5-day grace period for monthly billing."
+      },
+      {
+        "id": "c5",
+        "quote": "In order to purchase alcohol, guests must be 21 year of age or older at the time of purchase.",
+        "kind": "specific",
+        "why": "Check the age requirement of 21 years or older.",
+        "summary": "Guests must be at least 21 years old to buy alcohol."
+      },
+      {
+        "id": "c6",
+        "quote": "Tents will have charging stations and are configured with standard 110/220 Volt outlets.",
+        "kind": "specific",
+        "why": "Check the 110/220 Volt outlet specification.",
+        "summary": "Tents feature charging stations with standard 110/220 Volt outlets."
+      },
+      {
+        "id": "c7",
+        "quote": "Tablelist is real time online reservation and venue management for nightclubs, lounges, bars and events.",
+        "kind": "specific",
+        "why": "Check Tablelist as a real-time online reservation and venue management platform.",
+        "summary": "Tablelist provides real-time online reservations and venue management services."
+      },
+      {
+        "id": "c8",
+        "quote": "Gorgeous, it’s really one of the best, best times of year to be in the Bahamas!",
+        "kind": "vague",
+        "why": "The claim relies on subjective praise rather than any checkable anchor."
+      },
+      {
+        "id": "c9",
+        "quote": "A formal list of available experiences will be released closer to the date of the event.",
+        "kind": "vague",
+        "why": "The claim lacks a specific date for when the formal list will be released."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c9",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Week 1: April 28th, 2017 to April 30th, 2017"
+    },
+    {
+      "id": "c2",
+      "text": "Week 2: May 5th, 2017 to May 7th, 2017"
+    },
+    {
+      "id": "c8",
+      "text": "Gorgeous, it’s really one of the best, best times of year to be in the Bahamas!"
+    },
+    {
+      "id": "c9",
+      "text": "A formal list of available experiences will be released closer to the date of the event"
+    },
+    {
+      "id": "c7",
+      "text": "Tablelist is real time online reservation and venue management for nightclubs, lounges, bars and events"
+    },
+    {
+      "id": "c4",
+      "text": "There is 5-day grace period for monthly billing"
+    },
+    {
+      "id": "c3",
+      "text": "Depending on the plane, there will be 30-50 people one each flight"
+    },
+    {
+      "id": "c6",
+      "text": "Tents will have charging stations and are configured with standard 110/220 Volt outlets"
+    },
+    {
+      "id": "c5",
+      "text": "In order to purchase alcohol, guests must be 21 year of age or older at the time of purchase"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3449,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Fyre Festival\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Tablelist\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Fyre Cay\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Exumas\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Miami\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Nassau\",\n      \"type\": \"place\"\n    }\n  ],\n  \"facts\": [\n    \"Fyre Festival takes place over two weekends in 2017: April 28 to April 30 and May 5 to May 7.\",\n    \"The festival location is on private islands in the Exumas on Fyre Cay.\",\n    \"Housing accommodations consist of luxurious tents equipped with charging stations and lights.\",\n    \"All ticket sales are final and there are no refunds.\",\n    \"Guests must bring a passport with an expiration date at least 6 months after departure.\",\n    \"Alcohol is not included in the ticket price but will be available for purchase for guests 21 and older.\"\n  ],\n  \"missing\": [\n    \"Specific ticket pricing or package costs\",\n    \"The names of performing artists on the lineup\",\n    \"Detailed descriptions of the culinary experiences and food vendors\",\n    \"Exact guidelines on prohibited items during security searches\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Packages will be released soon.\\\", add the expected release date for the housing packages.\",\n    \"In the sentence \\\"The Fyre Festival lineup will be announced soon.\\\", add the anticipated date when the lineup will be published.\",\n    \"In the sentence \\\"Check back soon for updates!\\\" under the food section, add the website link where vendor updates will be posted.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 4,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Fyre Festival",
+          "type": "product"
+        },
+        {
+          "name": "Tablelist",
+          "type": "company"
+        },
+        {
+          "name": "Fyre Cay",
+          "type": "place"
+        },
+        {
+          "name": "Exumas",
+          "type": "place"
+        },
+        {
+          "name": "Miami",
+          "type": "place"
+        },
+        {
+          "name": "Nassau",
+          "type": "place"
+        }
+      ],
+      "facts": [
+        "Fyre Festival takes place over two weekends in 2017: April 28 to April 30 and May 5 to May 7.",
+        "The festival location is on private islands in the Exumas on Fyre Cay.",
+        "Housing accommodations consist of luxurious tents equipped with charging stations and lights.",
+        "All ticket sales are final and there are no refunds.",
+        "Guests must bring a passport with an expiration date at least 6 months after departure.",
+        "Alcohol is not included in the ticket price but will be available for purchase for guests 21 and older."
+      ],
+      "missing": [
+        "Specific ticket pricing or package costs",
+        "The names of performing artists on the lineup",
+        "Detailed descriptions of the culinary experiences and food vendors",
+        "Exact guidelines on prohibited items during security searches"
+      ],
+      "fixes": [
+        "In the sentence \"Packages will be released soon.\", add the expected release date for the housing packages.",
+        "In the sentence \"The Fyre Festival lineup will be announced soon.\", add the anticipated date when the lineup will be published.",
+        "In the sentence \"Check back soon for updates!\" under the food section, add the website link where vendor updates will be posted."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 4,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

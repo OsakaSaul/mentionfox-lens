@@ -1,0 +1,20 @@
+date: 2026-11-23T05:47:49.512Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: wework-mission-2019.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 5.3 seconds on Cloud: 10 claims. First claim in 3.1 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 3.1 seconds
+page body text length: 2781
+claims: 10, highlighted: 10, claims 3105 ms, geo 2224 ms
+T2963 log: chars before extraction 3370, after 1705 (11 blocks, root MAIN); cloud window 1705 of budget 12000 chars, 1 cloud call; on-device plan: 1 chunks of about 1500 chars over 1705 chars; claims 10; first claim in 3.1 seconds (cloud: arrives with the single answer), claims call 3.1 seconds, AI view 2.2 seconds; matched 10/10 (100%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

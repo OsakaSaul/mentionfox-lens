@@ -1,58 +1,65 @@
 # MentionFox Lens: demo video script (#BuildHybridAI)
 
-Target length: 2:45 (hard limit 3:00, the contest evaluates only the first 3 minutes). Language: English. Upload to YouTube as public, then paste the link in the Devpost form. Record on Chrome desktop with the unpacked build loaded.
+Target length: 2:40 (hard limit 3:00; the contest evaluates only the first 3 minutes; this script ends under 2:50 even with a slow take). Language: English. Upload to YouTube as public, then paste the link in the Devpost form. Record on Chrome desktop with the unpacked build loaded.
 
-Spoken text is about 355 words, about 2:22 at 150 words per minute, plus about 23 seconds of silent screen time (waiting for the answer, scrolling, clicking), so the cut ends at about 2:45.
+Spoken text is 277 words, 111 seconds at 150 words per minute, plus about 49 seconds of silent screen time (loading, waiting for the answer, clicking), so the cut is 2:40.
 
-Items marked OWNER CONFIRMS need your own Chrome (Gemini Nano was not available on the build machine, so no on-device run was seen). Do not read a latency number aloud until you have read it off your screen. On the build machine the cloud path took 3.3 to 4.2 seconds for the claims and 2.6 to 3.1 seconds for the AI view (2026-11-23 runs on the pages below).
+Items marked OWNER CONFIRMS need your own Chrome (Gemini Nano was not available on the build machine, so no on-device run was seen). Do not read a latency number aloud until you have read it off your screen. On the build machine the cloud path took 3.3 to 4.5 seconds for the claims and 2.6 to 5.3 seconds for the AI view.
 
-Hackathon requirements, where they appear: the hybrid inference mode bar on screen (scenes 2 and 5), the code snippet showing Firebase AI Logic (scene 5), the open-source repo (scene 7).
+Hackathon requirements, where they appear: the hybrid inference mode bar on screen (scenes 2, 3, 4 and 6), the code snippet showing Firebase AI Logic (scene 6), the open-source repo (scene 7).
 
-## Pages to use (all load in a normal browser, HTTP 200, confirmed 2026-11-23)
+## Pages to use (all HTTP 200 on web.archive.org, verified 2026-11-23T05:50Z; details, runs and alternatives in submission/lens-demo-pages.md)
 
-- Opening page (top pick): Theranos press release of 2 July 2015, as saved by the Internet Archive: https://web.archive.org/web/20151218013228/https://www.theranos.com/news/posts/theranos-receives-fda-clearance-and-review-and-validation-of-revolutionary-finger-stick-technology-test-and-associated-test-system
-  Real 2015 company copy with hard numbers (818 subjects, sixty-nine devices, $9.07, 153 tests, founded 2003) next to adjectives ("ground breaking", "most rigorous ... in the world"). Three runs after the T2960 matcher and prompt fix (2026-11-23): 8 claims each time, 8 of 8 found on the page, 6 to 7 green and 1 to 2 amber. The amber cards seen in 3 of 3 runs: "Theranos is deeply committed to transparency in the laboratory testing space."; in 2 of 3 runs also "By doing so, Theranos is working to facilitate the early detection and prevention of disease ...". The $9.07 card was present in 3 of 3 runs. The old amber sentence ("The FDA's decision provides independent validation ... ground breaking ...") no longer shows up: it names the FDA, so a named organisation makes it checkable under the new rule.
-- Contrast page: https://en.wikipedia.org/wiki/Patrick_Collison (8 to 9 claims, all green, no amber in our two runs).
-- Runner-up if the Archive is slow on the day: FTX blog "FTX in 2021H1 review", https://web.archive.org/web/20220521211157/https://blog.ftx.com/blog/mid_year_review_2021/ (10 to 11 claims, 7 to 9 green, 2 to 3 amber).
-- Saved copies of every candidate are in fixtures/demo/ (see fixtures/demo/README.md), with the runs in docs/demo/. Do not use the saved copies on camera; open the Archive URL.
+1. Opening page, Enron "Vision and values" (company page of 2001, saved by the Internet Archive): https://web.archive.org/web/20010124060900/http://www4.enron.com:80/corp/inside/vision/
+   Our runs: 8 claims, 2 green and 6 amber in 4 of 6 runs (4 and 5 claims, 2 and 3 amber in the other two: if your take is thin, press Run again).
+2. Second page, WeWork "Our Mission" (2019): https://web.archive.org/web/20190411023244/https://www.wework.com/mission
+   Our runs: 8 to 10 claims, 5 to 8 amber, 4 of 4 runs. Slow first load (29 seconds in our test): open this tab about a minute before recording.
+3. Honest page: https://en.wikipedia.org/wiki/Patrick_Collison (8 claims, all green, 0 amber, run 2026-11-23).
+4. Fallback if either Archive page is slow on the day: Enron "Inside Enron", https://web.archive.org/web/20010111075200/http://www4.enron.com:80/corp/inside/index.html (6 to 9 claims, 3 to 7 amber).
 
-The demo only labels claims as checkable or vague. It never says a real person or company is right or wrong, and the voiceover must not either: say what Lens does, not what the company did.
+The Archive toolbar (67 px, in the page flow) does not cover any page text. Saved copies are in fixtures/demo/; do not use them on camera, open the Archive URL.
+
+Editorial rule (do not break it, the owner is a solo founder): Lens only labels claims as checkable or vague. The voiceover never says or implies that a person or company did anything wrong. The only fact about the companies is "later collapsed", which is public record (sources in submission/lens-demo-pages.md). Never say fraud or scam. Do not read the words integrity, honest or respect aloud, and do not click those cards.
 
 ## Voiceover (spoken words, timed)
 
-0:00 Scene 1. "Every company page is a pile of claims. Some you can check. Some are just fog. AI assistants read these pages and repeat them. This is MentionFox Lens, a free, open source Chrome extension that shows you which is which, using Firebase AI Logic hybrid inference. Here is a real company press release from 2015, saved by the Internet Archive."
+0:00 Scene 1 (20 seconds of speech). "Every company page is a pile of claims. Some you can check. Some are fog. This is MentionFox Lens, a free, open source Chrome extension built on Firebase AI Logic hybrid inference. It sorts the two for you. Here is a company values page from 2001, saved by the Internet Archive."
 
-0:25 Scene 2. "I click Lens, then Analyze. One click. Watch the big mode bar at the top of the results: it says where the model ran, on-device inside Chrome with Gemini Nano, or in the cloud, and the latency is right next to it. Now the claims. Green means specific and checkable: a date, a price, a count. Amber means vague: deeply committed to transparency, empowering people to live their best lives. Each card has a one-line reason."
+0:22 Scene 2 (21 seconds). "I click Lens, then Analyze. One click. The mode bar shows where the model ran, on-device with Gemini Nano or in the cloud, and the seconds it took. Green means checkable: a date, a number, a name. Amber means vague. Look at all the amber. Each card has a one line reason."
 
-0:55 Scene 3. "I click the price claim. The page jumps to that exact sentence and lights it up. A reader could check that figure against pricing records. The amber one next to it has no number to check at all. Lens does not decide who is right. It only separates claims you can verify from words you cannot."
+0:52 Scene 3 (19 seconds). "I click an amber card. The page jumps to that sentence and lights it up. The best and the brightest people: no number, no source, nothing to check. Lens does not say who is right. It only separates claims you can verify from words you cannot."
 
-1:22 Scene 4. "For contrast, a founder biography on Wikipedia. Same click. Almost everything comes out green: dates, roles, figures. A page full of checkable facts looks very different from a page full of adjectives."
+1:20 Scene 4 (15 seconds). "Second page: a mission page from 2019. Same click. Again mostly amber. We never settle. Something greater than ourselves. Both companies later collapsed, which is public record. Lens says nothing about why. It only reads the words."
 
-1:40 Scene 5. "Under the hood, this is the hackathon requirement. The code calls getGenerativeModel from Firebase AI Logic with prefer on-device mode. If Gemini Nano is in this browser, the badge says On-device and the page text never leaves the laptop. If not, the same call falls back to the cloud, protected by App Check, and the bar says Cloud. Same code, same answer shape."
+1:52 Scene 5 (8 seconds). "Now the opposite: a founder biography on Wikipedia. Same click. Eight claims, all green. Lens is not just negative."
 
-2:08 Scene 6. "The second tab, AI view, shows how an assistant would summarise the page: the people, companies and products it picks up, the facts it would state, what is missing, and a score out of one hundred. That score measures how readable the page is to an AI, not whether it is true."
+2:10 Scene 6 (21 seconds). "Under the hood: the code calls getGenerativeModel from Firebase AI Logic with prefer on-device mode. If Gemini Nano is in this browser, the badge says On-device and the page text stays on the laptop. If not, the same call falls back to the cloud, protected by App Check, and the badge says Cloud."
 
-2:30 Scene 7. "No account, nothing sent to MentionFox, MIT licensed, on GitHub. Built by one person in Osaka. Tell me what you would check first. Thank you."
+2:32 Scene 7 (7 seconds). "No account, nothing sent to MentionFox, MIT licensed, on GitHub. Built by one person in Osaka. Thank you."
 
-Timeline (spoken seconds at 150 wpm): scene 1 24 seconds, 2 26 seconds, 3 24 seconds, 4 13 seconds, 5 25 seconds, 6 21 seconds, 7 10 seconds: 142 seconds of speech in a 165 seconds cut.
+Cut ends 2:40.
 
-## Shot list
+Timeline (speech seconds at 150 wpm plus silent time): scene 1 0:00 to 0:22 (20 + 2), scene 2 0:22 to 0:52 (21 + 9), scene 3 0:52 to 1:20 (19 + 9), scene 4 1:20 to 1:52 (15 + 17), scene 5 1:52 to 2:10 (8 + 10), scene 6 2:10 to 2:32 (21 + 1), scene 7 2:32 to 2:40 (7 + 1): 111 seconds of speech in a 160 seconds cut.
 
-| Scene | Screen | Action | Duration |
+## Shot list with exact clicks
+
+All pages are opened in tabs BEFORE recording (tab 1 Enron, tab 2 WeWork, tab 3 Wikipedia, tab 4 the code in your editor or on GitHub, tab 5 the repo). Lens side panel closed at the start. Wait until each Archive page shows its text.
+
+| Scene | Screen | Exact clicks | Time |
 | --- | --- | --- | --- |
-| 1 | Title card (repo name, MentionFox Lens logo, "Firebase AI Logic hybrid inference"), then Chrome on the opening page | Cut to the Archive URL above. Let the page load fully (about 5 seconds; the Archive toolbar shows at the top, that is normal). | 0:00 to 0:25 |
-| 2 | Same page, Lens side panel | Click the Lens icon, click Open Lens side panel, click Analyze this page (one click runs both checks). Wait about 4 seconds on the cloud; on-device the claim cards now stream in one by one (target: first card in about 5 seconds, whole run under 30 seconds, NOT yet measured on a real device: read "First claim in X seconds" and the total off the bar, and say them as read). Zoom on the mode bar and the latency [OWNER CONFIRMS: read the real label on your Chrome; "On-device" in teal if Gemini Nano is ready, otherwise "Cloud" in blue]. Show the green and amber cards. | 0:25 to 0:55 |
-| 3 | Same page, highlights | In the Claim X-ray tab click the card that quotes the price ("Theranos' HSV-1 test costs $9.07 ..."). The page scrolls to the sentence and flashes it. Then click the amber card ("Theranos is deeply committed to transparency in the laboratory testing space.") and show its one-line reason. | 0:55 to 1:22 |
-| 4 | Patrick Collison Wikipedia page | Open the page, click Analyze this page, scroll past the green highlights (no amber). | 1:22 to 1:40 |
-| 5 | Side panel plus the code | Show the mode bar again, then the code: src/ai.js, the getGenerativeModel call with InferenceMode.PREFER_ON_DEVICE (README table "How hybrid inference is used" has the line numbers). If you have a browser without Gemini Nano, run Analyze there once to show the Cloud bar. Do not show any key or token on screen. | 1:40 to 2:08 |
-| 6 | Opening page, AI view tab | Open the AI view tab: the 0 to 100 score and its band, then the headings for the people, companies and products, the facts, what is missing, and the 3 fixes. Do not dwell on the "missing" list. | 2:08 to 2:30 |
-| 7 | GitHub repo page, README and MIT licence | End card with the repo URL: github.com/OsakaSaul/mentionfox-lens | 2:30 to 2:45 |
+| 1 | Title card (repo name, MentionFox Lens logo, "Firebase AI Logic hybrid inference"), then Chrome tab 1 (Enron) | Show the title card for 3 seconds, then click tab 1. The page shows the red heading "our values" at the top (Archive toolbar above it is normal). Do not scroll. | 0:00 to 0:22 |
+| 2 | Tab 1, Lens side panel | Click the Lens toolbar icon, click "Open Lens side panel", click "Analyze this page". Wait until the status line says "Done in N seconds" (about 5 seconds on the cloud). Point the cursor at the mode bar and the seconds [OWNER CONFIRMS: read the real label on your Chrome; "On-device" in teal if Gemini Nano is ready, otherwise "Cloud" in blue]. Slowly move the cursor down the card list: about 6 amber cards, 2 green. If it shows only 4 or 5 claims, click "Run again" next to the status line and wait again before talking about the amber. | 0:22 to 0:52 |
+| 3 | Tab 1, Claim X-ray tab | Click the amber card "That's why we employ the best and the brightest people." The page jumps to that sentence and flashes it. Hold 3 seconds. Then click the amber card "Together we're creating the leading energy company in the world." (if it is not in your take, click "We believe in the inherent wisdom of open markets."). Show the one-line reason on a card. Do NOT click the cards about integrity, respect or honesty. | 0:52 to 1:20 |
+| 4 | Tab 2 (WeWork) | Click tab 2 (already loaded; if it is still blank wait for the hero photo to appear). Click Lens icon, "Analyze this page" (the side panel may already be open: then just click "Analyze this page"). Wait for "Done". Click the amber card "We never settle." (page jumps down to the Our Values list), then the amber card "We do what we love and are connected to something greater than ourselves." Do not click any card that contains profanity. | 1:20 to 1:52 |
+| 5 | Tab 3 (Patrick Collison, Wikipedia) | Click tab 3, click "Analyze this page", wait for "Done", scroll the card list slowly so the green cards show (no amber). | 1:52 to 2:10 |
+| 6 | Side panel plus the code | Show the mode bar once more (zoom on it), then switch to tab 4: src/ai.js, the getGenerativeModel call with InferenceMode.PREFER_ON_DEVICE (README table "How hybrid inference is used" has the line numbers). Keep the code on screen for the whole scene. Do not show any key, Firebase config or token on screen. | 2:10 to 2:32 |
+| 7 | GitHub repo page, README and MIT licence | Click tab 5. End card with the repo URL: github.com/OsakaSaul/mentionfox-lens | 2:32 to 2:40 |
 
 ## Recording notes
 
 - Show the on-device mode bar on a machine where the built-in model is already downloaded, so the demo does not wait on a download. First-run behaviour in the build: when the model is downloadable, Analyze starts the download from the click, shows the download percent, and the cloud answers meanwhile [OWNER CONFIRMS: not seen on the build machine].
 - Never show the Firebase config, App Check debug token or any key on screen.
-- Model output varies a little from run to run (claim count 8 to 11 on the same page). Judge the take by what you see; if the first card on the opening page is "Not found on the page", just do not click it.
+- Model output varies from run to run (claim count 4 to 10 on the same page, amber 2 to 8). Judge the take by what you see; if the amber count is low, press Run again and record the better take. Say "all the amber" only if you really see most cards amber.
 - Add English captions. Keep the final export under 3:00.
 - Do not claim speed, accuracy or privacy beyond what the build does: the privacy line is true only if the page text goes nowhere except the on-device model or, on fallback, Firebase AI Logic.
 
@@ -60,7 +67,7 @@ Timeline (spoken seconds at 150 wpm): scene 1 24 seconds, 2 26 seconds, 3 24 sec
 
 1. The On-device mode bar and its real latency in your Chrome 139+ with Gemini Nano (README, "What the owner must test"). Read the number off the screen; do not state one from this script.
 2. First-run model download behaviour on your machine (percent and progress bar, then the green ready chip, then Run again).
-3. How you show the Cloud bar for scene 5: run Analyze before the download finishes (see "How to show Cloud, then On-device" below).
+3. How you show the Cloud bar for scene 6: run Analyze before the download finishes (see "How to show Cloud, then On-device" below).
 4. If the on-device result on these pages looks different from the cloud one, change the scene wording to what you see.
 
 

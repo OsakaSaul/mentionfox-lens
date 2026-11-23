@@ -1,0 +1,236 @@
+{
+  "fixture": "wework-mission-2019.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:52:55.828Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Mission | WeWork",
+    "url": "http://127.0.0.1:63030/",
+    "textLength": 1705,
+    "rawChars": 3370,
+    "rootTag": "MAIN",
+    "blocks": 11
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2649,
+    "first_ms": 2677,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces.\",\n      \"kind\": \"specific\",\n      \"why\": \"This can be checked by verifying the founding year 2010 of WeWork.\"\n    },\n    {\n      \"quote\": \"Left: Miguel McKelvey, Adam Neumann, Rebekah Neumann\",\n      \"kind\": \"specific\",\n      \"why\": \"This lists named individuals associated with the company.\"\n    },\n    {\n      \"quote\": \"A place you join as an individual, 'me', but where you become part of a greater 'we'.\",\n      \"kind\": \"vague\",\n      \"why\": \"This lacks any checkable anchors like dates, numbers, or specific places.\"\n    },\n    {\n      \"quote\": \"Community is our catalyst.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is a vague statement relying on subjective branding language.\"\n    },\n    {\n      \"quote\": \"We do what we love and are connected to something greater than ourselves.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is subjective puffery without any checkable anchors.\"\n    },\n    {\n      \"quote\": \"We are creators, leaders, and self-starters.\",\n      \"kind\": \"vague\",\n      \"why\": \"This lacks checkable anchors and relies entirely on self-praise.\"\n    },\n    {\n      \"quote\": \"We are genuine to our brand, mission, and values.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is unverifiable corporate puffery.\"\n    },\n    {\n      \"quote\": \"We never settle.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is a subjective statement with no factual anchors.\"\n    },\n    {\n      \"quote\": \"We are grateful for each other, our members, and to be part of this movement.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is a vague emotional statement lacking any checkable data.\"\n    },\n    {\n      \"quote\": \"Our mission doesn’t end with the small businesses and entrepreneurs that call us home.\",\n      \"kind\": \"vague\",\n      \"why\": \"This relies on subjective phrasing without specific verifiable entities.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces.",
+        "kind": "specific",
+        "why": "This can be checked by verifying the founding year 2010 of WeWork.",
+        "note": "contains a subjective word: beautiful"
+      },
+      {
+        "id": "c2",
+        "quote": "Left: Miguel McKelvey, Adam Neumann, Rebekah Neumann",
+        "kind": "specific",
+        "why": "This lists named individuals associated with the company."
+      },
+      {
+        "id": "c3",
+        "quote": "A place you join as an individual, 'me', but where you become part of a greater 'we'.",
+        "kind": "vague",
+        "why": "This lacks any checkable anchors like dates, numbers, or specific places."
+      },
+      {
+        "id": "c4",
+        "quote": "Community is our catalyst.",
+        "kind": "vague",
+        "why": "This is a vague statement relying on subjective branding language."
+      },
+      {
+        "id": "c5",
+        "quote": "We do what we love and are connected to something greater than ourselves.",
+        "kind": "vague",
+        "why": "This is subjective puffery without any checkable anchors."
+      },
+      {
+        "id": "c6",
+        "quote": "We are creators, leaders, and self-starters.",
+        "kind": "vague",
+        "why": "This lacks checkable anchors and relies entirely on self-praise."
+      },
+      {
+        "id": "c7",
+        "quote": "We are genuine to our brand, mission, and values.",
+        "kind": "vague",
+        "why": "This is unverifiable corporate puffery."
+      },
+      {
+        "id": "c8",
+        "quote": "We never settle.",
+        "kind": "vague",
+        "why": "This is a subjective statement with no factual anchors."
+      },
+      {
+        "id": "c9",
+        "quote": "We are grateful for each other, our members, and to be part of this movement.",
+        "kind": "vague",
+        "why": "This is a vague emotional statement lacking any checkable data."
+      },
+      {
+        "id": "c10",
+        "quote": "Our mission doesn’t end with the small businesses and entrepreneurs that call us home.",
+        "kind": "vague",
+        "why": "This relies on subjective phrasing without specific verifiable entities."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c9",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c10",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces"
+    },
+    {
+      "id": "c3",
+      "text": "A place you join as an individual, 'me', but where you become part of a greater 'we"
+    },
+    {
+      "id": "c4",
+      "text": "Community is our catalyst"
+    },
+    {
+      "id": "c2",
+      "text": "Left: Miguel McKelvey, Adam Neumann, Rebekah Neumann"
+    },
+    {
+      "id": "c5",
+      "text": "We do what we love and are connected to something greater than ourselves"
+    },
+    {
+      "id": "c6",
+      "text": "We are creators, leaders, and self-starters"
+    },
+    {
+      "id": "c7",
+      "text": "We are genuine to our brand, mission, and values"
+    },
+    {
+      "id": "c8",
+      "text": "We never settle"
+    },
+    {
+      "id": "c9",
+      "text": "We are grateful for each other, our members, and to be part of this movement"
+    },
+    {
+      "id": "c10",
+      "text": "Our mission doesn’t end with the small businesses and entrepreneurs that call us home"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2218,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"WeWork\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Miguel McKelvey\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Adam Neumann\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Rebekah Neumann\",\n      \"type\": \"person\"\n    }\n  ],\n  \"facts\": [\n    \"WeWork was started in 2010.\",\n    \"The company was founded by Miguel McKelvey, Adam Neumann, and Rebekah Neumann.\",\n    \"WeWork provides shared office spaces and aims to build a community.\",\n    \"The founders wanted to redefine success to be measured by personal fulfillment rather than just the bottom line.\"\n  ],\n  \"missing\": [\n    \"Specific details on the current business operations or locations of WeWork.\",\n    \"Clear definition of the core products and membership tiers offered.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces.\\\", add the primary city or location where it was founded.\",\n    \"In the section mentioning Miguel McKelvey, Adam Neumann, and Rebekah Neumann, add their specific founding roles or titles.\",\n    \"In the sentence \\\"We do what we love and are connected to something greater than ourselves.\\\", add a specific example of WeWork's community or workspace initiatives.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 2,\n    \"structure\": 3,\n    \"trust_signals\": 1,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "WeWork",
+          "type": "company"
+        },
+        {
+          "name": "Miguel McKelvey",
+          "type": "person"
+        },
+        {
+          "name": "Adam Neumann",
+          "type": "person"
+        },
+        {
+          "name": "Rebekah Neumann",
+          "type": "person"
+        }
+      ],
+      "facts": [
+        "WeWork was started in 2010.",
+        "The company was founded by Miguel McKelvey, Adam Neumann, and Rebekah Neumann.",
+        "WeWork provides shared office spaces and aims to build a community.",
+        "The founders wanted to redefine success to be measured by personal fulfillment rather than just the bottom line."
+      ],
+      "missing": [
+        "Specific details on the current business operations or locations of WeWork.",
+        "Clear definition of the core products and membership tiers offered."
+      ],
+      "fixes": [
+        "In the sentence \"When we started WeWork in 2010, we wanted to build more than beautiful, shared office spaces.\", add the primary city or location where it was founded.",
+        "In the section mentioning Miguel McKelvey, Adam Neumann, and Rebekah Neumann, add their specific founding roles or titles.",
+        "In the sentence \"We do what we love and are connected to something greater than ourselves.\", add a specific example of WeWork's community or workspace initiatives."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 2,
+        "structure": 3,
+        "trust_signals": 1,
+        "ambiguity": 3
+      }
+    }
+  }
+}

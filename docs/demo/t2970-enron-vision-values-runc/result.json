@@ -1,0 +1,129 @@
+{
+  "fixture": "enron-vision-values.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:48:16.949Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Enron: Vision and values -- What we believe",
+    "url": "http://127.0.0.1:64240/",
+    "textLength": 2255,
+    "rawChars": 2783,
+    "rootTag": "BODY",
+    "blocks": 39
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2632,
+    "first_ms": 2659,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Enron is a laboratory of innovation.\",\n      \"kind\": \"specific\",\n      \"why\": \"It mentions the named organization Enron.\"\n    },\n    {\n      \"quote\": \"Copyright 1997-2000 Enron Corp. All rights reserved.\",\n      \"kind\": \"specific\",\n      \"why\": \"It mentions the years 1997-2000 and the named organization Enron Corp.\"\n    },\n    {\n      \"quote\": \"That's why we employ the best and the brightest people.\",\n      \"kind\": \"vague\",\n      \"why\": \"It lacks any checkable anchors and relies entirely on subjective praise.\"\n    },\n    {\n      \"quote\": \"Together we're creating the leading energy company in the world.\",\n      \"kind\": \"vague\",\n      \"why\": \"It contains no checkable anchors and relies on subjective claims.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Enron is a laboratory of innovation.",
+        "kind": "specific",
+        "why": "It mentions the named organization Enron."
+      },
+      {
+        "id": "c2",
+        "quote": "Copyright 1997-2000 Enron Corp. All rights reserved.",
+        "kind": "specific",
+        "why": "It mentions the years 1997-2000 and the named organization Enron Corp."
+      },
+      {
+        "id": "c3",
+        "quote": "That's why we employ the best and the brightest people.",
+        "kind": "vague",
+        "why": "It lacks any checkable anchors and relies entirely on subjective praise."
+      },
+      {
+        "id": "c4",
+        "quote": "Together we're creating the leading energy company in the world.",
+        "kind": "vague",
+        "why": "It contains no checkable anchors and relies on subjective claims."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Enron is a laboratory of innovation"
+    },
+    {
+      "id": "c3",
+      "text": "That's why we employ the \n\t\t\tbest and the brightest people"
+    },
+    {
+      "id": "c4",
+      "text": "Together we're creating the leading energy company in the world"
+    },
+    {
+      "id": "c2",
+      "text": "Copyright 1997-2000 Enron Corp.  All rights reserved"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2053,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Enron\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Enron states that it values respect, communication, excellence, and respect for the environment.\",\n    \"The company believes in open markets, consumer choice, and competition.\",\n    \"Enron views itself as a laboratory of innovation employing talented people.\",\n    \"Customer success is used to measure Enron's success in meeting energy needs.\",\n    \"The text is copyrighted by Enron Corp. for the years 1997-2000.\"\n  ],\n  \"missing\": [\n    \"Specific descriptions of energy products or services offered.\",\n    \"Concrete examples of how innovation is applied.\",\n    \"Contact information for the company.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Together we're creating the leading energy company in the world.\\\", add the specific industry sector for the energy market.\",\n    \"In the sentence \\\"Our success is measured by the success of our customers.\\\", add the specific metric used to measure customer success.\",\n    \"In the sentence \\\"Enron is a laboratory of innovation.\\\", add the location or facility name of the laboratory.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 2,\n    \"fact_density\": 1,\n    \"structure\": 2,\n    \"trust_signals\": 1,\n    \"ambiguity\": 1\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Enron",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Enron states that it values respect, communication, excellence, and respect for the environment.",
+        "The company believes in open markets, consumer choice, and competition.",
+        "Enron views itself as a laboratory of innovation employing talented people.",
+        "Customer success is used to measure Enron's success in meeting energy needs.",
+        "The text is copyrighted by Enron Corp. for the years 1997-2000."
+      ],
+      "missing": [
+        "Specific descriptions of energy products or services offered.",
+        "Concrete examples of how innovation is applied.",
+        "Contact information for the company."
+      ],
+      "fixes": [
+        "In the sentence \"Together we're creating the leading energy company in the world.\", add the specific industry sector for the energy market.",
+        "In the sentence \"Our success is measured by the success of our customers.\", add the specific metric used to measure customer success.",
+        "In the sentence \"Enron is a laboratory of innovation.\", add the location or facility name of the laboratory."
+      ],
+      "ratings": {
+        "entity_clarity": 2,
+        "fact_density": 1,
+        "structure": 2,
+        "trust_signals": 1,
+        "ambiguity": 1
+      }
+    }
+  }
+}

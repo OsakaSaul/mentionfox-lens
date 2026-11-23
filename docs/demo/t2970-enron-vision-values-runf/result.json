@@ -1,0 +1,199 @@
+{
+  "fixture": "enron-vision-values.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:52:27.214Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Enron: Vision and values -- What we believe",
+    "url": "http://127.0.0.1:62969/",
+    "textLength": 2255,
+    "rawChars": 2783,
+    "rootTag": "BODY",
+    "blocks": 39
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2794,
+    "first_ms": 2820,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Enron is a laboratory of innovation.\",\n      \"kind\": \"specific\",\n      \"why\": \"It names the organization Enron.\",\n      \"summary\": \"Enron describes itself as a laboratory of innovation.\"\n    },\n    {\n      \"quote\": \"That's why we employ the best and the brightest people.\",\n      \"kind\": \"vague\",\n      \"why\": \"It lacks any checkable anchor and relies entirely on vague praise.\"\n    },\n    {\n      \"quote\": \"Copyright 1997-2000 Enron Corp. All rights reserved.\",\n      \"kind\": \"specific\",\n      \"why\": \"It contains the organization name Enron and a copyright year range.\"\n    },\n    {\n      \"quote\": \"We believe in the inherent wisdom of open markets.\",\n      \"kind\": \"vague\",\n      \"why\": \"It expresses a belief without containing any checkable anchors.\"\n    },\n    {\n      \"quote\": \"We are convinced that consumer choice and competition lead to lower prices and innovation.\",\n      \"kind\": \"vague\",\n      \"why\": \"It contains no specific dates, numbers, or named entities to check.\"\n    },\n    {\n      \"quote\": \"We think the entrepreneurial approach stimulates creativity.\",\n      \"kind\": \"vague\",\n      \"why\": \"It presents a general philosophical opinion without checkable anchors.\"\n    },\n    {\n      \"quote\": \"Here we value diversity in people and thought.\",\n      \"kind\": \"vague\",\n      \"why\": \"It is a vague statement lacking any checkable data points.\"\n    },\n    {\n      \"quote\": \"Our success is measured by the success of our customers.\",\n      \"kind\": \"vague\",\n      \"why\": \"It states a general philosophy without any checkable anchors.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Enron is a laboratory of innovation.",
+        "kind": "specific",
+        "why": "It names the organization Enron.",
+        "summary": "Enron describes itself as a laboratory of innovation."
+      },
+      {
+        "id": "c2",
+        "quote": "That's why we employ the best and the brightest people.",
+        "kind": "vague",
+        "why": "It lacks any checkable anchor and relies entirely on vague praise."
+      },
+      {
+        "id": "c3",
+        "quote": "Copyright 1997-2000 Enron Corp. All rights reserved.",
+        "kind": "specific",
+        "why": "It contains the organization name Enron and a copyright year range."
+      },
+      {
+        "id": "c4",
+        "quote": "We believe in the inherent wisdom of open markets.",
+        "kind": "vague",
+        "why": "It expresses a belief without containing any checkable anchors."
+      },
+      {
+        "id": "c5",
+        "quote": "We are convinced that consumer choice and competition lead to lower prices and innovation.",
+        "kind": "vague",
+        "why": "It contains no specific dates, numbers, or named entities to check."
+      },
+      {
+        "id": "c6",
+        "quote": "We think the entrepreneurial approach stimulates creativity.",
+        "kind": "vague",
+        "why": "It presents a general philosophical opinion without checkable anchors."
+      },
+      {
+        "id": "c7",
+        "quote": "Here we value diversity in people and thought.",
+        "kind": "vague",
+        "why": "It is a vague statement lacking any checkable data points."
+      },
+      {
+        "id": "c8",
+        "quote": "Our success is measured by the success of our customers.",
+        "kind": "vague",
+        "why": "It states a general philosophy without any checkable anchors."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c4",
+      "text": "We believe in the inherent wisdom of open markets"
+    },
+    {
+      "id": "c5",
+      "text": "We are \n\t\t\tconvinced that consumer choice and competition lead to lower \n\t\t\tprices and innovation"
+    },
+    {
+      "id": "c1",
+      "text": "Enron is a laboratory of innovation"
+    },
+    {
+      "id": "c2",
+      "text": "That's why we employ the \n\t\t\tbest and the brightest people"
+    },
+    {
+      "id": "c6",
+      "text": "We think the entrepreneurial approach stimulates creativity"
+    },
+    {
+      "id": "c7",
+      "text": "Here we value diversity in people and thought"
+    },
+    {
+      "id": "c8",
+      "text": "Our success is measured by the success of our customers"
+    },
+    {
+      "id": "c3",
+      "text": "Copyright 1997-2000 Enron Corp.  All rights reserved"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2392,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Enron\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Enron Corp.\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Enron states that it values respect, integrity, communication, and excellence.\",\n    \"The company believes in open markets, consumer choice, and competition.\",\n    \"Enron describes itself as a laboratory of innovation that employs the best and brightest people.\",\n    \"The entrepreneurial approach is used to stimulate creativity, new insights, and a sense of urgency.\",\n    \"Enron measures its success by the success of its customers and offers energy solutions.\",\n    \"Copyright for the content is held by Enron Corp. for the years 1997-2000.\"\n  ],\n  \"missing\": [\n    \"Specific examples of how Enron delivers energy or provides solutions to customers.\",\n    \"Detailed explanations of the open markets and innovations mentioned.\",\n    \"Contact information or physical headquarters location for Enron Corp.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"We're changing the way energy is delivered, as well as the market for it.\\\", add the specific energy products or services delivered.\",\n    \"In the sentence \\\"Enron is a laboratory of innovation.\\\", add the specific technological or market innovations developed.\",\n    \"In the copyright notice \\\"Copyright 1997-2000 Enron Corp.\\\", add the physical headquarters location of Enron Corp.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 3,\n    \"fact_density\": 1,\n    \"structure\": 2,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Enron",
+          "type": "company"
+        },
+        {
+          "name": "Enron Corp.",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Enron states that it values respect, integrity, communication, and excellence.",
+        "The company believes in open markets, consumer choice, and competition.",
+        "Enron describes itself as a laboratory of innovation that employs the best and brightest people.",
+        "The entrepreneurial approach is used to stimulate creativity, new insights, and a sense of urgency.",
+        "Enron measures its success by the success of its customers and offers energy solutions.",
+        "Copyright for the content is held by Enron Corp. for the years 1997-2000."
+      ],
+      "missing": [
+        "Specific examples of how Enron delivers energy or provides solutions to customers.",
+        "Detailed explanations of the open markets and innovations mentioned.",
+        "Contact information or physical headquarters location for Enron Corp."
+      ],
+      "fixes": [
+        "In the sentence \"We're changing the way energy is delivered, as well as the market for it.\", add the specific energy products or services delivered.",
+        "In the sentence \"Enron is a laboratory of innovation.\", add the specific technological or market innovations developed.",
+        "In the copyright notice \"Copyright 1997-2000 Enron Corp.\", add the physical headquarters location of Enron Corp."
+      ],
+      "ratings": {
+        "entity_clarity": 3,
+        "fact_density": 1,
+        "structure": 2,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

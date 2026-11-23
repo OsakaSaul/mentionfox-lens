@@ -1,0 +1,198 @@
+{
+  "fixture": "enron-inside.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:48:10.494Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Enron | Inside Enron",
+    "url": "http://127.0.0.1:64224/",
+    "textLength": 2461,
+    "rawChars": 3451,
+    "rootTag": "BODY",
+    "blocks": 39
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2625,
+    "first_ms": 2652,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Enron is a laboratory of innovation.\",\n      \"kind\": \"specific\",\n      \"why\": \"This names the organization Enron.\",\n      \"summary\": \"Enron describes itself as a laboratory of innovation.\"\n    },\n    {\n      \"quote\": \"We are convinced that consumer choice and competition lead to lower prices and innovation.\",\n      \"kind\": \"vague\",\n      \"why\": \"This lacks any checkable anchor and relies on general beliefs about markets.\"\n    },\n    {\n      \"quote\": \"That's why we employ the best and the brightest people.\",\n      \"kind\": \"vague\",\n      \"why\": \"This lacks checkable anchors and uses subjective praise.\"\n    },\n    {\n      \"quote\": \"And we believe that every employee can make a difference here.\",\n      \"kind\": \"vague\",\n      \"why\": \"This lacks any checkable anchors.\"\n    },\n    {\n      \"quote\": \"We think the entrepreneurial approach stimulates creativity.\",\n      \"kind\": \"vague\",\n      \"why\": \"This relies on subjective claims without checkable data.\"\n    },\n    {\n      \"quote\": \"Here we value diversity in people and thought.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is a vague statement without any checkable anchor.\"\n    },\n    {\n      \"quote\": \"Our success is measured by the success of our customers.\",\n      \"kind\": \"vague\",\n      \"why\": \"This lacks any verifiable metrics or anchors.\"\n    },\n    {\n      \"quote\": \"Copyright 1997-2000 Enron Corp. All rights reserved.\",\n      \"kind\": \"specific\",\n      \"why\": \"This names the organization Enron Corp and the years 1997-2000.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Enron is a laboratory of innovation.",
+        "kind": "specific",
+        "why": "This names the organization Enron.",
+        "summary": "Enron describes itself as a laboratory of innovation."
+      },
+      {
+        "id": "c2",
+        "quote": "We are convinced that consumer choice and competition lead to lower prices and innovation.",
+        "kind": "vague",
+        "why": "This lacks any checkable anchor and relies on general beliefs about markets."
+      },
+      {
+        "id": "c3",
+        "quote": "That's why we employ the best and the brightest people.",
+        "kind": "vague",
+        "why": "This lacks checkable anchors and uses subjective praise."
+      },
+      {
+        "id": "c4",
+        "quote": "And we believe that every employee can make a difference here.",
+        "kind": "vague",
+        "why": "This lacks any checkable anchors."
+      },
+      {
+        "id": "c5",
+        "quote": "We think the entrepreneurial approach stimulates creativity.",
+        "kind": "vague",
+        "why": "This relies on subjective claims without checkable data."
+      },
+      {
+        "id": "c6",
+        "quote": "Here we value diversity in people and thought.",
+        "kind": "vague",
+        "why": "This is a vague statement without any checkable anchor."
+      },
+      {
+        "id": "c7",
+        "quote": "Our success is measured by the success of our customers.",
+        "kind": "vague",
+        "why": "This lacks any verifiable metrics or anchors."
+      },
+      {
+        "id": "c8",
+        "quote": "Copyright 1997-2000 Enron Corp. All rights reserved.",
+        "kind": "specific",
+        "why": "This names the organization Enron Corp and the years 1997-2000."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c2",
+      "text": "We are convinced \n            that consumer choice and competition lead to lower prices and innovation"
+    },
+    {
+      "id": "c1",
+      "text": "Enron is a laboratory of innovation"
+    },
+    {
+      "id": "c3",
+      "text": "That's why we employ the best \n            and the brightest people"
+    },
+    {
+      "id": "c4",
+      "text": "And we believe that every employee can make \n            a difference here"
+    },
+    {
+      "id": "c5",
+      "text": "We think the entrepreneurial approach stimulates creativity"
+    },
+    {
+      "id": "c6",
+      "text": "Here we value diversity in people and thought"
+    },
+    {
+      "id": "c7",
+      "text": "Our success is measured by the success of our customers"
+    },
+    {
+      "id": "c8",
+      "text": "Copyright 1997-2000 Enron Corp. All rights reserved"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2391,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Enron\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Enron Energy Outlook 1999-2020\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Enron describes itself as a laboratory of innovation that employs open markets to lower prices and drive innovation.\",\n    \"The company states that its success is measured by the success of its customers and focuses on long-term partnerships.\",\n    \"Enron claims to operate safely with concern for the environment across the various places it operates globally.\",\n    \"The corporate text emphasizes values including diversity, respect, integrity, communication, and excellence.\",\n    \"The page carries a copyright notice for Enron Corp. covering the years 1997 through 2000.\"\n  ],\n  \"missing\": [\n    \"Specific details on the contents of the Enron Energy Outlook 1999-2020 report.\",\n    \"Concrete examples of how Enron delivers energy or changes the market.\",\n    \"Explanation of what specific solutions Enron offers to meet customer energy needs.\"\n  ],\n  \"fixes\": [\n    \"In the title \\\"Enron Energy Outlook 1999-2020\\\", add a brief summary of the report's main market projection or finding.\",\n    \"In the sentence \\\"We're changing the way energy is delivered, as well as the market for it.\\\", add a specific example of an energy delivery method or market mechanism.\",\n    \"In the sentence \\\"We are committed to meeting their energy needs with solutions that offer them a competitive advantage.\\\", add the definition of at least one specific energy solution offered.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 3,\n    \"fact_density\": 1,\n    \"structure\": 2,\n    \"trust_signals\": 1,\n    \"ambiguity\": 1\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Enron",
+          "type": "company"
+        },
+        {
+          "name": "Enron Energy Outlook 1999-2020",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Enron describes itself as a laboratory of innovation that employs open markets to lower prices and drive innovation.",
+        "The company states that its success is measured by the success of its customers and focuses on long-term partnerships.",
+        "Enron claims to operate safely with concern for the environment across the various places it operates globally.",
+        "The corporate text emphasizes values including diversity, respect, integrity, communication, and excellence.",
+        "The page carries a copyright notice for Enron Corp. covering the years 1997 through 2000."
+      ],
+      "missing": [
+        "Specific details on the contents of the Enron Energy Outlook 1999-2020 report.",
+        "Concrete examples of how Enron delivers energy or changes the market.",
+        "Explanation of what specific solutions Enron offers to meet customer energy needs."
+      ],
+      "fixes": [
+        "In the title \"Enron Energy Outlook 1999-2020\", add a brief summary of the report's main market projection or finding.",
+        "In the sentence \"We're changing the way energy is delivered, as well as the market for it.\", add a specific example of an energy delivery method or market mechanism.",
+        "In the sentence \"We are committed to meeting their energy needs with solutions that offer them a competitive advantage.\", add the definition of at least one specific energy solution offered."
+      ],
+      "ratings": {
+        "entity_clarity": 3,
+        "fact_density": 1,
+        "structure": 2,
+        "trust_signals": 1,
+        "ambiguity": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "fixture": "fyre-home-apr2017.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:39:47.299Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Fyre Festival",
+    "url": "http://127.0.0.1:52778/",
+    "textLength": 2712,
+    "rawChars": 3289,
+    "rootTag": "BODY",
+    "blocks": 13
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3105,
+    "first_ms": 3134,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Weekend 1 April 28-30\",\n      \"kind\": \"specific\",\n      \"why\": \"This checks the specific festival dates in April.\"\n    },\n    {\n      \"quote\": \"Flights will depart to the Bahamas from Miami on Thursday and Friday, and return to Miami from the Bahamas on Sunday and Monday.\",\n      \"kind\": \"specific\",\n      \"why\": \"This names Miami and the Bahamas along with specific days of the week.\"\n    },\n    {\n      \"quote\": \"After landing, take a quick boat ride to Thunderball Cave for some snorkeling and cave diving in the spirit of James Bond.\",\n      \"kind\": \"specific\",\n      \"why\": \"This mentions the named location Thunderball Cave and James Bond.\"\n    },\n    {\n      \"quote\": \"Then, drop by Pig Beach for an opportunity to swim with the pigs.\",\n      \"kind\": \"specific\",\n      \"why\": \"This checks the named location Pig Beach.\"\n    },\n    {\n      \"quote\": \"After a quick lunch at Staniel Cay Yacht Club, we’ll fly over to Dean’s Blue Hole, and then make our way back just in time to catch the music.\",\n      \"kind\": \"specific\",\n      \"why\": \"This includes the named places Staniel Cay Yacht Club and Dean's Blue Hole.\"\n    },\n    {\n      \"quote\": \"You’ll be in very good company.\",\n      \"kind\": \"vague\",\n      \"why\": \"This relies entirely on subjective praise without any checkable anchors.\"\n    },\n    {\n      \"quote\": \"Enjoy a champagne brunch and awesome views.\",\n      \"kind\": \"vague\",\n      \"why\": \"This uses subjective words like awesome without any verifiable details.\"\n    },\n    {\n      \"quote\": \"Fyre Festival is a departure from the familiar.\",\n      \"kind\": \"vague\",\n      \"why\": \"This uses subjective marketing language without any checkable facts.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Weekend 1 April 28-30",
+        "kind": "specific",
+        "why": "This checks the specific festival dates in April."
+      },
+      {
+        "id": "c2",
+        "quote": "Flights will depart to the Bahamas from Miami on Thursday and Friday, and return to Miami from the Bahamas on Sunday and Monday.",
+        "kind": "specific",
+        "why": "This names Miami and the Bahamas along with specific days of the week."
+      },
+      {
+        "id": "c3",
+        "quote": "After landing, take a quick boat ride to Thunderball Cave for some snorkeling and cave diving in the spirit of James Bond.",
+        "kind": "specific",
+        "why": "This mentions the named location Thunderball Cave and James Bond."
+      },
+      {
+        "id": "c4",
+        "quote": "Then, drop by Pig Beach for an opportunity to swim with the pigs.",
+        "kind": "specific",
+        "why": "This checks the named location Pig Beach."
+      },
+      {
+        "id": "c5",
+        "quote": "After a quick lunch at Staniel Cay Yacht Club, we’ll fly over to Dean’s Blue Hole, and then make our way back just in time to catch the music.",
+        "kind": "specific",
+        "why": "This includes the named places Staniel Cay Yacht Club and Dean's Blue Hole."
+      },
+      {
+        "id": "c6",
+        "quote": "You’ll be in very good company.",
+        "kind": "vague",
+        "why": "This relies entirely on subjective praise without any checkable anchors."
+      },
+      {
+        "id": "c7",
+        "quote": "Enjoy a champagne brunch and awesome views.",
+        "kind": "vague",
+        "why": "This uses subjective words like awesome without any verifiable details."
+      },
+      {
+        "id": "c8",
+        "quote": "Fyre Festival is a departure from the familiar.",
+        "kind": "specific",
+        "why": "Names a named place, person or organisation (Fyre Festival) that a reader can check against a public source.",
+        "note": "",
+        "overridden": true,
+        "anchor": {
+          "type": "name",
+          "text": "Fyre Festival"
+        }
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c8",
+      "text": "Fyre Festival is a departure from the familiar"
+    },
+    {
+      "id": "c1",
+      "text": "Weekend 1"
+    },
+    {
+      "id": "c1",
+      "text": " April 28-30"
+    },
+    {
+      "id": "c6",
+      "text": "You’ll be in very good company"
+    },
+    {
+      "id": "c7",
+      "text": "Enjoy a champagne brunch and awesome views"
+    },
+    {
+      "id": "c3",
+      "text": "After landing, take a quick boat ride to Thunderball Cave for some snorkeling and cave diving in the spirit of James Bond"
+    },
+    {
+      "id": "c4",
+      "text": "Then, drop by Pig Beach for an opportunity to swim with the pigs"
+    },
+    {
+      "id": "c5",
+      "text": "After a quick lunch at Staniel Cay Yacht Club, we’ll fly over to Dean’s Blue Hole, and then make our way back just in time to catch the music"
+    },
+    {
+      "id": "c2",
+      "text": "Flights will depart to the Bahamas from Miami on Thursday and Friday, and return to Miami from the Bahamas on Sunday and Monday"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3144,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Fyre Festival\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Exumas\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Fyre Beach Club\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Staniel Cay\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Thunderball Cave\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Pig Beach\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Dean’s Blue Hole\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Miami\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Bahamas\",\n      \"type\": \"place\"\n    }\n  ],\n  \"facts\": [\n    \"Fyre Festival Weekend 1 is scheduled for April 28-30.\",\n    \"The festival offers half-day Exuma excursions, cabanas at the Fyre Beach Club, and VIP tables.\",\n    \"A beachside kick-off BBQ with a Bahamian menu and champagne toast takes place each Thursday evening.\",\n    \"All packages include complimentary flights to and from the Exumas departing from and returning to Miami.\",\n    \"Flight departures operate on Thursday and Friday, with returns on Sunday and Monday.\",\n    \"Traveler preference forms are sent within a few days after ticket purchase to assign flights on a first-come, first-serve basis.\"\n  ],\n  \"missing\": [\n    \"Ticket pricing information\",\n    \"Specific musical lineup or headliners\",\n    \"Exact geographic location or name of the remote island\",\n    \"Accommodation details\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Weekend 1 April 28-30\\\", add the year.\",\n    \"In the sentence \\\"With additional surprise guest headliners...\\\", add the names of the headlining artists.\",\n    \"In the sentence \\\"Held on a remote island with an infamous history, the wild landscape and turquoise waters invite you to explore, disconnect, and plug-in with the likeminded.\\\", add the specific name of the island.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 3,\n    \"fact_density\": 3,\n    \"structure\": 3,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Fyre Festival",
+          "type": "product"
+        },
+        {
+          "name": "Exumas",
+          "type": "place"
+        },
+        {
+          "name": "Fyre Beach Club",
+          "type": "product"
+        },
+        {
+          "name": "Staniel Cay",
+          "type": "place"
+        },
+        {
+          "name": "Thunderball Cave",
+          "type": "place"
+        },
+        {
+          "name": "Pig Beach",
+          "type": "place"
+        },
+        {
+          "name": "Dean’s Blue Hole",
+          "type": "place"
+        },
+        {
+          "name": "Miami",
+          "type": "place"
+        },
+        {
+          "name": "Bahamas",
+          "type": "place"
+        }
+      ],
+      "facts": [
+        "Fyre Festival Weekend 1 is scheduled for April 28-30.",
+        "The festival offers half-day Exuma excursions, cabanas at the Fyre Beach Club, and VIP tables.",
+        "A beachside kick-off BBQ with a Bahamian menu and champagne toast takes place each Thursday evening.",
+        "All packages include complimentary flights to and from the Exumas departing from and returning to Miami.",
+        "Flight departures operate on Thursday and Friday, with returns on Sunday and Monday.",
+        "Traveler preference forms are sent within a few days after ticket purchase to assign flights on a first-come, first-serve basis."
+      ],
+      "missing": [
+        "Ticket pricing information",
+        "Specific musical lineup or headliners",
+        "Exact geographic location or name of the remote island",
+        "Accommodation details"
+      ],
+      "fixes": [
+        "In the sentence \"Weekend 1 April 28-30\", add the year.",
+        "In the sentence \"With additional surprise guest headliners...\", add the names of the headlining artists.",
+        "In the sentence \"Held on a remote island with an infamous history, the wild landscape and turquoise waters invite you to explore, disconnect, and plug-in with the likeminded.\", add the specific name of the island."
+      ],
+      "ratings": {
+        "entity_clarity": 3,
+        "fact_density": 3,
+        "structure": 3,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

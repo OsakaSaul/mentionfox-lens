@@ -1,0 +1,219 @@
+{
+  "fixture": "fyre-faq.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:40:18.129Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Fyre FestivalFAQ - Fyre Festival",
+    "url": "http://127.0.0.1:52892/",
+    "textLength": 18139,
+    "rawChars": 20258,
+    "rootTag": "BODY",
+    "blocks": 195
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2846,
+    "first_ms": 2875,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Week 1: April 28th, 2017 to April 30th, 2017\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim specifies the exact dates for Week 1 of the festival.\"\n    },\n    {\n      \"quote\": \"Week 2: May 5th, 2017 to May 7th, 2017\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim specifies the exact dates for Week 2 of the festival.\"\n    },\n    {\n      \"quote\": \"Depending on the plane, there will be 30-50 people one each flight.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim gives a specific numerical range of passengers per flight.\"\n    },\n    {\n      \"quote\": \"There is 5-day grace period for monthly billing.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim provides a specific number of days for the billing grace period.\"\n    },\n    {\n      \"quote\": \"In order to purchase alcohol, guests must be 21 year of age or older at the time of purchase.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim specifies the exact age requirement for purchasing alcohol.\"\n    },\n    {\n      \"quote\": \"Tablelist is real time online reservation and venue management for nightclubs, lounges, bars and events.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim names Tablelist and describes its specific business function.\"\n    },\n    {\n      \"quote\": \"All partnered pilots are fully licensed, practicing professionals who carry the proper insurance.\",\n      \"kind\": \"vague\",\n      \"why\": \"This claim relies on unquantifiable professional praise without naming a specific pilot.\"\n    },\n    {\n      \"quote\": \"Gorgeous, it’s really one of the best, best times of year to be in the Bahamas!\",\n      \"kind\": \"vague\",\n      \"why\": \"This claim uses purely subjective praise about the weather without any objective metrics.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Week 1: April 28th, 2017 to April 30th, 2017",
+        "kind": "specific",
+        "why": "This claim specifies the exact dates for Week 1 of the festival."
+      },
+      {
+        "id": "c2",
+        "quote": "Week 2: May 5th, 2017 to May 7th, 2017",
+        "kind": "specific",
+        "why": "This claim specifies the exact dates for Week 2 of the festival."
+      },
+      {
+        "id": "c3",
+        "quote": "Depending on the plane, there will be 30-50 people one each flight.",
+        "kind": "specific",
+        "why": "This claim gives a specific numerical range of passengers per flight."
+      },
+      {
+        "id": "c4",
+        "quote": "There is 5-day grace period for monthly billing.",
+        "kind": "specific",
+        "why": "This claim provides a specific number of days for the billing grace period."
+      },
+      {
+        "id": "c5",
+        "quote": "In order to purchase alcohol, guests must be 21 year of age or older at the time of purchase.",
+        "kind": "specific",
+        "why": "This claim specifies the exact age requirement for purchasing alcohol."
+      },
+      {
+        "id": "c6",
+        "quote": "Tablelist is real time online reservation and venue management for nightclubs, lounges, bars and events.",
+        "kind": "specific",
+        "why": "This claim names Tablelist and describes its specific business function."
+      },
+      {
+        "id": "c7",
+        "quote": "All partnered pilots are fully licensed, practicing professionals who carry the proper insurance.",
+        "kind": "vague",
+        "why": "This claim relies on unquantifiable professional praise without naming a specific pilot."
+      },
+      {
+        "id": "c8",
+        "quote": "Gorgeous, it’s really one of the best, best times of year to be in the Bahamas!",
+        "kind": "vague",
+        "why": "This claim uses purely subjective praise about the weather without any objective metrics."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Week 1: April 28th, 2017 to April 30th, 2017"
+    },
+    {
+      "id": "c2",
+      "text": "Week 2: May 5th, 2017 to May 7th, 2017"
+    },
+    {
+      "id": "c8",
+      "text": "Gorgeous, it’s really one of the best, best times of year to be in the Bahamas!"
+    },
+    {
+      "id": "c6",
+      "text": "Tablelist is real time online reservation and venue management for nightclubs, lounges, bars and events"
+    },
+    {
+      "id": "c4",
+      "text": "There is 5-day grace period for monthly billing"
+    },
+    {
+      "id": "c3",
+      "text": "Depending on the plane, there will be 30-50 people one each flight"
+    },
+    {
+      "id": "c7",
+      "text": "All partnered pilots are fully licensed, practicing professionals who carry the proper insurance"
+    },
+    {
+      "id": "c5",
+      "text": "In order to purchase alcohol, guests must be 21 year of age or older at the time of purchase"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 3048,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Fyre Festival\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Tablelist\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Fyre Cay\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Exumas\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Miami\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Bahamas\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Nassau\",\n      \"type\": \"place\"\n    }\n  ],\n  \"facts\": [\n    \"Fyre Festival takes place across two weekends in 2017: April 28th to April 30th and May 5th to May 7th.\",\n    \"The festival is held on Fyre Cay in the Exumas, approximately a one-hour flight from Miami.\",\n    \"Housing accommodations on the island consist of luxurious tents equipped with charging stations, lights, and beds with linens.\",\n    \"Tickets are non-transferable on third-party websites and resales must be coordinated through Tablelist.\",\n    \"There is a 5-day grace period for monthly billing on payment plans before bookings are cancelled without refunds.\",\n    \"Emergency medical services on the island include a medical tent with professional providers and transport options to facilities in Miami or Nassau.\"\n  ],\n  \"missing\": [\n    \"Ticket prices for the festival packages\",\n    \"Specific names of performing artists or the festival lineup\",\n    \"Exact location of the check-in airport in Miami\",\n    \"Detailed schedule of culinary experiences and art installations\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Fyre Festival is a 2 weekend festival taking place on private islands in the Exumas on Fyre Cay, just about an hour flight away from Miami, with an all star cast of performers, models, influencers, and thought leaders attending.\\\", add the starting ticket price.\",\n    \"In the section \\\"What are the dates of Fyre Festival?\\\", add the specific departure airport in Miami used for guest check-in.\",\n    \"In the section \\\"When’s the lineup going to be announced?\\\", add the specific names of the headlining performers.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 4,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Fyre Festival",
+          "type": "product"
+        },
+        {
+          "name": "Tablelist",
+          "type": "company"
+        },
+        {
+          "name": "Fyre Cay",
+          "type": "place"
+        },
+        {
+          "name": "Exumas",
+          "type": "place"
+        },
+        {
+          "name": "Miami",
+          "type": "place"
+        },
+        {
+          "name": "Bahamas",
+          "type": "place"
+        },
+        {
+          "name": "Nassau",
+          "type": "place"
+        }
+      ],
+      "facts": [
+        "Fyre Festival takes place across two weekends in 2017: April 28th to April 30th and May 5th to May 7th.",
+        "The festival is held on Fyre Cay in the Exumas, approximately a one-hour flight from Miami.",
+        "Housing accommodations on the island consist of luxurious tents equipped with charging stations, lights, and beds with linens.",
+        "Tickets are non-transferable on third-party websites and resales must be coordinated through Tablelist.",
+        "There is a 5-day grace period for monthly billing on payment plans before bookings are cancelled without refunds.",
+        "Emergency medical services on the island include a medical tent with professional providers and transport options to facilities in Miami or Nassau."
+      ],
+      "missing": [
+        "Ticket prices for the festival packages",
+        "Specific names of performing artists or the festival lineup",
+        "Exact location of the check-in airport in Miami",
+        "Detailed schedule of culinary experiences and art installations"
+      ],
+      "fixes": [
+        "In the sentence \"Fyre Festival is a 2 weekend festival taking place on private islands in the Exumas on Fyre Cay, just about an hour flight away from Miami, with an all star cast of performers, models, influencers, and thought leaders atten",
+        "In the section \"What are the dates of Fyre Festival?\", add the specific departure airport in Miami used for guest check-in.",
+        "In the section \"When’s the lineup going to be announced?\", add the specific names of the headlining performers."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 4,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "fixture": "terra-about.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:38:35.696Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Terra - powering the innovation of money",
+    "url": "http://127.0.0.1:52683/",
+    "textLength": 1922,
+    "rawChars": 2950,
+    "rootTag": "BODY",
+    "blocks": 26
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3254,
+    "first_ms": 3282,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Now live on Ethereum and Solana, and coming to more soon.\",\n      \"kind\": \"specific\",\n      \"why\": \"This names the specific blockchain networks Ethereum and Solana as platforms.\",\n      \"summary\": \"Terra stablecoins are currently available on Ethereum and Solana.\"\n    },\n    {\n      \"quote\": \"Matt Cantieri, Crypto Lead at Microsoft’s M12, Officially Joins Terraform Labs as the General Manager of Anchor Protocol\",\n      \"kind\": \"specific\",\n      \"why\": \"This names the person Matt Cantieri and the organizations Microsoft and Terraform Labs.\",\n      \"summary\": \"Matt Cantieri moved from Microsoft's M12 to join Terraform Labs.\"\n    },\n    {\n      \"quote\": \"Crypto investors like Terraform Labs so much, they’re committing $150 million to its ‘ecosystem’\",\n      \"kind\": \"specific\",\n      \"why\": \"This mentions the specific financial figure of $150 million committed to the ecosystem.\",\n      \"summary\": \"Investors are putting $150 million into the ecosystem.\"\n    },\n    {\n      \"quote\": \"Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem\",\n      \"kind\": \"specific\",\n      \"why\": \"This references the specific amount of $150 million and Terraform Labs.\",\n      \"summary\": \"Terraform Labs gathered investors to deploy $150 million.\"\n    },\n    {\n      \"quote\": \"Terra Attracts $150M for DeFi Ecosystem Fund\",\n      \"kind\": \"specific\",\n      \"why\": \"This includes the monetary amount of $150M and the DeFi Ecosystem Fund.\",\n      \"summary\": \"Terra secured $150 million for a DeFi fund.\"\n    },\n    {\n      \"quote\": \"Terra stablecoins offer instant settlements, low fees and seamless cross-border exchange - loved by millions of users and merchants.\",\n      \"kind\": \"vague\",\n      \"why\": \"This relies on vague terms like millions of users without naming any specific individuals.\"\n    },\n    {\n      \"quote\": \"forming the most limitless venue to trade\",\n      \"kind\": \"vague\",\n      \"why\": \"This relies entirely on the subjective praise of being the most limitless venue.\"\n    },\n    {\n      \"quote\": \"on the most powerful platform to build on\",\n      \"kind\": \"vague\",\n      \"why\": \"This relies on subjective praise claiming to be the most powerful platform.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Now live on Ethereum and Solana, and coming to more soon.",
+        "kind": "specific",
+        "why": "This names the specific blockchain networks Ethereum and Solana as platforms.",
+        "summary": "Terra stablecoins are currently available on Ethereum and Solana."
+      },
+      {
+        "id": "c2",
+        "quote": "Matt Cantieri, Crypto Lead at Microsoft’s M12, Officially Joins Terraform Labs as the General Manager of Anchor Protocol",
+        "kind": "specific",
+        "why": "This names the person Matt Cantieri and the organizations Microsoft and Terraform Labs.",
+        "summary": "Matt Cantieri moved from Microsoft's M12 to join Terraform Labs."
+      },
+      {
+        "id": "c3",
+        "quote": "Crypto investors like Terraform Labs so much, they’re committing $150 million to its ‘ecosystem’",
+        "kind": "specific",
+        "why": "This mentions the specific financial figure of $150 million committed to the ecosystem.",
+        "summary": "Investors are putting $150 million into the ecosystem."
+      },
+      {
+        "id": "c4",
+        "quote": "Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem",
+        "kind": "specific",
+        "why": "This references the specific amount of $150 million and Terraform Labs.",
+        "summary": "Terraform Labs gathered investors to deploy $150 million."
+      },
+      {
+        "id": "c5",
+        "quote": "Terra Attracts $150M for DeFi Ecosystem Fund",
+        "kind": "specific",
+        "why": "This includes the monetary amount of $150M and the DeFi Ecosystem Fund.",
+        "summary": "Terra secured $150 million for a DeFi fund."
+      },
+      {
+        "id": "c6",
+        "quote": "Terra stablecoins offer instant settlements, low fees and seamless cross-border exchange - loved by millions of users and merchants.",
+        "kind": "vague",
+        "why": "This relies on vague terms like millions of users without naming any specific individuals."
+      },
+      {
+        "id": "c7",
+        "quote": "forming the most limitless venue to trade",
+        "kind": "vague",
+        "why": "This relies entirely on the subjective praise of being the most limitless venue."
+      },
+      {
+        "id": "c8",
+        "quote": "on the most powerful platform to build on",
+        "kind": "vague",
+        "why": "This relies on subjective praise claiming to be the most powerful platform."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c6",
+      "text": "Terra stablecoins offer instant settlements, low fees and "
+    },
+    {
+      "id": "c6",
+      "text": "seamless cross-border exchange -\n\t\t\t\t\tloved by millions of users and merchants"
+    },
+    {
+      "id": "c7",
+      "text": "forming the most "
+    },
+    {
+      "id": "c7",
+      "text": "limitless venue to "
+    },
+    {
+      "id": "c7",
+      "text": "trade"
+    },
+    {
+      "id": "c8",
+      "text": "on the most "
+    },
+    {
+      "id": "c8",
+      "text": "powerful platform to "
+    },
+    {
+      "id": "c8",
+      "text": "build on"
+    },
+    {
+      "id": "c1",
+      "text": "Now\n\t\t\t\t\tlive on Ethereum and Solana, and coming to more soon"
+    },
+    {
+      "id": "c3",
+      "text": "Crypto investors like Terraform Labs so much, they’re committing $150 million to its ‘ecosystem"
+    },
+    {
+      "id": "c4",
+      "text": "Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem"
+    },
+    {
+      "id": "c5",
+      "text": "Terra Attracts $150M for DeFi Ecosystem Fund"
+    },
+    {
+      "id": "c2",
+      "text": "Matt Cantieri, Crypto Lead at Microsoft’s M12, Officially Joins Terraform Labs as the General Manager of Anchor Protocol"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2399,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Terra\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Anchor Protocol\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Mirror Protocol\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Terraform Labs\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Do Kwon\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Matt Cantieri\",\n      \"type\": \"person\"\n    }\n  ],\n  \"facts\": [\n    \"Anchor Protocol allows Terra stablecoin deposits to earn yield powered by proof-of-stake blockchain block rewards.\",\n    \"Mirror Protocol creates fungible synthetic assets that track the price of real world assets.\",\n    \"Terra supports smart contracts enabled by CosmWasm technology.\",\n    \"Terra stablecoins are live on Ethereum and Solana.\",\n    \"Terraform Labs committed $150 million to its ecosystem fund.\",\n    \"Matt Cantieri joined Terraform Labs as the General Manager of Anchor Protocol.\"\n  ],\n  \"missing\": [\n    \"The launch year of Terra\",\n    \"Specific details on the APY or yield rates offered by Anchor Protocol\"\n  ],\n  \"fixes\": [\n    \"In the heading \\\"Terra - powering the innovation of money\\\", add the founding year of Terra.\",\n    \"In the sentence \\\"Anchor Protocol allows Terra stablecoin deposits to earn stable yield\\\", add the current average yield percentage or APY range.\",\n    \"In the sentence \\\"Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem\\\", add the names of the primary investors.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 3,\n    \"fact_density\": 3,\n    \"structure\": 2,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Terra",
+          "type": "company"
+        },
+        {
+          "name": "Anchor Protocol",
+          "type": "product"
+        },
+        {
+          "name": "Mirror Protocol",
+          "type": "product"
+        },
+        {
+          "name": "Terraform Labs",
+          "type": "company"
+        },
+        {
+          "name": "Do Kwon",
+          "type": "person"
+        },
+        {
+          "name": "Matt Cantieri",
+          "type": "person"
+        }
+      ],
+      "facts": [
+        "Anchor Protocol allows Terra stablecoin deposits to earn yield powered by proof-of-stake blockchain block rewards.",
+        "Mirror Protocol creates fungible synthetic assets that track the price of real world assets.",
+        "Terra supports smart contracts enabled by CosmWasm technology.",
+        "Terra stablecoins are live on Ethereum and Solana.",
+        "Terraform Labs committed $150 million to its ecosystem fund.",
+        "Matt Cantieri joined Terraform Labs as the General Manager of Anchor Protocol."
+      ],
+      "missing": [
+        "The launch year of Terra",
+        "Specific details on the APY or yield rates offered by Anchor Protocol"
+      ],
+      "fixes": [
+        "In the heading \"Terra - powering the innovation of money\", add the founding year of Terra.",
+        "In the sentence \"Anchor Protocol allows Terra stablecoin deposits to earn stable yield\", add the current average yield percentage or APY range.",
+        "In the sentence \"Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem\", add the names of the primary investors."
+      ],
+      "ratings": {
+        "entity_clarity": 3,
+        "fact_density": 3,
+        "structure": 2,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

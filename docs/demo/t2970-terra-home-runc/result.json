@@ -1,0 +1,223 @@
+{
+  "fixture": "terra-home.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:40:52.017Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Terra - powering the innovation of money",
+    "url": "http://127.0.0.1:52821/",
+    "textLength": 2295,
+    "rawChars": 5368,
+    "rootTag": "BODY",
+    "blocks": 29
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2952,
+    "first_ms": 3012,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem\",\n      \"kind\": \"specific\",\n      \"why\": \"It mentions Terraform Labs and the amount of $150 million.\",\n      \"summary\": \"Terraform Labs assembled investors to deploy $150 million.\"\n    },\n    {\n      \"quote\": \"Crypto investors like Terraform Labs so much, they’re committing $150 million to its ‘ecosystem’\",\n      \"kind\": \"specific\",\n      \"why\": \"It names Terraform Labs and the $150 million commitment amount.\",\n      \"summary\": \"Investors are committing $150 million to Terraform Labs.\"\n    },\n    {\n      \"quote\": \"Matt Cantieri, Crypto Lead at Microsoft’s M12, Officially Joins Terraform Labs as the General Manager of Anchor Protocol\",\n      \"kind\": \"specific\",\n      \"why\": \"It names Matt Cantieri, Microsoft, Terraform Labs, and Anchor Protocol.\"\n    },\n    {\n      \"quote\": \"Terra is a public blockchain protocol deploying a suite of algorithmic decentralized stablecoins which underpin a thriving ecosystem that brings DeFi to the masses.\",\n      \"kind\": \"specific\",\n      \"why\": \"It mentions the Terra protocol and algorithmic decentralized stablecoins.\"\n    },\n    {\n      \"quote\": \"Terra is the leading cross-chain protocol in the industry\",\n      \"kind\": \"specific\",\n      \"why\": \"It names Terra as a cross-chain protocol.\"\n    },\n    {\n      \"quote\": \"Join the fastest-growing ecosystem in crypto with 100+ projects across DeFi, Web3, and NFTs\",\n      \"kind\": \"specific\",\n      \"why\": \"It mentions 100+ projects across DeFi, Web3, and NFTs.\"\n    },\n    {\n      \"quote\": \"The Terra Protocol is an open-source stablecoin network controlled by its stakeholders\",\n      \"kind\": \"specific\",\n      \"why\": \"It specifies the Terra Protocol as an open-source stablecoin network.\"\n    },\n    {\n      \"quote\": \"Supported by the unrivaled #LUNAtics community\",\n      \"kind\": \"vague\",\n      \"why\": \"It uses the subjective term unrivaled without any checkable anchors.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem",
+        "kind": "specific",
+        "why": "It mentions Terraform Labs and the amount of $150 million.",
+        "summary": "Terraform Labs assembled investors to deploy $150 million."
+      },
+      {
+        "id": "c2",
+        "quote": "Crypto investors like Terraform Labs so much, they’re committing $150 million to its ‘ecosystem’",
+        "kind": "specific",
+        "why": "It names Terraform Labs and the $150 million commitment amount.",
+        "summary": "Investors are committing $150 million to Terraform Labs."
+      },
+      {
+        "id": "c3",
+        "quote": "Matt Cantieri, Crypto Lead at Microsoft’s M12, Officially Joins Terraform Labs as the General Manager of Anchor Protocol",
+        "kind": "specific",
+        "why": "It names Matt Cantieri, Microsoft, Terraform Labs, and Anchor Protocol."
+      },
+      {
+        "id": "c4",
+        "quote": "Terra is a public blockchain protocol deploying a suite of algorithmic decentralized stablecoins which underpin a thriving ecosystem that brings DeFi to the masses.",
+        "kind": "specific",
+        "why": "It mentions the Terra protocol and algorithmic decentralized stablecoins."
+      },
+      {
+        "id": "c5",
+        "quote": "Terra is the leading cross-chain protocol in the industry",
+        "kind": "specific",
+        "why": "It names Terra as a cross-chain protocol."
+      },
+      {
+        "id": "c6",
+        "quote": "Join the fastest-growing ecosystem in crypto with 100+ projects across DeFi, Web3, and NFTs",
+        "kind": "specific",
+        "why": "It mentions 100+ projects across DeFi, Web3, and NFTs."
+      },
+      {
+        "id": "c7",
+        "quote": "The Terra Protocol is an open-source stablecoin network controlled by its stakeholders",
+        "kind": "specific",
+        "why": "It specifies the Terra Protocol as an open-source stablecoin network."
+      },
+      {
+        "id": "c8",
+        "quote": "Supported by the unrivaled #LUNAtics community",
+        "kind": "vague",
+        "why": "It uses the subjective term unrivaled without any checkable anchors."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c4",
+      "text": "Terra is a public blockchain protocol deploying a suite of algorithmic decentralized stablecoins which underpin a thriving ecosystem that brings DeFi to the masses"
+    },
+    {
+      "id": "c5",
+      "text": "Terra is the leading cross-chain protocol in the industry"
+    },
+    {
+      "id": "c8",
+      "text": "Supported by the unrivaled #LUNAtics community"
+    },
+    {
+      "id": "c6",
+      "text": "Join the fastest-growing ecosystem in crypto with 100+ projects across DeFi, Web3, and NFTs"
+    },
+    {
+      "id": "c7",
+      "text": "The Terra Protocol is an open-source stablecoin network controlled by its stakeholders"
+    },
+    {
+      "id": "c2",
+      "text": "Crypto investors like Terraform Labs so much, they’re committing $150 million to its ‘ecosystem"
+    },
+    {
+      "id": "c1",
+      "text": "Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem"
+    },
+    {
+      "id": "c3",
+      "text": "Matt Cantieri, Crypto Lead at Microsoft’s M12, Officially Joins Terraform Labs as the General Manager of Anchor Protocol"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2560,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Terra\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Terraform Labs\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"UST\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"LUNA\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Anchor Protocol\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Do Kwon\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Matt Cantieri\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Microsoft’s M12\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Terra is a public blockchain protocol deploying a suite of algorithmic decentralized stablecoins.\",\n    \"The Terra protocol is built on the Cosmos SDK and Tendermint Consensus.\",\n    \"Terraform Labs secured $150 million in commitments for its ecosystem from investors.\",\n    \"LUNA is Terra’s decentralized reserve asset where more demand for Terra stablecoins results in more value capture.\",\n    \"Matt Cantieri joined Terraform Labs as the General Manager of Anchor Protocol after leaving Microsoft’s M12.\"\n  ],\n  \"missing\": [\n    \"The specific launch date or founding year of the Terra protocol.\",\n    \"Detailed technical mechanics explaining how the algorithmic stablecoins maintain their peg.\",\n    \"A comprehensive list or directory of the 100+ projects operating within the Terra ecosystem.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem\\\", add the specific names of the lead investors.\",\n    \"In the sentence \\\"Terra Attracts $150M for DeFi Ecosystem Fund\\\", add the specific date when the funding was announced.\",\n    \"In the sentence \\\"Matt Cantieri, Crypto Lead at Microsoft’s M12, Officially Joins Terraform Labs as the General Manager of Anchor Protocol\\\", add the exact date when he joined.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 3,\n    \"structure\": 2,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Terra",
+          "type": "product"
+        },
+        {
+          "name": "Terraform Labs",
+          "type": "company"
+        },
+        {
+          "name": "UST",
+          "type": "product"
+        },
+        {
+          "name": "LUNA",
+          "type": "product"
+        },
+        {
+          "name": "Anchor Protocol",
+          "type": "product"
+        },
+        {
+          "name": "Do Kwon",
+          "type": "person"
+        },
+        {
+          "name": "Matt Cantieri",
+          "type": "person"
+        },
+        {
+          "name": "Microsoft’s M12",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Terra is a public blockchain protocol deploying a suite of algorithmic decentralized stablecoins.",
+        "The Terra protocol is built on the Cosmos SDK and Tendermint Consensus.",
+        "Terraform Labs secured $150 million in commitments for its ecosystem from investors.",
+        "LUNA is Terra’s decentralized reserve asset where more demand for Terra stablecoins results in more value capture.",
+        "Matt Cantieri joined Terraform Labs as the General Manager of Anchor Protocol after leaving Microsoft’s M12."
+      ],
+      "missing": [
+        "The specific launch date or founding year of the Terra protocol.",
+        "Detailed technical mechanics explaining how the algorithmic stablecoins maintain their peg.",
+        "A comprehensive list or directory of the 100+ projects operating within the Terra ecosystem."
+      ],
+      "fixes": [
+        "In the sentence \"Terraform Labs Assembles an All-Star Roster of Investors Committed to Deploying $150 Million in the Terra Ecosystem\", add the specific names of the lead investors.",
+        "In the sentence \"Terra Attracts $150M for DeFi Ecosystem Fund\", add the specific date when the funding was announced.",
+        "In the sentence \"Matt Cantieri, Crypto Lead at Microsoft’s M12, Officially Joins Terraform Labs as the General Manager of Anchor Protocol\", add the exact date when he joined."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 3,
+        "structure": 2,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

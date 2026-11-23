@@ -1,0 +1,221 @@
+{
+  "fixture": "fyre-home.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:40:10.215Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Fyre Festival",
+    "url": "http://127.0.0.1:52869/",
+    "textLength": 2761,
+    "rawChars": 3450,
+    "rootTag": "BODY",
+    "blocks": 20
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 2841,
+    "first_ms": 2864,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Just an hour from Miami yet a world away from the familiar, the rugged landscape and pristine beaches of Fyre Cay are an invitation to let loose and unplug with the likeminded.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim mentions Miami as a checkable anchor location.\"\n    },\n    {\n      \"quote\": \"Over $1 million in treasure.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim mentions a specific monetary amount of one million dollars.\"\n    },\n    {\n      \"quote\": \"Less than an hour from Miami, reaching the island is a breeze via private aircraft alongside a handful of fellow travelers.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim mentions Miami as a checkable location anchor.\"\n    },\n    {\n      \"quote\": \"Get your ticket and accommodation starting from $950.00 for the next 24 hours only—join us while they last.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim mentions a starting price of 950.00 dollars and a time duration.\"\n    },\n    {\n      \"quote\": \"It was home to Blackbeard and a playground for Pablo Escobar.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim names the historical figures Blackbeard and Pablo Escobar.\"\n    },\n    {\n      \"quote\": \"A treasure hunt of exceptional proportions\",\n      \"kind\": \"vague\",\n      \"why\": \"This claim lacks any checkable anchors and relies entirely on subjective praise.\"\n    },\n    {\n      \"quote\": \"We’ve tapped the brightest minds in music, cuisine, art and hospitality to mastermind experiences designed to delight and seduce.\",\n      \"kind\": \"vague\",\n      \"why\": \"This claim lacks checkable anchors and relies on subjective terms like brightest minds.\"\n    },\n    {\n      \"quote\": \"VIP offers uncompromising access to the best of the best.\",\n      \"kind\": \"vague\",\n      \"why\": \"This claim relies on vague superlative praise without checkable details.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Just an hour from Miami yet a world away from the familiar, the rugged landscape and pristine beaches of Fyre Cay are an invitation to let loose and unplug with the likeminded.",
+        "kind": "specific",
+        "why": "This claim mentions Miami as a checkable anchor location."
+      },
+      {
+        "id": "c2",
+        "quote": "Over $1 million in treasure.",
+        "kind": "specific",
+        "why": "This claim mentions a specific monetary amount of one million dollars."
+      },
+      {
+        "id": "c3",
+        "quote": "Less than an hour from Miami, reaching the island is a breeze via private aircraft alongside a handful of fellow travelers.",
+        "kind": "specific",
+        "why": "This claim mentions Miami as a checkable location anchor."
+      },
+      {
+        "id": "c4",
+        "quote": "Get your ticket and accommodation starting from $950.00 for the next 24 hours only—join us while they last.",
+        "kind": "specific",
+        "why": "This claim mentions a starting price of 950.00 dollars and a time duration."
+      },
+      {
+        "id": "c5",
+        "quote": "It was home to Blackbeard and a playground for Pablo Escobar.",
+        "kind": "specific",
+        "why": "This claim names the historical figures Blackbeard and Pablo Escobar."
+      },
+      {
+        "id": "c6",
+        "quote": "A treasure hunt of exceptional proportions",
+        "kind": "vague",
+        "why": "This claim lacks any checkable anchors and relies entirely on subjective praise."
+      },
+      {
+        "id": "c7",
+        "quote": "We’ve tapped the brightest minds in music, cuisine, art and hospitality to mastermind experiences designed to delight and seduce.",
+        "kind": "vague",
+        "why": "This claim lacks checkable anchors and relies on subjective terms like brightest minds."
+      },
+      {
+        "id": "c8",
+        "quote": "VIP offers uncompromising access to the best of the best.",
+        "kind": "specific",
+        "why": "Names a named place, person or organisation (VIP) that a reader can check against a public source.",
+        "note": "contains a subjective word: best",
+        "overridden": true,
+        "anchor": {
+          "type": "name",
+          "text": "VIP"
+        }
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c5",
+      "text": "It was home to Blackbeard and a playground for Pablo Escobar"
+    },
+    {
+      "id": "c1",
+      "text": "Just an hour from Miami yet a world away from the familiar, the rugged landscape and pristine beaches of Fyre Cay are an invitation to let loose and unplug with the likeminded"
+    },
+    {
+      "id": "c6",
+      "text": "A treasure hunt of "
+    },
+    {
+      "id": "c6",
+      "text": "exceptional proportions"
+    },
+    {
+      "id": "c2",
+      "text": "Over "
+    },
+    {
+      "id": "c2",
+      "text": "$1 million in treasure"
+    },
+    {
+      "id": "c7",
+      "text": "We’ve tapped the brightest minds in music, cuisine, art and hospitality to mastermind experiences designed to delight and seduce"
+    },
+    {
+      "id": "c3",
+      "text": "Less than an hour from Miami, reaching the island is a breeze via private aircraft alongside a handful of fellow travelers"
+    },
+    {
+      "id": "c8",
+      "text": "VIP offers uncompromising access to the best of the best"
+    },
+    {
+      "id": "c4",
+      "text": "Get your ticket and accommodation starting from $950.00 for the next 24 hours only—join us while they last"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2165,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Fyre Festival\",\n      \"type\": \"other\"\n    },\n    {\n      \"name\": \"Fyre Cay\",\n      \"type\": \"place\"\n    },\n    {\n      \"name\": \"Blackbeard\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Pablo Escobar\",\n      \"type\": \"person\"\n    }\n  ],\n  \"facts\": [\n    \"Fyre Cay is located just an hour from Miami.\",\n    \"The island offers an immersive treasure hunt with over $1 million in treasure.\",\n    \"Tickets and accommodations start from $950.00 for a limited time.\",\n    \"Fyre tickets encompass all flights, culinary delights, and accommodations.\",\n    \"The island was historically home to Blackbeard and used as a playground by Pablo Escobar.\",\n    \"Travel to the island involves a flight via private aircraft.\"\n  ],\n  \"missing\": [\n    \"The specific geographic location or country where Fyre Cay is situated\",\n    \"The exact dates or year when the event is scheduled to take place\",\n    \"The names of any specific music artists, chefs, or talent involved\",\n    \"The full list of what is included in General Admission versus VIP tickets\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Fyre Cay awaits you.\\\", add the geographic region or country where Fyre Cay is located.\",\n    \"In the sentence \\\"Get your ticket and accommodation starting from $950.00 for the next 24 hours only—join us while they last.\\\", add the specific calendar dates for the event.\",\n    \"In the phrase \\\"multi-platinum artists, you will find yourself one-on-one with some of the greatest talent on the planet.\\\", add the names of at least two featured artists.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 3,\n    \"fact_density\": 2,\n    \"structure\": 3,\n    \"trust_signals\": 1,\n    \"ambiguity\": 1\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Fyre Festival",
+          "type": "other"
+        },
+        {
+          "name": "Fyre Cay",
+          "type": "place"
+        },
+        {
+          "name": "Blackbeard",
+          "type": "person"
+        },
+        {
+          "name": "Pablo Escobar",
+          "type": "person"
+        }
+      ],
+      "facts": [
+        "Fyre Cay is located just an hour from Miami.",
+        "The island offers an immersive treasure hunt with over $1 million in treasure.",
+        "Tickets and accommodations start from $950.00 for a limited time.",
+        "Fyre tickets encompass all flights, culinary delights, and accommodations.",
+        "The island was historically home to Blackbeard and used as a playground by Pablo Escobar.",
+        "Travel to the island involves a flight via private aircraft."
+      ],
+      "missing": [
+        "The specific geographic location or country where Fyre Cay is situated",
+        "The exact dates or year when the event is scheduled to take place",
+        "The names of any specific music artists, chefs, or talent involved",
+        "The full list of what is included in General Admission versus VIP tickets"
+      ],
+      "fixes": [
+        "In the sentence \"Fyre Cay awaits you.\", add the geographic region or country where Fyre Cay is located.",
+        "In the sentence \"Get your ticket and accommodation starting from $950.00 for the next 24 hours only—join us while they last.\", add the specific calendar dates for the event.",
+        "In the phrase \"multi-platinum artists, you will find yourself one-on-one with some of the greatest talent on the planet.\", add the names of at least two featured artists."
+      ],
+      "ratings": {
+        "entity_clarity": 3,
+        "fact_density": 2,
+        "structure": 3,
+        "trust_signals": 1,
+        "ambiguity": 1
+      }
+    }
+  }
+}

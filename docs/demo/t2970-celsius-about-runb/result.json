@@ -1,0 +1,220 @@
+{
+  "fixture": "celsius-about.html",
+  "source_url": null,
+  "run_at": "2026-11-23T05:40:25.786Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "About Celsius - Celsius",
+    "url": "http://127.0.0.1:52758/",
+    "textLength": 2599,
+    "rawChars": 5198,
+    "rootTag": "MAIN",
+    "blocks": 33
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3054,
+    "first_ms": 3080,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Celsius exceeds $50m in community assets and $100m in coin loan origination, a significant\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim mentions specific asset and loan milestones that can be verified.\"\n    },\n    {\n      \"quote\": \"Celsius is now available in over 100 countries around the world\",\n      \"kind\": \"specific\",\n      \"why\": \"This can be checked by verifying the geographic availability of Celsius.\"\n    },\n    {\n      \"quote\": \"Celsius Closes Equity Funding Round With Over $18.8 Million Raised\",\n      \"kind\": \"specific\",\n      \"why\": \"This funding amount and event can be checked against financial records.\"\n    },\n    {\n      \"quote\": \"On July 24, Celsius, a leading interest income and crypto lending platform, announced the…\",\n      \"kind\": \"specific\",\n      \"why\": \"This announcement date can be checked against historical company press releases.\"\n    },\n    {\n      \"quote\": \"CEL Token Has Grown by 800% Since mid-March\",\n      \"kind\": \"specific\",\n      \"why\": \"This percentage growth and timeframe can be checked using market data.\"\n    },\n    {\n      \"quote\": \"Our goal is to disrupt the financial industry, one happy user at a time, and introduce financial freedom through crypto.\",\n      \"kind\": \"vague\",\n      \"why\": \"This statement expresses a subjective goal without concrete checkable metrics.\"\n    },\n    {\n      \"quote\": \"Customers like to be treated fairly (who knew).\",\n      \"kind\": \"vague\",\n      \"why\": \"This is a subjective statement lacking any verifiable data or anchors.\"\n    },\n    {\n      \"quote\": \"With a little bit of humanity and honesty, and the power of a digital currency that’s as strong as it is accessible, we’re ushering in the new economy today.\",\n      \"kind\": \"vague\",\n      \"why\": \"This uses promotional language and lacks specific, checkable facts.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Celsius exceeds $50m in community assets and $100m in coin loan origination, a significant",
+        "kind": "specific",
+        "why": "This claim mentions specific asset and loan milestones that can be verified."
+      },
+      {
+        "id": "c2",
+        "quote": "Celsius is now available in over 100 countries around the world",
+        "kind": "specific",
+        "why": "This can be checked by verifying the geographic availability of Celsius."
+      },
+      {
+        "id": "c3",
+        "quote": "Celsius Closes Equity Funding Round With Over $18.8 Million Raised",
+        "kind": "specific",
+        "why": "This funding amount and event can be checked against financial records."
+      },
+      {
+        "id": "c4",
+        "quote": "On July 24, Celsius, a leading interest income and crypto lending platform, announced the…",
+        "kind": "specific",
+        "why": "This announcement date can be checked against historical company press releases.",
+        "note": "contains a subjective word: leading"
+      },
+      {
+        "id": "c5",
+        "quote": "CEL Token Has Grown by 800% Since mid-March",
+        "kind": "specific",
+        "why": "This percentage growth and timeframe can be checked using market data."
+      },
+      {
+        "id": "c6",
+        "quote": "Our goal is to disrupt the financial industry, one happy user at a time, and introduce financial freedom through crypto.",
+        "kind": "vague",
+        "why": "This statement expresses a subjective goal without concrete checkable metrics."
+      },
+      {
+        "id": "c7",
+        "quote": "Customers like to be treated fairly (who knew).",
+        "kind": "vague",
+        "why": "This is a subjective statement lacking any verifiable data or anchors."
+      },
+      {
+        "id": "c8",
+        "quote": "With a little bit of humanity and honesty, and the power of a digital currency that’s as strong as it is accessible, we’re ushering in the new economy today.",
+        "kind": "vague",
+        "why": "This uses promotional language and lacks specific, checkable facts."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c8",
+      "text": "With a little bit of humanity and honesty, and the power\n                    of a digital currency that’s as strong as it is accessible, we’re ushering in the new economy today"
+    },
+    {
+      "id": "c6",
+      "text": "Our goal is to disrupt the\n                    financial industry, one happy user at a time, and introduce financial freedom through crypto"
+    },
+    {
+      "id": "c1",
+      "text": "Celsius exceeds $50m in community assets and $100m in coin loan origination, a significant"
+    },
+    {
+      "id": "c2",
+      "text": "Celsius is now available in over 100 countries around the world"
+    },
+    {
+      "id": "c7",
+      "text": "Customers like to be treated fairly (who knew)"
+    },
+    {
+      "id": "c3",
+      "text": "Celsius Closes Equity Funding Round With Over $18.8 Million Raised"
+    },
+    {
+      "id": "c4",
+      "text": "On July 24, Celsius, a leading interest income and crypto lending platform, announced the…"
+    },
+    {
+      "id": "c5",
+      "text": "CEL Token Has Grown by 800% Since mid-March"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2306,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Celsius\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Alex\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Daniel\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"CEL Tokens\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Celsius app\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Dr. W. Scott Stornetta\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Nexo\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Celsius provides a platform of curated services including fair interest, zero fees, and transactions.\",\n    \"Founders Alex and Daniel drew up the plan for Celsius on a coffee shop napkin.\",\n    \"Celsius completed an Initial Coin Offering to make CEL Tokens available worldwide.\",\n    \"Celsius is available in over 100 countries around the world.\",\n    \"Celsius closed an Equity Funding Round with over $18.8 Million Raised.\",\n    \"The CEL token of Celsius Network grew by 800 percent since mid-March.\"\n  ],\n  \"missing\": [\n    \"The founding year of Celsius.\",\n    \"The last name of co-founder Daniel.\",\n    \"The specific date of the equity funding round announcement.\",\n    \"The exact number of community assets and coin loan origination that got cut off in the timeline.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Our founders Alex and Daniel draw up the plan for Celsius on a coffee shop napkin\\\", add Daniel's last name.\",\n    \"In the timeline entry starting with \\\"Celsius completes its successful Initial Coin Offering\\\", add the specific year.\",\n    \"In the sentence \\\"Celsius Closes Equity Funding Round With Over $18.8 Million Raised\\\", add the exact date of the announcement mentioned in the text.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 2,\n    \"fact_density\": 2,\n    \"structure\": 1,\n    \"trust_signals\": 1,\n    \"ambiguity\": 1\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Celsius",
+          "type": "company"
+        },
+        {
+          "name": "Alex",
+          "type": "person"
+        },
+        {
+          "name": "Daniel",
+          "type": "person"
+        },
+        {
+          "name": "CEL Tokens",
+          "type": "product"
+        },
+        {
+          "name": "Celsius app",
+          "type": "product"
+        },
+        {
+          "name": "Dr. W. Scott Stornetta",
+          "type": "person"
+        },
+        {
+          "name": "Nexo",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Celsius provides a platform of curated services including fair interest, zero fees, and transactions.",
+        "Founders Alex and Daniel drew up the plan for Celsius on a coffee shop napkin.",
+        "Celsius completed an Initial Coin Offering to make CEL Tokens available worldwide.",
+        "Celsius is available in over 100 countries around the world.",
+        "Celsius closed an Equity Funding Round with over $18.8 Million Raised.",
+        "The CEL token of Celsius Network grew by 800 percent since mid-March."
+      ],
+      "missing": [
+        "The founding year of Celsius.",
+        "The last name of co-founder Daniel.",
+        "The specific date of the equity funding round announcement.",
+        "The exact number of community assets and coin loan origination that got cut off in the timeline."
+      ],
+      "fixes": [
+        "In the sentence \"Our founders Alex and Daniel draw up the plan for Celsius on a coffee shop napkin\", add Daniel's last name.",
+        "In the timeline entry starting with \"Celsius completes its successful Initial Coin Offering\", add the specific year.",
+        "In the sentence \"Celsius Closes Equity Funding Round With Over $18.8 Million Raised\", add the exact date of the announcement mentioned in the text."
+      ],
+      "ratings": {
+        "entity_clarity": 2,
+        "fact_density": 2,
+        "structure": 1,
+        "trust_signals": 1,
+        "ambiguity": 1
+      }
+    }
+  }
+}
