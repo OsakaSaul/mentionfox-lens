@@ -8,7 +8,8 @@ export function mentionfoxLink(path, content) {
   return u.toString();
 }
 
-// People Intelligence is the MentionFox page that covers claim verification against public registers.
-export const VERIFY_CLAIMS_URL = mentionfoxLink("/people-intelligence", "verify_claims");
-// No dedicated decision-maker page exists on the site, so this goes to the homepage.
-export const DECISION_MAKERS_URL = mentionfoxLink("/", "decision_makers");
+// Source Check: the public MentionFox page that explains checking a named person's stated credentials against public registers.
+// (Chosen over /people-intelligence, a recruiter landing page, and /claims-check, the noindex app route.)
+export const VERIFY_CLAIMS_URL = mentionfoxLink("/source-check", "verify_claims");
+// Find Contact: the public MentionFox tool page for finding a professional's work email and contact details.
+export const DECISION_MAKERS_URL = mentionfoxLink("/tools/find-contact", "decision_makers");

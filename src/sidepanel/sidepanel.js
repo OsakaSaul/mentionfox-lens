@@ -233,6 +233,8 @@ async function analyze() {
     setStatus("Checking how an AI assistant would read this page...");
     const gres = await engine.runTask({ key: "geo", schema: GEO_SCHEMA, prompt: buildGeoPrompt(page.text, { title: page.title }), normalize: normalizeGeo, deviceStatus });
     renderGeo(gres.value, gres);
+    // Dev builds only: expose the last run so scripts/live-probe.mjs can save the raw model output.
+    if (typeof __DEV_BUILD__ !== "undefined" && __DEV_BUILD__) window.__lensLast = { page: { title: page.title, url: page.url, textLength: page.textLength, rootTag: page.rootTag }, claims: cres, highlight: hres, geo: gres };
     setDeviceChip(await engine.probeDevice(), "");
     setStatus(`Done. ${cres.value.length} claims${missing ? `, ${missing} not found on the page` : ""}. Click a claim to jump to it.`);
   } catch (err) {

@@ -141,7 +141,7 @@ export async function runTask({ key, schema, prompt, normalize, deviceStatus }) 
     out = await attempt(InferenceMode.ONLY_IN_CLOUD);
     value = normalize(parseModelJson(out.text));
   }
-  return { value, source: out.source, inferred: out.inferred, ms: Math.round(performance.now() - t0), retried };
+  return { value, source: out.source, inferred: out.inferred, ms: Math.round(performance.now() - t0), retried, raw: out.text };
 }
 
 export { InferenceSource };

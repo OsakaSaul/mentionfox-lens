@@ -83,3 +83,20 @@ test("prompts: page text is fenced, truncated, and schemas require what the pars
   assert.deepEqual(CLAIMS_SCHEMA.properties.claims.items.required, ["quote", "kind", "why"]);
   assert.ok(GEO_SCHEMA.required.includes("ratings"));
 });
+
+import { preparePageText } from "../src/shared/prompts.js";
+test("preparePageText: short pages untouched; long pages drop menu lines first, then keep head and tail", () => {
+  assert.equal(preparePageText("hello\nworld", 100), "hello\nworld");
+  const menu = Array.from({ length: 400 }, (_, i) => "Menu" + i).join("\n"); // short lines, no digits-only exemptions
+  const body = "Acme was founded in 2019 in Austin and raised $4M.\n" + "x ".repeat(100);
+  const out = preparePageText(menu.replace(/\d/g, "") + "\n" + body, 600);
+  assert.ok(out.length <= 600);
+  assert.match(out, /raised \$4M/);
+  assert.ok(!/Menu\nMenu\nMenu/.test(out));
+  const long = "A".repeat(500) + ".\n" + ("filler sentence number one. ".repeat(200)) + "\nTHE END: closing statement.";
+  const cut = preparePageText(long, 1000);
+  assert.ok(cut.length <= 1000);
+  assert.match(cut, /\[\.\.\.\]/);
+  assert.match(cut, /closing statement\.$/);
+  assert.ok(cut.startsWith("AAAA"));
+});

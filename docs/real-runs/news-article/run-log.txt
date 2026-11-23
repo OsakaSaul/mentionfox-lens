@@ -1,0 +1,18 @@
+date: 2026-11-23T02:30:42.119Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: news-article.html (source https://www.bbc.com/news/articles/c3qj57rkd2k1o)
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: cloud fallback
+status after Analyze: Done. 8 claims. Click a claim to jump to it.
+claims mode badge: Cloud
+claims: 8, highlighted: 8, claims 3075 ms, geo 2789 ms
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

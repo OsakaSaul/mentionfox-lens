@@ -1,0 +1,18 @@
+date: 2026-11-23T02:30:22.316Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: press-release.html (source https://newsroom.spotify.com/2025-02-04/spotify-reports-fourth-quarter-2024-earnings/)
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: cloud fallback
+status after Analyze: Done. 9 claims. Click a claim to jump to it.
+claims mode badge: Cloud
+claims: 9, highlighted: 9, claims 3480 ms, geo 2464 ms
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

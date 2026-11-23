@@ -63,6 +63,8 @@ test("upgrade links: new-tab safe, UTM present, no page data", () => {
     assert.equal(url.searchParams.get("utm_medium"), "extension");
     assert.equal(url.searchParams.get("utm_campaign"), "hybridai");
   }
+  assert.equal(new URL(VERIFY_CLAIMS_URL).pathname, "/source-check");
+  assert.equal(new URL(DECISION_MAKERS_URL).pathname, "/tools/find-contact");
   assert.match(mentionfoxLink("/x", "c"), /utm_content=c/);
   const html = read("src/sidepanel/sidepanel.html");
   for (const id of ["linkVerify", "linkPeople"]) {

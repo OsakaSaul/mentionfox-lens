@@ -1,0 +1,219 @@
+{
+  "fixture": "news-article.html",
+  "source_url": "https://www.bbc.com/news/articles/c3qj57rkd2k1o",
+  "run_at": "2026-11-23T02:30:48.668Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Molly Meldrum: Australian music legend dies aged 83",
+    "url": "http://127.0.0.1:58263/",
+    "textLength": 3199,
+    "rootTag": "MAIN"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3075,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Australian music industry legend Molly Meldrum has died aged 83 after a long illness.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check public death records and news reports for his age and date of death.\"\n    },\n    {\n      \"quote\": \"Meldrum in 2014 became the first person who was not a recording artist to be inducted into the Australian Recording Industry Association (Aria) Hall of Fame.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check ARIA Hall of Fame records to verify his induction year and status.\"\n    },\n    {\n      \"quote\": \"Meldrum lived with an acquired brain injury after falling from a ladder in 2011.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check public news coverage regarding his 2011 accident.\"\n    },\n    {\n      \"quote\": \"Born in Victoria in 1943, he displayed a love of music from an early age and went on to host the Australian Broadcasting Corporation's music television programme Countdown\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check biographical records for his birth year and television hosting history.\"\n    },\n    {\n      \"quote\": \"Among his most famous interviews was a 1977 sit-down with King Charles, in which Meldrum could not calm his jitters.\",\n      \"kind\": \"specific\",\n      \"why\": \"A reader can check archival footage of the 1977 interview to verify this claim.\"\n    },\n    {\n      \"quote\": \"Affectionately dubbed 'the Guru', Molly was the heartbeat, the champion and the spirit of Australian music\",\n      \"kind\": \"vague\",\n      \"why\": \"This family statement uses unverifiable emotional metaphors rather than factual metrics.\"\n    },\n    {\n      \"quote\": \"Elton John, who described Meldrum as the single most important influence in Australian pop music.\",\n      \"kind\": \"vague\",\n      \"why\": \"This is an unmeasurable subjective opinion expressed by a public figure.\"\n    },\n    {\n      \"quote\": \"One of his greatest legacies will be the generations of Australians who grew up with his unmistakable enthusiasm and love of music.\",\n      \"kind\": \"vague\",\n      \"why\": \"This statement by Arts Minister Tony Burke contains subjective praise that cannot be empirically measured.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Australian music industry legend Molly Meldrum has died aged 83 after a long illness.",
+        "kind": "specific",
+        "why": "A reader can check public death records and news reports for his age and date of death."
+      },
+      {
+        "id": "c2",
+        "quote": "Meldrum in 2014 became the first person who was not a recording artist to be inducted into the Australian Recording Industry Association (Aria) Hall of Fame.",
+        "kind": "specific",
+        "why": "A reader can check ARIA Hall of Fame records to verify his induction year and status."
+      },
+      {
+        "id": "c3",
+        "quote": "Meldrum lived with an acquired brain injury after falling from a ladder in 2011.",
+        "kind": "specific",
+        "why": "A reader can check public news coverage regarding his 2011 accident."
+      },
+      {
+        "id": "c4",
+        "quote": "Born in Victoria in 1943, he displayed a love of music from an early age and went on to host the Australian Broadcasting Corporation's music television programme Countdown",
+        "kind": "specific",
+        "why": "A reader can check biographical records for his birth year and television hosting history."
+      },
+      {
+        "id": "c5",
+        "quote": "Among his most famous interviews was a 1977 sit-down with King Charles, in which Meldrum could not calm his jitters.",
+        "kind": "specific",
+        "why": "A reader can check archival footage of the 1977 interview to verify this claim."
+      },
+      {
+        "id": "c6",
+        "quote": "Affectionately dubbed 'the Guru', Molly was the heartbeat, the champion and the spirit of Australian music",
+        "kind": "vague",
+        "why": "This family statement uses unverifiable emotional metaphors rather than factual metrics."
+      },
+      {
+        "id": "c7",
+        "quote": "Elton John, who described Meldrum as the single most important influence in Australian pop music.",
+        "kind": "vague",
+        "why": "This is an unmeasurable subjective opinion expressed by a public figure."
+      },
+      {
+        "id": "c8",
+        "quote": "One of his greatest legacies will be the generations of Australians who grew up with his unmistakable enthusiasm and love of music.",
+        "kind": "vague",
+        "why": "This statement by Arts Minister Tony Burke contains subjective praise that cannot be empirically measured."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Australian music industry legend Molly Meldrum has died aged 83 after a long illness"
+    },
+    {
+      "id": "c7",
+      "text": "Elton John, who described Meldrum as the \"single most important influence in Australian pop music"
+    },
+    {
+      "id": "c6",
+      "text": "Affectionately dubbed 'the Guru', Molly was the heartbeat, the champion and the spirit of Australian music"
+    },
+    {
+      "id": "c3",
+      "text": "Meldrum lived with an acquired brain injury after falling from a ladder in 2011"
+    },
+    {
+      "id": "c4",
+      "text": "Born in Victoria in 1943, he displayed a love of music from an early age and went on to host the Australian Broadcasting Corporation's music television programme Countdown"
+    },
+    {
+      "id": "c2",
+      "text": "Meldrum in 2014 became the first person who was not a recording artist to be inducted into the Australian Recording Industry Association (Aria) Hall of Fame"
+    },
+    {
+      "id": "c5",
+      "text": "Among his most famous interviews was a 1977 sit-down with King Charles, in which Meldrum could not calm his jitters"
+    },
+    {
+      "id": "c8",
+      "text": "One of his greatest legacies will be the generations of Australians who grew up with his unmistakable enthusiasm and love of music"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2789,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Molly Meldrum\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Ian Alexander Meldrum\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"INXS\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Kylie Minogue\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Abba\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"King Charles\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Elton John\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Tony Burke\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Australian Broadcasting Corporation\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Australian Recording Industry Association\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Molly Meldrum died at the age of 83 after a long illness.\",\n    \"He passed away peacefully at a hospital in Melbourne in the early hours of Monday morning.\",\n    \"He hosted the Australian Broadcasting Corporation's music television programme Countdown.\",\n    \"Meldrum was the first person who was not a recording artist to be inducted into the Aria Hall of Fame in 2014.\",\n    \"He lived with an acquired brain injury following a fall from a ladder in 2011.\",\n    \"He famously interviewed King Charles in 1977.\"\n  ],\n  \"missing\": [\n    \"The exact date of death\",\n    \"Specific details regarding the long illness mentioned\",\n    \"The name of the Melbourne hospital where he passed away\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Australian music industry legend Molly Meldrum has died aged 83 after a long illness.\\\", add the exact calendar date of his death.\",\n    \"In the sentence \\\"Meldrum's family said he \\\"passed away peacefully\\\" at a hospital in Melbourne in the early hours of Monday morning.\\\", add the specific name of the hospital.\",\n    \"In the sentence \\\"The music promoter and broadcaster, born Ian Alexander Meldrum, helped define the nation's music tastes for decades...\\\", add the specific years he was active as a broadcaster.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 3,\n    \"structure\": 3,\n    \"trust_signals\": 2,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Molly Meldrum",
+          "type": "person"
+        },
+        {
+          "name": "Ian Alexander Meldrum",
+          "type": "person"
+        },
+        {
+          "name": "INXS",
+          "type": "company"
+        },
+        {
+          "name": "Kylie Minogue",
+          "type": "person"
+        },
+        {
+          "name": "Abba",
+          "type": "company"
+        },
+        {
+          "name": "King Charles",
+          "type": "person"
+        },
+        {
+          "name": "Elton John",
+          "type": "person"
+        },
+        {
+          "name": "Tony Burke",
+          "type": "person"
+        },
+        {
+          "name": "Australian Broadcasting Corporation",
+          "type": "company"
+        },
+        {
+          "name": "Australian Recording Industry Association",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Molly Meldrum died at the age of 83 after a long illness.",
+        "He passed away peacefully at a hospital in Melbourne in the early hours of Monday morning.",
+        "He hosted the Australian Broadcasting Corporation's music television programme Countdown.",
+        "Meldrum was the first person who was not a recording artist to be inducted into the Aria Hall of Fame in 2014.",
+        "He lived with an acquired brain injury following a fall from a ladder in 2011.",
+        "He famously interviewed King Charles in 1977."
+      ],
+      "missing": [
+        "The exact date of death",
+        "Specific details regarding the long illness mentioned",
+        "The name of the Melbourne hospital where he passed away"
+      ],
+      "fixes": [
+        "In the sentence \"Australian music industry legend Molly Meldrum has died aged 83 after a long illness.\", add the exact calendar date of his death.",
+        "In the sentence \"Meldrum's family said he \"passed away peacefully\" at a hospital in Melbourne in the early hours of Monday morning.\", add the specific name of the hospital.",
+        "In the sentence \"The music promoter and broadcaster, born Ian Alexander Meldrum, helped define the nation's music tastes for decades...\", add the specific years he was active as a broadcaster."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 3,
+        "structure": 3,
+        "trust_signals": 2,
+        "ambiguity": 3
+      }
+    }
+  }
+}

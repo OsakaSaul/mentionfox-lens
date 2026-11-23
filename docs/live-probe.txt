@@ -1,10 +1,10 @@
-date: 2026-11-23T01:22:39.376Z
+date: 2026-11-23T02:35:31.787Z
 browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
 extra flags: none
 LanguageModel.availability(): unavailable
 chip: On-device not available on this device: cloud fallback
-status after Analyze: The cloud fallback was refused (App Check or key restriction). On-device analysis still works where supported. Details: AI: Error fetching from https://firebasevertexai.googleapis.com/v1beta/projects/mentionfox-lens/models/gemini-3.5-flash-lite:generateContent: [401 ] Firebase Ap
-claims mode badge: (no result badge: no model answer)
+status after Analyze: Done. 8 claims, 1 not found on the page. Click a claim to jump to it.
+claims mode badge: Cloud
 console (first 12 lines, token redacted):
   [warning] Unable to create a text session because the service is not running.
   [warning] Unable to create a text session because the service is not running.
@@ -12,7 +12,5 @@ console (first 12 lines, token redacted):
   [log] Firebase App Check debug token: <debug-token>
   [warning] Unable to create a text session because the service is not running.
   [warning] Unable to create a text session because the service is not running.
-  [error] Failed to load resource: the server responded with a status of 403 ()
-  [warning] [2026-11-23T01:22:40.251Z]  @firebase/ai: Unable to obtain a valid App Check token: AppCheck: Fetch server returned an HTTP error status. HTTP status: 403. (appCheck/fetch-status-error).
-  [error] Failed to load resource: the server responded with a status of 401 ()
-  [error] Failed to load resource: the server responded with a status of 403 ()
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

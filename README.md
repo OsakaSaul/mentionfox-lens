@@ -9,14 +9,14 @@ Every run shows a **mode badge** ("On-device (private)" or "Cloud") and the late
 
 Built for the [#BuildHybridAI 2026 hackathon](https://firebasehybridaihackathon.devpost.com/) with **Firebase AI Logic hybrid inference**: the model runs on-device with **Gemini Nano in Chrome** when it is available, and falls back to the cloud when it is not.
 
-Free to use. No account, no paywall, nothing sent to MentionFox servers. The two links at the bottom of the panel open MentionFox in a new tab and are the only upsell.
+Free to use. No account, no paywall, nothing sent to MentionFox servers. The two links at the bottom of the panel open MentionFox in a new tab and are the only upsell: "Verify these claims against public registers" goes to the MentionFox Source Check page (`/source-check`) and "Find contact details for a decision maker" goes to the MentionFox Find Contact tool (`/tools/find-contact`), both with `utm_source=lens&utm_medium=extension&utm_campaign=hybridai`.
 
 <!-- Screenshots: add real captures from a Chrome with the on-device model (see "What the owner must test"). -->
 | Claim X-ray | AI view | Highlights in place |
 |---|---|---|
 | ![Claim X-ray placeholder](docs/screenshots/e2e-sidepanel-claims.png) | ![AI view placeholder](docs/screenshots/e2e-sidepanel-ai-view.png) | ![Highlights placeholder](docs/screenshots/e2e-linkedin-page-highlights.png) |
 
-The screenshots above are **test-harness captures with a mocked model on a synthetic fixture page** (see "Verification"). They show the UI, not real model output. Replace them with real captures before publishing.
+The screenshots above are **test-harness captures with a mocked model on a synthetic fixture page** (see "Verification"). They show the UI, not real model output. Real captures from the real cloud path on four real pages are in [`docs/real-runs/`](docs/real-runs/) (each folder has `panel-claims.png`, `page-highlights.png`, `panel-geo.png`); they show the **Cloud** badge, because on-device Gemini Nano could not run on the build machine.
 
 ## How hybrid inference is used
 
@@ -48,6 +48,27 @@ Cloud fallback model: the SDK's hybrid default, `gemini-3.5-flash-lite` (set in 
 - The links to MentionFox carry only UTM tags, never page content.
 
 Permissions: `activeTab`, `scripting`, `sidePanel`. Nothing else.
+
+## Judges' path
+
+1. **Clone and build.**
+   ```bash
+   git clone https://github.com/OsakaSaul/mentionfox-lens.git
+   cd mentionfox-lens
+   npm install
+   npm run build:dev
+   ```
+   Node 20 or newer. This writes the extension to `dist/`.
+2. **App Check debug token (needed only for the cloud fallback).** The extension's Firebase web config is public and already in the repo (project `mentionfox-lens`). The cloud path is protected by Firebase App Check and the repo's own registered debug token is **not published in the repo** (it is a credential). A judge has three options:
+   - Use the token supplied in the owner's Devpost submission instructions, if the hackathon form allows one. The owner's assistant will provide it there, never in this repository. Put it in a gitignored `.env.local` as `APPCHECK_DEBUG_TOKEN=<token>` before `npm run build:dev`.
+   - Or point the build at your own Firebase project with AI Logic enabled (see "Firebase config" below), run `npm run build:dev` without a token, open the side panel DevTools console, copy the "Firebase App Check debug token" line it prints, and register it under App Check > Apps > Manage debug tokens in your own project.
+   - Or test the on-device path only (step 5): it does not call App Check or the cloud.
+3. **Load unpacked.** `chrome://extensions`, Developer mode on, **Load unpacked**, choose `dist/`. Pin MentionFox Lens.
+4. **Analyze a page.** Open any normal web page (a press release, a bio, a company homepage), click the Lens icon, click **Open Lens side panel**, then **Analyze this page**. One click runs both checks. You will see: a status chip about the on-device model; the **Claim X-ray** tab with each claim as a green (specific and checkable) or amber (vague or puffery) card with a one-line reason, the same sentences highlighted in place on the page, and a mode badge with the latency in ms (about 3 to 4 s on the cloud path in our runs); clicking a card scrolls to the sentence and flashes it. The **AI view** tab shows the 0 to 100 score with what each range means, the people, companies and products it would pick up, facts, what is missing, 3 fixes, and how the score is built. **Clear** removes the highlights.
+5. **On-device path.** Needs desktop Chrome 139 or newer on hardware that meets Chrome's on-device model requirements, with `chrome://flags/#prompt-api-for-gemini-nano` set to Enabled and (if listed) `chrome://flags/#optimization-guide-on-device-model` set to Enabled BypassPerfRequirement, then a restart, then `chrome://components` > Optimization Guide On Device Model > Check for update until the version is not 0.0.0.0. The status chip then reads "Private on-device model: ready" (or "downloads on first Analyze", in which case Analyze starts the download and shows a progress bar while the cloud answers). The badge reads **On-device (private)** when Gemini Nano answered and **Cloud** when Firebase AI Logic's cloud model answered.
+6. **Fallback.** Without a usable on-device model the SDK (`InferenceMode.PREFER_ON_DEVICE`) routes to the cloud, the badge says **Cloud** and the chip says on-device is not available. If an on-device answer cannot be parsed, Lens retries once in the cloud and says so next to the badge.
+
+**What was and was not verified:** the cloud path (App Check with a registered debug token, Firebase AI Logic, structured output, highlighting, UI) was run for real on 2026-11-23, see "Run log" and [`docs/real-runs/NOTES.md`](docs/real-runs/NOTES.md). The on-device path was **not** run by the authors (the available Chromium 151 reports Gemini Nano as unavailable); it is implemented against the SDK's documented hybrid API and needs a real Chrome with Gemini Nano to confirm.
 
 ## Setup
 
@@ -84,14 +105,15 @@ The token lives only in `.env.local` and in dev bundles under `dist/` (gitignore
 ## Tests and verification
 
 ```bash
-npm test          # 44 unit tests (parsing, matching, GEO score, manifest)
+npm test          # 49 unit tests (parsing, matching, GEO score, manifest, real-run regression)
 npm run e2e       # loads the built extension in Chromium against HTML fixtures; model MOCKED
 node scripts/live-probe.mjs   # real, unmocked run of the dev build; writes docs/live-probe.txt
+node scripts/live-probe.mjs --fixture fixtures/real/founder-bio.html   # same, on a saved real page; writes docs/real-runs/founder-bio/ (raw model JSON, screenshots)
 ```
 
 Unit tests cover: prompt and JSON parsing with fenced, trailing-text, trailing-comma, truncated and garbage output; claim-to-range matching (whitespace, case, curly quotes, dashes, multi-element ranges, re-render recovery, Custom Highlight API fallback) against four HTML fixtures shaped like a LinkedIn profile, an X post, a company site and a news article; the GEO score and bands; and manifest rules (MV3, permission allow-list, no host permissions, CSP, no remote scripts, no eval in the bundle, tooltips and accessible names on every control, no model names in UI strings).
 
-The fixtures are **hand-written approximations of those layouts**, not saved copies of real pages. Nothing was logged in to. Real LinkedIn and X markup changes often; the matcher works on rendered text, not class names, which is why it should survive that, but it has not been run on the live sites.
+The fixtures in `test/fixtures/` are **hand-written approximations of those layouts**, not saved copies of real pages. Separately, `fixtures/real/` holds four saved real public pages (a founder bio, a press release, a company homepage, a news article; URLs and dates in `fixtures/real/README.md`) used for the real runs below. Nothing was logged in to. Real LinkedIn and X markup changes often; the matcher works on rendered text, not class names, which is why it should survive that, but it has not been run on the live sites.
 
 The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content script is injected on demand, claims are wrapped in place, a click on a claim scrolls to and flashes the exact text, clear removes everything, and both mode badges render. **The model is mocked there**, so it says nothing about model quality or about Gemini Nano.
 
@@ -100,8 +122,9 @@ The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content scrip
 | Mode | Status | Evidence |
 |---|---|---|
 | On-device (Gemini Nano) | **Not run.** The Chromium used for CI (version 151) exposes `LanguageModel` but reports `availability() = unavailable`, with or without the Prompt API feature flags, so no on-device answer was produced. | `docs/live-probe.txt`, `docs/live-probe-nano-flags.txt` |
-| Cloud fallback | **Reached the cloud endpoint, no model answer yet.** The request went to `firebasevertexai.googleapis.com` and was refused with 401 because the App Check debug token was not yet registered in the Firebase console (token exchange returned 403). Registering the token is the remaining step. | `docs/live-probe.txt` |
+| Cloud fallback (Firebase AI Logic, App Check debug token registered) | **Run for real.** `node scripts/live-probe.mjs` returned "Done. 8 claims, 1 not found on the page" (the model altered one quote on the synthetic company page, so it was listed but not highlighted) with the badge **Cloud**; then four real pages were analysed (claims in about 3.0 to 4.1 s, AI view about 2.3 to 2.8 s): 36 of 36 returned claims found and highlighted, none invented. Prompts were tuned on these runs. Weaknesses are listed honestly in the run notes. | `docs/live-probe.txt`, `docs/real-runs/NOTES.md`, `docs/real-runs/*/result.json` |
 | Extension shell (mocked model) | 31 of 31 checks pass | `docs/e2e-run.txt` |
+| Real pages | Four real pages saved and run through the cloud path. LinkedIn and X were **not** tested live (no logins). | `fixtures/real/`, `docs/real-runs/` |
 
 ### What the owner must test in Chrome (on-device path)
 
@@ -122,10 +145,10 @@ The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content scrip
 | Web (Chrome) with Gemini Nano, web app or Chrome extension | MV3 Chrome extension; the on-device path is Chrome's Prompt API (Gemini Nano) reached through the SDK | `manifest.json`, `src/ai.js` |
 | Firebase AI Logic requires App Check; debug tokens accepted | App Check initialised before AI Logic; debug token via `self.FIREBASE_APPCHECK_DEBUG_TOKEN` in dev builds | `getAiInstance()` |
 | Repository must demonstrate Firebase AI Logic at runtime, imported and actually called, not just named in the README | `import ... from "firebase/ai"`, then `getGenerativeModel`, `initializeDeviceModel`, `generateContent` run on every Analyze | `src/ai.js`, called from `src/sidepanel/sidepanel.js` `analyze()` |
-| Public repository with a detectable open-source license | Public GitHub repo, MIT `LICENSE` | `LICENSE` |
+| Public repository with a detectable open-source license | Public GitHub repo, MIT `LICENSE` (GitHub detects it) | `LICENSE` |
 | Instructions required to run | This README | `README.md` |
 | Project available free of charge | No paywall, no account; upgrade links are outbound only | `src/shared/links.js` |
-| Demo video (YouTube), text description, URL to the project | **Not part of this repo.** To be produced by the owner | NEEDS OWNER |
+| Demo video (YouTube), text description, URL to the project | Text and script drafts are in [`submission/`](submission/); the video is recorded and uploaded by the owner | OWNER |
 
 Deadline per the Devpost page: Nov 30, 2026, 2:00 PM PST.
 
@@ -139,6 +162,9 @@ src/sidepanel/           side panel UI (html, css, js)
 src/popup/               toolbar popup launcher
 src/content.js           injected on demand: text extraction + highlighting
 src/shared/              prompts, JSON parsing, text matching, highlighter, GEO score, links
+fixtures/real/           four saved real pages for the real runs
+docs/real-runs/          raw model output, screenshots and notes from the real runs
+submission/              Devpost text, demo script, store listing drafts
 src/e2e-mock.js          test-harness model mock (only in `build:e2e`)
 scripts/                 build, debug token, e2e, live probe
 test/                    unit tests and HTML fixtures
@@ -147,7 +173,8 @@ test/                    unit tests and HTML fixtures
 ## Known limits
 
 - Claim extraction is a model judgement. "Specific and checkable" means a third party could check it, not that it is true.
-- On-device requests are capped at about 9k tokens, so Lens reads the first 12,000 characters of the main text of the page.
+- On-device requests are capped at about 9k tokens, so Lens reads at most 12,000 characters of the main text of the page: short menu-like lines are dropped first on long pages, then the first 70% and last 30% of the budget are kept. The middle of a very long page is not read.
+- Claim and fix quality is a model judgement and uneven: see the residual weaknesses in `docs/real-runs/NOTES.md` (bare statistic fragments, mixed claims, some low-value GEO fixes, GEO scores that cluster high).
 - A claim is highlighted only if the model copied it closely enough to be found in the page text (exact, whitespace-insensitive, or head-and-tail anchored). Others are listed as "Not found on the page".
 - Release builds cannot reach the cloud while App Check enforcement is on and no attestation provider exists for extensions.
 - The side panel needs the page to be activated for the extension (click the toolbar icon on that page) because the permission model is `activeTab`.
