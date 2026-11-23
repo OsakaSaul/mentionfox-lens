@@ -97,14 +97,22 @@ const getModel = (key, schema, mode) => {
 };
 
 let deviceInit = null;
+const progressListeners = new Set();
 /**
- * Must be called from a user gesture (Analyze click). Starts the on-device model download if needed and reports
- * progress 0..1. Resolves when ready; never rejects (falling back to cloud is not an error in PREFER_ON_DEVICE).
+ * Must be called from a user gesture (Analyze click or the Download button). Starts the on-device model download
+ * if needed and reports progress 0..1 to every registered listener (the SDK's initializeDeviceModel(progress) path).
+ * Safe to call again while a download runs (the new listener is added). Resolves when finished; never rejects
+ * (falling back to cloud is not an error in PREFER_ON_DEVICE).
  */
 export function initDevice(schema, onProgress) {
+  if (onProgress) progressListeners.add(onProgress);
   if (deviceInit) return deviceInit;
   const model = getModel("init", schema, InferenceMode.PREFER_ON_DEVICE);
-  deviceInit = model.initializeDeviceModel(onProgress).catch(() => {});
+  const fan = (p) => progressListeners.forEach((fn) => { try { fn(p); } catch { /* UI listener failed */ } });
+  deviceInit = model
+    .initializeDeviceModel(fan)
+    .catch(() => {})
+    .finally(() => { deviceInit = null; }); // allow a later retry (e.g. after a failed download)
   return deviceInit;
 }
 

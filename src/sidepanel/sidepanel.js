@@ -2,6 +2,7 @@ import { runTask, initDevice, probeDevice, InferenceSource } from "../ai.js";
 import { CLAIMS_SCHEMA, GEO_SCHEMA, buildClaimsPrompt, buildGeoPrompt } from "../shared/prompts.js";
 import { normalizeClaims, normalizeGeo } from "../shared/parse.js";
 import { geoScore, geoBand, GEO_BANDS, GEO_DIMENSION_LABELS } from "../shared/geo.js";
+import { modeInfo, statusLine, chipState } from "../shared/mode.js";
 import { VERIFY_CLAIMS_URL, DECISION_MAKERS_URL } from "../shared/links.js";
 
 const $ = (id) => document.getElementById(id);
@@ -31,56 +32,93 @@ function setStatus(text, isError = false) {
   s.classList.toggle("error", isError);
 }
 
-function setDeviceChip(status, note = "") {
+/* ---------- on-device chip + download progress (one renderer, driven by availability + progress) ---------- */
+const device = { availability: "checking", progress: null, poll: null };
+
+function renderDevice() {
+  const st = chipState(device.availability, device.progress);
   const chip = $("deviceChip");
-  const map = {
-    available: ["chip chip-device", "Private on-device model: ready", "Your browser can run the analysis on this device"],
-    downloadable: ["chip chip-neutral", "Private on-device model: downloads on first Analyze", "A one-time download makes private analysis possible; until then the cloud is used"],
-    downloading: ["chip chip-neutral", "Private on-device model: downloading", "The on-device model is downloading; the cloud is used until it is ready"],
-    unsupported: ["chip chip-cloud", "On-device not available in this browser: cloud fallback", "This browser or device cannot run the on-device model, so the cloud is used"],
-    unavailable: ["chip chip-cloud", "On-device not available on this device: cloud fallback", "This device cannot run the on-device model, so the cloud is used"],
-  };
-  const [cls, text, tip] = map[status] || map.unsupported;
-  chip.className = cls;
-  chip.textContent = text + (note ? " " + note : "");
-  chip.title = tip;
-  chip.setAttribute("aria-label", text);
-}
-
-function showProgress(p) {
+  chip.className = st.cls;
+  chip.textContent = st.text;
+  chip.title = st.tip;
+  chip.setAttribute("aria-label", st.text);
+  chip.dataset.state = st.kind;
+  $("download").hidden = !st.canStart;
   const wrap = $("progressWrap");
-  wrap.hidden = false;
-  const pct = Math.round(Math.max(0, Math.min(1, p)) * 100);
-  $("progressBar").style.width = pct + "%";
+  wrap.hidden = !st.showBar;
+  wrap.classList.toggle("indeterminate", st.showBar && st.pct == null);
+  const pct = st.pct ?? 0;
+  $("progressBar").style.width = (st.pct == null ? 100 : pct) + "%";
   $("progressBar").setAttribute("aria-valuenow", String(pct));
-  $("progressText").textContent = `Downloading private model ${pct}%`;
-  if (p >= 1) setTimeout(() => (wrap.hidden = true), 1200);
+  $("progressText").textContent = st.pct == null ? "Downloading private model..." : `Downloading private model ${pct}%`;
 }
 
-function modeBadge(res) {
-  const onDevice = res.source === InferenceSource.ON_DEVICE;
-  const wrap = h("div", { class: "modebar" });
-  const b = h(
-    "span",
-    {
-      class: "chip " + (onDevice ? "chip-device" : "chip-cloud"),
-      title: onDevice ? "This answer was produced on your device. The page text did not leave it." : "This answer was produced in the cloud by Firebase AI Logic because the on-device model was not used.",
-      "aria-label": onDevice ? "Mode: on-device, private" : "Mode: cloud",
-      "data-mode": onDevice ? "on_device" : "in_cloud",
-    },
-    onDevice ? "On-device (private)" : "Cloud",
-  );
-  const extra = [`${res.ms} ms`];
-  if (res.inferred) extra.push("mode inferred");
-  if (res.retried) extra.push("retried in cloud after an unusable on-device answer");
-  wrap.append(b, h("span", { class: "ms", title: "Time from request to parsed answer" }, extra.join(" | ")));
-  return wrap;
+async function refreshDevice() {
+  device.availability = await engine.probeDevice();
+  if (device.availability !== "downloading") device.progress = device.availability === "available" ? 1 : null;
+  renderDevice();
+  // Keep checking while a download runs, so the chip turns green by itself when it finishes.
+  if (device.availability === "downloading" && !device.poll) device.poll = setInterval(refreshDevice, 2000);
+  if (device.availability !== "downloading" && device.poll) { clearInterval(device.poll); device.poll = null; }
 }
 
-function placeMode(containerId, res) {
+function onDownloadProgress(p) {
+  device.availability = p >= 1 ? "available" : "downloading";
+  device.progress = p;
+  renderDevice();
+  if (p >= 1) setTimeout(refreshDevice, 300);
+  else if (!device.poll) device.poll = setInterval(refreshDevice, 2000);
+}
+
+/* ---------- mode bar (top of each results tab) ---------- */
+const SVG_NS = "http://www.w3.org/2000/svg";
+function svgIcon(kind) {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("width", "30");
+  svg.setAttribute("height", "30");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+  svg.setAttribute("class", "mode-icon");
+  const path = document.createElementNS(SVG_NS, "path");
+  path.setAttribute("fill", "none");
+  path.setAttribute("stroke", "currentColor");
+  path.setAttribute("stroke-width", "2");
+  path.setAttribute("stroke-linecap", "round");
+  path.setAttribute("stroke-linejoin", "round");
+  if (kind === "on_device") {
+    // shield with a check mark
+    path.setAttribute("d", "M12 3l7 3v5.5c0 4.4-3 7.7-7 9.5-4-1.8-7-5.1-7-9.5V6l7-3zM8.8 12.2l2.2 2.2 4.2-4.4");
+  } else {
+    // cloud
+    path.setAttribute("d", "M7 18.5h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7.1 9.6 4.5 4.5 0 0 0 7 18.5z");
+  }
+  svg.append(path);
+  return svg;
+}
+
+function renderModeBar(containerId, info) {
   const c = $(containerId);
-  c.replaceChildren(...modeBadge(res).childNodes);
   c.hidden = false;
+  c.className = "modebar mode-" + info.mode;
+  c.dataset.mode = info.mode;
+  c.title = info.tip;
+  c.setAttribute("role", "group");
+  c.setAttribute("aria-label", `Inference mode: ${info.text}. ${info.tip}`);
+  c.replaceChildren(
+    svgIcon(info.mode === "on_device" ? "on_device" : "cloud"),
+    h("div", { class: "mode-text" }, h("div", { class: "mode-main" }, info.label, info.seconds ? [" · ", h("span", { class: "nw" }, info.seconds)] : ""), h("div", { class: "mode-sub" }, info.sub)),
+  );
+}
+
+function renderModePending(containerId) {
+  const c = $(containerId);
+  c.hidden = false;
+  c.className = "modebar mode-pending";
+  c.dataset.mode = "pending";
+  c.title = "Lens is choosing between the private on-device model and the cloud.";
+  c.setAttribute("aria-label", "Inference mode: working");
+  c.replaceChildren(h("div", { class: "mode-text" }, h("div", { class: "mode-main" }, "Working..."), h("div", { class: "mode-sub" }, "Lens prefers the on-device model and falls back to the cloud.")));
 }
 
 /* ---------- tabs ---------- */
@@ -161,7 +199,7 @@ async function jump(id) {
   }
 }
 
-function renderGeo(geo, res) {
+function renderGeo(geo, info) {
   const score = geoScore(geo.ratings);
   const band = geoBand(score);
   const body = $("geoBody");
@@ -186,7 +224,7 @@ function renderGeo(geo, res) {
       h("ul", { class: "dims" }, Object.entries(GEO_DIMENSION_LABELS).map(([k, label]) =>
         h("li", { class: "dim" }, h("span", {}, label), h("span", { class: "bar" }, h("i", { style: `width:${(geo.ratings[k] / 4) * 100}%` })), h("span", {}, `${geo.ratings[k]}/4`))))),
   );
-  placeMode("geoMode", res);
+  renderModeBar("geoMode", info);
   const g = $("geoCount");
   g.hidden = false;
   g.textContent = String(score);
@@ -199,6 +237,7 @@ async function analyze() {
   busy = true;
   const btn = $("analyze");
   btn.disabled = true;
+  $("rerun").disabled = true;
   try {
     setStatus("Reading the page...");
     const tab = await getTab();
@@ -214,34 +253,45 @@ async function analyze() {
     const page = ex.page;
 
     const deviceStatus = await engine.probeDevice();
-    setDeviceChip(deviceStatus);
+    device.availability = deviceStatus;
+    renderDevice();
     // User gesture is active here: allowed to start the on-device model download.
-    const init = engine.initDevice(CLAIMS_SCHEMA, showProgress);
+    const init = engine.initDevice(CLAIMS_SCHEMA, onDownloadProgress);
     if (deviceStatus === "available") await init;
+    else if (deviceStatus === "downloadable") refreshDevice().then(() => {}); // chip flips to downloading right away
+    renderModePending("claimsMode");
+    renderModePending("geoMode");
 
     setStatus("Finding claims...");
     $("claimsEmpty").textContent = "Working...";
     const cres = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildClaimsPrompt(page.text), normalize: normalizeClaims, deviceStatus });
+    const cinfo = modeInfo({ source: cres.source, ms: cres.ms, deviceStatus, retried: cres.retried });
     state.claims = cres.value;
     setStatus("Highlighting claims on the page...");
     const hres = await send(tab.id, { type: "highlight", claims: cres.value });
     renderClaims(cres.value, hres?.results);
-    placeMode("claimsMode", cres);
+    renderModeBar("claimsMode", cinfo);
     $("clear").disabled = false;
     const missing = (hres?.results || []).filter((r) => !r.found).length;
 
     setStatus("Checking how an AI assistant would read this page...");
     const gres = await engine.runTask({ key: "geo", schema: GEO_SCHEMA, prompt: buildGeoPrompt(page.text, { title: page.title }), normalize: normalizeGeo, deviceStatus });
-    renderGeo(gres.value, gres);
+    const ginfo = modeInfo({ source: gres.source, ms: gres.ms, deviceStatus, retried: gres.retried });
+    renderGeo(gres.value, ginfo);
     // Dev builds only: expose the last run so scripts/live-probe.mjs can save the raw model output.
     if (typeof __DEV_BUILD__ !== "undefined" && __DEV_BUILD__) window.__lensLast = { page: { title: page.title, url: page.url, textLength: page.textLength, rootTag: page.rootTag }, claims: cres, highlight: hres, geo: gres };
-    setDeviceChip(await engine.probeDevice(), "");
-    setStatus(`Done. ${cres.value.length} claims${missing ? `, ${missing} not found on the page` : ""}. Click a claim to jump to it.`);
+    await refreshDevice();
+    const totalMs = cres.ms + gres.ms; // time spent in the two model runs
+    setStatus(statusLine({ totalMs, infos: [cinfo, ginfo], claims: cres.value.length, missing }));
+    $("rerun").hidden = false;
   } catch (err) {
     $("claimsEmpty").textContent = "No claims yet. Click Analyze.";
+    for (const id of ["claimsMode", "geoMode"]) if ($(id).dataset.mode === "pending") $(id).hidden = true;
+    $("rerun").hidden = false;
     setStatus(friendlyError(err), true);
   } finally {
     btn.disabled = false;
+    $("rerun").disabled = false;
     busy = false;
   }
 }
@@ -255,6 +305,15 @@ function friendlyError(err) {
 }
 
 $("analyze").addEventListener("click", analyze);
+$("rerun").addEventListener("click", analyze);
+$("download").addEventListener("click", () => {
+  // Click = user activation: the only moment Chrome lets the page start the download.
+  device.availability = "downloading";
+  device.progress = 0;
+  renderDevice();
+  engine.initDevice(CLAIMS_SCHEMA, onDownloadProgress);
+  setTimeout(refreshDevice, 1500);
+});
 $("clear").addEventListener("click", async () => {
   try { if (state.tabId) await send(state.tabId, { type: "clear" }); } catch { /* page gone */ }
   $("clear").disabled = true;
@@ -266,5 +325,7 @@ $("clear").addEventListener("click", async () => {
     const mod = await import("../e2e-mock.js");
     engine = mod.mockEngine(params.get("mock"));
   }
-  setDeviceChip(await engine.probeDevice());
+  await refreshDevice();
+  // Chrome may already be downloading (started earlier or elsewhere): attach to it to get live percent.
+  if (device.availability === "downloading") engine.initDevice(CLAIMS_SCHEMA, onDownloadProgress);
 })();

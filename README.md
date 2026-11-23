@@ -5,7 +5,7 @@ Free, open-source Chrome extension (Manifest V3) that reads the page you are on 
 1. **Claim X-ray.** Finds the factual claims on the page (profile, bio, press release, pitch, post), highlights each one in place, and labels it *specific and checkable* or *vague or puffery* with a one-line reason. A side panel lists the claims; clicking one scrolls to the exact highlighted text and flashes it.
 2. **GEO lens.** Shows how an AI assistant would summarise the page: the people, companies and products it would pick up, the facts it would state, what is missing or ambiguous, three concrete fixes, and a 0 to 100 score with a plain explanation of each range.
 
-Every run shows a **mode badge** ("On-device (private)" or "Cloud") and the latency in milliseconds, so you can see hybrid inference working.
+Every run shows a large colour **mode bar** at the top of both results tabs (teal shield, "On-device (private) · 1.4 s", or blue cloud, "Cloud · 3.2 s"; "Cloud (on-device not ready)" when the on-device model was still downloading or failed), and the status line repeats it ("Done in 3.2 s on Cloud: 10 claims."), so you can see hybrid inference working.
 
 Built for the [#BuildHybridAI 2026 hackathon](https://firebasehybridaihackathon.devpost.com/) with **Firebase AI Logic hybrid inference**: the model runs on-device with **Gemini Nano in Chrome** when it is available, and falls back to the cloud when it is not.
 
@@ -16,7 +16,7 @@ Free to use. No account, no paywall, nothing sent to MentionFox servers. The two
 |---|---|---|
 | ![Claim X-ray placeholder](docs/screenshots/e2e-sidepanel-claims.png) | ![AI view placeholder](docs/screenshots/e2e-sidepanel-ai-view.png) | ![Highlights placeholder](docs/screenshots/e2e-linkedin-page-highlights.png) |
 
-The screenshots above are **test-harness captures with a mocked model on a synthetic fixture page** (see "Verification"). They show the UI, not real model output. Real captures from the real cloud path on four real pages are in [`docs/real-runs/`](docs/real-runs/) (each folder has `panel-claims.png`, `page-highlights.png`, `panel-geo.png`); they show the **Cloud** badge, because on-device Gemini Nano could not run on the build machine.
+The screenshots above are **test-harness captures with a mocked model on a synthetic fixture page** (see "Verification"). They show the UI, not real model output. Real captures from the real cloud path on four real pages are in [`docs/real-runs/`](docs/real-runs/) (each folder has `panel-claims.png`, `page-highlights.png`, `panel-geo.png`); they show the **Cloud** mode (their screenshots predate the larger mode bar), because on-device Gemini Nano could not run on the build machine.
 
 ## How hybrid inference is used
 
@@ -29,11 +29,11 @@ All AI calls live in [`src/ai.js`](src/ai.js) and run in the side panel (an exte
 | `getGenerativeModel(ai, { mode: InferenceMode.PREFER_ON_DEVICE, onDeviceParams, inCloudParams })` | `createHybridModel()` |
 | On-device structured output: `onDeviceParams.promptOptions.responseConstraint` (JSON Schema). Cloud structured output: `inCloudParams.generationConfig.responseSchema` built by `toFirebaseSchema()` | `createHybridModel()` |
 | `model.initializeDeviceModel(onProgress)` starts the on-device download from the Analyze click (user gesture) and reports progress, shown as a progress bar | `initDevice()` |
-| `model.generateContent(prompt)`, then `response.inferenceSource` (`on_device` or `in_cloud`) feeds the mode badge. If the SDK reports no source, the badge falls back to the `LanguageModel.availability()` reading and is labelled "mode inferred" | `runTask()` |
+| `model.generateContent(prompt)`, then `response.inferenceSource` (`on_device` or `in_cloud`) feeds the mode bar. If the SDK reports no source, the bar falls back to the `LanguageModel.availability()` reading and is labelled "mode inferred" | `runTask()` |
 | Quality fallback: if an on-device answer cannot be parsed, retry once with `InferenceMode.ONLY_IN_CLOUD` | `runTask()` |
 | Availability probe (`LanguageModel.availability()`) for the status chip: ready, needs download, downloading, not available | `probeDevice()` |
 
-Behaviour when the on-device model is missing: the SDK routes the request to the cloud (`PREFER_ON_DEVICE`), the badge says "Cloud", and the status chip explains why. While a download runs, requests are served by the cloud and the progress bar shows the download.
+Behaviour when the on-device model is missing: the SDK routes the request to the cloud (`PREFER_ON_DEVICE`), the mode bar says "Cloud", and the status chip explains why. While a download runs, requests are served by the cloud and the chip shows the live percent ("On-device model: downloading 42%") with a progress bar, driven by the SDK's `initializeDeviceModel(progress)` callback; when it finishes the chip turns green ("On-device model ready") and the next Analyze (button **Run again**) uses the on-device model.
 
 The prompts and JSON schemas are in [`src/shared/prompts.js`](src/shared/prompts.js). Instructions are inside the prompt text because the SDK's on-device adapter does not pass a system instruction. Page text is capped at 12,000 characters to stay inside the on-device token budget.
 
@@ -64,9 +64,9 @@ Permissions: `activeTab`, `scripting`, `sidePanel`. Nothing else.
    - Or point the build at your own Firebase project with AI Logic enabled (see "Firebase config" below), run `npm run build:dev` without a token, open the side panel DevTools console, copy the "Firebase App Check debug token" line it prints, and register it under App Check > Apps > Manage debug tokens in your own project.
    - Or test the on-device path only (step 5): it does not call App Check or the cloud.
 3. **Load unpacked.** `chrome://extensions`, Developer mode on, **Load unpacked**, choose `dist/`. Pin MentionFox Lens.
-4. **Analyze a page.** Open any normal web page (a press release, a bio, a company homepage), click the Lens icon, click **Open Lens side panel**, then **Analyze this page**. One click runs both checks. You will see: a status chip about the on-device model; the **Claim X-ray** tab with each claim as a green (specific and checkable) or amber (vague or puffery) card with a one-line reason, the same sentences highlighted in place on the page, and a mode badge with the latency in ms (about 3 to 4 s on the cloud path in our runs); clicking a card scrolls to the sentence and flashes it. The **AI view** tab shows the 0 to 100 score with what each range means, the people, companies and products it would pick up, facts, what is missing, 3 fixes, and how the score is built. **Clear** removes the highlights.
-5. **On-device path.** Needs desktop Chrome 139 or newer on hardware that meets Chrome's on-device model requirements, with `chrome://flags/#prompt-api-for-gemini-nano` set to Enabled and (if listed) `chrome://flags/#optimization-guide-on-device-model` set to Enabled BypassPerfRequirement, then a restart, then `chrome://components` > Optimization Guide On Device Model > Check for update until the version is not 0.0.0.0. The status chip then reads "Private on-device model: ready" (or "downloads on first Analyze", in which case Analyze starts the download and shows a progress bar while the cloud answers). The badge reads **On-device (private)** when Gemini Nano answered and **Cloud** when Firebase AI Logic's cloud model answered.
-6. **Fallback.** Without a usable on-device model the SDK (`InferenceMode.PREFER_ON_DEVICE`) routes to the cloud, the badge says **Cloud** and the chip says on-device is not available. If an on-device answer cannot be parsed, Lens retries once in the cloud and says so next to the badge.
+4. **Analyze a page.** Open any normal web page (a press release, a bio, a company homepage), click the Lens icon, click **Open Lens side panel**, then **Analyze this page**. One click runs both checks. You will see: a status chip about the on-device model; the **Claim X-ray** tab with each claim as a green (specific and checkable) or amber (vague or puffery) card with a one-line reason, the same sentences highlighted in place on the page, and the mode bar with the latency in seconds (about 3 to 4 s on the cloud path in our runs); clicking a card scrolls to the sentence and flashes it. The **AI view** tab shows the 0 to 100 score with what each range means, the people, companies and products it would pick up, facts, what is missing, 3 fixes, and how the score is built. **Clear** removes the highlights.
+5. **On-device path.** Needs desktop Chrome 139 or newer on hardware that meets Chrome's on-device model requirements, with `chrome://flags/#prompt-api-for-gemini-nano` set to Enabled and (if listed) `chrome://flags/#optimization-guide-on-device-model` set to Enabled BypassPerfRequirement, then a restart, then `chrome://components` > Optimization Guide On Device Model > Check for update until the version is not 0.0.0.0. The chip then reads "On-device model ready" (green), or "not downloaded yet" with a **Download on-device model** button (Chrome only lets a page start the download from a click; Analyze also starts it), or "downloading NN%" with a progress bar while the cloud answers. The mode bar reads **On-device (private)** when Gemini Nano answered and **Cloud** when Firebase AI Logic's cloud model answered.
+6. **Fallback.** Without a usable on-device model the SDK (`InferenceMode.PREFER_ON_DEVICE`) routes to the cloud, the mode bar says **Cloud** and the chip says on-device is not available. If an on-device answer cannot be parsed, Lens retries once in the cloud and says so in the mode bar ("Cloud (on-device failed)").
 
 **What was and was not verified:** the cloud path (App Check with a registered debug token, Firebase AI Logic, structured output, highlighting, UI) was run for real on 2026-11-23, see "Run log" and [`docs/real-runs/NOTES.md`](docs/real-runs/NOTES.md). The on-device path was **not** run by the authors (the available Chromium 151 reports Gemini Nano as unavailable); it is implemented against the SDK's documented hybrid API and needs a real Chrome with Gemini Nano to confirm.
 
@@ -115,7 +115,7 @@ Unit tests cover: prompt and JSON parsing with fenced, trailing-text, trailing-c
 
 The fixtures in `test/fixtures/` are **hand-written approximations of those layouts**, not saved copies of real pages. Separately, `fixtures/real/` holds four saved real public pages (a founder bio, a press release, a company homepage, a news article; URLs and dates in `fixtures/real/README.md`) used for the real runs below. Nothing was logged in to. Real LinkedIn and X markup changes often; the matcher works on rendered text, not class names, which is why it should survive that, but it has not been run on the live sites.
 
-The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content script is injected on demand, claims are wrapped in place, a click on a claim scrolls to and flashes the exact text, clear removes everything, and both mode badges render. **The model is mocked there**, so it says nothing about model quality or about Gemini Nano.
+The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content script is injected on demand, claims are wrapped in place, a click on a claim scrolls to and flashes the exact text, clear removes everything, and the mode bar renders in all four states (cloud while the model downloads, cloud when unavailable, on-device, on-device failed then cloud) with the download percent chip (0, 42, 100) turning green. Screenshots of each state: `docs/demo/mode-states/`. **The model is mocked there**, so it says nothing about model quality or about Gemini Nano.
 
 ### Run log
 
@@ -132,8 +132,8 @@ The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content scrip
 2. Open `chrome://flags/#prompt-api-for-gemini-nano`, set it to **Enabled** (if the page also lists `#optimization-guide-on-device-model`, set it to **Enabled BypassPerfRequirement**), restart Chrome.
 3. Open `chrome://components` and click **Check for update** on **Optimization Guide On Device Model**. A version other than 0.0.0.0 means the model is installed.
 4. Load the extension (dev build), open a page with a profile or press release, open the side panel. The chip should read "Private on-device model: ready" (or "downloads on first Analyze").
-5. Click **Analyze this page**. Look for: the progress bar during a first download; the badge **On-device (private)** with a latency in ms; the claims highlighted on the page; the AI view with a score.
-6. To see the fallback, run on a browser or profile without the model: the badge must say **Cloud** and the chip must say on-device is not available.
+5. Click **Analyze this page**. Look for: the percent and progress bar during a first download; the mode bar **On-device (private)** with a latency in seconds; the claims highlighted on the page; the AI view with a score.
+6. To see the fallback, run on a browser or profile without the model: the mode bar must say **Cloud** and the chip must say on-device is not available.
 7. Open DevTools on the side panel (right-click, Inspect) to see SDK logs, including the App Check debug token line.
 
 ## How this meets each hackathon rule
@@ -182,3 +182,12 @@ test/                    unit tests and HTML fixtures
 ## License
 
 MIT, see [LICENSE](LICENSE).
+
+
+## Showing Cloud and On-device in a demo video
+
+Lens is hybrid: the same Analyze click uses the private on-device model when it is ready and the cloud otherwise. There is no developer switch; you show each mode by timing.
+
+- **Cloud**: run Analyze while the chip still says "On-device model: downloading NN%" (or "not downloaded yet"). The mode bar turns blue: "Cloud (on-device not ready) · 3.2 s". A profile or browser without Gemini Nano shows plain "Cloud".
+- **On-device**: wait until the chip turns green, "On-device model ready", then press **Run again** (next to the status line). The mode bar turns teal: "On-device (private) · 1.4 s".
+- The download keeps running in the background and the chip updates by itself, so the natural order for a video is: first run (Cloud), wait for green, **Run again** (On-device).

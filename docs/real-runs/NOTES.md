@@ -1,6 +1,6 @@
 # Real-page runs (2026-11-23)
 
-Four real public pages (saved in `fixtures/real/`, URLs and fetch date in `fixtures/real/README.md`) were analysed through the REAL Firebase AI Logic cloud path (cloud model `gemini-3.5-flash-lite`, `PREFER_ON_DEVICE` mode). On-device Gemini Nano was NOT run: Chromium 151 here reports `LanguageModel.availability() = unavailable`, so every answer below came from the cloud and the mode badge said "Cloud". Nothing here says anything about on-device quality.
+Four real public pages (saved in `fixtures/real/`, URLs and fetch date in `fixtures/real/README.md`) were analysed through the REAL Firebase AI Logic cloud path (cloud model `gemini-3.5-flash-lite`, `PREFER_ON_DEVICE` mode). On-device Gemini Nano was NOT run: Chromium 151 here reports `LanguageModel.availability() = unavailable`, so every answer below came from the cloud and the mode said "Cloud" (the badge was later replaced by the large mode bar, e.g. "Cloud · 3.1 s", plus a status line "Done in 5.7 s on Cloud: ..."). Nothing here says anything about on-device quality.
 
 Run each page with: `node scripts/live-probe.mjs --fixture fixtures/real/<page>.html` (writes `docs/real-runs/<page>/`: `result.json` with the raw model text and normalised output, `panel-claims.png`, `page-highlights.png`, `panel-geo.png`, `run-log.txt`). The App Check token is read from `.env.local` and redacted from every output.
 

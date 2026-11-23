@@ -18,7 +18,7 @@ MentionFox Lens is a free, open-source Manifest V3 Chrome extension. It works on
 
 1. Claim X-ray (tab). Extracts the factual claims on the page (profile, bio, press release, pitch, post), highlights each one in place, and labels it specific-and-checkable or vague/puffery with a one-line reason. A side panel lists every claim, and clicking one scrolls to and highlights the exact sentence.
 2. GEO lens (tab named AI view). Shows how an AI assistant would summarise the page: the entities (people, companies, products) it would pick up, the facts it would state, what is missing or ambiguous, three concrete fixes, and a score from 0 to 100 with what each point means.
-3. Mode badge. Shows On-device (private) or Cloud for each run, plus latency in ms (for example Cloud, 3451 ms), so the hybrid behaviour is visible. A status chip above the button says whether the on-device model is ready, downloads on first Analyze, or is not available so the cloud is used.
+3. Mode bar. A large colour bar at the top of both tabs shows On-device (private) or Cloud for each run, plus latency (for example Cloud · 3.5 s), so the hybrid behaviour is visible. A status chip above the button says whether the on-device model is ready (green), downloading (live percent) or not available so the cloud is used.
 4. Optional outbound links to MentionFox ("Verify these claims against public registers" opens the MentionFox Source Check page; "Find contact details for a decision maker" opens the MentionFox Find Contact page). They open in a new tab. Nothing inside Lens needs an account or payment; the extension is free.
 
 Nothing from the page is sent to MentionFox servers.

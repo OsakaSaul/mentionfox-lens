@@ -81,7 +81,7 @@ try {
   await panel.click("#analyze");
   await panel.waitForFunction(() => /^Done|\S{20,}/.test(document.getElementById("status").textContent) && !document.getElementById("analyze").disabled, null, { timeout: 150000 }).catch(() => {});
   out(`status after Analyze: ${await panel.textContent("#status")}`);
-  const badge = await panel.locator("#claimsMode .chip").first().textContent().catch(() => "(no result badge: no model answer)");
+  const badge = await panel.locator("#claimsMode .mode-main").first().textContent().catch(() => "(no result badge: no model answer)");
   out(`claims mode badge: ${badge}`);
   const last = await panel.evaluate(() => window.__lensLast || null);
   if (outDir && last) {

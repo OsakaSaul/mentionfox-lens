@@ -18,9 +18,12 @@
 
   <main>
     <section class="device" aria-live="polite" aria-label="Private on-device model status">
-      <span id="deviceChip" class="chip chip-neutral" title="Whether your browser can run the private on-device model" aria-label="On-device model status">Checking this browser...</span>
-      <div id="progressWrap" class="progress" hidden title="Download progress of the private on-device model" aria-label="Download progress">
-        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+      <div class="device-row">
+        <span id="deviceChip" class="chip chip-neutral" title="Whether your browser can run the private on-device model" aria-label="On-device model status">Checking this browser...</span>
+        <button id="download" class="btn btn-small" type="button" hidden title="Start the one-time download of the private on-device model. Until it finishes, Lens uses the cloud." aria-label="Download the on-device model">Download on-device model</button>
+      </div>
+      <div id="progressWrap" class="progress" hidden title="Download progress of the private on-device model" aria-label="Download progress of the on-device model">
+        <div id="progressBar" class="progress-bar" role="progressbar" aria-label="On-device model download" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
         <span id="progressText" class="progress-text">0%</span>
       </div>
     </section>
@@ -30,7 +33,10 @@
       <button id="clear" class="btn btn-ghost" type="button" title="Remove all highlights from the page" aria-label="Clear highlights" disabled>Clear</button>
     </div>
 
-    <p id="status" class="status" role="status" aria-live="polite">Open a page you want to check, then click Analyze.</p>
+    <div class="statusrow">
+      <p id="status" class="status" role="status" aria-live="polite">Open a page you want to check, then click Analyze.</p>
+      <button id="rerun" class="btn btn-small" type="button" hidden disabled title="Run the analysis again on this page, for example after the on-device model finished downloading" aria-label="Run the analysis again">Run again</button>
+    </div>
 
     <div class="tabs" role="tablist" aria-label="Results">
       <button id="tab-claims" class="tab" role="tab" aria-selected="true" aria-controls="panel-claims" type="button" title="Claim X-ray: factual claims found on the page" aria-label="Claim X-ray tab">Claim X-ray <span id="claimCount" class="count" hidden>0</span></button>

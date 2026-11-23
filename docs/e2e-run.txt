@@ -1,33 +1,54 @@
 PASS  extension loads and service worker starts  foehpjhlmbefhnaominonkckhicmneeb
-PASS  linkedin-profile: analyze completes  Done. 5 claims, 1 not found on the page. Click a claim to jump to it.
+PASS  linkedin-profile: analyze completes  Done in 0.1 s on-device (private): 5 claims, 1 not found on the page. Click a claim to jump to it.
 PASS  linkedin-profile: highlights wrapped in the page  8 marks
-PASS  linkedin-profile: mode badge shown (mock: device)  On-device (private)
-PASS  linkedin-profile: latency shown
-PASS  linkedin-profile: GEO score + badge shown
+PASS  linkedin-profile: mode bar shown (mock: device)  On-device (private) · 0.0 s
+PASS  linkedin-profile: status line names mode and time  Done in 0.1 s on-device (private): 5 claims, 1 not found on the page. Click a claim to jump to it.
+PASS  linkedin-profile: GEO score + mode bar shown
 PASS  linkedin-profile: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  not-found claim is disabled with a message
 PASS  linkedin-profile: clear removes highlights
-PASS  x-post: analyze completes  Done. 3 claims. Click a claim to jump to it.
+PASS  x-post: analyze completes  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
 PASS  x-post: highlights wrapped in the page  8 marks
-PASS  x-post: mode badge shown (mock: cloud)  Cloud
-PASS  x-post: latency shown
-PASS  x-post: GEO score + badge shown
+PASS  x-post: mode bar shown (mock: cloud)  Cloud · 0.0 s
+PASS  x-post: status line names mode and time  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
+PASS  x-post: GEO score + mode bar shown
 PASS  x-post: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  x-post: clear removes highlights
-PASS  company-site: analyze completes  Done. 3 claims. Click a claim to jump to it.
+PASS  company-site: analyze completes  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
 PASS  company-site: highlights wrapped in the page  3 marks
-PASS  company-site: mode badge shown (mock: cloud)  Cloud
-PASS  company-site: latency shown
-PASS  company-site: GEO score + badge shown
+PASS  company-site: mode bar shown (mock: cloud)  Cloud · 0.0 s
+PASS  company-site: status line names mode and time  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
+PASS  company-site: GEO score + mode bar shown
 PASS  company-site: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  company-site: clear removes highlights
-PASS  news-article: analyze completes  Done. 3 claims. Click a claim to jump to it.
+PASS  news-article: analyze completes  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
 PASS  news-article: highlights wrapped in the page  5 marks
-PASS  news-article: mode badge shown (mock: cloud)  Cloud
-PASS  news-article: latency shown
-PASS  news-article: GEO score + badge shown
+PASS  news-article: mode bar shown (mock: cloud)  Cloud · 0.0 s
+PASS  news-article: status line names mode and time  Done in 0.1 s on Cloud: 3 claims. Click a claim to jump to it.
+PASS  news-article: GEO score + mode bar shown
 PASS  news-article: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  news-article: clear removes highlights
+PASS  downloading: chip shows downloading, bar visible before Analyze
+PASS  progress 0: chip 'downloading 0%'  On-device model: downloading 0%
+PASS  progress 42: chip 'downloading 42%', bar 42% wide  Downloading private model 42%
+PASS  cloud while downloading: claims bar 'Cloud (on-device not ready) · 1.6 s'  Cloud (on-device not ready) · 1.6 s
+PASS  cloud while downloading: status line  Done in 3.2 s on Cloud (on-device not ready): 3 claims. Click a claim to jump to it.
+PASS  cloud while downloading: AI view bar too
+PASS  download bar still visible after Analyze completes
+PASS  Run again button appears and is enabled
+PASS  progress 100: chip turns green 'On-device model ready', bar hidden
+PASS  Run again after download: claims bar 'On-device (private) · 1.4 s'  On-device (private) · 1.4 s
+PASS  Run again after download: status line  Done in 2.8 s on-device (private): 3 claims. Click a claim to jump to it.
+PASS  on-device and cloud bars have different colours
+PASS  AI view bar says on-device too
+PASS  mode bars have tooltip and aria-label explaining hybrid inference
+PASS  mode bars contain an inline svg icon
+PASS  unavailable: chip says using cloud
+PASS  cloud when unavailable: bar 'Cloud · 3.2 s'  Cloud · 3.2 s
+PASS  cloud when unavailable: status line  Done in 6.4 s on Cloud: 3 claims. Click a claim to jump to it.
+PASS  on-device failed then cloud: bar 'Cloud (on-device failed) · 3.2 s'  Cloud (on-device failed) · 3.2 s
+PASS  downloadable: Download button shown with tooltip
+PASS  after Download click: chip shows percent and button is gone
 PASS  popup renders with open button
 
-31/31 passed (model mocked; extension shell only)
+52/52 passed (model mocked; extension shell only)
