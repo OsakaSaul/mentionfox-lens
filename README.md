@@ -105,13 +105,13 @@ The token lives only in `.env.local` and in dev bundles under `dist/` (gitignore
 ## Tests and verification
 
 ```bash
-npm test          # 49 unit tests (parsing, matching, GEO score, manifest, real-run regression)
+npm test          # 79 unit tests (parsing, matching, GEO score, manifest, real-run regression)
 npm run e2e       # loads the built extension in Chromium against HTML fixtures; model MOCKED
 node scripts/live-probe.mjs   # real, unmocked run of the dev build; writes docs/live-probe.txt
 node scripts/live-probe.mjs --fixture fixtures/real/founder-bio.html   # same, on a saved real page; writes docs/real-runs/founder-bio/ (raw model JSON, screenshots)
 ```
 
-Unit tests cover: prompt and JSON parsing with fenced, trailing-text, trailing-comma, truncated and garbage output; claim-to-range matching (whitespace, case, curly quotes, dashes, multi-element ranges, re-render recovery, Custom Highlight API fallback) against four HTML fixtures shaped like a LinkedIn profile, an X post, a company site and a news article; the GEO score and bands; and manifest rules (MV3, permission allow-list, no host permissions, CSP, no remote scripts, no eval in the bundle, tooltips and accessible names on every control, no model names in UI strings).
+Unit tests cover: prompt and JSON parsing with fenced, trailing-text, trailing-comma, truncated and garbage output; claim-to-range matching (whitespace, NBSP, case, curly quotes, dashes, footnote markers, the five matcher tiers incl. a renamed name and a paraphrase, multi-element ranges, re-render recovery, Custom Highlight API fallback), the checkable-anchor override and safe truncation of reasons, a regression test with two real sentences on a saved Wikipedia page (`test/fixtures/wikipedia-*.html`) against four HTML fixtures shaped like a LinkedIn profile, an X post, a company site and a news article; the GEO score and bands; and manifest rules (MV3, permission allow-list, no host permissions, CSP, no remote scripts, no eval in the bundle, tooltips and accessible names on every control, no model names in UI strings).
 
 The fixtures in `test/fixtures/` are **hand-written approximations of those layouts**, not saved copies of real pages. Separately, `fixtures/real/` holds four saved real public pages (a founder bio, a press release, a company homepage, a news article; URLs and dates in `fixtures/real/README.md`) used for the real runs below. Nothing was logged in to. Real LinkedIn and X markup changes often; the matcher works on rendered text, not class names, which is why it should survive that, but it has not been run on the live sites.
 
@@ -175,7 +175,8 @@ test/                    unit tests and HTML fixtures
 - Claim extraction is a model judgement. "Specific and checkable" means a third party could check it, not that it is true.
 - On-device requests are capped at about 9k tokens, so Lens reads at most 12,000 characters of the main text of the page: short menu-like lines are dropped first on long pages, then the first 70% and last 30% of the budget are kept. The middle of a very long page is not read.
 - Claim and fix quality is a model judgement and uneven: see the residual weaknesses in `docs/real-runs/NOTES.md` (bare statistic fragments, mixed claims, some low-value GEO fixes, GEO scores that cluster high).
-- A claim is highlighted only if the model copied it closely enough to be found in the page text (exact, whitespace-insensitive, or head-and-tail anchored). Others are listed as "Not found on the page".
+- The model is asked for an exact verbatim span, but small models rewrite. One matcher (`src/shared/match.js`, `findQuote`) finds the span for both the highlight and the jump, in tiers: exact (footnote markers such as [1] or [citation needed], NBSP, zero-width and soft-hyphen characters, curly quotes, dashes and case are ignored), no-space, head-and-tail, a run of at least 8 identical words (a name was expanded or shortened), and at least 80% of the words inside one sentence-sized window (a paraphrase). The best window is highlighted. "Not found on the page" appears only when every tier fails.
+- A claim with a checkable anchor (a date, a number, an amount, a named place, organisation, person or event) is labelled specific even if it also contains a subjective word (a note says which); "vague or puffery" is reserved for claims with no anchor. The prompt says so and `src/shared/anchors.js` enforces it after the model answers, on the on-device and the cloud path alike. The detector is deliberately conservative (title-case slogans and praise words are not names), so a few vague claims that name an organisation will show as specific.
 - Release builds cannot reach the cloud while App Check enforcement is on and no attestation provider exists for extensions.
 - The side panel needs the page to be activated for the extension (click the toolbar icon on that page) because the permission model is `activeTab`.
 

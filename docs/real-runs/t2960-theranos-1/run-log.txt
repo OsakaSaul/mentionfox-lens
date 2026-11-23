@@ -1,0 +1,19 @@
+date: 2026-11-23T04:39:32.009Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: theranos-1.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 6.6 s on Cloud: 8 claims. Click a claim to jump to it.
+claims mode badge: Cloud · 3.5 s
+page body text length: 6693
+claims: 8, highlighted: 8, claims 3519 ms, geo 3077 ms
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

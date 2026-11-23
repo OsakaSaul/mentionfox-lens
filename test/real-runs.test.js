@@ -21,3 +21,20 @@ for (const name of ["founder-bio", "press-release", "homepage", "news-article"])
     for (const c of claims) assert.ok(findQuote(index.text, c.quote), `not found: ${c.quote}`);
   });
 }
+
+// T2960 runs: the claims the cloud model returned for the two Wikipedia fixtures and the Theranos Archive copy.
+for (const [run, pageFile] of [
+  ["t2960-sam-bankman-fried", "test/fixtures/wikipedia-sam-bankman-fried.html"],
+  ["t2960-patrick-collison", "test/fixtures/wikipedia-patrick-collison.html"],
+  ["t2960-theranos-1", "fixtures/demo/theranos-1.html"],
+]) {
+  const result = resolve(root, `docs/real-runs/${run}/result.json`);
+  const page = resolve(root, pageFile);
+  test(`T2960 run ${run}: every returned claim is found, with an exact or fuzzy tier`, { skip: !existsSync(result) || !existsSync(page) }, () => {
+    const html = readFileSync(page, "utf8").replace(/<script\b[\s\S]*?<\/script\s*>/gi, "");
+    const index = buildIndex(new JSDOM(html).window.document.body);
+    const claims = JSON.parse(readFileSync(result, "utf8")).claims.normalized;
+    assert.ok(claims.length >= 5);
+    for (const c of claims) assert.ok(findQuote(index.text, c.quote), `not found: ${c.quote}`);
+  });
+}

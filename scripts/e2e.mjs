@@ -64,6 +64,8 @@ const MOCKS = {
       { quote: "raised $40 million in a Series B round led by Northgate Capital", kind: "specific", why: "Amount, round and lead are checkable." },
       { quote: "processes \"more than €2 billion\" in transactions a year", kind: "specific", why: "A figure attributed to the company." },
       { quote: "a transformational milestone for the industry", kind: "vague", why: "A quoted opinion." },
+      // Model slips (T2960): footnote marker, changed name, a wrong vague label and a cut-off reason. Lens must still find it, keep it green and show a full reason.
+      { quote: "Orbit Inc. said on Thursday it raised $40 million[1][2] in a Series B round led by Northgate Capital.", kind: "vague", why: "The adjectives", summary: "Orbit raised $40 million." },
     ] },
     geo: { entities: [{ name: "Orbit", type: "company" }, { name: "Ana Silva", type: "person" }], facts: ["Orbit raised $40 million."], missing: ["No investor list beyond the lead"], fixes: ["Add the filing link.", "Add the round date in the body.", "State where Orbit is incorporated."], ratings: { entity_clarity: 4, fact_density: 4, structure: 3, trust_signals: 2, ambiguity: 3 } },
   },
@@ -127,6 +129,13 @@ try {
       return { id: f.dataset.mflId, inView: r.top >= 0 && r.bottom <= innerHeight };
     });
     check(`${name}: click claim flashes + scrolls to highlight`, !!flashed && flashed.inView, JSON.stringify(flashed));
+    if (name === "news-article") {
+      const card = panel.locator(".claim", { hasText: "Orbit Inc." });
+      check("news-article: footnote + renamed quote is found, not disabled", (await card.count()) === 1 && !(await card.evaluate((e) => e.classList.contains("missing"))));
+      check("news-article: wrong vague label overridden to specific, cut-off reason replaced", (await card.getAttribute("data-kind")) === "specific" && !/The adjectives/.test(await card.textContent()) && /Names an amount/.test(await card.textContent()), (await card.textContent()).slice(0, 200));
+      const markText = await page.evaluate(() => [...document.querySelectorAll("mark.mfl-hl[data-mfl-id=c4]")].map((m) => m.textContent).join(""));
+      check("news-article: highlight covers the page sentence", /said on Thursday it raised .40 million in a Series B round led by Northgate Capital/.test(markText), markText.slice(0, 160));
+    }
     if (name === "linkedin-profile") {
       check("not-found claim is disabled with a message", (await panel.locator(".claim.missing").count()) === 1);
       await page.screenshot({ path: join(shots, "e2e-linkedin-page-highlights.png") });

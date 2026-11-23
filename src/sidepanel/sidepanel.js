@@ -177,7 +177,9 @@ function renderClaims(claims, results) {
       },
       h("span", { class: "pill pill-" + c.kind }, label),
       h("span", { class: "quote" }, `“${c.quote}”`),
+      c.summary ? h("span", { class: "why summary" }, "In short: " + c.summary) : "",
       c.why ? h("span", { class: "why" }, c.why) : "",
+      c.note ? h("span", { class: "why note" }, "Note: " + c.note + ".") : "",
       h("span", { class: "where" }, found ? "Show on page" : "Not found on the page"),
     );
     if (found) card.addEventListener("click", () => jump(c.id));

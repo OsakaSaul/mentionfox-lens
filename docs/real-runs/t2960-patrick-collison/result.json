@@ -1,0 +1,320 @@
+{
+  "fixture": "wikipedia-patrick-collison.html",
+  "source_url": null,
+  "run_at": "2026-11-23T04:39:29.791Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Patrick Collison - Wikipedia",
+    "url": "http://127.0.0.1:58875/",
+    "textLength": 8762,
+    "rootTag": "MAIN"
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3301,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Patrick Collison (born 9 September 1988) is an Irish entrepreneur, investor, and philanthropist.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim specifies Patrick Collison's birth date of 9 September 1988.\"\n    },\n    {\n      \"quote\": \"A billionaire since 2016, his net worth as of August 2026 is estimated at $17.5 billion.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim provides a net worth of $17.5 billion as of August 2026.\"\n    },\n    {\n      \"quote\": \"In 2021, he co-founded Arc Institute, a nonprofit research organization, with bioscientists Silvana Konermann and Patrick Hsu.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim mentions the founding year 2021 and named co-founders Silvana Konermann and Patrick Hsu.\"\n    },\n    {\n      \"quote\": \"In 2026, he co-founded the Rhine Group, a policy forum and think tank, with former Italian prime minister Mario Draghi.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim references the year 2026 and Mario Draghi.\"\n    },\n    {\n      \"quote\": \"His prize of a €7,500 cheque and a trophy of Waterford Crystal was presented to him by PresidentMary McAleese.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim states a specific prize amount of €7,500 and names President Mary McAleese.\"\n    },\n    {\n      \"quote\": \"In November 2016, the Collison brothers became the world's youngest self-made billionaires, worth at least $1.1 billion, after an investment in Stripe from CapitalG and General Catalyst Partners valued the company at $9.2 billion.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim specifies the date November 2016 and the valuation of $9.2 billion.\"\n    },\n    {\n      \"quote\": \"Collison joined the board of Meta Platforms in April 2025.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim specifies April 2025 and Meta Platforms.\"\n    },\n    {\n      \"quote\": \"In April 2022, Collison married Swiss-American biochemist and Stanford University professor Silvana Konermann, with whom he co-founded the Arc Institute.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim cites the wedding date of April 2022 and Silvana Konermann.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Patrick Collison (born 9 September 1988) is an Irish entrepreneur, investor, and philanthropist.",
+        "kind": "specific",
+        "why": "This claim specifies Patrick Collison's birth date of 9 September 1988."
+      },
+      {
+        "id": "c2",
+        "quote": "A billionaire since 2016, his net worth as of August 2026 is estimated at $17.5 billion.",
+        "kind": "specific",
+        "why": "This claim provides a net worth of $17.5 billion as of August 2026."
+      },
+      {
+        "id": "c3",
+        "quote": "In 2021, he co-founded Arc Institute, a nonprofit research organization, with bioscientists Silvana Konermann and Patrick Hsu.",
+        "kind": "specific",
+        "why": "This claim mentions the founding year 2021 and named co-founders Silvana Konermann and Patrick Hsu."
+      },
+      {
+        "id": "c4",
+        "quote": "In 2026, he co-founded the Rhine Group, a policy forum and think tank, with former Italian prime minister Mario Draghi.",
+        "kind": "specific",
+        "why": "This claim references the year 2026 and Mario Draghi."
+      },
+      {
+        "id": "c5",
+        "quote": "His prize of a €7,500 cheque and a trophy of Waterford Crystal was presented to him by PresidentMary McAleese.",
+        "kind": "specific",
+        "why": "This claim states a specific prize amount of €7,500 and names President Mary McAleese."
+      },
+      {
+        "id": "c6",
+        "quote": "In November 2016, the Collison brothers became the world's youngest self-made billionaires, worth at least $1.1 billion, after an investment in Stripe from CapitalG and General Catalyst Partners valued the company at $9.2 billion.",
+        "kind": "specific",
+        "why": "This claim specifies the date November 2016 and the valuation of $9.2 billion."
+      },
+      {
+        "id": "c7",
+        "quote": "Collison joined the board of Meta Platforms in April 2025.",
+        "kind": "specific",
+        "why": "This claim specifies April 2025 and Meta Platforms."
+      },
+      {
+        "id": "c8",
+        "quote": "In April 2022, Collison married Swiss-American biochemist and Stanford University professor Silvana Konermann, with whom he co-founded the Arc Institute.",
+        "kind": "specific",
+        "why": "This claim cites the wedding date of April 2022 and Silvana Konermann."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Patrick Collison"
+    },
+    {
+      "id": "c1",
+      "text": " (born 9 September 1988) is an Irish entrepreneur, investor, and "
+    },
+    {
+      "id": "c1",
+      "text": "philanthropist"
+    },
+    {
+      "id": "c2",
+      "text": "A billionaire since 2016, his net worth as of August 2026 is estimated at $17.5 billion"
+    },
+    {
+      "id": "c3",
+      "text": "In 2021, he co-founded "
+    },
+    {
+      "id": "c3",
+      "text": "Arc Institute"
+    },
+    {
+      "id": "c3",
+      "text": ", a nonprofit research organization, with bioscientists "
+    },
+    {
+      "id": "c3",
+      "text": "Silvana Konermann"
+    },
+    {
+      "id": "c3",
+      "text": " and "
+    },
+    {
+      "id": "c3",
+      "text": "Patrick Hsu"
+    },
+    {
+      "id": "c4",
+      "text": "In 2026, he co-founded the "
+    },
+    {
+      "id": "c4",
+      "text": "Rhine Group"
+    },
+    {
+      "id": "c4",
+      "text": ", a policy forum and "
+    },
+    {
+      "id": "c4",
+      "text": "think tank"
+    },
+    {
+      "id": "c4",
+      "text": ", with former Italian prime minister "
+    },
+    {
+      "id": "c4",
+      "text": "Mario Draghi"
+    },
+    {
+      "id": "c5",
+      "text": "His prize of a €7,500 cheque and a trophy of "
+    },
+    {
+      "id": "c5",
+      "text": "Waterford Crystal"
+    },
+    {
+      "id": "c5",
+      "text": " was presented to him by "
+    },
+    {
+      "id": "c5",
+      "text": "President"
+    },
+    {
+      "id": "c5",
+      "text": "Mary McAleese"
+    },
+    {
+      "id": "c6",
+      "text": "In November 2016, the Collison brothers became the world's youngest self-made billionaires, worth at least $1.1 billion, after an investment in Stripe from CapitalG and "
+    },
+    {
+      "id": "c6",
+      "text": "General Catalyst Partners"
+    },
+    {
+      "id": "c6",
+      "text": " valued the company at $9.2 billion"
+    },
+    {
+      "id": "c7",
+      "text": "Collison joined the board of "
+    },
+    {
+      "id": "c7",
+      "text": "Meta Platforms"
+    },
+    {
+      "id": "c7",
+      "text": " in April 2025"
+    },
+    {
+      "id": "c8",
+      "text": "In April 2022, Collison married Swiss-American biochemist and "
+    },
+    {
+      "id": "c8",
+      "text": "Stanford University"
+    },
+    {
+      "id": "c8",
+      "text": " professor "
+    },
+    {
+      "id": "c8",
+      "text": "Silvana Konermann"
+    },
+    {
+      "id": "c8",
+      "text": ", with whom he co-founded the "
+    },
+    {
+      "id": "c8",
+      "text": "Arc Institute"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2884,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Patrick Collison\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Stripe\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"John Collison\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Arc Institute\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Silvana Konermann\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Auctomatic\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Meta Platforms\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Fast Grants\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Patrick Collison is an Irish entrepreneur, investor, and philanthropist born on September 9, 1988.\",\n    \"He co-founded Stripe in 2010 with his younger brother John Collison.\",\n    \"He won the 41st Young Scientist and Technology Exhibition in Ireland in 2005 at age sixteen.\",\n    \"He co-founded the nonprofit biomedical research organization Arc Institute in 2021.\",\n    \"He joined the board of Meta Platforms in April 2025.\",\n    \"He married Swiss-American biochemist Silvana Konermann in April 2022.\"\n  ],\n  \"missing\": [\n    \"Specific details on the exact financial revenue or current employee count of Stripe.\",\n    \"The names of his children if any exist.\",\n    \"Detailed biographical information regarding his mother Lily and father Denis beyond their professions.\",\n    \"Comprehensive details about his early philanthropic contributions before 2018.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"A billionaire since 2016, his net worth as of August 2026 is estimated at $17.5 billion.\\\", add the financial publication or source that provides this estimate.\",\n    \"In the sentence \\\"In 2021, he co-founded Arc Institute, a nonprofit research organization, with bioscientists Silvana Konermann and Patrick Hsu.\\\", add the exact location where Arc Institute is headquartered.\",\n    \"In the sentence \\\"In 2026, he co-founded the Rhine Group, a policy forum and think tank, with former Italian prime minister Mario Draghi.\\\", add the specific city or country where the Rhine Group was established.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 3,\n    \"ambiguity\": 4\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Patrick Collison",
+          "type": "person"
+        },
+        {
+          "name": "Stripe",
+          "type": "company"
+        },
+        {
+          "name": "John Collison",
+          "type": "person"
+        },
+        {
+          "name": "Arc Institute",
+          "type": "company"
+        },
+        {
+          "name": "Silvana Konermann",
+          "type": "person"
+        },
+        {
+          "name": "Auctomatic",
+          "type": "company"
+        },
+        {
+          "name": "Meta Platforms",
+          "type": "company"
+        },
+        {
+          "name": "Fast Grants",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Patrick Collison is an Irish entrepreneur, investor, and philanthropist born on September 9, 1988.",
+        "He co-founded Stripe in 2010 with his younger brother John Collison.",
+        "He won the 41st Young Scientist and Technology Exhibition in Ireland in 2005 at age sixteen.",
+        "He co-founded the nonprofit biomedical research organization Arc Institute in 2021.",
+        "He joined the board of Meta Platforms in April 2025.",
+        "He married Swiss-American biochemist Silvana Konermann in April 2022."
+      ],
+      "missing": [
+        "Specific details on the exact financial revenue or current employee count of Stripe.",
+        "The names of his children if any exist.",
+        "Detailed biographical information regarding his mother Lily and father Denis beyond their professions.",
+        "Comprehensive details about his early philanthropic contributions before 2018."
+      ],
+      "fixes": [
+        "In the sentence \"A billionaire since 2016, his net worth as of August 2026 is estimated at $17.5 billion.\", add the financial publication or source that provides this estimate.",
+        "In the sentence \"In 2021, he co-founded Arc Institute, a nonprofit research organization, with bioscientists Silvana Konermann and Patrick Hsu.\", add the exact location where Arc Institute is headquartered.",
+        "In the sentence \"In 2026, he co-founded the Rhine Group, a policy forum and think tank, with former Italian prime minister Mario Draghi.\", add the specific city or country where the Rhine Group was established."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 3,
+        "ambiguity": 4
+      }
+    }
+  }
+}

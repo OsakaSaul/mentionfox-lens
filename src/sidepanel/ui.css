@@ -136,3 +136,4 @@ footer { padding: 4px 16px 20px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
 .block ul.ents { display: flex; padding: 0; }
+.claim .why.note { font-size: 12px; font-style: italic; }

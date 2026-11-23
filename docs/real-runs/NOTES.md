@@ -58,3 +58,22 @@ Tuning iterations: four prompt versions were run on all four pages (initial; rul
 - Only one cloud model was tested. Gemini Nano on-device (smaller context, weaker instruction following) has NOT been run; expect lower quality and more JSON retries there. The code retries once in the cloud when an on-device answer cannot be parsed.
 - Label correctness ("specific" vs "vague") is my judgement from reading the pages, not an independent benchmark. Four pages is a small sample.
 - Pages were served locally with scripts removed and a `<base href>` for CSS; real sites with client-side hydration may differ (not tested on live sites).
+
+## T2960: verbatim quotes, tiered matching, anchor rule (2026-11-23)
+
+Owner saw on en.wikipedia.org/wiki/Sam_Bankman-Fried (T2959 build): cards "Not found on the page" for sentences that were visibly on the page, and "Vague or puffery" with a cut-off reason ("The adjectives") on a claim with a date and a place.
+
+Causes: (1) the model returned the quote with the footnote markers [1][15][16] and rewrote "Samuel Benjamin" as "Sam", or paraphrased the sentence; match.js findQuote only had exact, no-space and head/tail tiers, so both failed. (2) The prompt let one adjective ("upper-class") decide the label and nothing checked it in code; reasons were cut with slice() or arrived cut off from the model.
+
+Fixes: the claims prompt now asks for an exact verbatim span (no name expansion or shortening, no markers), an optional separate summary, and defines specific as "has at least one checkable anchor"; the page text sent to the model has footnote markers removed; findQuote has five tiers (exact, no-space, head/tail, a run of 8 or more identical words, 80% of the words in one sentence-sized window) and returns the tier; highlight and jump both go through that one function; footnote links are never wrapped; anchors.js overrides a "vague" label on a claim with a date, number, amount or named place and adds "contains a subjective word: ..."; reasons are asked for as one complete sentence of at most 20 words and a cut-off reason is replaced, and any code-side cut is at a word boundary with an ellipsis.
+
+Real cloud runs, new prompt (scripts/live-probe.mjs on saved pages, results in docs/real-runs/t2960-*):
+
+| Page | Claims | Found on page | Tier | Vague | Vague claims and verdict |
+|---|---|---|---|---|---|
+| Sam Bankman-Fried (Wikipedia) | 8 | 8 (100%) | 8 exact | 0 | none |
+| Patrick Collison (Wikipedia) | 8 | 8 (100%) | 8 exact | 0 | none |
+| Theranos FDA press release (Archive copy), run 1 | 8 | 8 (100%) | 8 exact | 1 | "Theranos is deeply committed to transparency in the laboratory testing space." Reason: relies on subjective claims of deep commitment without checkable anchors. Right. |
+| Theranos runs 2 and 3 | 8 and 8 | 8 and 8 | exact | 2 and 2 | the same sentence, plus "By doing so, Theranos is working to facilitate the early detection and prevention of disease, and to empower people to live their best lives": aspirational, nothing checkable. Right. |
+
+The cloud model now copies verbatim, so the fuzzy tiers are exercised by unit tests (the exact two owner sentences against the saved Bankman-Fried page both match, in tier "run": a name was expanded, a sentence was reworded) rather than by these runs. They matter most for on-device Gemini Nano, which has not been run (not available on the build machine). The anchor override did not fire on these runs (the model labelled correctly); it is covered by tests. Known side effect: a vague sentence that names an organisation (the Theranos "FDA's decision provides independent validation ... ground breaking" sentence) now counts as checkable, which is the rule as specified, and is why that sentence is no longer an amber card.

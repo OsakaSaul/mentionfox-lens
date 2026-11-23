@@ -41,7 +41,7 @@ export class Highlighter {
     this.claims = new Map();
   }
 
-  /** Apply (or re-apply) a claim. Returns {id, found, method}. method: wrap | highlight-api | null */
+  /** Apply (or re-apply) a claim. Returns {id, found, method, tier}. method: wrap | highlight-api | null; tier: which matcher tier hit. */
   apply(claim) {
     this.claims.set(claim.id, claim);
     this.removeOne(claim.id);
@@ -62,7 +62,7 @@ export class Highlighter {
       // Reverse order: splitting a node never shifts earlier nodes.
       for (const seg of [...segs].reverse()) marks.unshift(wrapSegment(this.doc, seg, claim));
       this.records.set(claim.id, { marks, method: "wrap", range: null });
-      return { id: claim.id, found: true, method: "wrap" };
+      return { id: claim.id, found: true, method: "wrap", tier: hit.method };
     } catch (err) {
       for (const m of marks) this.unwrap(m);
       if (hasHighlightApi(this.win)) {
@@ -72,7 +72,7 @@ export class Highlighter {
           r.setEnd(segs[segs.length - 1].node, segs[segs.length - 1].to);
           this.addApiHighlight(claim, r);
           this.records.set(claim.id, { marks: [], method: "highlight-api", range: r });
-          return { id: claim.id, found: true, method: "highlight-api" };
+          return { id: claim.id, found: true, method: "highlight-api", tier: hit.method };
         } catch { /* fall through */ }
       }
       return { id: claim.id, found: false, method: null };
@@ -133,7 +133,8 @@ export class Highlighter {
 
   /** Scroll to the claim and flash it. Returns {ok, method}. */
   jump(id) {
-    if (this.isBroken(id) && this.claims.get(id)) this.apply(this.claims.get(id));
+    // Same matcher as the highlight (apply -> findQuote): jump can only fail when the highlight itself has no match.
+    if ((this.isBroken(id) || !this.records.has(id)) && this.claims.get(id)) this.apply(this.claims.get(id));
     const rec = this.records.get(id);
     if (!rec) return { ok: false, method: null };
     if (rec.method === "wrap") {

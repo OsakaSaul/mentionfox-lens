@@ -1,4 +1,6 @@
 // Tolerant parsing of model output, plus normalisation into the shapes the UI uses.
+import { stripMarkers } from "./match.js";
+import { reconcileKind } from "./anchors.js";
 
 /** Extract the first balanced JSON object/array from text (string-aware). Returns the substring or null. */
 export function extractJsonBlock(text) {
@@ -62,23 +64,57 @@ export function parseModelJson(text) {
   throw new Error("model output is not valid JSON");
 }
 
-const clean = (v, max = 400) => String(v ?? "").replace(/\s+/g, " ").trim().slice(0, max);
+const clean = (v, max = 400) => safeSlice(String(v ?? "").replace(/\s+/g, " ").trim(), max);
 
-/** Normalise claims output (array or {claims:[...]}) into [{id, quote, kind, why}]. */
+/**
+ * Cut text to at most max UTF-16 units without splitting a surrogate pair. With {words:true} the cut falls on a word boundary
+ * and an ellipsis marks it. Text that already fits is returned unchanged.
+ */
+export function safeSlice(text, max, { words = false } = {}) {
+  const t = String(text ?? "");
+  if (t.length <= max) return t;
+  const room = words ? Math.max(1, max - 1) : max;
+  let end = room;
+  const hi = t.charCodeAt(end - 1);
+  if (hi >= 0xd800 && hi <= 0xdbff) end--; // do not leave half of a surrogate pair
+  let cut = t.slice(0, end);
+  if (!words) return cut;
+  const sp = cut.search(/\s\S*$/);
+  if (sp > room * 0.4) cut = cut.slice(0, sp);
+  return cut.replace(/[\s,;:–—-]+$/, "") + "…";
+}
+
+const TERMINAL = /[.!?…]["'”’)]*$/;
+/** A reason the model cut off mid-sentence ("The adjectives") is dropped, never shown. */
+export function reasonIsComplete(why) {
+  const t = String(why ?? "").trim();
+  return t.split(/\s+/).length >= 4 && TERMINAL.test(t);
+}
+
+/**
+ * Normalise claims output (array or {claims:[...]}) into [{id, quote, kind, why, summary?, note?}].
+ * quote is the verbatim span (footnote markers removed); summary is an optional display paraphrase; kind is reconciled with the
+ * anchor detector, so a claim with a date, number, amount or named place can never stay "vague".
+ */
 export function normalizeClaims(value, { max = 12 } = {}) {
   const arr = Array.isArray(value) ? value : Array.isArray(value?.claims) ? value.claims : null;
   if (!arr) throw new Error("no claims array in model output");
   const seen = new Set();
   const out = [];
   for (const item of arr) {
-    const quote = clean(typeof item === "string" ? item : item?.quote ?? item?.text ?? item?.claim, 300);
+    const quote = clean(stripMarkers(typeof item === "string" ? item : item?.quote ?? item?.text ?? item?.claim ?? ""), 600);
     if (quote.length < 8) continue;
     const key = quote.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);
     const k = clean(item?.kind ?? item?.label ?? item?.type, 40).toLowerCase();
     const kind = /vague|puff|fluff|unverif|subjective|marketing/.test(k) ? "vague" : "specific";
-    out.push({ id: "c" + (out.length + 1), quote, kind, why: clean(item?.why ?? item?.reason ?? item?.explanation, 220) });
+    const whyRaw = clean(item?.why ?? item?.reason ?? item?.explanation, 1000);
+    const why = reasonIsComplete(whyRaw) ? safeSlice(whyRaw, 220, { words: true }) : kind === "vague" ? "Nothing in it names a date, number, place or source a reader could check." : "It contains a detail a reader can check against a public source.";
+    const summary = clean(item?.summary, 1000);
+    const claim = { id: "c" + (out.length + 1), quote, kind, why };
+    if (summary && reasonIsComplete(summary)) claim.summary = safeSlice(summary, 220, { words: true });
+    out.push(reconcileKind(claim));
     if (out.length >= max) break;
   }
   return out;
