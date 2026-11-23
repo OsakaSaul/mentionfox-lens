@@ -3,6 +3,8 @@ import { CLAIMS_SCHEMA, GEO_SCHEMA, buildClaimsPrompt, buildGeoPrompt, MAX_PAGE_
 import { findAnchorIndex, pickWindow, chunkBlocks } from "../shared/extract.js";
 import { runChunkedClaims, mergeClaims, progressText } from "../shared/chunked.js";
 import { normalizeClaims, normalizeGeo } from "../shared/parse.js";
+import { setSelfNames, deriveSelfNames } from "../shared/anchors.js";
+import { debugReset, debugSet, debugSnapshot } from "../shared/debug.js";
 import { geoScore, geoBand, GEO_BANDS, GEO_DIMENSION_LABELS } from "../shared/geo.js";
 import { modeInfo, statusLine, chipState, formatSeconds } from "../shared/mode.js";
 import { VERIFY_CLAIMS_URL, DECISION_MAKERS_URL } from "../shared/links.js";
@@ -276,6 +278,7 @@ async function analyze({ more = false } = {}) {
       more = false;
     }
     const page = state.page;
+    setSelfNames(deriveSelfNames({ title: page.title, url: page.url }));
 
     const deviceStatus = await engine.probeDevice();
     device.availability = deviceStatus;
@@ -293,6 +296,8 @@ async function analyze({ more = false } = {}) {
     const budget = onDevice ? DEVICE_WINDOW_CHARS : MAX_PAGE_CHARS;
     const anchorIdx = more ? -1 : findAnchorIndex(page.blocks, page.anchorText);
     const win = pickWindow(page.blocks, { budget, covered: state.covered, anchorIdx });
+    if (!more) debugReset({ version: chrome.runtime.getManifest().version, mode: onDevice ? "on-device" : "cloud", url: page.url });
+    debugSet({ extractedChars: page.textLength, windowChars: win.chars, mode: onDevice ? "on-device" : "cloud" });
     if (!win.indices.length) throw new Error("Nothing more to analyse on this page.");
     for (const i of win.indices) state.covered.add(i);
     state.remaining = win.remaining;
@@ -365,6 +370,7 @@ async function analyze({ more = false } = {}) {
         const h = await send(tab.id, { type: "highlightAdd", claims: added });
         for (const x of h?.results || []) state.results.set(x.id, x);
       }
+      debugSet({ chunks: [win.text], rawPerChunk: [{ chunk: 1, raw: String(r.raw ?? "") }] });
       cres = { source: r.source, retried: r.retried, raw: r.raw, chunks: 1, failedChunks: 0 };
       cres.ms = r.ms; // time the model call took
     }
@@ -438,6 +444,30 @@ function friendlyError(err) {
   if (/network|fetch|Failed to fetch/i.test(m)) return "Could not reach the cloud fallback. Check your connection.";
   return m.slice(0, 240);
 }
+
+/* Hidden debug export: Ctrl+Shift+D copies the last run (text length, chunks, raw model answers, reconcile decisions) as JSON. */
+function showToast(text) {
+  let t = $("toast");
+  if (!t) {
+    t = h("div", { id: "toast", role: "status", "aria-live": "polite" });
+    t.style.cssText = "position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#1f2937;color:#fff;padding:8px 14px;border-radius:8px;font-size:13px;z-index:9999";
+    document.body.append(t);
+  }
+  t.textContent = text;
+  t.hidden = false;
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => { t.hidden = true; }, 2200);
+}
+document.addEventListener("keydown", async (e) => {
+  if (!(e.ctrlKey && e.shiftKey && (e.key === "D" || e.key === "d"))) return;
+  e.preventDefault();
+  const json = JSON.stringify(debugSnapshot(), null, 1);
+  try { await navigator.clipboard.writeText(json); } catch {
+    const ta = h("textarea", { "aria-hidden": "true" }); ta.value = json; document.body.append(ta); ta.select();
+    try { document.execCommand("copy"); } finally { ta.remove(); }
+  }
+  showToast("Debug copied");
+});
 
 $("analyze").addEventListener("click", () => analyze());
 $("rerun").addEventListener("click", () => analyze());

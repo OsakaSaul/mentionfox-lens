@@ -1,6 +1,7 @@
 // Tolerant parsing of model output, plus normalisation into the shapes the UI uses.
 import { stripMarkers } from "./match.js";
-import { reconcileKind } from "./anchors.js";
+import { reconcileDecision } from "./anchors.js";
+import { debugDecision } from "./debug.js";
 
 /** Extract the first balanced JSON object/array from text (string-aware). Returns the substring or null. */
 export function extractJsonBlock(text) {
@@ -114,7 +115,9 @@ export function normalizeClaims(value, { max = 12 } = {}) {
     const summary = clean(item?.summary, 1000);
     const claim = { id: "c" + (out.length + 1), quote, kind, why };
     if (summary && reasonIsComplete(summary)) claim.summary = safeSlice(summary, 220, { words: true });
-    out.push(reconcileKind(claim));
+    const rec = reconcileDecision(claim);
+    debugDecision(rec.decision);
+    out.push(rec.claim);
     if (out.length >= max) break;
   }
   return out;

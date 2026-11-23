@@ -97,16 +97,51 @@ function isTitleCase(text) {
  * Returns {type: "date"|"number"|"amount"|"name", text}. A name counts when it has two or more capitalised words (Sam Bankman-Fried,
  * Northgate Capital), or one capitalised word after a preposition (in Stanford, at Stripe) or an acronym of 3 to 6 letters (FTX).
  */
-export function findAnchor(text) {
+export function findAnchor(text) { return findAnchorDetail(text).anchor; }
+
+// The page's own organisation. Puffery that names its own company ("Enron is a laboratory of innovation") is still puffery: the
+// speaker's own name is not something a reader can check. Set per page from the title and the address (see deriveSelfNames).
+const CORP_WORDS = new Set(["inc", "corp", "corporation", "co", "company", "ltd", "llc", "plc", "group", "holdings", "gmbh", "the"]);
+let selfNames = new Set();
+const bare = (w) => String(w).toLowerCase().replace(/['’]s$/, "").replace(/[^\p{L}\p{N}-]+/gu, "");
+
+export function setSelfNames(list) { selfNames = new Set((list || []).map(bare).filter((w) => w.length >= 3)); }
+
+/** Names the page speaks as: the first part of the title (before a colon, bar or dash) and the site name from the address (web.archive.org unwrapped). */
+export function deriveSelfNames({ title = "", url = "" } = {}) {
+  const out = new Set();
+  const head = String(title).split(/\s[|–—-]\s|\s--\s|:|\|/)[0].trim();
+  if (head.split(/\s+/).length <= 4) for (const w of head.match(/[\p{L}\p{N}][\p{L}\p{N}'’&-]*/gu) || []) out.add(bare(w));
+  let u = String(url);
+  const wb = /\/web\/\d+[a-z_]*\/(https?:\/\/.+)$/i.exec(u);
+  if (wb) u = wb[1];
+  try {
+    const labels = new URL(u).hostname.toLowerCase().split(".").filter((l) => !/^(www\d*|m|en|web|archive|com|org|net|io|co|gov|edu|uk|jp|de|fr|ai|app|dev|me|us)$/.test(l));
+    for (const l of labels) out.add(bare(l));
+  } catch { /* not a URL */ }
+  return [...out].filter((w) => w.length >= 3 && !CORP_WORDS.has(w));
+}
+
+const isSelfRun = (text) => {
+  const real = text.split(/\s+/).map(bare).filter((w) => w && !CORP_WORDS.has(w) && !NAME_JOINERS.has(w));
+  return real.length > 0 && real.every((w) => selfNames.has(w));
+};
+
+/** Like findAnchor, plus selfOnly: true when the only name found was the page's own organisation (never an anchor). */
+export function findAnchorDetail(text) {
   const t = String(text ?? "").replace(/\s+/g, " ").trim();
-  if (!t) return null;
+  if (!t) return { anchor: null, selfOnly: false };
   const d = dateOrAmount(t);
-  if (d) return d;
-  if (isTitleCase(t)) return null; // Every Word Capitalised: a headline or slogan, names cannot be told apart
+  if (d) return { anchor: d, selfOnly: false };
+  if (isTitleCase(t)) return { anchor: null, selfOnly: false }; // Every Word Capitalised: a headline or slogan, names cannot be told apart
+  let selfOnly = false;
+  let named = false;
   for (const r of nameRuns(t)) {
-    if (r.words >= 2 || r.acronym || (!r.first && NAME_PREPS.has(r.prev))) return { type: "name", text: r.text };
+    if (isSelfRun(r.text)) { selfOnly = true; continue; }
+    if (!r.first) named = true; // the speaker naming itself, even as a lone sentence-initial word
+    if (r.words >= 2 || r.acronym || (!r.first && NAME_PREPS.has(r.prev))) return { anchor: { type: "name", text: r.text }, selfOnly: false };
   }
-  return null;
+  return { anchor: null, selfOnly, named };
 }
 
 /** The first subjective word in a claim, or null. Whole-word match, hyphenated forms included. */
@@ -121,18 +156,42 @@ export function findSubjectiveWord(text) {
 
 const TYPE_LABEL = { date: "a date", number: "a number", amount: "an amount", name: "a named place, person or organisation" };
 
+// Statements of belief, values and praise: nothing a reader can check even when the model calls them specific.
+const PUFF_RES = [
+  /\b(?:we|our)\s+(?:believe|value|are committed|are convinced|strive|aim|think|will continue|are satisfied|operate|take)\b/i,
+  /\b(?:we|together,?\s+we|here,?\s+we)(?:'re|’re|\s+are)?\s+(?:creating|defining|building|changing|dedicated|passionate|focused)\b/i,
+  /\bbest and (?:the )?brightest\b/i,
+  /\b(?:inherent|true|real)\s+(?:wisdom|value|power|passion)\b/i,
+  /\bour (?:mission|vision|values|purpose|culture)\b/i,
+];
+const FIRST_PERSON = /^(?:(?:together|here|so|and|that['’]s why|but),?\s+)?(?:we|our)\b/i;
+
 /**
- * Deterministic override: a claim labelled vague that carries a checkable anchor becomes specific.
- * Adds `note` when a subjective word is present ("contains a subjective word: upper-class") and replaces the model's reason,
- * which argued for "vague", with one that names the anchor. Claims with no anchor are returned unchanged.
+ * Deterministic second opinion on the model's label. Returns {claim, decision}; decision = {sentence, before, after, reason}.
+ *  - vague with a checkable anchor -> specific (a date, number, amount, named place, person, organisation or event).
+ *  - specific with NO checkable anchor and a puffery signal (praise word, belief or values statement, first-person "we", or only the
+ *    page's own company name) -> vague. The speaker naming itself is never an anchor.
+ *  - anything else: the model's label stands.
  */
-export function reconcileKind(claim) {
-  const anchor = findAnchor(claim.quote);
+export function reconcileDecision(claim) {
+  const { anchor, selfOnly, named } = findAnchorDetail(claim.quote);
   const word = findSubjectiveWord(claim.quote);
-  if (claim.kind !== "vague" || !anchor) {
-    return word && claim.kind === "specific" && anchor ? { ...claim, note: `contains a subjective word: ${word}` } : claim;
+  const decision = (after, reason) => ({ sentence: claim.quote, before: claim.kind, after, reason });
+  if (claim.kind === "vague" && anchor) {
+    const note = word ? `contains a subjective word: ${word}` : "";
+    const why = `Names ${TYPE_LABEL[anchor.type]} (${anchor.text}) that a reader can check against a public source.`;
+    return { claim: { ...claim, kind: "specific", why, note, overridden: true, anchor }, decision: decision("specific", `vague -> specific: checkable ${anchor.type} anchor '${anchor.text}'`) };
   }
-  const note = word ? `contains a subjective word: ${word}` : "";
-  const why = `Names ${TYPE_LABEL[anchor.type]} (${anchor.text}) that a reader can check against a public source.`;
-  return { ...claim, kind: "specific", why, note, overridden: true, anchor };
+  if (claim.kind === "specific" && !anchor) {
+    const signal = word ? `praise word '${word}'` : PUFF_RES.some((re) => re.test(claim.quote)) ? "belief or values statement" : FIRST_PERSON.test(String(claim.quote).trim()) ? "first-person statement of intent" : selfOnly ? "names only the page's own company" : !named ? "nothing in it is named, dated or counted" : "";
+    if (signal) {
+      const why = "Nothing in it gives a date, number, amount or named event to check; it is a statement of belief or praise.";
+      return { claim: { ...claim, kind: "vague", why, note: word ? `contains a subjective word: ${word}` : "", overridden: true }, decision: decision("vague", `specific -> vague: no checkable anchor, ${signal}`) };
+    }
+  }
+  if (claim.kind === "specific" && anchor && word) return { claim: { ...claim, note: `contains a subjective word: ${word}` }, decision: decision("specific", `kept: anchor ${anchor.type} '${anchor.text}' with subjective word '${word}'`) };
+  return { claim, decision: decision(claim.kind, anchor ? `kept: anchor ${anchor.type} '${anchor.text}'` : "kept: no anchor and no puffery signal, model label stands") };
 }
+
+/** The reconciled claim only. */
+export function reconcileKind(claim) { return reconcileDecision(claim).claim; }

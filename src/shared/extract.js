@@ -95,7 +95,35 @@ export function splitLong(text, max = MAX_BLOCK_CHARS) {
 }
 
 /** Keep real sentences and drop menu-like fragments (short, no digit, no sentence punctuation). */
-const keepBlock = (t) => t.length >= 40 || (t.length >= MIN_BLOCK_CHARS && /[.!?:;0-9]/.test(t));
+const FOOTER_BLOCK = /^(?:top of page\s*)?(?:copyright|©|all rights reserved)/i;
+const keepBlock = (t) => !FOOTER_BLOCK.test(t) && (t.length >= 40 || (t.length >= MIN_BLOCK_CHARS && /[.!?:;0-9]/.test(t)));
+
+/**
+ * Hand-wrapped HTML (2001 table-and-font pages) puts a newline inside a paragraph every 60 characters. buildIndex keeps node text as
+ * is and the block splitter breaks at every newline, so one sentence became several fragments, short fragments were dropped as menu
+ * junk and a quote spanning two source lines could never be copied. In HTML a newline in a text node is just a space, so turn every
+ * whitespace run (outside pre) into one space before reading. Works on the clone only.
+ */
+function collapseSourceWhitespace(host) {
+  const w = host.ownerDocument.createTreeWalker(host, 4 /* SHOW_TEXT */);
+  for (let n = w.nextNode(); n; n = w.nextNode()) {
+    if (n.parentElement && n.parentElement.closest("pre,textarea")) continue;
+    n.nodeValue = n.nodeValue.replace(/[ \t\r\n\f]+/g, " ");
+  }
+  // A short bold lead-in ("respect", "our markets") that opens a paragraph is a label, not part of the first sentence: give it its own
+  // line, where the short-fragment filter drops it, so quotes start at the real sentence.
+  for (const b of host.querySelectorAll("b,strong")) {
+    const t = (b.textContent || "").trim();
+    if (!t || t.length > 40 || /[.!?:;]$/.test(t) || b.closest("pre,a")) continue;
+    if (!/^\p{Ll}/u.test(t) || t.split(/\s+/).length > 4) continue; // lower-case lead-ins only: a capitalised bold name ("Sam Bankman-Fried (born ...)") is the subject, not a label
+    const before = b.previousSibling;
+    if (before && before.nodeType === 3 && before.nodeValue.trim()) continue; // mid-sentence bold
+    const tw = host.ownerDocument.createTreeWalker(b, 4);
+    let last = null;
+    for (let n = tw.nextNode(); n; n = tw.nextNode()) last = n;
+    if (last) last.nodeValue += "\n";
+  }
+}
 
 /**
  * Extract the main content of a page as ordered text blocks (paragraphs, list items, quotes).
@@ -112,6 +140,7 @@ export function extractMainBlocks(doc) {
   removeAll(host, WIKI_REMOVE);
   removeTailSections(host);
   removeAll(host, BOILERPLATE_SMALL, (el) => textOf(el).length < SMALL_LIMIT && !el.querySelector("article, main, h1"));
+  collapseSourceWhitespace(host);
   const { text } = buildIndex(host);
   const blocks = [];
   let prev = "";

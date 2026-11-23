@@ -290,7 +290,10 @@ try {
   const progress = rec.status.filter((t) => /^Finding claims: chunk/.test(t));
   check("progress: 'chunk N of M, K claims so far' is shown and counts up", progress.some((t) => /^Finding claims: chunk 2 of \d+, [1-9]\d* claims? so far/.test(t)), progress.slice(0, 6).join(" | "));
   const chunkLens = await sp.evaluate(() => window.__mflChunks);
-  check("chunks: about 1,500 characters each, 3 to 5 chunks for the first 6,000 characters", chunkLens.length >= 3 && chunkLens.length <= 5 && chunkLens.every((n) => n <= 1900), chunkLens.join(","));
+  await sp.keyboard.press("Control+Shift+D");
+  await sp.waitForSelector("#toast:not([hidden])", { timeout: 3000 }).catch(() => {});
+  check("debug export: Ctrl+Shift+D shows 'Debug copied'", (await sp.evaluate(() => document.getElementById("toast")?.textContent)) === "Debug copied");
+  check("chunks: about 800 characters each, 5 to 10 chunks for the first 6,000 characters", chunkLens.length >= 5 && chunkLens.length <= 10 && chunkLens.every((n) => n <= 1100), chunkLens.join(","));
   const total1 = await txt(sp, "#claimsMode .mode-main");
   check("mode bar: 'On-device · N seconds' (no '(private)')", /^On-device · \d+\.\d seconds$/.test(total1), total1);
   const firstLine = await txt(sp, "#claimsMode .mode-first");

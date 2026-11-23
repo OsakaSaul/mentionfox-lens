@@ -1,4 +1,4 @@
-PASS  extension loads and service worker starts  lpjeonfphonnhmfpkhnafalahddhcfke
+PASS  extension loads and service worker starts  foehpjhlmbefhnaominonkckhicmneeb
 PASS  linkedin-profile: analyze completes  Done in 0.1 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  linkedin-profile: highlights wrapped in the page  8 marks
 PASS  linkedin-profile: mode bar shown (mock: device)  On-device · 0.1 seconds
@@ -52,28 +52,29 @@ PASS  cloud when unavailable: status line  Done in 6.4 seconds on Cloud: 3 claim
 PASS  on-device failed then cloud: bar 'Cloud (on-device failed) · N seconds'  Cloud (on-device failed) · 3.2 seconds
 PASS  downloadable: Download button shown with tooltip
 PASS  after Download click: chip shows percent and button is gone
-PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":30,"clicked":false}
-PASS  streaming: the first card is on screen while the run is still going  Finding claims: chunk 1 of 4, 0 claims so far...
-PASS  streaming: highlights land on the page while the run is still going  8 marks
-PASS  streaming: first card appears at least one chunk-time before the run ends  first card +267 ms, done +2916 ms
-PASS  progress: 'chunk N of M, K claims so far' is shown and counts up  Finding claims: chunk 1 of 4, 0 claims so far... | Finding claims: chunk 2 of 4, 2 claims so far... | Finding claims: chunk 3 of 4, 4 claims so far... | Finding claims: chunk 4 of 4, 6 claims so far... | Finding claims: chunk 4 of 4, 8 claims so far...
-PASS  chunks: about 1,500 characters each, 3 to 5 chunks for the first 6,000 characters  1481,1445,1448,1447
-PASS  mode bar: 'On-device · N seconds' (no '(private)')  On-device · 2.9 seconds
-PASS  mode bar: 'First claim in X seconds' line  First claim in 0.3 seconds
+PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":37,"clicked":false}
+PASS  streaming: the first card is on screen while the run is still going  Finding claims: chunk 1 of 8, 0 claims so far...
+PASS  streaming: highlights land on the page while the run is still going  7 marks
+PASS  streaming: first card appears at least one chunk-time before the run ends  first card +395 ms, done +5704 ms
+PASS  progress: 'chunk N of M, K claims so far' is shown and counts up  Finding claims: chunk 1 of 8, 0 claims so far... | Finding claims: chunk 2 of 8, 1 claim so far... | Finding claims: chunk 3 of 8, 2 claims so far... | Finding claims: chunk 4 of 8, 3 claims so far... | Finding claims: chunk 5 of 8, 4 claims so far... | Finding claims: chunk 6 of 8, 5 claims so far...
+PASS  debug export: Ctrl+Shift+D shows 'Debug copied'
+PASS  chunks: about 800 characters each, 5 to 10 chunks for the first 6,000 characters  544,772,772,699,712,688,784,846
+PASS  mode bar: 'On-device · N seconds' (no '(private)')  On-device · 5.6 seconds
+PASS  mode bar: 'First claim in X seconds' line  First claim in 0.4 seconds
 PASS  claims tab: 'Your page stayed in this browser.' visible under the bar  Your page stayed in this browser.
-PASS  status line: total and first claim, with the word seconds  Done in 2.9 seconds on-device: 8 claims. First claim in 0.3 seconds. Click a claim to jump to it.
-PASS  first claim is earlier than the total  0.3 < 2.9
+PASS  status line: total and first claim, with the word seconds  Done in 5.7 seconds on-device: 8 claims. First claim in 0.4 seconds. Click a claim to jump to it.
+PASS  first claim is earlier than the total  0.4 < 5.7
 PASS  AI view tab: bar and 'Your page stayed in this browser.' visible
 PASS  claims are merged without duplicates and numbered  c1,c2,c3,c4,c5,c6,c7,c8
 PASS  every card has its highlight on the page  8 highlighted
 PASS  on-device AI view input is capped (4,000 characters of main content) and has no site furniture  5453 chars of prompt
 PASS  'Analyze more of this page' button is offered
 PASS  Analyze more: the next window adds claims to the list, ids continue  c1,c2,c3,c4,c5,c6,c7,c8,c9,c10
-PASS  Analyze more: a new window of chunks is analysed  1489,1467,1419,1611
+PASS  Analyze more: a new window of chunks is analysed  653,650,758,763,638,666,757,519,577
 PASS  Analyze more: old highlights stay, new ones are added  10 highlighted
 PASS  cloud: one call, same main-content extraction, 12,000-character budget  14130 chars of prompt
 PASS  cloud: bar 'Cloud · 3.1 seconds'  Cloud · 3.1 seconds
 PASS  cloud: 'First claim in X seconds' also shown, and the more button is offered
 PASS  popup renders with open button
 
-77/77 passed (model mocked; extension shell only)
+78/78 passed (model mocked; extension shell only)

@@ -1,6 +1,7 @@
 // Chunked, streaming claim run (the on-device path). Pure orchestration: the model call is injected, so the unit tests and the e2e
 // mock can prove the streaming and progress behaviour without Gemini Nano.
 import { normalizeClaims, extractCompleteClaimObjects, parseModelJson } from "./parse.js";
+import { debugChunk, debugRaw, debugNote } from "./debug.js";
 
 const dedupeKey = (q) => String(q).toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 
@@ -36,7 +37,7 @@ export function progressText({ chunk, total, claims }) {
  *  A chunk whose answer cannot be used is counted in failed and skipped, so one bad chunk never stops the run.
  * Returns {sources, failed, chunks, firstClaimAt} where firstClaimAt is now() when the first claim arrived (or null).
  */
-export async function runChunkedClaims({ chunks, streamChunk, claims, onClaims = () => {}, onProgress = () => {}, now = () => performance.now(), maxPerChunk = 6 }) {
+export async function runChunkedClaims({ chunks, streamChunk, claims, onClaims = () => {}, onProgress = () => {}, now = () => performance.now(), maxPerChunk = 12 }) {
   const sources = [];
   let failed = 0;
   let firstClaimAt = null;
@@ -54,6 +55,7 @@ export async function runChunkedClaims({ chunks, streamChunk, claims, onClaims =
   for (let i = 0; i < chunks.length; i++) {
     onProgress({ chunk: i + 1, total: chunks.length, claims: claims.length });
     let streamed = 0;
+    debugChunk(chunks[i]);
     const onText = (partial) => {
       const objs = extractCompleteClaimObjects(partial).slice(0, maxPerChunk);
       if (objs.length > streamed) { add(objs.slice(streamed)); streamed = objs.length; }
@@ -61,6 +63,7 @@ export async function runChunkedClaims({ chunks, streamChunk, claims, onClaims =
     try {
       const res = await streamChunk(chunks[i], onText, { index: i, total: chunks.length });
       sources.push(res.source);
+      debugRaw(i, res.text);
       let value;
       try { value = parseModelJson(res.text); } catch { value = null; }
       const arr = Array.isArray(value) ? value : Array.isArray(value?.claims) ? value.claims : null;
@@ -68,6 +71,7 @@ export async function runChunkedClaims({ chunks, streamChunk, claims, onClaims =
       else add(arr.slice(0, maxPerChunk).slice(streamed)); // anything the streaming parser did not see
     } catch (err) {
       if (err && err.fatal) throw err;
+      debugNote("chunk " + (i + 1) + " failed: " + String(err && err.message || err).slice(0, 200));
       failed++;
     }
     onProgress({ chunk: i + 1, total: chunks.length, claims: claims.length, done: i + 1 === chunks.length });
