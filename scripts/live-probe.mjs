@@ -88,7 +88,9 @@ try {
     // T2987: click Check on the first specific card (one real call to the lens-check Worker). --check-url pretends the page URL is a Wayback snapshot (dev build hook).
     if (opt("--check-model")) await panel.evaluate((m) => { self.__lensCheckModel = m; }, opt("--check-model"));
     if (opt("--check-url")) await panel.evaluate((u) => { window.__lensCheckUrl = u; }, opt("--check-url"));
-    await panel.locator("button.check-btn").first().click();
+    const cq = opt("--check-quote");   // T2991: click Check on the card whose quote contains this text (default: the first Check button)
+    if (cq) await panel.locator("li", { has: panel.locator(".quote", { hasText: cq }) }).locator("button.check-btn").first().click();
+    else await panel.locator("button.check-btn").first().click();
     await panel.waitForFunction(() => document.querySelector(".pill[data-verdict]") || document.querySelector(".check-error"), null, { timeout: 90000 }).catch(() => {});
     const ck = await panel.evaluate(() => { const li = document.querySelector("li[data-verdict]:not([data-verdict=''])") || document.querySelector(".checkrow"); return { quote: li?.querySelector(".quote")?.textContent, row: li?.querySelector(".checkrow")?.innerText }; });
     out(`CHECK quote: ${ck.quote}`);

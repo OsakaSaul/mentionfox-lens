@@ -1,0 +1,229 @@
+{
+  "fixture": "holmes-fortune-2014-06-cover.html",
+  "source_url": null,
+  "run_at": "2026-11-24T02:27:23.377Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "This CEO's out for blood | Fortune",
+    "url": "http://127.0.0.1:65252/",
+    "textLength": 34099,
+    "rawChars": 35301,
+    "rootTag": "MAIN",
+    "blocks": 99
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3404,
+    "first_ms": 3451,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"In the fall of 2003, Elizabeth Holmes, a 19-year-old sophomore at Stanford, plopped herself down in the office of her chemical engineering professor, Channing Robertson, and said, “Let’s start a company.”\",\n      \"kind\": \"specific\",\n      \"why\": \"This specific claim mentions Elizabeth Holmes, a year 2003, Stanford, and Channing Robertson.\"\n    },\n    {\n      \"quote\": \"Now she’s 30, and her private, Palo Alto-based corporation, called Theranos–the name is an amalgam of the words “therapy” and “diagnosis”–has 500 employees and has raised more than $400 million from equity sales to investors who have effectively valued the company at more than $9 billion.\",\n      \"kind\": \"specific\",\n      \"why\": \"This checkable claim mentions exact employee counts, monetary sums, valuation figures, and Palo Alto.\"\n    },\n    {\n      \"quote\": \"Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim includes the $73 billion market size, 10 billion tests, and 70 percent figure.\"\n    },\n    {\n      \"quote\": \"Medicare and Medicaid each pay roughly $10 billion annually on reimbursements for these tests.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim cites specific monetary amounts paid annually by Medicare and Medicaid.\"\n    },\n    {\n      \"quote\": \"Theranos runs what’s called a high-complexity laboratory, certified by the federal Centers for Medicare & Medicaid Services (CMS), and it is licensed to operate in nearly every state.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim names the federal Centers for Medicare & Medicaid Services and a specific laboratory type.\"\n    },\n    {\n      \"quote\": \"Production in Theranos’s 262,000-square-foot manufacturing facility in Newark, Calif.\",\n      \"kind\": \"specific\",\n      \"why\": \"This specific statement mentions square footage and Newark, California.\"\n    },\n    {\n      \"quote\": \"“This is about being able to do good,” Holmes says to me about her company.\",\n      \"kind\": \"vague\",\n      \"why\": \"This quote lacks checkable anchors and relies entirely on subjective praise.\"\n    },\n    {\n      \"quote\": \"“I just think this is so exciting,” says Mark Laret, the CEO of UCSF Medical Center, about what he’s seen so far.\",\n      \"kind\": \"vague\",\n      \"why\": \"This subjective statement by Mark Laret expresses personal excitement without checkable data.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "In the fall of 2003, Elizabeth Holmes, a 19-year-old sophomore at Stanford, plopped herself down in the office of her chemical engineering professor, Channing Robertson, and said, “Let’s start a company.”",
+        "kind": "specific",
+        "why": "This specific claim mentions Elizabeth Holmes, a year 2003, Stanford, and Channing Robertson."
+      },
+      {
+        "id": "c2",
+        "quote": "Now she’s 30, and her private, Palo Alto-based corporation, called Theranos–the name is an amalgam of the words “therapy” and “diagnosis”–has 500 employees and has raised more than $400 million from equity sales to investors who have effectively valued the company at more than $9 billion.",
+        "kind": "specific",
+        "why": "This checkable claim mentions exact employee counts, monetary sums, valuation figures, and Palo Alto."
+      },
+      {
+        "id": "c3",
+        "quote": "Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions.",
+        "kind": "specific",
+        "why": "This claim includes the $73 billion market size, 10 billion tests, and 70 percent figure."
+      },
+      {
+        "id": "c4",
+        "quote": "Medicare and Medicaid each pay roughly $10 billion annually on reimbursements for these tests.",
+        "kind": "specific",
+        "why": "This claim cites specific monetary amounts paid annually by Medicare and Medicaid."
+      },
+      {
+        "id": "c5",
+        "quote": "Theranos runs what’s called a high-complexity laboratory, certified by the federal Centers for Medicare & Medicaid Services (CMS), and it is licensed to operate in nearly every state.",
+        "kind": "specific",
+        "why": "This claim names the federal Centers for Medicare & Medicaid Services and a specific laboratory type."
+      },
+      {
+        "id": "c6",
+        "quote": "Production in Theranos’s 262,000-square-foot manufacturing facility in Newark, Calif.",
+        "kind": "specific",
+        "why": "This specific statement mentions square footage and Newark, California."
+      },
+      {
+        "id": "c7",
+        "quote": "“This is about being able to do good,” Holmes says to me about her company.",
+        "kind": "vague",
+        "why": "This quote lacks checkable anchors and relies entirely on subjective praise."
+      },
+      {
+        "id": "c8",
+        "quote": "“I just think this is so exciting,” says Mark Laret, the CEO of UCSF Medical Center, about what he’s seen so far.",
+        "kind": "specific",
+        "why": "Names a named place, person or organisation (Mark Laret) that a reader can check against a public source.",
+        "note": "",
+        "overridden": true,
+        "anchor": {
+          "type": "name",
+          "text": "Mark Laret"
+        }
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "In the fall of 2003, Elizabeth Holmes, a 19-year-old sophomore at Stanford, plopped herself down in the office of her chemical engineering professor, Channing Robertson, and said, “Let’s start a company"
+    },
+    {
+      "id": "c2",
+      "text": "Now she’s 30, and her private, Palo Alto-based corporation, called Theranos–the name is an amalgam of the words “therapy” and “diagnosis”–has 500 employees and has raised more than $400 million from equity sales to investors who have effectively valued the company at more than $9 billion"
+    },
+    {
+      "id": "c7",
+      "text": "This is about being able to do good,” Holmes says to me about her company"
+    },
+    {
+      "id": "c3",
+      "text": "Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions"
+    },
+    {
+      "id": "c4",
+      "text": "Medicare and Medicaid each pay roughly $10 billion annually on reimbursements for these tests"
+    },
+    {
+      "id": "c5",
+      "text": "Theranos runs what’s called a high-complexity laboratory, certified by the federal Centers for Medicare & Medicaid Services (CMS), and it is licensed to operate in nearly every state"
+    },
+    {
+      "id": "c8",
+      "text": "I just think this is so exciting,” says Mark Laret, the CEO of UCSF Medical Center, about what he’s seen so far"
+    },
+    {
+      "id": "c6",
+      "text": "Production in Theranos’s 262,000-square-foot manufacturing facility in Newark, Calif"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 5394,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Channing Robertson\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Steve Jobs\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Bill Gates\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Greg Wasson\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"UCSF Medical Center\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Walgreens\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Elizabeth Holmes founded Theranos after dropping out of Stanford University in her sophomore year.\",\n    \"Theranos has raised more than $400 million from equity sales and has been valued at over $9 billion.\",\n    \"The company operates a high-complexity laboratory certified by the Centers for Medicare & Medicaid Services.\",\n    \"Theranos tests can be performed using only a few drops of blood collected via a finger stick into a tiny vial called a nanotainer.\",\n    \"Theranos prices its tests to never exceed half the Medicare reimbursement rate for each procedure.\",\n    \"Walgreens has partnered with Theranos to establish collection centers in its drugstores.\"\n  ],\n  \"missing\": [\n    \"Specific regulatory approval status from the FDA for Theranos devices\",\n    \"Detailed peer-reviewed scientific studies or data on the testing technology\",\n    \"Financial loss or revenue figures for Theranos\",\n    \"Specific timeline for nationwide Walgreens rollout\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry...\\\", add the year of the industry data.\",\n    \"In the sentence \\\"Its phlebotomists currently take physician-ordered blood draws... at 21 Walgreens–one in Palo Alto and the rest in Phoenix.\\\", add the exact start date of the rollout.\",\n    \"In the sentence \\\"With Robertson’s blessing, Holmes started her company and, a semester later, dropped out to pursue it full-time.\\\", add the specific calendar year when she dropped out.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 3,\n    \"structure\": 3,\n    \"trust_signals\": 3,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "Channing Robertson",
+          "type": "person"
+        },
+        {
+          "name": "Steve Jobs",
+          "type": "person"
+        },
+        {
+          "name": "Bill Gates",
+          "type": "person"
+        },
+        {
+          "name": "Greg Wasson",
+          "type": "person"
+        },
+        {
+          "name": "UCSF Medical Center",
+          "type": "company"
+        },
+        {
+          "name": "Walgreens",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Elizabeth Holmes founded Theranos after dropping out of Stanford University in her sophomore year.",
+        "Theranos has raised more than $400 million from equity sales and has been valued at over $9 billion.",
+        "The company operates a high-complexity laboratory certified by the Centers for Medicare & Medicaid Services.",
+        "Theranos tests can be performed using only a few drops of blood collected via a finger stick into a tiny vial called a nanotainer.",
+        "Theranos prices its tests to never exceed half the Medicare reimbursement rate for each procedure.",
+        "Walgreens has partnered with Theranos to establish collection centers in its drugstores."
+      ],
+      "missing": [
+        "Specific regulatory approval status from the FDA for Theranos devices",
+        "Detailed peer-reviewed scientific studies or data on the testing technology",
+        "Financial loss or revenue figures for Theranos",
+        "Specific timeline for nationwide Walgreens rollout"
+      ],
+      "fixes": [
+        "In the sentence \"Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry...\", add the year of the industry data.",
+        "In the sentence \"Its phlebotomists currently take physician-ordered blood draws... at 21 Walgreens–one in Palo Alto and the rest in Phoenix.\", add the exact start date of the rollout.",
+        "In the sentence \"With Robertson’s blessing, Holmes started her company and, a semester later, dropped out to pursue it full-time.\", add the specific calendar year when she dropped out."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 3,
+        "structure": 3,
+        "trust_signals": 3,
+        "ambiguity": 2
+      }
+    }
+  }
+}

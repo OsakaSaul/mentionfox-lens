@@ -1,0 +1,178 @@
+[
+ {
+  "page": "A1 \"as many as 70 tests\" (finger prick)",
+  "date": "",
+  "claim": "Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger.",
+  "http": 200,
+  "secs": 8.4,
+  "res": {
+   "verdict": "supported",
+   "reason": "Fortune reported that Theranos performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial, a finger-prick sample, and this is corroborated by Wired and other outlets reporting the company's finger-prick testing claims.",
+   "sources": [
+    {
+     "title": "This CEO's out for blood | Fortune",
+     "url": "https://files.cand.uscourts.gov/files/18-CR-258%20USA%20v.%20Holmes/Trial%20Exh.%201776/Trial%20Exh.%201776%20Article%20.pdf"
+    }
+   ]
+  }
+ },
+ {
+  "page": "A2 \"more than 200\" tests offered",
+  "date": "",
+  "claim": "It currently offers more than 200\u2013and is ramping up to offer more than 1,000\u2013of the most commonly ordered blood diagnostic tests, all without the need for a syringe.",
+  "http": 200,
+  "secs": 6.8,
+  "res": {
+   "verdict": "no_record",
+   "reason": "Nothing found confirms this, and no source says the opposite.",
+   "sources": []
+  }
+ },
+ {
+  "page": "A3 \"performed as many as 70\" from one draw",
+  "date": "",
+  "claim": "The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a \u201cnanotainer.\u201d",
+  "http": 200,
+  "secs": 8.6,
+  "res": {
+   "verdict": "supported",
+   "reason": "Multiple independent outlets confirm that Elizabeth Holmes dubbed the small blood vial a 'nanotainer'.",
+   "sources": [
+    {
+     "title": "FDA Inspectors Call Theranos Blood Vial 'Uncleared Medical Device'",
+     "url": "https://www.wsj.com/articles/fda-inspectors-call-theranos-blood-vial-uncleared-medical-device-1445967607"
+    },
+    {
+     "title": "This CEO's out for blood | Fortune",
+     "url": "https://files.cand.uscourts.gov/files/18-CR-258%20USA%20v.%20Holmes/Trial%20Exh.%201776/Trial%20Exh.%201776%20Article%20.pdf"
+    },
+    {
+     "title": "Theranos Battled in Courtroom Over Name of Its Chief Product",
+     "url": "https://www.nytimes.com/2015/10/31/business/theranos-battled-in-courtroom-over-name-of-its-chief-product.html"
+    }
+   ]
+  }
+ },
+ {
+  "page": "A4 \"same fundamental chemical methods\" (evasive)",
+  "date": "",
+  "claim": "Holmes will only say\u2013and this is more than she has ever said before\u2013that her company uses \u201cthe same fundamental chemical methods\u201d as existing labs do.",
+  "http": 200,
+  "secs": 7.5,
+  "res": {
+   "verdict": "supported",
+   "reason": "Multiple outlets, including Business Insider and reprints of the Fortune piece, accurately quote Holmes saying Theranos uses 'the same fundamental chemical methods' as existing labs, and describe this as more than she had said before.",
+   "sources": [
+    {
+     "title": "Scientists Question Elizabeth Holmes' Theranos Blood Test",
+     "url": "https://www.businessinsider.com/science-of-elizabeth-holmes-theranos-update-2015-4"
+    },
+    {
+     "title": "Scientists are skeptical about the secret blood test that has made ...",
+     "url": "https://www.sj-r.com/story/business/2015/04/25/scientists-are-skeptical-about-secret/34696160007/"
+    }
+   ]
+  }
+ },
+ {
+  "page": "A5 \"same fundamental chemical methods\" / no peer review (evasive)",
+  "date": "",
+  "claim": "Holmes counters that because, as noted, her tests employ \u201cthe same fundamental chemical methods\u201d as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate.",
+  "http": 200,
+  "secs": 8.2,
+  "res": {
+   "verdict": "supported",
+   "reason": "Multiple reports quote Elizabeth Holmes saying Theranos used \"the same fundamental chemical methods\" as existing lab tests, and Fortune and Business Insider attribute it to her directly.",
+   "sources": [
+    {
+     "title": "This CEO's out for blood | Fortune",
+     "url": "https://fortune.com/2014/06/12/theranos-blood-holmes/"
+    },
+    {
+     "title": "Scientists Question Elizabeth Holmes' Theranos Blood Test",
+     "url": "https://www.businessinsider.com/science-of-elizabeth-holmes-theranos-update-2015-4"
+    }
+   ]
+  }
+ },
+ {
+  "page": "B1 \"never used commercially available lab equipment\"",
+  "date": "2015-10-25",
+  "claim": "\"We have never used commercially available lab equipment for finger-stick based tests.\"",
+  "http": 200,
+  "secs": 5.7,
+  "res": {
+   "verdict": "contradicted",
+   "reason": "The claim that the company has never used commercially available lab equipment for finger-stick based tests is contradicted by the evidence.",
+   "sources": [
+    {
+     "title": "Fingerstick biometric screenings",
+     "url": "https://www.questdiagnostics.com/business-solutions/employers/population-health/biometric-screening/fingerstick-accuracy"
+    },
+    {
+     "title": "Blood tests at your fingertips - C&EN - American Chemical Society",
+     "url": "https://cen.acs.org/articles/95/i1/Blood-tests-fingertips.html"
+    }
+   ]
+  }
+ },
+ {
+  "page": "B2 \"only collecting finger-prick samples for its herpes test\"",
+  "date": "2015-10-25",
+  "claim": "Right now, Theranos is only collecting finger-prick blood samples for its herpes test, and that's only being run on the company's own technology.",
+  "http": 200,
+  "secs": 8.3,
+  "res": {
+   "verdict": "contradicted",
+   "reason": "The claim that Theranos is currently collecting only finger-prick samples for its herpes test is partly off: Business Insider's own reporting (and the WSJ, via Medscape and Center for Research summaries) indicates that the company had stopped using its Nanotainer finger-prick vials and that most...",
+   "sources": [
+    {
+     "title": "Theranos Technology Is Only Used for One Test",
+     "url": "https://www.businessinsider.com/theranos-technology-is-only-used-for-one-test-2015-10"
+    },
+    {
+     "title": "Theranos Limits Use of Blood Test Technology",
+     "url": "https://www.medscape.com/viewarticle/852839"
+    }
+   ]
+  }
+ },
+ {
+  "page": "B3 \"Edison ... for anything\" (evasive)",
+  "date": "2015-10-25",
+  "claim": "\"We don't actually use the technology that's being referred to as Edison for anything and haven't for a few years now.\"",
+  "http": 200,
+  "secs": 6.1,
+  "res": {
+   "verdict": "supported",
+   "reason": "The quotation is accurately attributed to Elizabeth Holmes of Theranos and is reported consistently across multiple outlets, including Yahoo Finance and Becker's Hospital Review, which describes Edison as a code name for an early version of the technology.",
+   "sources": [
+    {
+     "title": "Here are the 7 biggest things Theranos CEO Elizabeth Holmes said during ...",
+     "url": "https://sg.finance.yahoo.com/news/7-biggest-things-theranos-ceo-213700739.html"
+    },
+    {
+     "title": "Theranos' Elizabeth Holmes speaks out: 10 things to know",
+     "url": "https://www.beckershospitalreview.com/hospital-management-administration/theranos-elizabeth-holmes-speaks-out-10-things-to-know/"
+    }
+   ]
+  }
+ },
+ {
+  "page": "B4 \"many proprietary devices\" (evasive)",
+  "date": "2015-10-25",
+  "claim": "\"Theranos has many proprietary devices that we develop and manufacture ourselves.\"",
+  "http": 200,
+  "secs": 10.5,
+  "res": {
+   "verdict": "supported",
+   "reason": "The claim matches the quoted statement in the Business Insider interview transcript of Elizabeth Holmes (archived 2015-10-25), which reads 'Theranos has many proprietary devices that we develop and manufacture ourselves.' The quote is accurately attributed.",
+   "sources": [
+    {
+     "title": "Theranos CEO Elizabeth Holmes WSJDLive Interview",
+     "url": "https://www.businessinsider.com/theranos-ceo-elizabeth-holmes-wsjdlive-interview-2015-10"
+    }
+   ]
+  }
+ }
+]

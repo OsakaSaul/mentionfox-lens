@@ -1,0 +1,56 @@
+[
+ {
+  "page": "A1 \"as many as 70 tests\" (finger prick)",
+  "domain": "fortune.com",
+  "date": "",
+  "claim": "Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger."
+ },
+ {
+  "page": "A2 \"more than 200\" tests offered",
+  "domain": "fortune.com",
+  "date": "",
+  "claim": "It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe."
+ },
+ {
+  "page": "A3 \"performed as many as 70\" from one draw",
+  "domain": "fortune.com",
+  "date": "",
+  "claim": "The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer.”"
+ },
+ {
+  "page": "A4 \"same fundamental chemical methods\" (evasive)",
+  "domain": "fortune.com",
+  "date": "",
+  "claim": "Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs do."
+ },
+ {
+  "page": "A5 \"same fundamental chemical methods\" / no peer review (evasive)",
+  "domain": "fortune.com",
+  "date": "",
+  "claim": "Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods” as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate."
+ },
+ {
+  "page": "B1 \"never used commercially available lab equipment\"",
+  "domain": "businessinsider.com",
+  "date": "2015-10-25",
+  "claim": "\"We have never used commercially available lab equipment for finger-stick based tests.\""
+ },
+ {
+  "page": "B2 \"only collecting finger-prick samples for its herpes test\"",
+  "domain": "businessinsider.com",
+  "date": "2015-10-25",
+  "claim": "Right now, Theranos is only collecting finger-prick blood samples for its herpes test, and that's only being run on the company's own technology."
+ },
+ {
+  "page": "B3 \"Edison ... for anything\" (evasive)",
+  "domain": "businessinsider.com",
+  "date": "2015-10-25",
+  "claim": "\"We don't actually use the technology that's being referred to as Edison for anything and haven't for a few years now.\""
+ },
+ {
+  "page": "B4 \"many proprietary devices\" (evasive)",
+  "domain": "businessinsider.com",
+  "date": "2015-10-25",
+  "claim": "\"Theranos has many proprietary devices that we develop and manufacture ourselves.\""
+ }
+]

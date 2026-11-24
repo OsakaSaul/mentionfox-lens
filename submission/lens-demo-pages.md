@@ -126,3 +126,51 @@ I did NOT find, and do not claim, a source saying the 2000 EES profit number was
 ## Verification
 
 Archive URLs of the two picks returned 200 when fetched as raw bytes (`id_`) on 2026-11-24; the plain Archive URLs above are the same snapshots without `id_`. Run counts are from `docs/demo/t2986-*/result.json`.
+
+---
+
+# Round 3 (task T2991, 2026-11-24): Elizabeth Holmes, two pages (narrowed by the owner)
+
+Check route used: POST https://api.foxapis.com/v1/lens/check (T2989), with the exact sentence as the extension would send it: live Fortune page with no snapshot date; the Business Insider page as its web.archive.org snapshot (2015-10-25). Runs: `docs/demo/t2991-A-run1..4` and `t2991-B-run1..4` (Lens extraction, 4 runs per page), `docs/demo/t2991-exact-verdicts.json` (verdicts). Saved pages: `fixtures/demo/holmes-fortune-2014-06-cover.html`, `fixtures/demo/holmes-bi-wsjd-2015-10.html`. Other candidate pages were skipped on the owner's instruction.
+
+## Pages (every URL returned 200 on 2026-11-24 unless marked)
+
+| | Page | Open this | Lens claims (4 runs) |
+|---|---|---|---|
+| A | Fortune cover story, 12 Jun 2014 | https://fortune.com/2014/06/12/theranos-blood-holmes/ (live, not paywalled) | 8 per run, 7 to 8 specific |
+| B (backup) | Business Insider transcript of the WSJDLive interview, Oct 2015 | https://web.archive.org/web/20151025011830/http://www.businessinsider.com:80/theranos-ceo-elizabeth-holmes-wsjdlive-interview-2015-10 (live: https://www.businessinsider.com/theranos-ceo-elizabeth-holmes-wsjdlive-interview-2015-10) | 7 to 8 per run |
+
+Contradiction record:
+- Fortune's own follow-up, https://fortune.com/2015/12/17/how-theranos-misled-me-elizabeth-holmes/ : a former employee said that as of December 2014 only about 15 finger-stick tests ran on Theranos's own technology and the rest on conventional third-party analyzers such as Siemens; the author had reported "more than 200" in June 2014.
+- For B: https://www.businessinsider.com/theranos-technology-is-only-used-for-one-test-2015-10 (Holmes told Bloomberg the technology was used for only one test, the FDA-cleared herpes test).
+- The jury verdict: https://www.justice.gov/usao-ndca/pr/theranos-founder-elizabeth-holmes-found-guilty-investor-fraud . SEC press release of 2018: https://www.sec.gov/news/press-release/2018-41 (403 to curl, opens in a browser). Wall Street Journal links among the Check sources are paywalled (401 to curl).
+
+## What Check said (exact sentences from the pages)
+
+| # | Sentence (short) | Check verdict | Honest reading |
+|---|---|---|---|
+| A1 | "Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger." | Supported | The engine confirmed that Fortune reported it, using the Fortune article itself (a US v. Holmes trial exhibit) as the source. It did not test whether it was true. NOT red. |
+| A2 | "It currently offers more than 200 ... of the most commonly ordered blood diagnostic tests" | No clear record | Grey. NOT red. |
+| A3 | "The company has performed as many as 70 different tests from a single draw ..." | Supported | Its sources only confirm the "nanotainer" name. NOT red. |
+| A4 | "Holmes will only say ... the same fundamental chemical methods ..." | Supported | The quote is accurately attributed. Evasive, but green. |
+| A5 | "... her tests employ the same fundamental chemical methods ... peer-review publication ... unnecessary" | Supported | As A4. |
+| B1 | "We have never used commercially available lab equipment for finger-stick based tests." | Contradicted (red) | Red, but the two sources shown (a Quest Diagnostics page on fingerstick accuracy and a C&EN article on fingertip blood tests) do not show Theranos using anyone's equipment, and the reason is one generic line. Do not show this card on camera: a viewer who clicks the sources finds nothing about Theranos. Stated as a plain third-person sentence ("Theranos has never used commercially available lab equipment for finger-stick based tests") the same engine returned Contradicted with Wall Street Journal sources (secretly bought outside lab gear; hid its use of third-party machines), so the first-person quote form is what weakens it. |
+| B2 | "Right now, Theranos is only collecting finger-prick blood samples for its herpes test ..." | Contradicted (red) | This sentence is Holmes's own admission, accurately reported by Business Insider; the red comes from the engine reading "partly off" nuances. Misleading as a red card. |
+| B3 | "We don't actually use the technology that's being referred to as Edison for anything ..." | Supported | Quote accurately attributed. |
+| B4 | "Theranos has many proprietary devices that we develop and manufacture ourselves." | Supported | Quote accurately attributed. |
+
+Counts: of 9 exact sentences, 2 Contradicted (B1 and B2, both unreliable as camera material), 6 Supported, 1 No clear record. Nothing on the Fortune page went red.
+
+## Do the evasive lines come out amber?
+
+Amber is Lens's own label (no checkable anchor), set at extraction, and amber cards have no Check button. In 4 extraction runs per page:
+- "the same fundamental chemical methods" (A4, A5) was never extracted at all (no card).
+- "Edison ... for anything" was amber in the one earlier run where it was extracted; if classed specific, Check says Supported.
+- "many proprietary devices" was amber once in 4 runs.
+- "never used commercially available lab equipment" and the herpes-only admission were not extracted in any of the 4 runs on B, although the text is inside the analysed window (the extractor returns about 8 claims and picks others).
+- The "200 tests" and "70 tests" sentences appeared in 3 and 2 of 4 runs on A, as green cards.
+So amber is possible but not dependable; a take needs Run again until the wanted card appears.
+
+## Recommendation
+
+Do not record the Holmes pages as the red scene. Check verifies the sentence as written and often answers "Supported" for an accurately reported quote. If a guaranteed red card is needed, the strongest real one found while testing is outside the two pages asked for: Theranos's own press release of 3 Jul 2015 (archive https://web.archive.org/web/20151023195450/https://www.theranos.com/news/posts/theranos-recognizes-milestone-in-new-era-of-preventive-health), sentence "Theranos offers a comprehensive menu of lab tests in convenient locations in its Walgreens Wellness Centers in Arizona and California ...": Contradicted twice (with the 2015-07-03 and the 2015-10-23 date), with Walgreens' own 2016 press release, NPR and the New York Times as sources (Walgreens ended the partnership and closed all 40 Arizona centers). Wording: the statement was true when written and later ceased to be; the card says "Contradicted", the narration says "later ended". Caveat: Lens extracted that sentence as a card in only 2 of about 8 runs.

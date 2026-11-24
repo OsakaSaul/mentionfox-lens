@@ -1,0 +1,241 @@
+{
+  "fixture": "holmes-bi-wsjd-2015-10.html",
+  "source_url": null,
+  "run_at": "2026-11-24T02:27:12.145Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Theranos CEO Elizabeth Holmes WSJDLive interview - Business Insider",
+    "url": "http://127.0.0.1:65196/",
+    "textLength": 5648,
+    "rawChars": 7254,
+    "rootTag": "BODY",
+    "blocks": 36
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3616,
+    "first_ms": 3655,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Holmes, the founder of blood-testing company Theranos, spoke Wednesday at The Journal's WSJDLive event less than one week after her company was called out by The Journal in two articles for not having as accurate of a test as it seems.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim specifies Elizabeth Holmes, Theranos, and the WSJDLive event date.\"\n    },\n    {\n      \"quote\": \"Krim gets the elephant in the room out of the way first, addressing Holmes' qualms with The Journal's reporting.\",\n      \"kind\": \"specific\",\n      \"why\": \"This names Jonathan Krim and The Journal's reporting as verifiable anchors.\"\n    },\n    {\n      \"quote\": \"That nanotainer was actually cleared by the FDA for use with our devices and software and the first test that we took through the FDA for HSV (Herpes simplex virus).\",\n      \"kind\": \"specific\",\n      \"why\": \"This mentions FDA clearance and HSV as checkable details.\"\n    },\n    {\n      \"quote\": \"Theranos is only in a few states right now: California, Pennsylvania, and Arizona.\",\n      \"kind\": \"specific\",\n      \"why\": \"This lists specific states where Theranos operates.\"\n    },\n    {\n      \"quote\": \"Her response: \\\"We've never met them. In fact, they reached out to us and we said no to meeting with them.\\\"\",\n      \"kind\": \"specific\",\n      \"why\": \"This quotes Elizabeth Holmes regarding an interaction with GV.\"\n    },\n    {\n      \"quote\": \"Since the articles last week, a few people have come forward with their own experiences, including former Apple executive Jean-Louis Gausset.\",\n      \"kind\": \"specific\",\n      \"why\": \"This names Jean-Louis Gausset and former Apple executive status.\"\n    },\n    {\n      \"quote\": \"Elizabeth Holmes is not taking The Wall Street Journal's reporting on her company lightly.\",\n      \"kind\": \"vague\",\n      \"why\": \"This relies on subjective characterization without numerical or named anchors.\"\n    },\n    {\n      \"quote\": \"Some of the controversy surrounding Theranos is due to the fact that up until this point, the company hasn't shared much information about how it collects and tests blood samples for certain diseases.\",\n      \"kind\": \"vague\",\n      \"why\": \"This uses subjective phrasing about controversy without specific verifiable metrics.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Holmes, the founder of blood-testing company Theranos, spoke Wednesday at The Journal's WSJDLive event less than one week after her company was called out by The Journal in two articles for not having as accurate of a test as it seems.",
+        "kind": "specific",
+        "why": "This claim specifies Elizabeth Holmes, Theranos, and the WSJDLive event date."
+      },
+      {
+        "id": "c2",
+        "quote": "Krim gets the elephant in the room out of the way first, addressing Holmes' qualms with The Journal's reporting.",
+        "kind": "specific",
+        "why": "This names Jonathan Krim and The Journal's reporting as verifiable anchors."
+      },
+      {
+        "id": "c3",
+        "quote": "That nanotainer was actually cleared by the FDA for use with our devices and software and the first test that we took through the FDA for HSV (Herpes simplex virus).",
+        "kind": "specific",
+        "why": "This mentions FDA clearance and HSV as checkable details."
+      },
+      {
+        "id": "c4",
+        "quote": "Theranos is only in a few states right now: California, Pennsylvania, and Arizona.",
+        "kind": "specific",
+        "why": "This lists specific states where Theranos operates."
+      },
+      {
+        "id": "c5",
+        "quote": "Her response: \"We've never met them. In fact, they reached out to us and we said no to meeting with them.\"",
+        "kind": "specific",
+        "why": "This quotes Elizabeth Holmes regarding an interaction with GV."
+      },
+      {
+        "id": "c6",
+        "quote": "Since the articles last week, a few people have come forward with their own experiences, including former Apple executive Jean-Louis Gausset.",
+        "kind": "specific",
+        "why": "This names Jean-Louis Gausset and former Apple executive status."
+      },
+      {
+        "id": "c7",
+        "quote": "Elizabeth Holmes is not taking The Wall Street Journal's reporting on her company lightly.",
+        "kind": "specific",
+        "why": "Names a named place, person or organisation (Elizabeth Holmes) that a reader can check against a public source.",
+        "note": "",
+        "overridden": true,
+        "anchor": {
+          "type": "name",
+          "text": "Elizabeth Holmes"
+        }
+      },
+      {
+        "id": "c8",
+        "quote": "Some of the controversy surrounding Theranos is due to the fact that up until this point, the company hasn't shared much information about how it collects and tests blood samples for certain diseases.",
+        "kind": "vague",
+        "why": "This uses subjective phrasing about controversy without specific verifiable metrics."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c7",
+      "text": "Elizabeth Holmes is not taking "
+    },
+    {
+      "id": "c7",
+      "text": "The Wall Street Journal's reporting"
+    },
+    {
+      "id": "c7",
+      "text": " on her company lightly"
+    },
+    {
+      "id": "c1",
+      "text": "Holmes, the founder of blood-testing company Theranos, spoke Wednesday at The Journal's WSJDLive event less than one week after her company was called out by The Journal in two articles for not having as accurate of a test as it seems"
+    },
+    {
+      "id": "c2",
+      "text": "Krim gets the elephant in the room out of the way first, addressing Holmes' qualms with "
+    },
+    {
+      "id": "c2",
+      "text": "The Journal's reporting"
+    },
+    {
+      "id": "c3",
+      "text": "That nanotainer was actually cleared by the FDA for use with our devices and software and the first test that we took through the FDA for HSV (Herpes simplex virus)"
+    },
+    {
+      "id": "c8",
+      "text": "Some of the controversy surrounding Theranos is due to the fact that up until this point, the company hasn't shared much information about how it collects and tests blood samples for certain diseases"
+    },
+    {
+      "id": "c4",
+      "text": "Theranos is only in a few states right now: California, Pennsylvania, and Arizona"
+    },
+    {
+      "id": "c5",
+      "text": "Her response: \"We've never met them. In fact, they reached out to us and we said no to meeting with them"
+    },
+    {
+      "id": "c6",
+      "text": "Since the articles last week, a few people have come forward with their own experiences, including former Apple executive "
+    },
+    {
+      "id": "c6",
+      "text": "Jean-Louis Gausset"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2834,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"The Wall Street Journal\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Jonathan Krim\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Bill Maris\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"GV\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Jean-Louis Gausset\",\n      \"type\": \"person\"\n    }\n  ],\n  \"facts\": [\n    \"Elizabeth Holmes spoke at The Journal's WSJDLive event on Wednesday, October 22, 2015.\",\n    \"Holmes stated that Theranos has not used the technology referred to as Edison for a few years.\",\n    \"According to Holmes, Theranos has never used commercially available lab equipment for finger-stick based tests.\",\n    \"Theranos operates in California, Pennsylvania, and Arizona.\",\n    \"Holmes stated that Google Ventures reached out to Theranos, and Theranos declined to meet with them.\",\n    \"Holmes addressed criticism regarding blood sample dilution and reporting from The Wall Street Journal.\"\n  ],\n  \"missing\": [\n    \"Specific details or text of the two Wall Street Journal articles that triggered the interview\",\n    \"The exact questions asked by Jonathan Krim beyond the quotes provided\",\n    \"Financial metrics or valuation details of Theranos at the time of the interview\",\n    \"Details of the letter written by former Apple executive Jean-Louis Gausset\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Krim starts with discussing the claim that Theranos is only using its proprietary technology for its herpes test, which won FDA approval in July.\\\", add the exact date in July when the FDA approval was granted.\",\n    \"In the sentence \\\"Theranos is only in a few states right now: California, Pennsylvania, and Arizona.\\\", add the specific cities or locations of the operating centers mentioned in the photo caption.\",\n    \"In the sentence \\\"Since the articles last week, a few people have come forward with their own experiences, including former Apple executive Jean-Louis Gausset.\\\", add the specific date when Jean-Louis Gausset's letter was published.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 3,\n    \"structure\": 4,\n    \"trust_signals\": 2,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "The Wall Street Journal",
+          "type": "company"
+        },
+        {
+          "name": "Jonathan Krim",
+          "type": "person"
+        },
+        {
+          "name": "Bill Maris",
+          "type": "person"
+        },
+        {
+          "name": "GV",
+          "type": "company"
+        },
+        {
+          "name": "Jean-Louis Gausset",
+          "type": "person"
+        }
+      ],
+      "facts": [
+        "Elizabeth Holmes spoke at The Journal's WSJDLive event on Wednesday, October 22, 2015.",
+        "Holmes stated that Theranos has not used the technology referred to as Edison for a few years.",
+        "According to Holmes, Theranos has never used commercially available lab equipment for finger-stick based tests.",
+        "Theranos operates in California, Pennsylvania, and Arizona.",
+        "Holmes stated that Google Ventures reached out to Theranos, and Theranos declined to meet with them.",
+        "Holmes addressed criticism regarding blood sample dilution and reporting from The Wall Street Journal."
+      ],
+      "missing": [
+        "Specific details or text of the two Wall Street Journal articles that triggered the interview",
+        "The exact questions asked by Jonathan Krim beyond the quotes provided",
+        "Financial metrics or valuation details of Theranos at the time of the interview",
+        "Details of the letter written by former Apple executive Jean-Louis Gausset"
+      ],
+      "fixes": [
+        "In the sentence \"Krim starts with discussing the claim that Theranos is only using its proprietary technology for its herpes test, which won FDA approval in July.\", add the exact date in July when the FDA approval was granted.",
+        "In the sentence \"Theranos is only in a few states right now: California, Pennsylvania, and Arizona.\", add the specific cities or locations of the operating centers mentioned in the photo caption.",
+        "In the sentence \"Since the articles last week, a few people have come forward with their own experiences, including former Apple executive Jean-Louis Gausset.\", add the specific date when Jean-Louis Gausset's letter was published."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 3,
+        "structure": 4,
+        "trust_signals": 2,
+        "ambiguity": 3
+      }
+    }
+  }
+}
