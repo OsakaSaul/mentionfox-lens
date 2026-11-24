@@ -1,0 +1,22 @@
+date: 2026-11-24T01:56:55.673Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: wirecard-claim-test.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 19.1 seconds on Cloud: 2 claims. First claim in 16.7 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 16.7 seconds
+CHECK quote: “Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.”
+CHECK result: Contradicted | The claim that Wirecard confirmed EUR 1.9 billion held in Philippine trust accounts is contradicted by the evidence: the company itself later stated there was a prevailing likelihood the balances did not exist, and Philippine central bank governor Benjamin Diokno said none of the missing funds... | Wirecard's €1.9bn never entered Philippine financial system, bank governor says | Wirecard Says $2.1B Likely Didn't Exist | Wirecard: When Cash Reconciliation Fails | Cloud · 5.7 seconds | 4 of 5 free checks left today
+page body text length: 372
+claims: 2, highlighted: 2, claims 16678 ms, geo 2450 ms
+T2963 log: chars before extraction 369, after 351 (3 blocks, root BODY); cloud window 351 of budget 12000 chars, 1 cloud call; on-device plan: 1 chunks of about 800 chars over 351 chars; claims 2; first claim in 16.7 seconds (cloud: arrives with the single answer), claims call 16.7 seconds, AI view 2.5 seconds; matched 2/2 (100%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

@@ -1,0 +1,95 @@
+{
+  "fixture": "wirecard-claim-test.html",
+  "source_url": null,
+  "run_at": "2026-11-24T01:57:21.168Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Wirecard AG investor relations (engine test page)",
+    "url": "http://127.0.0.1:59267/",
+    "textLength": 351,
+    "rawChars": 369,
+    "rootTag": "BODY",
+    "blocks": 3
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 16678,
+    "first_ms": 16702,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim can be checked by verifying the statements made by Wirecard AG regarding the specified amount.\",\n      \"summary\": \"Wirecard AG stated that 1.9 billion euros were held in trust accounts in the Philippines.\"\n    },\n    {\n      \"quote\": \"We are a trusted partner for payment solutions around the world.\",\n      \"kind\": \"vague\",\n      \"why\": \"This claim lacks any checkable anchors such as specific dates, numbers, or named entities.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.",
+        "kind": "specific",
+        "why": "This claim can be checked by verifying the statements made by Wirecard AG regarding the specified amount.",
+        "summary": "Wirecard AG stated that 1.9 billion euros were held in trust accounts in the Philippines."
+      },
+      {
+        "id": "c2",
+        "quote": "We are a trusted partner for payment solutions around the world.",
+        "kind": "vague",
+        "why": "This claim lacks any checkable anchors such as specific dates, numbers, or named entities."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines"
+    },
+    {
+      "id": "c2",
+      "text": "We are a trusted partner for payment solutions around the world"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2450,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Wirecard AG\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.\",\n    \"Wirecard AG describes itself as a trusted partner for payment solutions around the world.\"\n  ],\n  \"missing\": [\n    \"The names of the specific banks in the Philippines where the trust accounts are held.\",\n    \"The names of the trustees managing the trust accounts.\",\n    \"The date in 2020 when Wirecard AG made the public statement about the cash.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.\\\", add the specific names of the banks.\",\n    \"In the sentence \\\"Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.\\\", add the names of the trustees.\",\n    \"In the sentence \\\"The sentence below is a claim the company made in public statements in 2020; the check engine is tested on it.\\\", replace 2020 with the exact date of the statement.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 3,\n    \"fact_density\": 2,\n    \"structure\": 2,\n    \"trust_signals\": 1,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Wirecard AG",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.",
+        "Wirecard AG describes itself as a trusted partner for payment solutions around the world."
+      ],
+      "missing": [
+        "The names of the specific banks in the Philippines where the trust accounts are held.",
+        "The names of the trustees managing the trust accounts.",
+        "The date in 2020 when Wirecard AG made the public statement about the cash."
+      ],
+      "fixes": [
+        "In the sentence \"Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.\", add the specific names of the banks.",
+        "In the sentence \"Wirecard AG confirmed that EUR 1.9 billion in cash is held in trust accounts at banks in the Philippines.\", add the names of the trustees.",
+        "In the sentence \"The sentence below is a claim the company made in public statements in 2020; the check engine is tested on it.\", replace 2020 with the exact date of the statement."
+      ],
+      "ratings": {
+        "entity_clarity": 3,
+        "fact_density": 2,
+        "structure": 2,
+        "trust_signals": 1,
+        "ambiguity": 2
+      }
+    }
+  }
+}

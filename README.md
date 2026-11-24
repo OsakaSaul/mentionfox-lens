@@ -9,7 +9,7 @@ Every run shows a large colour **mode bar** at the top of both results tabs (tea
 
 Built for the [#BuildHybridAI 2026 hackathon](https://firebasehybridaihackathon.devpost.com/) with **Firebase AI Logic hybrid inference**: the model runs on-device with **Gemini Nano in Chrome** when it is available, and falls back to the cloud when it is not.
 
-Free to use. No account, no paywall, and nothing about the page goes to MentionFox servers. The one exception is the optional Check button (below), which sends a single sentence, its site and its archive date to our own Worker to verify that one claim. The two links at the bottom of the panel open MentionFox in a new tab and are the only upsell: "Verify these claims against public registers" goes to the MentionFox Source Check page (`/source-check`) and "Find contact details for a decision maker" goes to the MentionFox Find Contact tool (`/tools/find-contact`), both with `utm_source=lens&utm_medium=extension&utm_campaign=hybridai`.
+Free to use. No account, no paywall, and nothing about the page goes to MentionFox servers. The one exception is the optional Check button (below), which sends a single sentence, its site and its archive date to our own server (api.foxapis.com) to verify that one claim. The two links at the bottom of the panel open MentionFox in a new tab and are the only upsell: "Verify these claims against public registers" goes to the MentionFox Source Check page (`/source-check`) and "Find contact details for a decision maker" goes to the MentionFox Find Contact tool (`/tools/find-contact`), both with `utm_source=lens&utm_medium=extension&utm_campaign=hybridai`.
 
 <!-- Screenshots: add real captures from a Chrome with the on-device model (see "What the owner must test"). -->
 | Claim X-ray | AI view | Highlights in place |
@@ -56,7 +56,7 @@ Cloud fallback model: the SDK's hybrid default, `gemini-3.5-flash-lite` (set in 
 
 - On-device where possible: when Chrome can run the on-device model, the page text never leaves your computer.
 - Cloud fallback: when it cannot, the page text is sent to **Firebase AI Logic** (Google), and only when you click **Analyze**. Nothing is sent when you just browse.
-- Analysis sends nothing to MentionFox servers and the extension has no analytics. The one exception is the optional **Check** button on a claim card: it sends that single sentence, the site's domain and (on a web.archive.org page) the snapshot date to our own Cloudflare Worker (`lens-check/`), which asks the MentionFox claims-check service to verify it. The page itself is never sent. 5 free checks a day per install, 100 a day across all users.
+- Analysis sends nothing to MentionFox servers and the extension has no analytics. The one exception is the optional **Check** button on a claim card: it sends that single sentence, the site's domain and (on a web.archive.org page) the snapshot date to our own server (`POST https://api.foxapis.com/v1/lens/check`), which runs our claims-check engine on it and answers with a verdict and up to 3 sources. The page itself is never sent. 5 free checks a day per install, 100 a day across all users.
 - The extension reads a tab only when you act on it: it uses `activeTab` and `chrome.scripting` on demand. There is no always-on content script and no host permission.
 - The links to MentionFox carry only UTM tags, never page content.
 
@@ -83,9 +83,9 @@ Permissions: `activeTab`, `scripting`, `sidePanel`. Nothing else.
 
 **What was and was not verified:** the cloud path (App Check with a registered debug token, Firebase AI Logic, structured output, highlighting, UI) was run for real on 2026-11-23, see "Run log" and [`docs/real-runs/NOTES.md`](docs/real-runs/NOTES.md). The on-device path was **not** run by the authors (the available Chromium 151 reports Gemini Nano as unavailable); it is implemented against the SDK's documented hybrid API and needs a real Chrome with Gemini Nano to confirm.
 
-## Check button (T2988)
+## Check button (T2989)
 
-`lens-check/` is a tiny Cloudflare Worker (existing Workers plan, Workers KV free tier for the daily counter, no new paid service). It accepts `{claim, domain, snapshot_date}` from the extension's origin only, calls our FoxAPIs claims-check endpoint with a Worker secret (`FOXAPIS_TOKEN`), and returns `{verdict, reason, sources}`. Deploy steps and the owner's one-time commands are in [`lens-check/README.md`](lens-check/README.md). Until the Worker is deployed and the secret is set, Check answers "Web checks are not available right now".
+Check calls `POST https://api.foxapis.com/v1/lens/check` on the FoxAPIs backend (no key, no sign-in, no credits). The route accepts `{claim, domain, snapshot_date}` from a Chrome extension origin only (anything else is 403), runs the claims-check engine inside the backend, and returns `{verdict, reason, sources}` (at most 3 sources, one per site). A global cap of 100 checks per UTC day is counted in the database (over it: 429 "Web checks are busy today"; a failed check gives its slot back). The sentence is never logged. `lens-check/` (a Cloudflare Worker from T2988) is no longer used.
 
 ## Setup
 

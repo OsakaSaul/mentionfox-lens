@@ -1,5 +1,5 @@
-// "Check" button: verify ONE claim sentence against the web through our own Worker (lens-check/), which asks the FoxAPIs claims_check endpoint.
-// Pure helpers (quota, archive date, Worker reply handling) so they can be unit tested without a browser.
+// "Check" button: verify ONE claim sentence against the web through our own server (POST https://api.foxapis.com/v1/lens/check, T2989), which runs the claims-check engine.
+// Pure helpers (quota, archive date, reply handling) so they can be unit tested without a browser.
 
 export const DAILY_FREE_CHECKS = 5;
 export const QUOTA_KEY = "lensChecks";
@@ -44,15 +44,16 @@ export function claimDomain(url) {
   }
 }
 
-/** The Worker that answers Check. Until the owner deploys it (lens-check/README.md) and the id is set, Check shows "not available right now". */
-export const CHECK_URL = "https://lens-check.invalid/";
+/** The route that answers Check: no key, no sign-in; the server only answers a Chrome extension origin and keeps a global daily cap. */
+export const CHECK_URL = "https://api.foxapis.com/v1/lens/check";
+export const CHECK_TIMEOUT_MS = 100000;   // the server gives up at about 90 seconds
 
 const VERDICTS = { supported: "supported", contradicted: "contradicted", no_record: "none" };
 
-/** Worker JSON -> {verdict: "supported"|"contradicted"|"none", reason, sources: [{title, uri}]}. Anything unexpected is "none" (never a made-up red or green); only http(s) sources are kept. */
+/** Server JSON -> {verdict: "supported"|"contradicted"|"none", reason, sources: [{title, uri}]}. Anything unexpected is "none" (never a made-up red or green); only http(s) sources are kept. */
 export function normalizeCheck(res) {
   const verdict = VERDICTS[res?.verdict] || "none";
-  const reason = String(res?.reason || "").replace(/\s+/g, " ").trim().slice(0, 300) || "No clear public record was found for this sentence.";
+  const reason = String(res?.reason || "").replace(/\s+/g, " ").trim().slice(0, 310) || "No clear public record was found for this sentence.";
   const sources = [];
   for (const s of Array.isArray(res?.sources) ? res.sources : []) {
     const uri = s && typeof s.url === "string" ? s.url : "";
@@ -65,12 +66,16 @@ export function normalizeCheck(res) {
   return { verdict, reason, sources };
 }
 
-/** Calls the Worker with the ONE sentence, the domain and the archive date. Returns {verdict, reason, sources, ms}. Throws Error with .code "busy" | "not_available". */
+/** Calls the server with the ONE sentence, the domain and the archive date. Returns {verdict, reason, sources, ms}. Throws Error with .code "busy" | "not_available". */
 export async function runWorkerCheck({ claim, domain, date }, fetchFn = fetch, url = CHECK_URL) {
   const t0 = typeof performance !== "undefined" ? performance.now() : Date.now();
   let r;
   try {
-    r = await fetchFn(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ claim, domain: domain || "", snapshot_date: date || "" }) });
+    const ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer = ctl ? setTimeout(() => ctl.abort(), CHECK_TIMEOUT_MS) : null;
+    try {
+      r = await fetchFn(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ claim, domain: domain || "", snapshot_date: date || "" }), ...(ctl ? { signal: ctl.signal } : {}) });
+    } finally { if (timer) clearTimeout(timer); }
   } catch {
     throw Object.assign(new Error("Web checks are not available right now."), { code: "not_available" });
   }

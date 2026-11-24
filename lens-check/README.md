@@ -1,4 +1,7 @@
-# lens-check (T2988)
+# lens-check (T2988) - NOT USED SINCE T2989
+
+The Check button now calls the FoxAPIs backend route `POST https://api.foxapis.com/v1/lens/check` (T2989). This Worker is not deployed and needs no deploy; the code and tests stay for reference. The KV namespace stays (free).
+
 
 The backend of the Lens **Check** button. One Cloudflare Worker on the existing account and Workers plan. No new paid service: the only storage is one Workers KV key per day (free tier).
 

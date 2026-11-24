@@ -1,4 +1,4 @@
-PASS  extension loads and service worker starts  emmeadodiojjjhlcoanoncacebccodem
+PASS  extension loads and service worker starts  foehpjhlmbefhnaominonkckhicmneeb
 PASS  linkedin-profile: analyze completes  Done in 0.1 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  linkedin-profile: highlights wrapped in the page  8 marks
 PASS  linkedin-profile: mode bar shown (mock: device)  On-device · 0.1 seconds
@@ -7,10 +7,10 @@ PASS  linkedin-profile: GEO score + mode bar shown
 PASS  linkedin-profile: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  not-found claim is disabled with a message  1 missing of 5
 PASS  linkedin-profile: clear removes highlights
-PASS  x-post: analyze completes  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.1 seconds. Click a claim to jump to it.
+PASS  x-post: analyze completes  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  x-post: highlights wrapped in the page  8 marks
 PASS  x-post: mode bar shown (mock: cloud)  Cloud · 0.0 seconds
-PASS  x-post: status line names mode and time  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.1 seconds. Click a claim to jump to it.
+PASS  x-post: status line names mode and time  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  x-post: GEO score + mode bar shown
 PASS  x-post: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
 PASS  x-post: clear removes highlights
@@ -52,14 +52,14 @@ PASS  cloud when unavailable: status line  Done in 6.4 seconds on Cloud: 3 claim
 PASS  on-device failed then cloud: bar 'Cloud (on-device failed) · N seconds'  Cloud (on-device failed) · 3.2 seconds
 PASS  downloadable: Download button shown with tooltip
 PASS  after Download click: chip shows percent and button is gone
-PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":57.5,"clicked":false}
+PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":34.299999999813735,"clicked":false}
 PASS  streaming: the first card is on screen while the run is still going  Finding claims: chunk 1 of 8, 0 claims so far...
 PASS  streaming: highlights land on the page while the run is still going  7 marks
-PASS  streaming: first card appears at least one chunk-time before the run ends  first card +395 ms, done +5742 ms
+PASS  streaming: first card appears at least one chunk-time before the run ends  first card +405 ms, done +5719 ms
 PASS  progress: 'chunk N of M, K claims so far' is shown and counts up  Finding claims: chunk 1 of 8, 0 claims so far... | Finding claims: chunk 2 of 8, 1 claim so far... | Finding claims: chunk 3 of 8, 2 claims so far... | Finding claims: chunk 4 of 8, 3 claims so far... | Finding claims: chunk 5 of 8, 4 claims so far... | Finding claims: chunk 6 of 8, 5 claims so far...
 PASS  debug export: Ctrl+Shift+D shows 'Debug copied'
 PASS  chunks: about 800 characters each, 5 to 10 chunks for the first 6,000 characters  544,772,772,699,712,688,784,846
-PASS  mode bar: 'On-device · N seconds' (no '(private)')  On-device · 5.7 seconds
+PASS  mode bar: 'On-device · N seconds' (no '(private)')  On-device · 5.6 seconds
 PASS  mode bar: 'First claim in X seconds' line  First claim in 0.4 seconds
 PASS  claims tab: 'Your page stayed in this browser.' visible under the bar  Your page stayed in this browser.
 PASS  status line: total and first claim, with the word seconds  Done in 5.7 seconds on-device: 8 claims. First claim in 0.4 seconds. Click a claim to jump to it.

@@ -58,9 +58,9 @@ On-device availability: Gemini Nano needs Chrome 139 or newer, enabled flags and
 - Free, MIT licensed, public repo, no account, no MentionFox backend, permissions limited to activeTab, scripting, sidePanel and storage.
 - No on-device accuracy figure is claimed; the on-device timings above are the owner's own measurement.
 
-## Check button (0.1.3, T2987/T2988)
+## Check button (0.1.4, T2989)
 
-Every Specific and checkable card has a Check button. It sends only that one sentence, the site's domain and, on a web.archive.org page, the snapshot date to a small Cloudflare Worker (lens-check/ in this repo), which asks the MentionFox claims-check service for a verdict. The card turns red (Contradicted, reason and up to 3 sources), green with a tick (Supported) or grey (No clear record). 5 free checks a day per install and a global cap of 100 a day across all users (over the cap the card says "Web checks are busy today"); after the 5th the button becomes a link to MentionFox. Lens still never claims a sentence is false on its own: the verdict comes from the sources shown. The page itself is never sent. No Google Search grounding and no extra paid service is involved. STATUS: needs the Worker deployed and its secret set by the owner before it works live (lens-check/README.md); do not describe it as shipped until one real Check returns a verdict.
+Every Specific and checkable card has a Check button. It sends only that one sentence, the site's domain and, on a web.archive.org page, the snapshot date to our own server (api.foxapis.com), which runs our claims-check engine for a verdict. The card turns red (Contradicted, reason and up to 3 sources), green with a tick (Supported) or grey (No clear record). 5 free checks a day per install and a global cap of 100 a day across all users (over the cap the card says "Web checks are busy today"); after the 5th the button becomes a link to MentionFox. Lens still never claims a sentence is false on its own: the verdict comes from the sources shown. The page itself is never sent. No Google Search grounding and no extra paid service is involved. STATUS (0.1.4): the server route is live and returned real verdicts on 2026-11-24 (Enron Broadband claim: supported; a Wirecard trust-account sentence: contradicted, with 3 sources); the extension needs 0.1.4 loaded.
 
 ## What is next
 
