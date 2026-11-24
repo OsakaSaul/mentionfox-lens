@@ -132,3 +132,16 @@ The archived Fortune page hides its article inside a no-script block, so with Ja
 4. Open the Lens panel, click Analyze. Expect 11 to 12 cards, all of which highlight on the page, and 6 red flags every time: "Theranos can run as many as 70 tests ... pricking a finger", "It currently offers more than 200 ... without the need for a syringe", "The company has performed as many as 70 different tests from a single draw ...", "Precisely how Theranos accomplishes all these amazing feats is a trade secret", and both "same fundamental chemical methods" lines.
 5. After recording, set the JavaScript setting back for web.archive.org.
 Do NOT use Check on the "It currently offers more than 200 ..." card on camera: it starts with "It", the engine cannot tell which service is meant, and answered "No clear record". If scripts are left ON, Lens falls back to the page's no-script copy (note shown in the panel) and "Show on page" cannot highlight.
+
+## Deep scan scene (T3003, Lens 0.1.8) - the showpiece
+
+Setup as in "Fortune 2014 scene: setup" above, but reload Lens at 0.1.8. The panel now has two buttons: **Deep scan** (primary) and **Quick private scan**.
+
+1. Open the archived Fortune page (the 20140805154020 snapshot). Open the Lens panel.
+2. Click **Deep scan**. About 5 seconds later the mode bar reads "Cloud · deep scan · N seconds" and the line at the top reads e.g. "7 red flags · 10 specific · 2 vague".
+3. The red flags are at the top, then the amber (vague) cards, then at most two green cards; the rest are behind "Show N more checkable claims". Say: "These are the lines that stick."
+4. Click one red flag ("Precisely how Theranos accomplishes all these amazing feats is a trade secret.") and press **Show on page**: the sentence flashes in the article.
+5. Click **Check** on the 70-tests flag ("Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger."). Read the verdict off the screen; do not promise a result (the engine confirms what was reported, it does not test the claim).
+6. Last, the reveal: Elizabeth Holmes was found guilty in January 2022.
+
+One line for the hybrid story: "Prefer nothing to leave your browser? **Quick private scan** reads the first part of the page on your device with Gemini Nano; Deep scan reads the whole article in the cloud, and only when you click it."

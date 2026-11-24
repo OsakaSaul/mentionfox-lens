@@ -1,0 +1,88 @@
+{
+  "claims": [
+    {
+      "quote": "Now she’s 30, and her private, Palo Alto-based corporation, called Theranos–the name is an amalgam of the words “therapy” and “diagnosis”–has 500 employees and has raised more than $400 million from equity sales to investors who have effectively valued the company at more than $9 billion.",
+      "kind": "specific",
+      "why": "Check the employee count, funds raised, and company valuation with Theranos investors or financial records."
+    },
+    {
+      "quote": "Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions.",
+      "kind": "specific",
+      "why": "Verify the total industry market size, annual test volume, and percentage of medical decisions based on labs."
+    },
+    {
+      "quote": "Theranos runs what’s called a high-complexity laboratory, certified by the federal Centers for Medicare & Medicaid Services (CMS), and it is licensed to operate in nearly every state.",
+      "kind": "specific",
+      "why": "Check CMS certification records and state-by-state operating licenses for Theranos laboratories."
+    },
+    {
+      "quote": "It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe.",
+      "kind": "specific",
+      "why": "Verify the exact menu of blood tests currently offered by Theranos and their syringe-free collection methods."
+    },
+    {
+      "quote": "The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer.”",
+      "kind": "redflag",
+      "why": "Verify if 70 distinct tests can reliably run on 25 to 50 microliters without published validation.",
+      "signal": "extraordinary_claim"
+    },
+    {
+      "quote": "Its prices are often a half to a quarter of what independent labs charge, and a quarter to a 10th of what hospital labs bill, with still greater savings for expensive procedures.",
+      "kind": "specific",
+      "why": "Compare Theranos test pricing directly against independent and hospital laboratory billing schedules."
+    },
+    {
+      "quote": "Precisely how Theranos accomplishes all these amazing feats is a trade secret.",
+      "kind": "redflag",
+      "why": "Check whether the refusal to reveal testing methods due to trade secrets prevents independent verification.",
+      "signal": "secrecy"
+    },
+    {
+      "quote": "Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs do.",
+      "kind": "redflag",
+      "why": "Check whether explaining proprietary chemical optimization merely as existing methods constitutes an evasive answer.",
+      "signal": "evasive_answer"
+    },
+    {
+      "quote": "Its phlebotomists currently take physician-ordered blood draws (and saliva, urine, feces, and other samples) at collection centers the company operates at its headquarters in Palo Alto and at 21 Walgreens–one in Palo Alto and the rest in Phoenix.",
+      "kind": "specific",
+      "why": "Count the exact number of operational Walgreens wellness centers and headquarters collection sites."
+    },
+    {
+      "quote": "Using DNA profiling Theranos can, for less than the cost of the conventional tests, identify a bug and its resistance profile within four hours, says Helfet, according to the data he has seen.",
+      "kind": "specific",
+      "why": "Check DNA profiling turnaround time and cost data provided to hospital advisors."
+    },
+    {
+      "quote": "Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods” as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate.",
+      "kind": "redflag",
+      "why": "Determine if claiming existing methods exempts novel micro-sample analyzers from peer-reviewed validation.",
+      "signal": "evasive_answer"
+    },
+    {
+      "quote": "Theranos may, in fact, be the only lab to have ever sought FDA clearance for LDTs.",
+      "kind": "specific",
+      "why": "Verify FDA submission records to see if Theranos is uniquely seeking clearance for its lab-developed tests."
+    },
+    {
+      "quote": "Today Holmes is a co-inventor on 82 U.S. and 189 foreign patent applications, of which 18 in the U.S. and 66 abroad have been granted.",
+      "kind": "specific",
+      "why": "Check United States Patent and Trademark Office records for patent counts listing Elizabeth Holmes."
+    },
+    {
+      "quote": "Though she has now raised more than $400 million, she says she has retained control over more than 50% of the stock.",
+      "kind": "specific",
+      "why": "Verify equity distribution documents and total capital raised through funding rounds."
+    },
+    {
+      "quote": "She’s like a monk.",
+      "kind": "vague",
+      "why": "Assess Henry Kissinger's subjective praise of Holmes's personal lifestyle and lack of flashiness."
+    },
+    {
+      "quote": "She has iron will, strong determination.",
+      "kind": "vague",
+      "why": "Evaluate qualitative personality descriptions of Holmes provided by board members."
+    }
+  ]
+}

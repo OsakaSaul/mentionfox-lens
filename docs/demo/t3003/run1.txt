@@ -1,0 +1,14 @@
+status after Analyze: Done. Deep scan took 5.7 seconds: 7 red flags · 14 specific · 3 vague.
+DEEP summary: 7 red flags · 14 specific · 3 vague
+DEEP card [Red flag: Extraordinary claim, key evidence missing] “It currently offers more than 200–and is ramping up to offer more than 
+DEEP card [Red flag: Extraordinary claim, key evidence missing] “The company has performed as many as 70 different tests from a single dra
+DEEP card [Red flag: Secrecy as a feature] “Precisely how Theranos accomplishes all these amazing feats is a trade secret.”
+DEEP card [Red flag: Evasive answer] “Holmes will only say–and this is more than she has ever said before–that her company uses “the
+DEEP card [Red flag: Evasive answer] “Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods”
+DEEP card [Red flag: Extraordinary claim, key evidence missing] “Theranos can run as many as 70 tests on a sample this size, obtained by p
+DEEP card [Red flag: Extraordinary claim, key evidence missing] “Theranos’s tests can be performed on just a few drops of blood, or abou
+DEEP card [Vague or puffery] ““The novelty of how she would view a complex technical problem–it was unique in my experience.””
+DEEP card [Vague or puffery] ““This is about being able to do good,” Holmes says to me about her company.”
+DEEP card [Vague or puffery] ““She has iron will, strong determination. But nothing dramatic.””
+DEEP card [Specific and checkable] “Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab in
+DEEP card [Specific and checkable] “Though she has now raised more than $400 million, she says she has retained control over more than 50%

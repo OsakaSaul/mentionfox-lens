@@ -29,12 +29,13 @@
     </section>
 
     <div class="actions">
-      <button id="analyze" class="btn btn-primary" type="button" title="Read this page and run both checks. The page text is analysed on your device when possible." aria-label="Analyze this page">Analyze this page</button>
+      <button id="deep" class="btn btn-primary btn-wide" type="button" title="Deep scan: the cloud model reads the WHOLE article in one pass and flags red flags. The page text is sent to the cloud only because you click this." aria-label="Deep scan: read the whole article in the cloud">Deep scan</button>
+      <button id="analyze" class="btn btn-secondary" type="button" title="Quick private scan: reads the first part of the page on your device when your browser supports it (nothing leaves the browser); otherwise it uses the cloud." aria-label="Quick private scan of the first part of this page">Quick private scan</button>
       <button id="clear" class="btn btn-ghost" type="button" title="Remove all highlights from the page" aria-label="Clear highlights" disabled>Clear</button>
     </div>
 
     <div class="statusrow">
-      <p id="status" class="status" role="status" aria-live="polite">Open a page you want to check, then click Analyze.</p>
+      <p id="status" class="status" role="status" aria-live="polite">Open a page you want to check, then click Deep scan.</p>
       <button id="rerun" class="btn btn-small" type="button" hidden disabled title="Run the analysis again on this page, for example after the on-device model finished downloading" aria-label="Run the analysis again">Run again</button>
     </div>
 
@@ -45,6 +46,7 @@
 
     <section id="panel-claims" class="panel" role="tabpanel" aria-labelledby="tab-claims">
       <div id="claimsMode" class="modebar" hidden></div>
+      <p id="claimsSummary" class="summary-line" role="status" hidden></p>
       <p class="legend" id="claimsLegend" hidden>
         <span class="pill pill-specific" title="Names a detail someone could check against a public source">Specific and checkable</span>
         <span class="pill pill-vague" title="Puffery or a claim nobody could verify">Vague or puffery</span>
@@ -70,7 +72,7 @@
   </main>
 
   <footer>
-    <p id="privacy" class="privacy">Private by design: the page text is analysed on your device when your browser supports it. If not, it is sent to Firebase AI Logic only when you click Analyze. Nothing goes to MentionFox. The Check button on a card sends only that one sentence and the site's domain to a web search, when you click it.</p>
+    <p id="privacy" class="privacy">Private by design: the Quick private scan analyses the first part of the page on your device when your browser supports it. Deep scan (and the Quick scan when there is no on-device model) sends the page text to Firebase AI Logic, only when you click. Nothing goes to MentionFox. The Check button on a card sends only that one sentence, the site's domain and, on a web archive page, its snapshot date to our own server, when you click it.</p>
   </footer>
 
   <script src="sidepanel.js"></script>

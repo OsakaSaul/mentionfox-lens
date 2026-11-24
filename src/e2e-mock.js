@@ -54,13 +54,13 @@ export function mockEngine(modeName) {
       await new Promise((r) => setTimeout(r, 30));
       return { ...normalizeCheck(c), ms: window.__MFL_MS__ != null ? Number(window.__MFL_MS__) : 30 };
     },
-    runTask: async ({ key, normalize, prompt }) => {
+    runTask: async ({ key, normalize, prompt, onlyCloud }) => {
       const t0 = performance.now();
       (window.__mflPrompts ||= {})[key] = prompt; // lets the e2e check what text would have been sent
       const canned = window.__MFL_MOCK__?.[key];
       if (!canned) throw new Error("no mock for " + key);
       await new Promise((r) => setTimeout(r, 30));
-      const onDevice = availability === "available" && modeName !== "failed";
+      const onDevice = availability === "available" && modeName !== "failed" && !onlyCloud;
       const ms = window.__MFL_MS__ != null ? Number(window.__MFL_MS__) : Math.round(performance.now() - t0);
       return { value: normalize(canned), source: onDevice ? InferenceSource.ON_DEVICE : InferenceSource.IN_CLOUD, inferred: false, ms, retried: false };
     },

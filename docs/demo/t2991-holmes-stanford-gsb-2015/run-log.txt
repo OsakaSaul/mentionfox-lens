@@ -1,0 +1,20 @@
+date: 2026-11-24T02:02:48.700Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: holmes-stanford-gsb-2015.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 22.4 seconds on Cloud: 9 claims. First claim in 14.4 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 14.3 seconds
+page body text length: 9259
+claims: 9, highlighted: 9, claims 14324 ms, geo 8044 ms
+T2963 log: chars before extraction 10846, after 7574 (32 blocks, root MAIN); cloud window 7574 of budget 12000 chars, 1 cloud call; on-device plan: 8 chunks of about 800 chars over 5751 chars; claims 9; first claim in 14.4 seconds (cloud: arrives with the single answer), claims call 14.3 seconds, AI view 8.0 seconds; matched 9/9 (100%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

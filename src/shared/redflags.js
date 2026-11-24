@@ -70,6 +70,8 @@ function extraordinaryVsField(s) {
   if (/\bas many as (\d[\d,]*)\b/i.test(s) && /\b(finger[- ]?prick(?:ing)?|pricking a finger|single drop|one drop|one sample|a few drops|single draw|microliters?|nanotainer|tiny vial)\b/i.test(s)) cues.push("many results from one tiny sample");
   // "offers more than 200 tests, all without the need for a syringe": a long menu with no blood draw, against how labs work
   if (/\d[\d,]*[^.]{0,80}\b(?:tests?|assays?)\b[^.]{0,120}\bwithout (?:the need for )?(?:a |any )?(?:syringe|needle|blood draw|venipuncture)\b/i.test(s)) cues.push("many tests without a blood draw");
+  // "tests can be performed on just a few drops of blood, or about 1/100th to 1/1,000th of the amount ordinarily required": a tiny fraction of the usual sample
+  if (/\b(?:tests?|assays?|analyses)\b[^.]{0,80}\bon\s+(?:just\s+)?(?:a\s+)?few\s+drops?\b|\b1\/\d{2,}(?:st|nd|rd|th)?\b|\bone[- ](?:hundredth|thousandth)\b/i.test(s)) cues.push("a fraction of the usual sample");
   // about ten times the norm
   m = /\b(\d[\d,]*)\s*(?:x|times)\s+(?:faster|cheaper|more accurate|smaller|better|more efficient|less)\b/i.exec(s);
   if (m && Number(String(m[1]).replace(/,/g, "")) >= 8) cues.push("ten times the norm");
@@ -142,10 +144,21 @@ export function profiledSubjects(text, ctx = {}) {
   return [...counts.entries()].filter(([w, n]) => (n >= 15 || (n >= 6 && lead.includes(w))) && w.toLowerCase() !== publisher).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([w]) => w);   // a name that recurs 15+ times is what the article is about wherever it first appears
 }
 
+// T3003, price claims: "Its prices are often a half to a quarter of what independent labs charge, and a quarter to a tenth of what hospital labs bill". DECISION BY RULE: a price undercut
+// is a commercial claim that anyone can check against a price list. It does not overturn how the field works (that is what a RED flag is for), so it gets the small grey "unsourced" tag,
+// not a red flag, unless it is itself an extraordinary-claim cue (a cure, 100% accuracy, ten times faster with no price list in sight, which extraordinaryTest already catches).
+const PRICE_UNDERCUT = /\b(?:prices?|costs?|charges?|cheaper|less than|lower)\b[^.]{0,100}\b(?:half|quarter|third|tenth|\d{1,3}\s?%)\b|\b(?:half|quarter|third|tenth|\d{1,3}\s?%)\b[^.]{0,60}\b(?:of what|the price|the cost|cheaper)\b/i;
+export function isPriceUndercut(sentence, subjects) {
+  const s = String(sentence || "");
+  if (isPuffery(s) || !PRICE_UNDERCUT.test(s) || EVIDENCE.test(s) || ATTRIBUTION.test(s)) return false;
+  if (!/\b(?:than|of what|compared|versus|vs\.?|charge|bill|rates?)\b/i.test(s)) return false;   // a comparison with someone else's price
+  return namesSubject(s, subjects) || !!(subjects && subjects.length && COMPANY_LEAD.test(s.trim())) || COMPANY_VOICE.test(s);
+}
+
 /** Every flag and every unsourced sentence of a page text. flags: [{quote, signal, why}], unsourced: [quote]. */
 export function detect(text, ctx = {}) {
   const sents = sentencesOf(stripMarkers(String(text || "")));
-  const flags = [], unsourced = [];
+  const flags = [], unsourced = [], prices = [];
   const seen = new Set();
   const add = (quote, signal, why) => { const k = norm(quote) + "|" + signal; if (!seen.has(k)) { seen.add(k); flags.push({ quote, signal, why }); } };
   const firstCount = new Map();
@@ -169,11 +182,11 @@ export function detect(text, ctx = {}) {
       const hi = Math.max(prev.n, n), lo = Math.min(prev.n, n);
       if (prev.n !== n && lo > 0 && hi / lo >= 1.5 && prev.s !== s) add(s, "inconsistent_numbers", `Gives ${n.toLocaleString("en-US")} ${noun}s here but ${prev.n.toLocaleString("en-US")} elsewhere on the page.`);
     }
-    if (isUnsourced(s) && !flags.some((f) => f.quote === s)) unsourced.push(s);
+    if ((isUnsourced(s) || isPriceUndercut(s, subjects)) && !flags.some((f) => f.quote === s)) { unsourced.push(s); if (isPriceUndercut(s, subjects)) prices.push(s); }
   });
   // one card per quote: a sentence that only wraps another flagged quote ('Holmes said "People just didn't understand..."') collapses into the shorter quote
   const kept = flags.filter((a) => !flags.some((b) => b !== a && b.signal === a.signal && norm(b.quote).length >= 25 && norm(a.quote).length > norm(b.quote).length && norm(a.quote).includes(norm(b.quote))));
-  return { flags: kept, unsourced };
+  return { flags: kept, unsourced, prices };
 }
 
 const contains = (a, b) => { const x = norm(a), y = norm(b); return !!x && !!y && (x === y || x.includes(y) || y.includes(x)); };
@@ -217,7 +230,7 @@ export function applyRedFlags(claims, pageText, ctx = {}) {
   }
   // 3. the small grey tag
   for (const c of claims) {
-    if (c.kind !== "specific") continue;
+    if (c.kind !== "specific" && c.kind !== "vague") continue;   // T3003: a model "vague" card with a company figure on it is re-judged by buildDeepCards
     const hit = unsourced.some((u) => contains(u, c.quote));
     if (hit && !c.unsourced) { c.unsourced = true; res.unsourced++; res.changed = true; }
   }

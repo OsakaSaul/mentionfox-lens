@@ -1,4 +1,5 @@
 // Tolerant parsing of model output, plus normalisation into the shapes the UI uses.
+import { isAttributionFragment } from "./quality.js";   // T3003
 import { stripMarkers } from "./match.js";
 import { reconcileDecision } from "./anchors.js";
 import { debugDecision } from "./debug.js";
@@ -114,7 +115,7 @@ export function normalizeClaims(value, { max = 12 } = {}) {
   const out = [];
   for (const item of arr) {
     const quote = clean(stripMarkers(typeof item === "string" ? item : item?.quote ?? item?.text ?? item?.claim ?? ""), 600);
-    if (quote.length < 8) continue;
+    if (quote.length < 8 || isAttributionFragment(quote)) continue;   // T3003: "Robertson told me in an interview." is a tag, not a claim
     const key = quote.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);

@@ -1,18 +1,18 @@
 PASS  extension loads and service worker starts  foehpjhlmbefhnaominonkckhicmneeb
-PASS  linkedin-profile: analyze completes  Done in 0.2 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.3 seconds. Click a claim to jump to it.
+PASS  linkedin-profile: analyze completes  Done in 0.1 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.1 seconds. Click a claim to jump to it.
 PASS  linkedin-profile: highlights wrapped in the page  8 marks
-PASS  linkedin-profile: mode bar shown (mock: device)  On-device · 0.2 seconds
-PASS  linkedin-profile: status line names mode and time  Done in 0.2 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.3 seconds. Click a claim to jump to it.
+PASS  linkedin-profile: mode bar shown (mock: device)  On-device · 0.1 seconds
+PASS  linkedin-profile: status line names mode and time  Done in 0.1 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.1 seconds. Click a claim to jump to it.
 PASS  linkedin-profile: GEO score + mode bar shown
-PASS  linkedin-profile: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
-PASS  not-found claim is disabled with a message  1 missing of 5
+PASS  linkedin-profile: click claim flashes + scrolls to highlight  {"id":"c2","inView":true}
+PASS  not-found claim is disabled with a message  1 missing of 4
 PASS  linkedin-profile: clear removes highlights
 PASS  x-post: analyze completes  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.1 seconds. Click a claim to jump to it.
 PASS  x-post: highlights wrapped in the page  8 marks
 PASS  x-post: mode bar shown (mock: cloud)  Cloud · 0.0 seconds
 PASS  x-post: status line names mode and time  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.1 seconds. Click a claim to jump to it.
 PASS  x-post: GEO score + mode bar shown
-PASS  x-post: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
+PASS  x-post: click claim flashes + scrolls to highlight  {"id":"c3","inView":true}
 PASS  x-post: clear removes highlights
 PASS  company-site: analyze completes  Done in 0.1 seconds on Cloud: 3 claims. First claim in 0.1 seconds. Click a claim to jump to it.
 PASS  company-site: highlights wrapped in the page  3 marks
@@ -26,7 +26,7 @@ PASS  news-article: highlights wrapped in the page  9 marks
 PASS  news-article: mode bar shown (mock: cloud)  Cloud · 0.0 seconds
 PASS  news-article: status line names mode and time  Done in 0.1 seconds on Cloud: 4 claims. First claim in 0.1 seconds. Click a claim to jump to it.
 PASS  news-article: GEO score + mode bar shown
-PASS  news-article: click claim flashes + scrolls to highlight  {"id":"c1","inView":true}
+PASS  news-article: click claim flashes + scrolls to highlight  {"id":"c3","inView":true}
 PASS  news-article: footnote + renamed quote is found, not disabled
 PASS  news-article: wrong vague label overridden to specific, cut-off reason replaced  Specific and checkable“Orbit Inc. said on Thursday it raised $40 million in a Series B round led by Northgate Capital.”In short: Orbit raised $40 million.Names an amount ($40 million) that a reader ca
 PASS  news-article: highlight covers the page sentence  Orbit, a Lisbon-based payments startup, said on Thursday it raised $40 million in a Series B round led by Northgate Capital
@@ -48,28 +48,28 @@ PASS  mode bars have tooltip and aria-label explaining hybrid inference
 PASS  mode bars contain an inline svg icon
 PASS  unavailable: chip says using cloud
 PASS  cloud when unavailable: bar 'Cloud · 3.2 seconds'  Cloud · 3.2 seconds
-PASS  cloud when unavailable: status line  Done in 6.4 seconds on Cloud: 3 claims. First claim in 0.1 seconds. Click a claim to jump to it.
+PASS  cloud when unavailable: status line  Done in 6.4 seconds on Cloud: 3 claims. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  on-device failed then cloud: bar 'Cloud (on-device failed) · N seconds'  Cloud (on-device failed) · 3.2 seconds
 PASS  downloadable: Download button shown with tooltip
 PASS  after Download click: chip shows percent and button is gone
-PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":57.5,"clicked":false}
+PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":52.79999999701977,"clicked":false}
 PASS  streaming: the first card is on screen while the run is still going  Finding claims: chunk 1 of 8, 0 claims so far...
 PASS  streaming: highlights land on the page while the run is still going  7 marks
-PASS  streaming: first card appears at least one chunk-time before the run ends  first card +704 ms, done +6033 ms
+PASS  streaming: first card appears at least one chunk-time before the run ends  first card +472 ms, done +5864 ms
 PASS  progress: 'chunk N of M, K claims so far' is shown and counts up  Finding claims: chunk 1 of 8, 0 claims so far... | Finding claims: chunk 2 of 8, 1 claim so far... | Finding claims: chunk 3 of 8, 2 claims so far... | Finding claims: chunk 4 of 8, 3 claims so far... | Finding claims: chunk 5 of 8, 4 claims so far... | Finding claims: chunk 6 of 8, 5 claims so far...
 PASS  debug export: Ctrl+Shift+D shows 'Debug copied'
 PASS  chunks: about 800 characters each, 5 to 10 chunks for the first 6,000 characters  544,772,772,699,712,688,784,846
 PASS  mode bar: 'On-device · N seconds' (no '(private)')  On-device · 5.7 seconds
-PASS  mode bar: 'First claim in X seconds' line  First claim in 0.7 seconds
+PASS  mode bar: 'First claim in X seconds' line  First claim in 0.5 seconds
 PASS  claims tab: 'Your page stayed in this browser.' visible under the bar  Your page stayed in this browser.
-PASS  status line: total and first claim, with the word seconds  Done in 5.7 seconds on-device: 8 claims. First claim in 0.7 seconds. Click a claim to jump to it.
-PASS  first claim is earlier than the total  0.7 < 5.7
+PASS  status line: total and first claim, with the word seconds  Done in 5.8 seconds on-device: 8 claims. First claim in 0.5 seconds. Click a claim to jump to it.
+PASS  first claim is earlier than the total  0.5 < 5.8
 PASS  AI view tab: bar and 'Your page stayed in this browser.' visible
-PASS  claims are merged without duplicates and numbered  c1,c2,c3,c4,c5,c6,c7,c8
+PASS  claims are merged without duplicates and numbered  c8,c1,c5 | Show 5 more checkable claims
 PASS  every card has its highlight on the page  8 highlighted
 PASS  on-device AI view input is capped (4,000 characters of main content) and has no site furniture  5453 chars of prompt
 PASS  'Analyze more of this page' button is offered
-PASS  Analyze more: the next window adds claims to the list, ids continue  c1,c2,c3,c4,c5,c6,c7,c8,c9,c10
+PASS  Analyze more: the next window adds claims to the list, ids continue  c8,c1,c5
 PASS  Analyze more: a new window of chunks is analysed  653,650,758,763,638,666,757,519,577
 PASS  Analyze more: old highlights stay, new ones are added  10 highlighted
 PASS  cloud: one call, same main-content extraction, 12,000-character budget  14912 chars of prompt

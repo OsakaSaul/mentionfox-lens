@@ -1,0 +1,25 @@
+date: 2026-11-24T04:50:18.429Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: holmes-fortune-2014-wayback-20141231-unwrapped.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done. Deep scan took 4.7 seconds: 7 red flags · 10 specific · 2 vague.
+claims mode badge: Cloud · deep scan · 4.7 seconds
+DEEP summary: 7 red flags · 10 specific · 2 vague
+DEEP mode: Cloud · deep scan · 4.7 secondsThe whole article, read in one pass.
+DEEP card [Red flag: Extraordinary claim, key evidence missing] “It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe.”
+DEEP card [Red flag: Extraordinary claim, key evidence missing] “The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer.””
+DEEP card [Red flag: Secrecy as a feature] “Precisely how Theranos accomplishes all these amazing feats is a trade secret.”
+DEEP card [Red flag: Evasive answer] “Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs do.”
+DEEP card [Red flag: Evasive answer] “Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods” as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate.”
+DEEP card [Red flag: Extraordinary claim, key evidence missing] “Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger.”
+DEEP card [Red flag: Extraordinary claim, key evidence missing] “Theranos’s tests can be performed on just a few drops of blood, or about 1/100th to 1/1,000th of the amount that would ordinarily be required–an extraordinary potential boon to frequently tested hospital patients or cancer victims, the elderly, infants, children, the obese, those on anticoagulants, or simply anyone with an aversion to blood draws.”
+DEEP card [Vague or puffery] “She’s like a monk.”
+DEEP card [Vague or puffery] “She has iron will, strong determination.”
+DEEP card [Specific and checkable] “Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions.”
+DEEP card [Specific and checkable] “Its prices are often a half to a quarter of what independent labs charge, and a quarter to a 10th of what hospital labs bill, with still greater savings for expensive procedures.”
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>

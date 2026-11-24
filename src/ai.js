@@ -121,7 +121,7 @@ export function initDevice(schema, onProgress) {
  *  source: "on_device" | "in_cloud" (from response.inferenceSource)
  *  inferred: true only when the SDK did not report a source and we guessed from availability.
  */
-export async function runTask({ key, schema, prompt, normalize, deviceStatus }) {
+export async function runTask({ key, schema, prompt, normalize, deviceStatus, onlyCloud = false }) {   // onlyCloud (T3003, Deep scan): never the on-device model
   const t0 = performance.now();
   let retried = false;
   const attempt = async (mode) => {
@@ -138,7 +138,7 @@ export async function runTask({ key, schema, prompt, normalize, deviceStatus }) 
     return { text, source, inferred };
   };
 
-  let out = await attempt(InferenceMode.PREFER_ON_DEVICE);
+  let out = await attempt(onlyCloud ? InferenceMode.ONLY_IN_CLOUD : InferenceMode.PREFER_ON_DEVICE);
   let value;
   try {
     value = normalize(parseModelJson(out.text));

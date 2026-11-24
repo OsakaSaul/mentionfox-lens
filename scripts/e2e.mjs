@@ -308,7 +308,9 @@ try {
   check("AI view tab: bar and 'Your page stayed in this browser.' visible", (await sp.locator("#geoMode .mode-sub").isVisible()) && (await txt(sp, "#geoMode .mode-sub")) === "Your page stayed in this browser." && /^On-device · \d+\.\d seconds$/.test(await txt(sp, "#geoMode .mode-main")));
   await sp.click("#tab-claims");
   const ids = await sp.locator("#claimsList .claim").evaluateAll((els) => els.map((e) => e.dataset.id));
-  check("claims are merged without duplicates and numbered", ids.length === 8 && new Set(ids).size === 8, ids.join(","));
+  const shownTotal = Number(await txt(sp, "#claimCount"));   // T3003: only red, vague and the 2 best green cards are shown; the rest sit behind "Show N more checkable claims"
+  const moreRow = (await sp.locator(".more-toggle").count()) ? await txt(sp, ".more-toggle") : "";
+  check("claims are merged without duplicates and numbered", shownTotal === 8 && new Set(ids).size === ids.length && ids.length + Number((moreRow.match(/\d+/) || [0])[0]) === 8, `${ids.join(",")} | ${moreRow}`);
   const marks1 = await sbfPage.evaluate(() => new Set([...document.querySelectorAll("mark.mfl-hl")].map((m) => m.dataset.mflId)).size);
   check("every card has its highlight on the page", marks1 === 8, `${marks1} highlighted`);
   const geoPrompt = await sp.evaluate(() => window.__mflPrompts.geo);
@@ -316,9 +318,9 @@ try {
   check("'Analyze more of this page' button is offered", (await sp.locator("#more").isVisible()) && (await txt(sp, "#more")) === "Analyze more of this page");
   await sp.evaluate((m) => { window.__MFL_MOCK__ = m; window.__mflChunks = []; }, setB);
   await sp.click("#more");
-  await sp.waitForFunction(() => /^Done/.test(document.getElementById("status").textContent) && !document.getElementById("analyze").disabled && document.querySelectorAll("#claimsList .claim").length > 8, null, { timeout: 30000 });
+  await sp.waitForFunction(() => /^Done/.test(document.getElementById("status").textContent) && !document.getElementById("analyze").disabled && Number(document.getElementById("claimCount").textContent) > 8, null, { timeout: 30000 });
   const ids2 = await sp.locator("#claimsList .claim").evaluateAll((els) => els.map((e) => e.dataset.id));
-  check("Analyze more: the next window adds claims to the list, ids continue", ids2.length === 10 && ids2[8] === "c9", ids2.join(","));
+  check("Analyze more: the next window adds claims to the list, ids continue", Number(await txt(sp, "#claimCount")) === 10 && ids2.every((i) => /^c\d+$/.test(i)), ids2.join(","));
   const chunks2 = await sp.evaluate(() => window.__mflChunks);
   check("Analyze more: a new window of chunks is analysed", chunks2.length >= 3, chunks2.join(","));
   const marks2 = await sbfPage.evaluate(() => new Set([...document.querySelectorAll("mark.mfl-hl")].map((m) => m.dataset.mflId)).size);

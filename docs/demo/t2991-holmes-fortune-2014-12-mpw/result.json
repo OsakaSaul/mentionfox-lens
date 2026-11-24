@@ -1,0 +1,241 @@
+{
+  "fixture": "holmes-fortune-2014-12-mpw.html",
+  "source_url": null,
+  "run_at": "2026-11-24T02:03:43.029Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Theranos' Elizabeth Holmes: Young entrepreneurs need \"a mission\" | Fortune",
+    "url": "http://127.0.0.1:55387/",
+    "textLength": 5311,
+    "rawChars": 6471,
+    "rootTag": "MAIN",
+    "blocks": 23
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3256,
+    "first_ms": 3288,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Holmes made these remarks during the closing interview of Fortune‘s 2014 MPW Next Gen conference at San Francisco’s Ritz-Carlton Hotel.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable event, year, and location at the Ritz-Carlton Hotel.\"\n    },\n    {\n      \"quote\": \"She dropped out of Stanford at age 19 to found Theranos, whose name is an amalgam of the words “diagnosis” and “therapy.”\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable age and educational institution name.\"\n    },\n    {\n      \"quote\": \"Investors value the private company at more $9 billion, and Holmes retains more than half the stock.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable valuation amount of $9 billion.\"\n    },\n    {\n      \"quote\": \"She is the youngest recipient since the award’s initiation in 1947.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable year of initiation in 1947.\"\n    },\n    {\n      \"quote\": \"Its phlebotomists now draw blood from patients by fingerstick at dedicated “wellness centers” at more than 40 Walgreens in Arizona and one in Palo Alto, Calif., often emailing back results to both the patient and physician within hours.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable number of Walgreens locations in Arizona and California.\"\n    },\n    {\n      \"quote\": \"Walgreens, which has 8,200 drugstores in the U.S., has committed to gradually rolling out the centers nationwide.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable drugstore count of 8,200 in the U.S.\"\n    },\n    {\n      \"quote\": \"In response to questions from conference participants, Holmes said that she slept four hours a night, and that her number one priority at the moment was finding the “right people” and to train them to help build the business.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable personal statement about sleeping hours.\"\n    },\n    {\n      \"quote\": \"Holmes, a prodigious inventor who is still just 30, was the subject of a Fortunecover story in June.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable age and magazine cover story month.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Holmes made these remarks during the closing interview of Fortune‘s 2014 MPW Next Gen conference at San Francisco’s Ritz-Carlton Hotel.",
+        "kind": "specific",
+        "why": "Checkable event, year, and location at the Ritz-Carlton Hotel."
+      },
+      {
+        "id": "c2",
+        "quote": "She dropped out of Stanford at age 19 to found Theranos, whose name is an amalgam of the words “diagnosis” and “therapy.”",
+        "kind": "specific",
+        "why": "Checkable age and educational institution name."
+      },
+      {
+        "id": "c3",
+        "quote": "Investors value the private company at more $9 billion, and Holmes retains more than half the stock.",
+        "kind": "specific",
+        "why": "Checkable valuation amount of $9 billion."
+      },
+      {
+        "id": "c4",
+        "quote": "She is the youngest recipient since the award’s initiation in 1947.",
+        "kind": "specific",
+        "why": "Checkable year of initiation in 1947."
+      },
+      {
+        "id": "c5",
+        "quote": "Its phlebotomists now draw blood from patients by fingerstick at dedicated “wellness centers” at more than 40 Walgreens in Arizona and one in Palo Alto, Calif., often emailing back results to both the patient and physician within hours.",
+        "kind": "specific",
+        "why": "Checkable number of Walgreens locations in Arizona and California.",
+        "note": "contains a subjective word: dedicated"
+      },
+      {
+        "id": "c6",
+        "quote": "Walgreens, which has 8,200 drugstores in the U.S., has committed to gradually rolling out the centers nationwide.",
+        "kind": "specific",
+        "why": "Checkable drugstore count of 8,200 in the U.S."
+      },
+      {
+        "id": "c7",
+        "quote": "In response to questions from conference participants, Holmes said that she slept four hours a night, and that her number one priority at the moment was finding the “right people” and to train them to help build the business.",
+        "kind": "vague",
+        "why": "Nothing in it gives a date, number, amount or named event to check; it is a statement of belief or praise.",
+        "note": "",
+        "overridden": true
+      },
+      {
+        "id": "c8",
+        "quote": "Holmes, a prodigious inventor who is still just 30, was the subject of a Fortunecover story in June.",
+        "kind": "specific",
+        "why": "Checkable age and magazine cover story month."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Holmes made these remarks during the closing interview of "
+    },
+    {
+      "id": "c1",
+      "text": "Fortune"
+    },
+    {
+      "id": "c1",
+      "text": "‘s 2014 MPW Next Gen conference at San Francisco’s Ritz-Carlton Hotel"
+    },
+    {
+      "id": "c8",
+      "text": "Holmes, a prodigious inventor who is still just 30, was the subject of a "
+    },
+    {
+      "id": "c8",
+      "text": "Fortune"
+    },
+    {
+      "id": "c8",
+      "text": "cover story"
+    },
+    {
+      "id": "c8",
+      "text": " in June"
+    },
+    {
+      "id": "c2",
+      "text": "She dropped out of Stanford at age 19 to found Theranos, whose name is an amalgam of the words “diagnosis” and “therapy"
+    },
+    {
+      "id": "c3",
+      "text": "Investors value the private company at more $9 billion, and Holmes retains more than half the stock"
+    },
+    {
+      "id": "c4",
+      "text": "She is the youngest recipient since the award’s initiation in 1947"
+    },
+    {
+      "id": "c5",
+      "text": "Its phlebotomists now draw blood from patients by fingerstick at dedicated “wellness centers” at more than 40 Walgreens in Arizona and one in Palo Alto, Calif., often emailing back results to both the patient and physician within hours"
+    },
+    {
+      "id": "c6",
+      "text": "Walgreens, which has 8,200 drugstores in the U.S., has committed to gradually rolling out the centers nationwide"
+    },
+    {
+      "id": "c7",
+      "text": "In response to questions from conference participants, Holmes said that she slept four hours a night, and that her number one priority at the moment was finding the “right people” and to train them to help build the business"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2791,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Pattie Sellers\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Fortune\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Walgreens\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Horatio Alger Association\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Stanford\",\n      \"type\": \"place\"\n    }\n  ],\n  \"facts\": [\n    \"Elizabeth Holmes dropped out of Stanford at age 19 to found Theranos.\",\n    \"Theranos performs hundreds of blood tests from a few drops of blood drawn from a fingerstick.\",\n    \"Investors valued the private company Theranos at more than $9 billion in 2014.\",\n    \"Holmes was named one of 12 recipients of the 2015 Horatio Alger Award.\",\n    \"Theranos expanded from 500 to 700 employees in the five months leading up to December 2014.\",\n    \"Holmes was interviewed by Fortune senior editor at large Pattie Sellers at the MPW Next Gen conference.\"\n  ],\n  \"missing\": [\n    \"Specific details or names of the investors who valued Theranos at over $9 billion\",\n    \"Clarification on how the FDA responded to Theranos proactively submitting every test for approval\",\n    \"Specific financial figures regarding Theranos' revenue or profitability at the time of the interview\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Investors value the private company at more $9 billion, and Holmes retains more than half the stock.\\\", add the names of the primary investors.\",\n    \"In the sentence \\\"For that reason she is 'proactively submitting every test we perform to the FDA' for approval, even though the law does not require that these tests be approved by the agency.\\\", add the specific date when FDA submissions began.\",\n    \"In the sentence \\\"Its phlebotomists now draw blood from patients by fingerstick at dedicated 'wellness centers' at more than 40 Walgreens in Arizona and one in Palo Alto, Calif.\\\", add the exact number of Walgreens locations in Arizona hosting the wellness centers.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 3,\n    \"structure\": 3,\n    \"trust_signals\": 3,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "Pattie Sellers",
+          "type": "person"
+        },
+        {
+          "name": "Fortune",
+          "type": "company"
+        },
+        {
+          "name": "Walgreens",
+          "type": "company"
+        },
+        {
+          "name": "Horatio Alger Association",
+          "type": "company"
+        },
+        {
+          "name": "Stanford",
+          "type": "place"
+        }
+      ],
+      "facts": [
+        "Elizabeth Holmes dropped out of Stanford at age 19 to found Theranos.",
+        "Theranos performs hundreds of blood tests from a few drops of blood drawn from a fingerstick.",
+        "Investors valued the private company Theranos at more than $9 billion in 2014.",
+        "Holmes was named one of 12 recipients of the 2015 Horatio Alger Award.",
+        "Theranos expanded from 500 to 700 employees in the five months leading up to December 2014.",
+        "Holmes was interviewed by Fortune senior editor at large Pattie Sellers at the MPW Next Gen conference."
+      ],
+      "missing": [
+        "Specific details or names of the investors who valued Theranos at over $9 billion",
+        "Clarification on how the FDA responded to Theranos proactively submitting every test for approval",
+        "Specific financial figures regarding Theranos' revenue or profitability at the time of the interview"
+      ],
+      "fixes": [
+        "In the sentence \"Investors value the private company at more $9 billion, and Holmes retains more than half the stock.\", add the names of the primary investors.",
+        "In the sentence \"For that reason she is 'proactively submitting every test we perform to the FDA' for approval, even though the law does not require that these tests be approved by the agency.\", add the specific date when FDA submissions be",
+        "In the sentence \"Its phlebotomists now draw blood from patients by fingerstick at dedicated 'wellness centers' at more than 40 Walgreens in Arizona and one in Palo Alto, Calif.\", add the exact number of Walgreens locations in Arizona hostin"
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 3,
+        "structure": 3,
+        "trust_signals": 3,
+        "ambiguity": 3
+      }
+    }
+  }
+}

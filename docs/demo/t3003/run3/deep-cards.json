@@ -1,0 +1,67 @@
+[
+  {
+    "kind": "redflag",
+    "pill": "Red flag: Extraordinary claim, key evidence missing",
+    "quote": "“It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe.”"
+  },
+  {
+    "kind": "redflag",
+    "pill": "Red flag: Extraordinary claim, key evidence missing",
+    "quote": "“The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer.””"
+  },
+  {
+    "kind": "redflag",
+    "pill": "Red flag: Secrecy as a feature",
+    "quote": "“Precisely how Theranos accomplishes all these amazing feats is a trade secret.”"
+  },
+  {
+    "kind": "redflag",
+    "pill": "Red flag: Evasive answer",
+    "quote": "“Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods” as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate.”"
+  },
+  {
+    "kind": "redflag",
+    "pill": "Red flag: Extraordinary claim, key evidence missing",
+    "quote": "“Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger.”"
+  },
+  {
+    "kind": "redflag",
+    "pill": "Red flag: Extraordinary claim, key evidence missing",
+    "quote": "“Theranos’s tests can be performed on just a few drops of blood, or about 1/100th to 1/1,000th of the amount that would ordinarily be required–an extraordinary potential boon to frequently tested hospital patients or cancer victims, the elderly, infants, children, the obese, those on anticoagulants, or simply anyone with an aversion to blood draws.”"
+  },
+  {
+    "kind": "redflag",
+    "pill": "Red flag: Evasive answer",
+    "quote": "“Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs do.”"
+  },
+  {
+    "kind": "vague",
+    "pill": "Vague or puffery",
+    "quote": "“Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs did.”"
+  },
+  {
+    "kind": "vague",
+    "pill": "Vague or puffery",
+    "quote": "“Theranos would test drug-trial subjects three times a week–which wouldn’t have been feasible using venipuncture–and catch adverse drug effects quickly, before they became dangerous.”"
+  },
+  {
+    "kind": "vague",
+    "pill": "Vague or puffery",
+    "quote": "“Such pricing represents a potential godsend for the uninsured, the insured with high deductibles, insurers, and taxpayers.”"
+  },
+  {
+    "kind": "vague",
+    "pill": "Vague or puffery",
+    "quote": "“She is like a monk.”"
+  },
+  {
+    "kind": "specific",
+    "pill": "Specific and checkable",
+    "quote": "“Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions.”"
+  },
+  {
+    "kind": "specific",
+    "pill": "Specific and checkable",
+    "quote": "“Its prices are often a half to a quarter of what independent labs charge, and a quarter to a 10th of what hospital labs bill, with still greater savings for expensive procedures.”"
+  }
+]

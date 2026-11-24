@@ -1,0 +1,32 @@
+[
+ {
+  "page": "A1 \"as many as 70 tests\" (finger prick) [dated 2014-06-12]",
+  "domain": "fortune.com",
+  "date": "2014-06-12",
+  "claim": "Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger."
+ },
+ {
+  "page": "A2 \"more than 200\" tests offered [dated 2014-06-12]",
+  "domain": "fortune.com",
+  "date": "2014-06-12",
+  "claim": "It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe."
+ },
+ {
+  "page": "A3 \"performed as many as 70\" from one draw [dated 2014-06-12]",
+  "domain": "fortune.com",
+  "date": "2014-06-12",
+  "claim": "The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer.”"
+ },
+ {
+  "page": "A4 \"same fundamental chemical methods\" (evasive) [dated 2014-06-12]",
+  "domain": "fortune.com",
+  "date": "2014-06-12",
+  "claim": "Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs do."
+ },
+ {
+  "page": "A5 \"same fundamental chemical methods\" / no peer review (evasive) [dated 2014-06-12]",
+  "domain": "fortune.com",
+  "date": "2014-06-12",
+  "claim": "Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods” as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate."
+ }
+]

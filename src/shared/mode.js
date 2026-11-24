@@ -15,7 +15,7 @@ export function formatSeconds(ms) {
  * retried: an on-device answer was unusable and the cloud redid it.
  * Returns {mode, label, seconds, text, tip, sub}.
  */
-export function modeInfo({ source, ms, deviceStatus, retried = false, firstMs = null }) {
+export function modeInfo({ source, ms, deviceStatus, retried = false, firstMs = null, deep = false }) {
   const seconds = formatSeconds(ms);
   const firstSeconds = formatSeconds(firstMs);
   const onDevice = source === "on_device" && !retried;
@@ -29,6 +29,13 @@ export function modeInfo({ source, ms, deviceStatus, retried = false, firstMs = 
     else if (deviceStatus === "downloadable" || deviceStatus === "downloading") reason = "on-device not ready";
     if (reason) label += ` (${reason})`;
   }
+  if (deep) {   // T3003: Deep scan always runs in the cloud, over the whole article
+    return {
+      mode: "cloud", label: "Cloud · deep scan", seconds, firstSeconds, first: "", text: seconds ? `Cloud · deep scan · ${seconds}` : "Cloud · deep scan",
+      tip: "Deep scan: the cloud model read the whole article in one pass (Firebase AI Logic). The page text was sent only because you clicked Deep scan.",
+      sub: "The whole article, read in one pass.", scan: "Cloud · deep scan · the whole article",
+    };
+  }
   const tip = onDevice
     ? `${HYBRID_TIP} This answer came from the on-device model, so the page text stayed in your browser.`
     : `${HYBRID_TIP} This answer came from the cloud (Firebase AI Logic)${reason ? ": " + reason : ""}.`;
@@ -41,6 +48,7 @@ export function modeInfo({ source, ms, deviceStatus, retried = false, firstMs = 
     text: seconds ? `${label} · ${seconds}` : label,
     tip,
     sub: onDevice ? "Your page stayed in this browser." : "Hybrid AI: private on-device first, cloud as the fallback.",
+    scan: onDevice ? "On-device · private · first part of the page" : "Cloud · quick scan · first part of the page",   // T3003: which scan this was
   };
 }
 

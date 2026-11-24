@@ -1,0 +1,195 @@
+{
+  "fixture": "holmes-fortune-2014-10-mpw.html",
+  "source_url": null,
+  "run_at": "2026-11-24T02:00:15.447Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "This CEO wants us to know our blood better than we know our credit cards | Fortune",
+    "url": "http://127.0.0.1:65125/",
+    "textLength": 3728,
+    "rawChars": 4895,
+    "rootTag": "MAIN",
+    "blocks": 21
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 7504,
+    "first_ms": 7544,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Theranos, the company she founded when she was 19 years old, developed a process to run the full scope of medical lab testing using only the smallest sampling of blood.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the founding age of Theranos by Elizabeth Holmes and the blood sampling technology.\"\n    },\n    {\n      \"quote\": \"Theranos offers its tests at 50% of the total Medicaid reimbursement rate, and has begun dropping that price to more that 90% off the typical Medicaid reimbursement rate in certain cases.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the pricing percentages compared to the Medicaid reimbursement rate.\"\n    },\n    {\n      \"quote\": \"A complete blood cell count is $4.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the stated $4 cost for a complete blood cell count.\"\n    },\n    {\n      \"quote\": \"Theranos recently signed a deal with Walgreen to deploy its clinics nationally across its 8,100 Walgreens stores.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the deal with Walgreens and the count of 8,100 stores.\"\n    },\n    {\n      \"quote\": \"That would place a Theranos facility within 5 miles, on average, of every American.\",\n      \"kind\": \"specific\",\n      \"why\": \"Check the average distance of 5 miles from every American.\"\n    },\n    {\n      \"quote\": \"There’s no needles, no hassle and no stress.\",\n      \"kind\": \"vague\",\n      \"why\": \"It relies on subjective claims without checkable anchors.\"\n    },\n    {\n      \"quote\": \"Everything has been engineered to be as easy and accessible.\",\n      \"kind\": \"vague\",\n      \"why\": \"It uses subjective praise about engineering and accessibility.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Theranos, the company she founded when she was 19 years old, developed a process to run the full scope of medical lab testing using only the smallest sampling of blood.",
+        "kind": "specific",
+        "why": "Check the founding age of Theranos by Elizabeth Holmes and the blood sampling technology."
+      },
+      {
+        "id": "c2",
+        "quote": "Theranos offers its tests at 50% of the total Medicaid reimbursement rate, and has begun dropping that price to more that 90% off the typical Medicaid reimbursement rate in certain cases.",
+        "kind": "specific",
+        "why": "Check the pricing percentages compared to the Medicaid reimbursement rate."
+      },
+      {
+        "id": "c3",
+        "quote": "A complete blood cell count is $4.",
+        "kind": "specific",
+        "why": "Check the stated $4 cost for a complete blood cell count."
+      },
+      {
+        "id": "c4",
+        "quote": "Theranos recently signed a deal with Walgreen to deploy its clinics nationally across its 8,100 Walgreens stores.",
+        "kind": "specific",
+        "why": "Check the deal with Walgreens and the count of 8,100 stores."
+      },
+      {
+        "id": "c5",
+        "quote": "That would place a Theranos facility within 5 miles, on average, of every American.",
+        "kind": "specific",
+        "why": "Check the average distance of 5 miles from every American."
+      },
+      {
+        "id": "c6",
+        "quote": "There’s no needles, no hassle and no stress.",
+        "kind": "vague",
+        "why": "It relies on subjective claims without checkable anchors."
+      },
+      {
+        "id": "c7",
+        "quote": "Everything has been engineered to be as easy and accessible.",
+        "kind": "vague",
+        "why": "It uses subjective praise about engineering and accessibility."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c1",
+      "text": "Theranos, the company she founded when she was 19 years old, developed a process to run the full scope of medical lab testing using only the smallest sampling of blood"
+    },
+    {
+      "id": "c6",
+      "text": "There’s no needles, no hassle and no stress"
+    },
+    {
+      "id": "c7",
+      "text": "Everything has been engineered to be as easy and accessible"
+    },
+    {
+      "id": "c2",
+      "text": "Theranos offers its tests at 50% of the total Medicaid reimbursement rate, and has begun dropping that price to more that 90% off the typical Medicaid reimbursement rate in certain cases"
+    },
+    {
+      "id": "c3",
+      "text": "A complete blood cell count is $4"
+    },
+    {
+      "id": "c4",
+      "text": "Theranos recently signed a deal with Walgreen to deploy its clinics nationally across its 8,100 Walgreens stores"
+    },
+    {
+      "id": "c5",
+      "text": "That would place a Theranos facility within 5 miles, on average, of every American"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 10044,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Fortune\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Walgreen\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Healthcare Bluebook\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Elizabeth Holmes is the CEO and founder of medical-testing company Theranos.\",\n    \"Theranos developed a process to run medical lab testing using a small blood sample collected via a finger prick into a nano-tainer.\",\n    \"Test results are made available through a smartphone app and traditional methods.\",\n    \"Theranos tests cost 50% to more than 90% off the total Medicaid reimbursement rate, such as a complete blood cell count costing $4.\",\n    \"Theranos signed a deal with Walgreens to deploy its clinics nationally across its 8,100 stores.\",\n    \"The article was published on October 8, 2014, at the Fortune's Most Powerful Women Summit.\"\n  ],\n  \"missing\": [\n    \"Financial valuation figures for Theranos at the time of the article\",\n    \"Specific regulatory approval status or clinical validation data for the nano-tainer technology\",\n    \"Detailed timeline for the national rollout across Walgreens stores\",\n    \"Names of specific international markets targeted for expansion\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Theranos recently signed a deal with Walgreen to deploy its clinics nationally across its 8,100 Walgreens stores.\\\", add the target timeline year for the full deployment.\",\n    \"In the sentence \\\"Theranos wants to make sure it’s accessible.\\\", add the specific international countries where the tuberculosis testing pilot is launched.\",\n    \"In the sentence \\\"The Theranos process is a far cry from the sterile needles, long waits and re-booked appointments that are common–and that’s the point.\\\", add the specific regulatory bodies that have cleared the finger-prick testing method.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 2,\n    \"ambiguity\": 2\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "Fortune",
+          "type": "company"
+        },
+        {
+          "name": "Walgreen",
+          "type": "company"
+        },
+        {
+          "name": "Healthcare Bluebook",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Elizabeth Holmes is the CEO and founder of medical-testing company Theranos.",
+        "Theranos developed a process to run medical lab testing using a small blood sample collected via a finger prick into a nano-tainer.",
+        "Test results are made available through a smartphone app and traditional methods.",
+        "Theranos tests cost 50% to more than 90% off the total Medicaid reimbursement rate, such as a complete blood cell count costing $4.",
+        "Theranos signed a deal with Walgreens to deploy its clinics nationally across its 8,100 stores.",
+        "The article was published on October 8, 2014, at the Fortune's Most Powerful Women Summit."
+      ],
+      "missing": [
+        "Financial valuation figures for Theranos at the time of the article",
+        "Specific regulatory approval status or clinical validation data for the nano-tainer technology",
+        "Detailed timeline for the national rollout across Walgreens stores",
+        "Names of specific international markets targeted for expansion"
+      ],
+      "fixes": [
+        "In the sentence \"Theranos recently signed a deal with Walgreen to deploy its clinics nationally across its 8,100 Walgreens stores.\", add the target timeline year for the full deployment.",
+        "In the sentence \"Theranos wants to make sure it’s accessible.\", add the specific international countries where the tuberculosis testing pilot is launched.",
+        "In the sentence \"The Theranos process is a far cry from the sterile needles, long waits and re-booked appointments that are common–and that’s the point.\", add the specific regulatory bodies that have cleared the finger-prick testing method."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 2,
+        "ambiguity": 2
+      }
+    }
+  }
+}

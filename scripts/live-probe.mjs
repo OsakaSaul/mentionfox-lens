@@ -84,12 +84,21 @@ try {
   const avail = await panel.evaluate(async () => (self.LanguageModel ? await self.LanguageModel.availability({ expectedInputs: [{ type: "text", languages: ["en"] }], expectedOutputs: [{ type: "text", languages: ["en"] }] }) : "LanguageModel API absent"));
   out(`LanguageModel.availability(): ${avail}`);
   out(`chip: ${await panel.textContent("#deviceChip")}`);
-  await panel.click("#analyze");
+  const deepRun = argv.includes("--deep");   // T3003: click Deep scan instead of Quick
+  await panel.click(deepRun ? "#deep" : "#analyze");
   await panel.waitForFunction(() => /^Done|\S{20,}/.test(document.getElementById("status").textContent) && !document.getElementById("analyze").disabled, null, { timeout: 150000 }).catch(() => {});
   out(`status after Analyze: ${await panel.textContent("#status")}`);
   const badge = await panel.locator("#claimsMode .mode-main").first().textContent().catch(() => "(no result badge: no model answer)");
   out(`claims mode badge: ${badge}`);
   const last = await panel.evaluate(() => window.__lensLast || null);
+  if (deepRun) {
+    const cards = await panel.evaluate(() => [...document.querySelectorAll("#claimsList .claim")].map((el) => ({ kind: el.dataset.kind, pill: el.querySelector(".pill")?.textContent, quote: el.querySelector(".quote")?.textContent })));
+    out("DEEP summary: " + (await panel.textContent("#claimsSummary")));
+    out("DEEP mode: " + (await panel.textContent("#claimsMode").catch(() => "")));
+    for (const c of cards) out(`DEEP card [${c.pill}] ${c.quote}`);
+    if (outDir) writeFileSync(join(outDir, "deep-raw.json"), await panel.evaluate(() => window.__lensDeepRaw || ""));
+    if (outDir) writeFileSync(join(outDir, "deep-cards.json"), JSON.stringify(cards, null, 2));
+  }
   if (opt("--check-url") !== null || argv.includes("--check")) {
     // T2987: click Check on the first specific card (one real call to the lens-check Worker). --check-url pretends the page URL is a Wayback snapshot (dev build hook).
     if (opt("--check-model")) await panel.evaluate((m) => { self.__lensCheckModel = m; }, opt("--check-model"));

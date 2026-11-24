@@ -1,0 +1,109 @@
+{
+  "claims": [
+    {
+      "quote": "Now she’s 30, and her private, Palo Alto-based corporation, called Theranos–the name is an amalgam of the words “therapy” and “diagnosis”–has 500 employees and has raised more than $400 million from equity sales to investors who have effectively valued the company at more than $9 billion.",
+      "kind": "specific",
+      "why": "Check employee count, capital raised, and valuation figures with investors."
+    },
+    {
+      "quote": "Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions.",
+      "kind": "specific",
+      "why": "Verify industry market size, total annual tests, and medical decision percentage."
+    },
+    {
+      "quote": "Medicare and Medicaid each pay roughly $10 billion annually on reimbursements for these tests.",
+      "kind": "specific",
+      "why": "Check government reimbursement spending figures for lab tests."
+    },
+    {
+      "quote": "Theranos runs what’s called a high-complexity laboratory, certified by the federal Centers for Medicare & Medicaid Services (CMS), and it is licensed to operate in nearly every state.",
+      "kind": "specific",
+      "why": "Verify CMS laboratory certification and state licensure status."
+    },
+    {
+      "quote": "It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe.",
+      "kind": "specific",
+      "why": "Check the exact menu size and needle-free claims against laboratory records."
+    },
+    {
+      "quote": "The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer.”",
+      "kind": "redflag",
+      "why": "Verify if 70 tests are genuinely performed from a single 25-microliter draw without independent lab validation.",
+      "signal": "extraordinary_claim"
+    },
+    {
+      "quote": "Precisely how Theranos accomplishes all these amazing feats is a trade secret.",
+      "kind": "redflag",
+      "why": "Check whether refusal to disclose methodology prevents independent technical verification.",
+      "signal": "secrecy"
+    },
+    {
+      "quote": "Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs does.",
+      "kind": "redflag",
+      "why": "Check if this generic explanation addresses specific scientific criticisms regarding tiny sample volumes.",
+      "signal": "evasive_answer"
+    },
+    {
+      "quote": "Its phlebotomists currently take physician-ordered blood draws (and saliva, urine, feces, and other samples) at collection centers the company operates at its headquarters in Palo Alto and at 21 Walgreens–one in Palo Alto and the rest in Phoenix.",
+      "kind": "specific",
+      "why": "Verify the exact number and location of operating Walgreens collection centers."
+    },
+    {
+      "quote": "Walgreens CEO Greg Wasson told me in an interview that he hopes to eventually put them in the pharmacies of the company’s European partner chain, Alliance Boots, as well.",
+      "kind": "specific",
+      "why": "Check if Wasson made this statement regarding Alliance Boots partnership expansion."
+    },
+    {
+      "quote": "At least as significant, three hospital groups are now working closely with Theranos with the aim of deploying its lab services–UCSF Medical Center in San Francisco, Dignity Health’s 21-state hospital group, and Intermountain Healthcare’s 22-hospital system in Utah and Idaho.",
+      "kind": "specific",
+      "why": "Verify partnerships with named hospital systems."
+    },
+    {
+      "quote": "Using DNA profiling Theranos can, for less than the cost of the conventional tests, identify a bug and its resistance profile within four hours, says Helfet, according to the data he has seen.",
+      "kind": "redflag",
+      "why": "Verify DNA profiling speed and cost claims against independent microbiological standards.",
+      "signal": "extraordinary_claim"
+    },
+    {
+      "quote": "Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods” as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate.",
+      "kind": "redflag",
+      "why": "Check whether avoiding peer review for life-and-death medical tests constitutes a validation red flag.",
+      "signal": "evasive_answer"
+    },
+    {
+      "quote": "Quest, for instance, employs 45,000 people; owns a fleet of 3,000 vehicles and 20 airplanes; and runs eight regional hub labs, 150 satellite labs, and 2,200 patient service centers.",
+      "kind": "specific",
+      "why": "Verify Quest Diagnostics employee, vehicle, airplane, and facility counts."
+    },
+    {
+      "quote": "Today Holmes is a co-inventor on 82 U.S. and 189 foreign patent applications, of which 18 in the U.S. and 66 abroad have been granted.",
+      "kind": "specific",
+      "why": "Check patent office records for stated patent application and grant counts."
+    },
+    {
+      "quote": "Though she has now raised more than $400 million, she says she has retained control over more than 50% of the stock.",
+      "kind": "specific",
+      "why": "Verify equity distribution and total capital raised."
+    },
+    {
+      "quote": "“The novelty of how she would view a complex technical problem–it was unique in my experience.”",
+      "kind": "vague",
+      "why": "Check whether professor's personal praise of student reflects verifiable technical achievement."
+    },
+    {
+      "quote": "“When I finally connected with what Elizabeth fundamentally is,” he says, “I realized that I could have just as well been looking into the eyes of a Steve Jobs or a Bill Gates.”",
+      "kind": "vague",
+      "why": "Evaluate subjective comparison of a 19-year-old founder to tech icons."
+    },
+    {
+      "quote": "“This is about being able to do good,” Holmes says to me about her company.",
+      "kind": "vague",
+      "why": "Assess corporate mission statement lacking measurable benchmarks."
+    },
+    {
+      "quote": "“She has iron will, strong determination. But nothing dramatic.”",
+      "kind": "vague",
+      "why": "Verify subjective leadership assessments provided by board members."
+    }
+  ]
+}

@@ -5,6 +5,8 @@ import { runChunkedClaims, mergeClaims, progressText } from "../shared/chunked.j
 import { normalizeClaims, normalizeGeo } from "../shared/parse.js";
 import { setSelfNames, deriveSelfNames, reconcileKind } from "../shared/anchors.js";
 import { applyRedFlags, signalLabel } from "../shared/redflags.js";   // T2992
+import { buildDeepPrompt, buildDeepCards, DEEP_PAGE_CHARS, DEEP_MAX_CLAIMS } from "../shared/deep.js";   // T3003
+import { pickCards, cardSummary, MORE_ROW_TIP } from "../shared/quality.js";
 import { debugReset, debugSet, debugSnapshot } from "../shared/debug.js";
 import { geoScore, geoBand, GEO_BANDS, GEO_DIMENSION_LABELS } from "../shared/geo.js";
 import { modeInfo, statusLine, chipState, formatSeconds } from "../shared/mode.js";
@@ -162,12 +164,13 @@ async function ensureContent(tabId) {
 const send = (tabId, msg) => chrome.tabs.sendMessage(tabId, { target: "lens-content", ...msg });
 
 /* ---------- rendering ---------- */
+let showMoreGreens = false;   // T3003: the collapsed "more checkable claims" row; closed at the start of every scan
 function renderClaims(claims, results) {
   const list = $("claimsList");
   list.replaceChildren();
   checkRows.clear();
   const byId = new Map((results || []).map((r) => [r.id, r]));
-  for (const c of claims) {
+  const addCard = (c) => {
     const r = byId.get(c.id);
     const found = !r || r.found;
     const label = c.kind === "redflag" ? "Red flag: " + signalLabel(c.signal) : c.kind === "specific" ? "Specific and checkable" : "Vague or puffery";
@@ -199,9 +202,22 @@ function renderClaims(claims, results) {
       renderCheckRow(c.quote);
     }
     list.append(li);
+  };
+  // T3003 (Saul): red flags first, then amber (vague), then at most 2 green cards (the 2 most consequential); the rest sit behind a collapsed row
+  const { shown, more } = pickCards(claims);
+  for (const c of shown) addCard(c);
+  if (more.length) {
+    const toggle = h("button", { class: "btn btn-ghost more-toggle", type: "button", title: MORE_ROW_TIP, "aria-expanded": String(showMoreGreens), "aria-label": `${showMoreGreens ? "Hide" : "Show"} ${more.length} more checkable claims. ${MORE_ROW_TIP}.` },
+      showMoreGreens ? `Hide ${more.length} more checkable claim${more.length === 1 ? "" : "s"}` : `Show ${more.length} more checkable claim${more.length === 1 ? "" : "s"}`);
+    toggle.addEventListener("click", () => { showMoreGreens = !showMoreGreens; renderClaims(claims, results); });
+    list.append(h("li", { class: "more-row" }, toggle));
+    if (showMoreGreens) for (const c of more) addCard(c);
   }
   $("claimsEmpty").hidden = claims.length > 0;
   $("claimsLegend").hidden = claims.length === 0;
+  const sum = $("claimsSummary");
+  sum.textContent = cardSummary(claims);
+  sum.hidden = claims.length === 0;
   const cnt = $("claimCount");
   cnt.hidden = claims.length === 0;
   cnt.textContent = String(claims.length);
@@ -331,11 +347,13 @@ function maybeWarm() {
 
 const asSeconds = (ms) => formatSeconds(ms);
 
-async function analyze({ more = false } = {}) {
+async function analyze({ more = false, deep = false } = {}) {
   if (busy) return;
   busy = true;
   const t0 = performance.now(); // the moment of the click: first-claim time and totals are measured from here
-  const btn = $("analyze");
+  const btn = $(deep ? "deep" : "analyze");
+  $("deep").disabled = true; $("analyze").disabled = true;
+  showMoreGreens = false;
   btn.disabled = true;
   $("rerun").disabled = true;
   $("more").disabled = true;
@@ -361,6 +379,31 @@ async function analyze({ more = false } = {}) {
     }
     const page = state.page;
     setSelfNames(deriveSelfNames({ title: page.title, url: page.url }));
+
+    if (deep) {   // T3003: Deep scan = the cloud reads the whole extracted article in ONE call
+      try { await send(tab.id, { type: "clear" }); } catch { /* nothing to clear */ }
+      state.claims = []; state.results = new Map(); state.covered = new Set();
+      renderModePending("claimsMode");
+      $("claimsEmpty").textContent = "Deep scan: reading the whole article...";
+      setStatus("Deep scan: the cloud is reading the whole article...");
+      const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildDeepPrompt(page.blocks.join(String.fromCharCode(10))), normalize: (v) => normalizeClaims(v, { max: DEEP_MAX_CLAIMS }), deviceStatus: "unavailable", onlyCloud: true });
+      window.__lensDeepRaw = String(r.raw ?? "");   // recorded by scripts/live-probe.mjs --deep for the unit tests
+      const cards = buildDeepCards(r.value, page.blocks, { title: page.title, url: page.url });
+      mergeClaims(state.claims, cards);
+      const showCards = () => renderClaims(state.claims, [...state.results.values()]);
+      showCards();
+      const h2 = await send(tab.id, { type: "highlight", claims: state.claims });
+      state.results = new Map((h2?.results || []).map((x) => [x.id, x]));
+      const ms = r.ms ?? Math.round(performance.now() - t0);
+      renderModeBar("claimsMode", modeInfo({ source: "in_cloud", ms, deviceStatus: "unavailable", deep: true }));
+      $("clear").disabled = false;
+      $("more").hidden = true;
+      debugSet({ mode: "cloud-deep", deepMs: ms, deepCards: state.claims.length });
+      showCards();
+      setStatus(`Done. Deep scan took ${formatSeconds(ms)}: ${cardSummary(state.claims)}.`);
+      $("rerun").hidden = false;
+      return;
+    }
 
     const deviceStatus = await engine.probeDevice();
     device.availability = deviceStatus;
@@ -508,13 +551,13 @@ async function analyze({ more = false } = {}) {
     $("rerun").hidden = false;
   } catch (err) {
     $("claimsEmpty").hidden = state.claims.length > 0;
-    $("claimsEmpty").textContent = "No claims yet. Click Analyze.";
+    $("claimsEmpty").textContent = "No claims yet. Click Deep scan.";
     for (const id of ["claimsMode", "geoMode"]) if ($(id).dataset.mode === "pending") $(id).hidden = true;
     $("rerun").hidden = false;
     $("more").hidden = !(state.remaining > 200) || !state.claims.length;
     setStatus(friendlyError(err), true);
   } finally {
-    btn.disabled = false;
+    btn.disabled = false; $("deep").disabled = false; $("analyze").disabled = false;
     $("rerun").disabled = false;
     $("more").disabled = false;
     busy = false;
@@ -565,6 +608,7 @@ document.addEventListener("keydown", async (e) => {
   showToast("Debug copied");
 });
 
+$("deep").addEventListener("click", () => analyze({ deep: true }));
 $("analyze").addEventListener("click", () => analyze());
 $("rerun").addEventListener("click", () => analyze());
 $("more").addEventListener("click", () => analyze({ more: true }));

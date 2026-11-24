@@ -1,0 +1,12 @@
+date: 2026-11-24T02:24:26.264Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: theranos-3.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 13.1 seconds on Cloud: 6 claims. First claim in 6.5 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 6.5 seconds
+probe error: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('li').filter({ has: locator('.quote').filter({ hasText: 'Walgreens Wellness Centers' }) }).locator('button.check-btn').first()[22m
+
