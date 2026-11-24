@@ -1,0 +1,68 @@
+{
+  "fixture": "holmes-fortune-2014-wayback-20141231.html",
+  "source_url": null,
+  "run_at": "2026-11-24T03:56:09.425Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "This CEO's out for blood - Fortune",
+    "url": "http://127.0.0.1:54194/",
+    "textLength": 85,
+    "rawChars": 1448,
+    "rootTag": "BODY",
+    "blocks": 2
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 1681,
+    "first_ms": 1714,
+    "retried": false,
+    "raw": "{\n  \"claims\": []\n}",
+    "normalized": []
+  },
+  "highlight": [],
+  "highlighted_text": [],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 1755,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Fortune\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Time.com\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"WordPress.com VIP\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Fortune.com is a part of the Time.com network of sites.\",\n    \"The site is powered by WordPress.com VIP.\"\n  ],\n  \"missing\": [\n    \"The identity of the CEO mentioned in the page title\",\n    \"The main article body or content\",\n    \"Publication date or author information\",\n    \"Any specific details about the blood-related topic referenced in the headline\"\n  ],\n  \"fixes\": [\n    \"In the page title \\\"This CEO's out for blood - Fortune\\\", add the name of the CEO to resolve ambiguity.\",\n    \"Below the title, add the main article body text detailing which CEO is referred to and the context of the story.\",\n    \"At the top of the page, add the publication date and author name to provide trust signals.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 1,\n    \"fact_density\": 1,\n    \"structure\": 0,\n    \"trust_signals\": 0,\n    \"ambiguity\": 0\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Fortune",
+          "type": "company"
+        },
+        {
+          "name": "Time.com",
+          "type": "company"
+        },
+        {
+          "name": "WordPress.com VIP",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Fortune.com is a part of the Time.com network of sites.",
+        "The site is powered by WordPress.com VIP."
+      ],
+      "missing": [
+        "The identity of the CEO mentioned in the page title",
+        "The main article body or content",
+        "Publication date or author information",
+        "Any specific details about the blood-related topic referenced in the headline"
+      ],
+      "fixes": [
+        "In the page title \"This CEO's out for blood - Fortune\", add the name of the CEO to resolve ambiguity.",
+        "Below the title, add the main article body text detailing which CEO is referred to and the context of the story.",
+        "At the top of the page, add the publication date and author name to provide trust signals."
+      ],
+      "ratings": {
+        "entity_clarity": 1,
+        "fact_density": 1,
+        "structure": 0,
+        "trust_signals": 0,
+        "ambiguity": 0
+      }
+    }
+  }
+}

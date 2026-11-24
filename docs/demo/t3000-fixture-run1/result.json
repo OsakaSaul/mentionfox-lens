@@ -1,0 +1,68 @@
+{
+  "fixture": "holmes-fortune-2014-wayback-20141231.html",
+  "source_url": null,
+  "run_at": "2026-11-24T03:56:03.833Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "This CEO's out for blood - Fortune",
+    "url": "http://127.0.0.1:54178/",
+    "textLength": 85,
+    "rawChars": 1448,
+    "rootTag": "BODY",
+    "blocks": 2
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 1821,
+    "first_ms": 1856,
+    "retried": false,
+    "raw": "{\"claims\":[]}",
+    "normalized": []
+  },
+  "highlight": [],
+  "highlighted_text": [],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 1705,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Fortune\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Time.com\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"WordPress.com VIP\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Fortune.com is part of the Time.com network of sites.\",\n    \"The website is powered by WordPress.com VIP.\"\n  ],\n  \"missing\": [\n    \"The identity of the CEO mentioned in the title\",\n    \"The main article content regarding the CEO\",\n    \"Publication date of the article\",\n    \"Author information\"\n  ],\n  \"fixes\": [\n    \"In the title or main body, add the name of the CEO the article is about.\",\n    \"Add the main article text and paragraphs below the header to provide the content referenced by the title.\",\n    \"Add a publication date to the page to indicate when the article was published.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 1,\n    \"fact_density\": 1,\n    \"structure\": 0,\n    \"trust_signals\": 0,\n    \"ambiguity\": 0\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Fortune",
+          "type": "company"
+        },
+        {
+          "name": "Time.com",
+          "type": "company"
+        },
+        {
+          "name": "WordPress.com VIP",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Fortune.com is part of the Time.com network of sites.",
+        "The website is powered by WordPress.com VIP."
+      ],
+      "missing": [
+        "The identity of the CEO mentioned in the title",
+        "The main article content regarding the CEO",
+        "Publication date of the article",
+        "Author information"
+      ],
+      "fixes": [
+        "In the title or main body, add the name of the CEO the article is about.",
+        "Add the main article text and paragraphs below the header to provide the content referenced by the title.",
+        "Add a publication date to the page to indicate when the article was published."
+      ],
+      "ratings": {
+        "entity_clarity": 1,
+        "fact_density": 1,
+        "structure": 0,
+        "trust_signals": 0,
+        "ambiguity": 0
+      }
+    }
+  }
+}

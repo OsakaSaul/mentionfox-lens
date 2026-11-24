@@ -1,0 +1,68 @@
+{
+  "fixture": null,
+  "source_url": "https://web.archive.org/web/2014/https://fortune.com/2014/06/12/theranos-blood-holmes/",
+  "run_at": "2026-11-24T03:57:02.749Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "This CEO's out for blood - Fortune",
+    "url": "https://web.archive.org/web/20141231144815/http://fortune.com/2014/06/12/theranos-blood-holmes/",
+    "textLength": 85,
+    "rawChars": 1448,
+    "rootTag": "BODY",
+    "blocks": 2
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 1694,
+    "first_ms": 1728,
+    "retried": false,
+    "raw": "{\n  \"claims\": []\n}",
+    "normalized": []
+  },
+  "highlight": [],
+  "highlighted_text": [],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 1554,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Fortune\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Time.com\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"WordPress.com VIP\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Fortune.com is a part of the Time.com network of sites.\",\n    \"Fortune.com is powered by WordPress.com VIP.\"\n  ],\n  \"missing\": [\n    \"The identity of the CEO mentioned in the page title\",\n    \"The main article content regarding why the CEO is out for blood\",\n    \"Publication date of the article\",\n    \"Author information for the article\"\n  ],\n  \"fixes\": [\n    \"In the page title \\\"This CEO's out for blood - Fortune\\\", add the name of the CEO.\",\n    \"In the main content area, add the article text describing the CEO's actions.\",\n    \"In the footer area, add the publication date of the article.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 1,\n    \"fact_density\": 1,\n    \"structure\": 0,\n    \"trust_signals\": 0,\n    \"ambiguity\": 0\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Fortune",
+          "type": "company"
+        },
+        {
+          "name": "Time.com",
+          "type": "company"
+        },
+        {
+          "name": "WordPress.com VIP",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Fortune.com is a part of the Time.com network of sites.",
+        "Fortune.com is powered by WordPress.com VIP."
+      ],
+      "missing": [
+        "The identity of the CEO mentioned in the page title",
+        "The main article content regarding why the CEO is out for blood",
+        "Publication date of the article",
+        "Author information for the article"
+      ],
+      "fixes": [
+        "In the page title \"This CEO's out for blood - Fortune\", add the name of the CEO.",
+        "In the main content area, add the article text describing the CEO's actions.",
+        "In the footer area, add the publication date of the article."
+      ],
+      "ratings": {
+        "entity_clarity": 1,
+        "fact_density": 1,
+        "structure": 0,
+        "trust_signals": 0,
+        "ambiguity": 0
+      }
+    }
+  }
+}
