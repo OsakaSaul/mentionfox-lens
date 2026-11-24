@@ -70,7 +70,7 @@ Remote code: none. All code is in the package; the Firebase SDK is bundled by es
 
 ## Data usage disclosures (Developer Dashboard privacy tab)
 
-Answers for the form (checked against the code: no analytics or telemetry; local storage only for the daily Check counter; the Check button sends one sentence to our own server).
+Answers for the form (checked against the code: no analytics or telemetry; local storage only for the daily Check counter; the Check button sends one sentence to our own server, which keeps a record of the check as described on the privacy page).
 
 - Does the extension collect or use user data? Yes, in this limited way: the text of the current page is processed when the user clicks.
 - Data types: Website content (the text of the current page, processed on the user's device when the on-device model is available; sent to Google's Firebase AI Logic cloud endpoint only when the on-device model is not available).
@@ -78,7 +78,7 @@ Answers for the form (checked against the code: no analytics or telemetry; local
 - Is data sold to third parties? No.
 - Is data used for purposes unrelated to the single purpose? No.
 - Is data used to determine creditworthiness or for lending? No.
-- Data sent to MentionFox services: only when the user clicks Check on one claim: that single sentence, the site's domain and the web-archive snapshot date, sent to our own server (api.foxapis.com) to verify the claim; the sentence is not stored or logged (the server keeps only a daily counter of how many checks ran). Nothing else, and never the page.
+- Data sent to MentionFox services: only when the user clicks Check on one claim: that single sentence, the site's domain and the web-archive snapshot date, sent to our own server (api.foxapis.com) to verify the claim; the server code does not log the sentence, but our checking service saves a record of each check (the sentence inside a short fixed note with the domain and date, the verdict, the reason and the source links) in its database with no automatic deletion yet, not linked to the user, browser or any account; its web searches made from the sentence are cached for 30 days; a daily total of checks is counted; the sentence is passed to a search provider and an AI provider that work for us. The record of a sentence is deleted on request (hello@foxapis.com). Nothing else, and never the page. Stated in full at https://foxapis.com/lens/privacy/ (updated 2026-11-24).
 - Certification: the three Limited Use statements apply (use only for the single purpose, no transfer except to provide the feature or as required by law, no human reading).
 
 Note for the reviewer field: the on-device path sends nothing off the machine. The cloud fallback sends the page text to Google through Firebase AI Logic with App Check, subject to Google's terms.
