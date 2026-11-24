@@ -5,13 +5,11 @@ import { initializeAppCheck, CustomProvider } from "firebase/app-check";
 import { getAI, getGenerativeModel, GoogleAIBackend, InferenceMode, InferenceSource, Schema } from "firebase/ai";
 import { firebaseConfig as baseConfig } from "./firebase-config.js";
 import { parseModelJson } from "./shared/parse.js";
-import { CHECK_SYSTEM } from "./shared/check.js";
 import { DEVICE_SYSTEM, DEVICE_CLAIMS_SCHEMA, buildDeviceChunkPrompt } from "./shared/prompts.js";
 
 /* __FIREBASE_OVERRIDE__ and __APPCHECK_DEBUG_TOKEN__ are replaced at build time (scripts/build.mjs). */
 const OVERRIDE = typeof __FIREBASE_OVERRIDE__ !== "undefined" ? __FIREBASE_OVERRIDE__ : {};
 const DEBUG_TOKEN = typeof __APPCHECK_DEBUG_TOKEN__ !== "undefined" ? __APPCHECK_DEBUG_TOKEN__ : "";
-const IS_DEV = typeof __DEV_BUILD__ !== "undefined" ? __DEV_BUILD__ : false;
 
 export const firebaseConfig = { ...baseConfig, ...OVERRIDE };
 // Cloud fallback model: the SDK's own hybrid default (see DEFAULT_HYBRID_IN_CLOUD_MODEL in @firebase/ai).
@@ -220,26 +218,6 @@ export async function streamDeviceChunk(chunkText, onText) {
   }
   if (!source) { try { source = (await response).inferenceSource; } catch { /* no source */ } }
   return { text, source: source || InferenceSource.IN_CLOUD, ms: Math.round(performance.now() - t0), firstTokenMs };
-}
-
-/**
- * One grounded claim check (cloud only, Google Search tool). Sends ONLY the prompt text (one sentence plus domain and date).
- * Returns {text, meta, ms}. meta is the raw groundingMetadata (sources + Search suggestions).
- */
-export async function runGroundedCheck(prompt) {
-  const t0 = performance.now();
-  const model = getGenerativeModel(getAiInstance(), {
-    mode: InferenceMode.ONLY_IN_CLOUD,
-    inCloudParams: {
-      model: (IS_DEV && self.__lensCheckModel) || CLOUD_MODEL, // dev builds only: probe other models
-      systemInstruction: CHECK_SYSTEM,
-      tools: [{ googleSearch: {} }],
-      generationConfig: { temperature: 0 }, // no JSON mime type: it is not allowed together with the search tool
-    },
-  });
-  const result = await model.generateContent(prompt);
-  const response = result.response;
-  return { text: response.text(), meta: response.candidates?.[0]?.groundingMetadata || null, ms: Math.round(performance.now() - t0) };
 }
 
 export { InferenceSource };

@@ -85,7 +85,7 @@ try {
   out(`claims mode badge: ${badge}`);
   const last = await panel.evaluate(() => window.__lensLast || null);
   if (opt("--check-url") !== null || argv.includes("--check")) {
-    // T2987: click Check on the first specific card (one real grounded call). --check-url pretends the page URL is a Wayback snapshot (dev build hook).
+    // T2987: click Check on the first specific card (one real call to the lens-check Worker). --check-url pretends the page URL is a Wayback snapshot (dev build hook).
     if (opt("--check-model")) await panel.evaluate((m) => { self.__lensCheckModel = m; }, opt("--check-model"));
     if (opt("--check-url")) await panel.evaluate((u) => { window.__lensCheckUrl = u; }, opt("--check-url"));
     await panel.locator("button.check-btn").first().click();

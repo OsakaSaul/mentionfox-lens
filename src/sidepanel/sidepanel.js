@@ -1,4 +1,4 @@
-import { runTask, initDevice, probeDevice, warmDevice, streamDeviceChunk, runGroundedCheck, InferenceSource } from "../ai.js";
+import { runTask, initDevice, probeDevice, warmDevice, streamDeviceChunk, InferenceSource } from "../ai.js";
 import { CLAIMS_SCHEMA, GEO_SCHEMA, buildClaimsPrompt, buildGeoPrompt, MAX_PAGE_CHARS, DEVICE_WINDOW_CHARS, DEVICE_CHUNK_CHARS, DEVICE_GEO_CHARS } from "../shared/prompts.js";
 import { findAnchorIndex, pickWindow, chunkBlocks } from "../shared/extract.js";
 import { runChunkedClaims, mergeClaims, progressText } from "../shared/chunked.js";
@@ -8,7 +8,7 @@ import { debugReset, debugSet, debugSnapshot } from "../shared/debug.js";
 import { geoScore, geoBand, GEO_BANDS, GEO_DIMENSION_LABELS } from "../shared/geo.js";
 import { modeInfo, statusLine, chipState, formatSeconds } from "../shared/mode.js";
 import { VERIFY_CLAIMS_URL, DECISION_MAKERS_URL, mentionfoxLink } from "../shared/links.js";
-import { QUOTA_KEY, quotaState, quotaAfterUse, quotaText, buildCheckPrompt, parseCheck, pickSources, searchSuggestionsHtml, archiveDate, claimDomain } from "../shared/check.js";
+import { QUOTA_KEY, quotaState, quotaAfterUse, quotaText, runWorkerCheck, archiveDate, claimDomain } from "../shared/check.js";
 
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -27,7 +27,7 @@ function h(tag, attrs = {}, ...kids) {
 $("linkVerify").href = VERIFY_CLAIMS_URL;
 $("linkPeople").href = DECISION_MAKERS_URL;
 
-let engine = { runTask, initDevice, probeDevice, warmDevice, streamChunk: streamDeviceChunk, runCheck: runGroundedCheck };
+let engine = { runTask, initDevice, probeDevice, warmDevice, streamChunk: streamDeviceChunk, runCheck: runWorkerCheck };
 let state = { tabId: null, claims: [], results: new Map(), page: null, covered: new Set(), remaining: 0, warm: null };
 
 /* ---------- status helpers ---------- */
@@ -205,9 +205,9 @@ function renderClaims(claims, results) {
   cnt.textContent = String(claims.length);
 }
 
-/* ---------- Check: verify one claim with the cloud model + Google Search grounding ---------- */
+/* ---------- Check: verify one claim on the web through our own Worker (FoxAPIs claims_check) ---------- */
 const checkRows = new Map(); // quote -> {c, row, li} (rebuilt with the list)
-const checkResults = new Map(); // quote -> {pending} | {error} | {verdict, reason, sources, ms, suggestions}; survives re-renders of the list
+const checkResults = new Map(); // quote -> {pending} | {error} | {verdict, reason, sources, ms}; survives re-renders of the list
 let memQuota = null; // fallback when chrome.storage is unavailable
 async function readStoredQuota() {
   try {
@@ -244,8 +244,7 @@ function renderCheckRow(quote) {
     kids.push(h("span", { class: "pill pill-" + res.verdict, "data-verdict": res.verdict }, VERDICT_TEXT[res.verdict]));
     kids.push(h("span", { class: "why check-reason" }, res.reason));
     if (res.sources.length) kids.push(h("ul", { class: "check-sources", "aria-label": "Sources" }, res.sources.map((x) => h("li", {}, h("a", { href: x.uri, target: "_blank", rel: "noopener noreferrer" }, x.title)))));
-    kids.push(h("div", { class: "checkmode mode-cloud", title: "Checks always run in the cloud (web search). Analysis stays on your device where supported." }, `Cloud \u00B7 ${formatSeconds(res.ms)}`));
-    if (res.suggestions) kids.push(h("iframe", { class: "check-suggest", sandbox: "allow-popups allow-popups-to-escape-sandbox", srcdoc: res.suggestions, title: "Google Search suggestions", scrolling: "no" }));
+    kids.push(h("div", { class: "checkmode mode-cloud", title: "Checks run in the cloud: only this one sentence, its website and its date are sent. Analysis stays on your device where supported." }, `Cloud \u00B7 ${formatSeconds(res.ms)}`));
     kids.push(h("span", { class: "check-quota" }, quotaText(quotaNow)));
   }
   row.replaceChildren(...kids);
@@ -263,14 +262,13 @@ async function doCheck(quote) {
   try {
     const page = state.page || {};
     const pageUrl = (typeof __DEV_BUILD__ !== "undefined" && __DEV_BUILD__ && window.__lensCheckUrl) || page.url; // dev builds only: lets the probe test a Wayback date
-    const out = await engine.runCheck(buildCheckPrompt({ claim: quote, domain: claimDomain(pageUrl), date: archiveDate(pageUrl) }));
-    const parsed = parseCheck(out.text);
+    const out = await engine.runCheck({ claim: quote, domain: claimDomain(pageUrl), date: archiveDate(pageUrl) });
     await writeStoredQuota(quotaAfterUse(await readStoredQuota())); // counted only when the call succeeded
     quotaNow = quotaState(await readStoredQuota());
-    checkResults.set(quote, { ...parsed, sources: pickSources(out.meta), ms: out.ms, suggestions: searchSuggestionsHtml(out.meta) });
+    checkResults.set(quote, { verdict: out.verdict, reason: out.reason, sources: out.sources, ms: out.ms });
   } catch (err) {
     console.warn("[lens-check] failed:", String(err?.message || err).slice(0, 2500));
-    checkResults.set(quote, { error: /quota|429|RESOURCE|app.?check|403|permission/i.test(String(err?.message || err)) ? "Web checks are not available right now. Try again later." : friendlyError(err) });
+    checkResults.set(quote, { error: err?.code === "busy" ? "Web checks are busy today" : "Web checks are not available right now. Try again later." });
   }
   renderAllCheckRows();
 }

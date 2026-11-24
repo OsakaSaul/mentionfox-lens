@@ -6,6 +6,7 @@
 //   (legacy: "device" = available, "cloud" = unavailable)
 //   window.__mflProgress(p) fires the SDK-style progress callback; window.__MFL_MS__ overrides the reported latency.
 import { InferenceSource } from "firebase/ai";
+import { normalizeCheck } from "./shared/check.js";
 
 export function mockEngine(modeName) {
   let availability = { device: "available", cloud: "unavailable", failed: "available" }[modeName] || modeName;
@@ -44,14 +45,14 @@ export function mockEngine(modeName) {
       (window.__mflChunkLog ||= []).push({ index: info.index, total: info.total, ms: Math.round(performance.now() - t0) });
       return { text, source: InferenceSource.ON_DEVICE, ms: Math.round(performance.now() - t0) };
     },
-    // Grounded Check: canned model text + groundingMetadata from window.__MFL_MOCK__.check; records every prompt that would be sent.
-    runCheck: async (prompt) => {
-      (window.__mflCheckPrompts ||= []).push(prompt);
+    // Check: a canned Worker reply {verdict, reason, sources} from window.__MFL_MOCK__.check; records every request that would be sent ({claim, domain, date}).
+    runCheck: async (req) => {
+      (window.__mflCheckPrompts ||= []).push(req);
       const c = window.__MFL_MOCK__?.check;
       if (!c) throw new Error("no mock for check");
-      if (c.error) throw new Error(c.error);
+      if (c.error) throw Object.assign(new Error(c.error), { code: c.code || "not_available" });
       await new Promise((r) => setTimeout(r, 30));
-      return { text: c.text, meta: c.meta || null, ms: window.__MFL_MS__ != null ? Number(window.__MFL_MS__) : 30 };
+      return { ...normalizeCheck(c), ms: window.__MFL_MS__ != null ? Number(window.__MFL_MS__) : 30 };
     },
     runTask: async ({ key, normalize, prompt }) => {
       const t0 = performance.now();

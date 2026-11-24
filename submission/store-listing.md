@@ -63,14 +63,14 @@ Checked against manifest.json (version 0.1.3): the permissions are exactly activ
 | scripting | Injects the code that extracts the page text and draws the highlights in the current tab after the user clicks (chrome.scripting.executeScript on the active tab). |
 | sidePanel | Shows the list of claims, the GEO lens results and the mode badge in Chrome's side panel. |
 | storage | Keeps one small counter on this device: how many free Check clicks were used today. Nothing else is stored; no page text, no claims. |
-| Host permissions for the Firebase AI Logic cloud endpoint | Not declared. The cloud fallback request is made by the Firebase SDK from the side panel and worked in the live runs without host permissions. |
+| Host permissions for the Firebase AI Logic cloud endpoint and the Check Worker | Not declared. The cloud fallback request is made by the Firebase SDK from the side panel and worked in the live runs without host permissions. The Check button calls our own Worker with an ordinary fetch; the Worker answers with CORS headers for this extension's origin only. |
 | Content scripts on all pages | Not used. The manifest has no content_scripts; Lens injects its script into the active tab on demand with activeTab. |
 
 Remote code: none. All code is in the package; the Firebase SDK is bundled by esbuild, and a unit test checks the manifest CSP and that the bundle has no eval or remote scripts.
 
 ## Data usage disclosures (Developer Dashboard privacy tab)
 
-Answers for the form (checked against the code: no analytics or telemetry; local storage only for the daily Check counter).
+Answers for the form (checked against the code: no analytics or telemetry; local storage only for the daily Check counter; the Check button sends one sentence to our Worker).
 
 - Does the extension collect or use user data? Yes, in this limited way: the text of the current page is processed when the user clicks.
 - Data types: Website content (the text of the current page, processed on the user's device when the on-device model is available; sent to Google's Firebase AI Logic cloud endpoint only when the on-device model is not available).
@@ -78,7 +78,7 @@ Answers for the form (checked against the code: no analytics or telemetry; local
 - Is data sold to third parties? No.
 - Is data used for purposes unrelated to the single purpose? No.
 - Is data used to determine creditworthiness or for lending? No.
-- Data sent to MentionFox servers: none.
+- Data sent to MentionFox services: only when the user clicks Check on one claim: that single sentence, the site's domain and the web-archive snapshot date, sent to our own Cloudflare Worker and the MentionFox claims-check service to verify the claim; not stored by the Worker (it keeps only a daily counter). Nothing else, and never the page.
 - Certification: the three Limited Use statements apply (use only for the single purpose, no transfer except to provide the feature or as required by law, no human reading).
 
 Note for the reviewer field: the on-device path sends nothing off the machine. The cloud fallback sends the page text to Google through Firebase AI Logic with App Check, subject to Google's terms.

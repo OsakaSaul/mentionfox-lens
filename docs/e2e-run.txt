@@ -1,4 +1,4 @@
-PASS  extension loads and service worker starts  foehpjhlmbefhnaominonkckhicmneeb
+PASS  extension loads and service worker starts  emmeadodiojjjhlcoanoncacebccodem
 PASS  linkedin-profile: analyze completes  Done in 0.1 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  linkedin-profile: highlights wrapped in the page  8 marks
 PASS  linkedin-profile: mode bar shown (mock: device)  On-device · 0.1 seconds
@@ -52,10 +52,10 @@ PASS  cloud when unavailable: status line  Done in 6.4 seconds on Cloud: 3 claim
 PASS  on-device failed then cloud: bar 'Cloud (on-device failed) · N seconds'  Cloud (on-device failed) · 3.2 seconds
 PASS  downloadable: Download button shown with tooltip
 PASS  after Download click: chip shows percent and button is gone
-PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":35.89999999990687,"clicked":false}
+PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":57.5,"clicked":false}
 PASS  streaming: the first card is on screen while the run is still going  Finding claims: chunk 1 of 8, 0 claims so far...
 PASS  streaming: highlights land on the page while the run is still going  7 marks
-PASS  streaming: first card appears at least one chunk-time before the run ends  first card +398 ms, done +5746 ms
+PASS  streaming: first card appears at least one chunk-time before the run ends  first card +395 ms, done +5742 ms
 PASS  progress: 'chunk N of M, K claims so far' is shown and counts up  Finding claims: chunk 1 of 8, 0 claims so far... | Finding claims: chunk 2 of 8, 1 claim so far... | Finding claims: chunk 3 of 8, 2 claims so far... | Finding claims: chunk 4 of 8, 3 claims so far... | Finding claims: chunk 5 of 8, 4 claims so far... | Finding claims: chunk 6 of 8, 5 claims so far...
 PASS  debug export: Ctrl+Shift+D shows 'Debug copied'
 PASS  chunks: about 800 characters each, 5 to 10 chunks for the first 6,000 characters  544,772,772,699,712,688,784,846
@@ -80,11 +80,8 @@ PASS  check: tooltip says the page is not sent
 PASS  check: '5 of 5 free checks left today' shown
 PASS  check: Contradicted pill, reason, at most 3 source links opening in a new tab
 PASS  check: mode shows 'Cloud · N seconds' and quota drops to 4  4 of 5 free checks left today
-PASS  check: Google Search suggestions are shown with the grounded result
-PASS  check: only the claim sentence and 127.0.0.1 domain were sent, not the page  Sentence: "pick up to 1,200 items per hour with 99.7% accuracy"
-Published by or on the website: 127.0.0.1
-Stated as of: the page's own date, unknown
-Check this 
+PASS  check: no Google Search suggestions iframe any more
+PASS  check: only the claim sentence, the 127.0.0.1 domain and an empty date were sent, not the page  {"claim":"pick up to 1,200 items per hour with 99.7% accuracy","domain":"127.0.0.1","date":null}
 PASS  check: counter kept in chrome.storage.local  {"day":"2026-11-24","used":1}
 PASS  check: after the 5th, cards show 'Deep check in MentionFox' as a new-tab link with no price  https://mentionfox.com/?utm_source=lens&utm_medium=extension&utm_campaign=hybridai&utm_content=deep_check
 PASS  check: Supported shows a tick

@@ -1,0 +1,18 @@
+# lens-check (T2988): Worker for the Lens Check button. Existing Cloudflare account and Workers plan; no new paid service.
+name = "lens-check"
+main = "src/index.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[vars]
+# chrome-extension://<the Lens extension id>, comma separated. Fill in the id shown on chrome://extensions (or the Web Store id once published). Empty = every request is refused.
+ALLOWED_ORIGINS = ""
+DAILY_CAP = "100"
+
+# Workers KV (free tier) holds only the global daily counter.
+# (namespace "lens-check-cap" was created in the existing Cloudflare account, free tier)
+[[kv_namespaces]]
+binding = "LENS_KV"
+id = "cf4c5c7330a74f588ed113f16d40eb0f"
+
+# Secret (set by the owner, never committed):  npx wrangler secret put FOXAPIS_TOKEN

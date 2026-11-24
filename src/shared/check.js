@@ -1,5 +1,5 @@
-// "Check" button: verify ONE claim sentence against the web (cloud model with Google Search grounding).
-// Pure helpers (prompt, parsing, daily quota, archive date) so they can be unit tested without a browser.
+// "Check" button: verify ONE claim sentence against the web through our own Worker (lens-check/), which asks the FoxAPIs claims_check endpoint.
+// Pure helpers (quota, archive date, Worker reply handling) so they can be unit tested without a browser.
 
 export const DAILY_FREE_CHECKS = 5;
 export const QUOTA_KEY = "lensChecks";
@@ -44,44 +44,39 @@ export function claimDomain(url) {
   }
 }
 
-export const CHECK_SYSTEM =
-  "You check one sentence that a company or organisation published about itself. Use only what the web search returns. " +
-  "Decide whether the public record SUPPORTS it, CONTRADICTS it, or has NO CLEAR record. " +
-  "The sentence was a statement made at the stated date, so later reports, filings or court records can contradict it. " +
-  "Wording rules: say 'later reported', 'alleged' or 'found by a court' as the sources say; never call anyone a fraud unless a court found it. " +
-  "Answer in exactly two lines, nothing else:\nVERDICT: SUPPORTED or CONTRADICTED or NO_CLEAR_RECORD\nREASON: one short sentence.";
+/** The Worker that answers Check. Until the owner deploys it (lens-check/README.md) and the id is set, Check shows "not available right now". */
+export const CHECK_URL = "https://lens-check.invalid/";
 
-export function buildCheckPrompt({ claim, domain, date }) {
-  return `Sentence: "${String(claim).replace(/"/g, "'")}"\nPublished by or on the website: ${domain || "unknown"}\n` + (date ? `Stated as of: ${date} (web archive snapshot date)\n` : "Stated as of: the page's own date, unknown\n") + "Check this one sentence.";
-}
+const VERDICTS = { supported: "supported", contradicted: "contradicted", no_record: "none" };
 
-const VERDICTS = { SUPPORTED: "supported", CONTRADICTED: "contradicted", NO_CLEAR_RECORD: "none" };
-
-/** Model text -> {verdict: "supported"|"contradicted"|"none", reason}. Unparseable text is "none" (never a made-up red or green). */
-export function parseCheck(text) {
-  const t = String(text || "");
-  const v = /VERDICT\s*:\s*\**\s*(SUPPORTED|CONTRADICTED|NO[_ ]CLEAR[_ ]RECORD)/i.exec(t);
-  const r = /REASON\s*:\s*([^\n]+)/i.exec(t);
-  const verdict = v ? VERDICTS[v[1].toUpperCase().replace(/ /g, "_")] : "none";
-  const reason = (r ? r[1] : v ? "" : t.split("\n").find((l) => l.trim()) || "").replace(/\*+/g, "").trim().slice(0, 300);
-  return { verdict, reason: reason || "No clear public record was found for this sentence." };
-}
-
-/** groundingMetadata -> up to 3 distinct http(s) sources [{title, uri}]. */
-export function pickSources(meta, max = 3) {
-  const out = [];
-  const seen = new Set();
-  for (const c of meta?.groundingChunks || []) {
-    const w = c?.web;
-    if (!w?.uri || !/^https?:\/\//i.test(w.uri)) continue;
-    const key = w.title || w.uri;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push({ title: String(w.title || w.domain || new URL(w.uri).hostname).slice(0, 80), uri: w.uri });
-    if (out.length >= max) break;
+/** Worker JSON -> {verdict: "supported"|"contradicted"|"none", reason, sources: [{title, uri}]}. Anything unexpected is "none" (never a made-up red or green); only http(s) sources are kept. */
+export function normalizeCheck(res) {
+  const verdict = VERDICTS[res?.verdict] || "none";
+  const reason = String(res?.reason || "").replace(/\s+/g, " ").trim().slice(0, 300) || "No clear public record was found for this sentence.";
+  const sources = [];
+  for (const s of Array.isArray(res?.sources) ? res.sources : []) {
+    const uri = s && typeof s.url === "string" ? s.url : "";
+    if (!/^https?:\/\//i.test(uri)) continue;
+    let host = "";
+    try { host = new URL(uri).hostname.replace(/^www\./, ""); } catch { continue; }
+    sources.push({ title: String(s.title || host).slice(0, 80), uri });
+    if (sources.length >= 3) break;
   }
-  return out;
+  return { verdict, reason, sources };
 }
 
-/** Google's display rules apply to any response that carries search suggestions. */
-export const searchSuggestionsHtml = (meta) => meta?.searchEntryPoint?.renderedContent || "";
+/** Calls the Worker with the ONE sentence, the domain and the archive date. Returns {verdict, reason, sources, ms}. Throws Error with .code "busy" | "not_available". */
+export async function runWorkerCheck({ claim, domain, date }, fetchFn = fetch, url = CHECK_URL) {
+  const t0 = typeof performance !== "undefined" ? performance.now() : Date.now();
+  let r;
+  try {
+    r = await fetchFn(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ claim, domain: domain || "", snapshot_date: date || "" }) });
+  } catch {
+    throw Object.assign(new Error("Web checks are not available right now."), { code: "not_available" });
+  }
+  if (r.status === 429) throw Object.assign(new Error("Web checks are busy today"), { code: "busy" });
+  if (!r.ok) throw Object.assign(new Error("Web checks are not available right now."), { code: "not_available" });
+  const body = await r.json().catch(() => null);
+  const ms = Math.round((typeof performance !== "undefined" ? performance.now() : Date.now()) - t0);
+  return { ...normalizeCheck(body), ms };
+}

@@ -343,14 +343,14 @@ try {
   await cp.close();
   await sbfPage.close();
 
-  // ---- Check button (T2987): one claim, grounded web search (mocked), three verdict states, 5 a day ----
+  // ---- Check button (T2987/T2988): one claim, answered by the lens-check Worker (mocked), three verdict states, 5 a day ----
   {
     const ckPage = await ctx.newPage();
     await ckPage.goto(`http://127.0.0.1:${port}/company-site`);
     const ckTab = await sw.evaluate(async (u) => (await chrome.tabs.query({ url: u + "*" }))[0].id, `http://127.0.0.1:${port}/company-site`);
     await sw.evaluate(() => chrome.storage.local.remove("lensChecks"));
-    const meta = { groundingChunks: [{ web: { uri: "https://example.org/a", title: "example.org" } }, { web: { uri: "https://example.net/b", title: "example.net" } }, { web: { uri: "https://example.com/c", title: "example.com" } }, { web: { uri: "https://example.io/d", title: "example.io" } }], searchEntryPoint: { renderedContent: "<div style='font:13px sans-serif'>Search Google for related</div>" } };
-    const withCheck = (text) => ({ ...MOCKS["company-site"], check: { text, meta } });
+    const srcs = [{ title: "example.org", url: "https://example.org/a" }, { title: "example.net", url: "https://example.net/b" }, { title: "example.com", url: "https://example.com/c" }, { title: "example.io", url: "https://example.io/d" }];
+    const withCheck = (c) => ({ ...MOCKS["company-site"], check: { sources: srcs, ...c } });
     const openCk = async (mock) => {
       const pg = await ctx.newPage();
       await pg.addInitScript((m) => { window.__MFL_MOCK__ = m; }, mock);
@@ -360,7 +360,7 @@ try {
       await pg.waitForFunction(() => /^Done/.test(document.getElementById("status").textContent), null, { timeout: 20000 });
       return pg;
     };
-    const cp = await openCk(withCheck("VERDICT: CONTRADICTED\nREASON: The cash was later reported as not existing."));
+    const cp = await openCk(withCheck({ verdict: "contradicted", reason: "The cash was later reported as not existing." }));
     const nSpecific = await cp.locator('.claim[data-kind="specific"]').count();
     const nBtn = await cp.locator(".check-btn").count();
     check("check: every specific card has a Check button, vague cards have none", nSpecific > 0 && nBtn === nSpecific, `${nBtn} buttons, ${nSpecific} specific`);
@@ -370,21 +370,21 @@ try {
     await cp.waitForSelector('.pill[data-verdict="contradicted"]');
     check("check: Contradicted pill, reason, at most 3 source links opening in a new tab", (await cp.locator(".pill-contradicted").first().textContent()) === "Contradicted" && /later reported/.test(await cp.locator(".check-reason").first().textContent()) && (await cp.locator(".check-sources a").count()) === 3 && (await cp.locator('.check-sources a[target="_blank"][rel*="noopener"]').count()) === 3);
     check("check: mode shows 'Cloud · N seconds' and quota drops to 4", /^Cloud · \d+\.\d seconds$/.test(await cp.locator(".checkmode").first().textContent()) && (await cp.locator(".check-quota").first().textContent()) === "4 of 5 free checks left today", await cp.locator(".check-quota").first().textContent());
-    check("check: Google Search suggestions are shown with the grounded result", (await cp.locator("iframe.check-suggest").count()) === 1);
+    check("check: no Google Search suggestions iframe any more", (await cp.locator("iframe.check-suggest").count()) === 0);
     const sent = await cp.evaluate(() => window.__mflCheckPrompts);
-    check("check: only the claim sentence and 127.0.0.1 domain were sent, not the page", sent.length === 1 && sent[0].length < 600 && /Sentence: "/.test(sent[0]) && /127\.0\.0\.1/.test(sent[0]), sent[0]?.slice(0, 160));
+    check("check: only the claim sentence, the 127.0.0.1 domain and an empty date were sent, not the page", sent.length === 1 && Object.keys(sent[0]).sort().join() === "claim,date,domain" && sent[0].claim.length < 300 && sent[0].domain === "127.0.0.1" && !sent[0].date, JSON.stringify(sent[0]).slice(0, 200));
     await cp.screenshot({ path: join(shots, "e2e-check-contradicted.png") });
     const q = await sw.evaluate(async () => (await chrome.storage.local.get("lensChecks")).lensChecks);
     check("check: counter kept in chrome.storage.local", q && q.used === 1, JSON.stringify(q));
     // exhaust the day: with 5 used, every unchecked card shows the MentionFox link instead of the button
     await cp.close();
     await sw.evaluate(() => chrome.storage.local.set({ lensChecks: { day: (() => { const d = new Date(), p = (n) => String(n).padStart(2, "0"); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`; })(), used: 5 } }));
-    const xp = await openCk(withCheck("VERDICT: SUPPORTED\nREASON: x"));
+    const xp = await openCk(withCheck({ verdict: "supported", reason: "x" }));
     const xl = xp.locator("a.check-btn");
     check("check: after the 5th, cards show 'Deep check in MentionFox' as a new-tab link with no price", (await xl.count()) === 2 && (await xl.first().textContent()) === "Deep check in MentionFox" && (await xl.first().getAttribute("target")) === "_blank" && /^https:\/\/mentionfox\.com\//.test(await xl.first().getAttribute("href")) && (await xp.locator("button.check-btn").count()) === 0, await xl.first().getAttribute("href"));
     await xp.screenshot({ path: join(shots, "e2e-check-limit.png") });
     await xp.close();
-    const sp = await openCk(withCheck("VERDICT: SUPPORTED\nREASON: Filed with the regulator."));
+    const sp = await openCk(withCheck({ verdict: "supported", reason: "Filed with the regulator." }));
     await sw.evaluate(() => chrome.storage.local.remove("lensChecks"));
     await sp.reload();
     await sp.click("#analyze");
@@ -393,7 +393,7 @@ try {
     await sp.waitForSelector('.pill[data-verdict="supported"]');
     check("check: Supported shows a tick", /^✓ Supported$/.test(await sp.locator(".pill-supported").last().textContent()));
     await sp.close();
-    const np = await openCk(withCheck("VERDICT: NO_CLEAR_RECORD\nREASON: Nothing found."));
+    const np = await openCk(withCheck({ verdict: "no_record", reason: "Nothing found." }));
     await np.locator(".check-btn").first().click();
     await np.waitForSelector('.pill[data-verdict="none"]');
     check("check: No clear record is grey", (await np.locator(".pill-none").first().textContent()) === "No clear record");
