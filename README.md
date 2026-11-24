@@ -165,7 +165,7 @@ The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content scrip
 | Public repository with a detectable open-source license | Public GitHub repo, MIT `LICENSE` (GitHub detects it) | `LICENSE` |
 | Instructions required to run | This README | `README.md` |
 | Project available free of charge | No paywall, no account; upgrade links are outbound only | `src/shared/links.js` |
-| Demo video (YouTube), text description, URL to the project | Text and script drafts are in [`submission/`](submission/); the video is recorded and uploaded by the owner | OWNER |
+| Demo video (YouTube), text description, URL to the project | Text in [`DEVPOST.md`](DEVPOST.md), script in [`DEMO-SCRIPT.md`](DEMO-SCRIPT.md), judge steps in [`TESTING.md`](TESTING.md); the video is recorded and uploaded by the owner | OWNER |
 
 Deadline per the Devpost page: Nov 30, 2026, 2:00 PM PST.
 
@@ -181,7 +181,7 @@ src/content.js           injected on demand: text extraction + highlighting
 src/shared/              prompts, JSON parsing, text matching, highlighter, GEO score, links
 fixtures/real/           four saved real pages for the real runs
 docs/real-runs/          raw model output, screenshots and notes from the real runs
-submission/              Devpost text, demo script, store listing drafts
+submission/              store listing and demo page notes
 src/e2e-mock.js          test-harness model mock (only in `build:e2e`)
 scripts/                 build, debug token, e2e, live probe
 test/                    unit tests and HTML fixtures
