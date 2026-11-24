@@ -60,10 +60,12 @@ export function normalizeCheck(res) {
     if (!/^https?:\/\//i.test(uri)) continue;
     let host = "";
     try { host = new URL(uri).hostname.replace(/^www\./, ""); } catch { continue; }
-    sources.push({ title: String(s.title || host).slice(0, 80), uri });
+    sources.push({ title: String(s.title || host).slice(0, 80), uri, undated: s.undated === true });
     if (sources.length >= 3) break;
   }
-  return { verdict, reason, sources };
+  // T2992: as_of is the page date the server judged against ("As known on <date>"); only a plain YYYY-MM-DD is shown
+  const asOf = typeof res?.as_of === "string" && /^\d{4}-\d{2}-\d{2}$/.test(res.as_of) ? res.as_of : "";
+  return { verdict, reason, sources, asOf };
 }
 
 /** Calls the server with the ONE sentence, the domain and the archive date. Returns {verdict, reason, sources, ms}. Throws Error with .code "busy" | "not_available". */

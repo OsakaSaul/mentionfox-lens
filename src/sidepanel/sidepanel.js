@@ -3,7 +3,8 @@ import { CLAIMS_SCHEMA, GEO_SCHEMA, buildClaimsPrompt, buildGeoPrompt, MAX_PAGE_
 import { findAnchorIndex, pickWindow, chunkBlocks } from "../shared/extract.js";
 import { runChunkedClaims, mergeClaims, progressText } from "../shared/chunked.js";
 import { normalizeClaims, normalizeGeo } from "../shared/parse.js";
-import { setSelfNames, deriveSelfNames } from "../shared/anchors.js";
+import { setSelfNames, deriveSelfNames, reconcileKind } from "../shared/anchors.js";
+import { applyRedFlags, signalLabel } from "../shared/redflags.js";   // T2992
 import { debugReset, debugSet, debugSnapshot } from "../shared/debug.js";
 import { geoScore, geoBand, GEO_BANDS, GEO_DIMENSION_LABELS } from "../shared/geo.js";
 import { modeInfo, statusLine, chipState, formatSeconds } from "../shared/mode.js";
@@ -169,7 +170,7 @@ function renderClaims(claims, results) {
   for (const c of claims) {
     const r = byId.get(c.id);
     const found = !r || r.found;
-    const label = c.kind === "specific" ? "Specific and checkable" : "Vague or puffery";
+    const label = c.kind === "redflag" ? "Red flag: " + signalLabel(c.signal) : c.kind === "specific" ? "Specific and checkable" : "Vague or puffery";
     const card = h(
       "button",
       {
@@ -182,6 +183,7 @@ function renderClaims(claims, results) {
         disabled: !found || null,
       },
       h("span", { class: "pill pill-" + c.kind }, label),
+      c.unsourced ? h("span", { class: "tag-unsourced", title: "An exact figure from the company itself with nothing on the page to back it. Not a red flag." }, "unsourced") : "",
       h("span", { class: "quote" }, `“${c.quote}”`),
       c.summary ? h("span", { class: "why summary" }, "In short: " + c.summary) : "",
       c.why ? h("span", { class: "why" }, c.why) : "",
@@ -190,7 +192,7 @@ function renderClaims(claims, results) {
     );
     if (found) card.addEventListener("click", () => jump(c.id));
     const li = h("li", {}, card);
-    if (c.kind === "specific" && found) {
+    if ((c.kind === "specific" || c.kind === "redflag") && found) {
       const row = h("div", { class: "checkrow" });
       li.append(row);
       checkRows.set(c.quote, { c, row, li });
@@ -243,7 +245,8 @@ function renderCheckRow(quote) {
   if (res?.verdict) {
     kids.push(h("span", { class: "pill pill-" + res.verdict, "data-verdict": res.verdict }, VERDICT_TEXT[res.verdict]));
     kids.push(h("span", { class: "why check-reason" }, res.reason));
-    if (res.sources.length) kids.push(h("ul", { class: "check-sources", "aria-label": "Sources" }, res.sources.map((x) => h("li", {}, h("a", { href: x.uri, target: "_blank", rel: "noopener noreferrer" }, x.title)))));
+    if (res.asOf) kids.push(h("span", { class: "check-asof", title: "The check used only sources dated on or before the date of this page." }, "As known on " + res.asOf + (res.sources.length && res.sources.every((x) => x.undated) ? " (sources undated, so not all could be tested against this date)" : "")));
+    if (res.sources.length) kids.push(h("ul", { class: "check-sources", "aria-label": "Sources" }, res.sources.map((x) => h("li", {}, h("a", { href: x.uri, target: "_blank", rel: "noopener noreferrer" }, x.title), x.undated ? h("span", { class: "tag-unsourced", title: "This source carries no date, so it could not be tested against the page date." }, "undated") : ""))));
     kids.push(h("div", { class: "checkmode mode-cloud", title: "Checks run in the cloud: only this one sentence, its website and its date are sent. Analysis stays on your device where supported." }, `Cloud \u00B7 ${formatSeconds(res.ms)}`));
     kids.push(h("span", { class: "check-quota" }, quotaText(quotaNow)));
   }
@@ -265,7 +268,7 @@ async function doCheck(quote) {
     const out = await engine.runCheck({ claim: quote, domain: claimDomain(pageUrl), date: archiveDate(pageUrl) });
     await writeStoredQuota(quotaAfterUse(await readStoredQuota())); // counted only when the call succeeded
     quotaNow = quotaState(await readStoredQuota());
-    checkResults.set(quote, { verdict: out.verdict, reason: out.reason, sources: out.sources, ms: out.ms });
+    checkResults.set(quote, { verdict: out.verdict, reason: out.reason, sources: out.sources, ms: out.ms, asOf: out.asOf });
   } catch (err) {
     console.warn("[lens-check] failed:", String(err?.message || err).slice(0, 2500));
     checkResults.set(quote, { error: err?.code === "busy" ? "Web checks are busy today" : "Web checks are not available right now. Try again later." });
@@ -466,6 +469,18 @@ async function analyze({ more = false } = {}) {
     let infos = [cinfo];
     let totalMs = cres.ms;
     let gres = null;
+    // T2992 RED FLAGS: signals a careful reader could have caught on the page's own date, judged from the text alone. The rules (and Saul's calibration: no citation alone is never a flag) are in shared/redflags.js;
+    // the model's own red-flag cards are re-checked there, the flags it missed are added, and an ordinary unsourced figure gets a small grey tag.
+    try {
+      const seenText = page.blocks.filter((_, i) => state.covered.has(i)).join("\n");
+      const rf = applyRedFlags(state.claims, seenText, { company: (claimDomain(page.url) || "").split(".")[0], merge: mergeClaims, reconcile: reconcileKind });
+      if (rf.changed) {
+        showCards();
+        const h2 = await send(tab.id, { type: "highlight", claims: state.claims });
+        state.results = new Map((h2?.results || []).map((x) => [x.id, x]));
+        showCards();
+      }
+    } catch (rfErr) { console.warn("[lens] red flags skipped:", String(rfErr?.message || rfErr).slice(0, 200)); }
     if (!more) {
       setStatus("Checking how an AI assistant would read this page...");
       const geoText = onDevice ? firstBlocksText(page.blocks, win.indices, DEVICE_GEO_CHARS) : win.text;

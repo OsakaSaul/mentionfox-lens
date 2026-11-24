@@ -3,6 +3,16 @@ import { stripMarkers } from "./match.js";
 import { reconcileDecision } from "./anchors.js";
 import { debugDecision } from "./debug.js";
 
+/** T2992: the signal type of a red flag, from the model's own word for it (null when it names none of the four). */
+const pickSignal = (s, why = "") => {
+  const t = (String(s || "") + " " + String(why || "")).toLowerCase();
+  if (/extraordinar|overturn|too good/.test(t)) return "extraordinary_claim";
+  if (/evasi|generic answer|dodg|redirect/.test(t)) return "evasive_answer";
+  if (/inconsisten|do not agree|disagree/.test(t)) return "inconsistent_numbers";
+  if (/secre|stealth|proprietary|not publish|don't publish/.test(t)) return "secrecy";
+  return null;
+};
+
 /** Extract the first balanced JSON object/array from text (string-aware). Returns the substring or null. */
 export function extractJsonBlock(text) {
   const s = String(text ?? "");
@@ -109,6 +119,12 @@ export function normalizeClaims(value, { max = 12 } = {}) {
     if (seen.has(key)) continue;
     seen.add(key);
     const k = clean(item?.kind ?? item?.label ?? item?.type, 40).toLowerCase();
+    if (/red ?flag/.test(k)) {   // T2992: kept as the model labelled it; applyRedFlags() (shared/redflags.js) re-checks it against the page text and demotes it when the rules do not hold
+      const whyF = clean(item?.why ?? item?.reason ?? item?.explanation, 400);
+      out.push({ id: "c" + (out.length + 1), quote, kind: "redflag", signal: pickSignal(item?.signal, whyF), why: reasonIsComplete(whyF) ? safeSlice(whyF, 220, { words: true }) : "A careful reader of this page alone could question it." });
+      if (out.length >= max) break;
+      continue;
+    }
     const kind = /vague|puff|fluff|unverif|subjective|marketing/.test(k) ? "vague" : "specific";
     const whyRaw = clean(item?.why ?? item?.reason ?? item?.explanation, 1000);
     const why = reasonIsComplete(whyRaw) ? safeSlice(whyRaw, 220, { words: true }) : kind === "vague" ? "Nothing in it names a date, number, place or source a reader could check." : "It contains a detail a reader can check against a public source.";

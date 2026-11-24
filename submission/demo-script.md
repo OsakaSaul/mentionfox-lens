@@ -108,3 +108,17 @@ Order on screen: Analyze (the mode bar says On-device, teal), then click Check o
 ## Round 3 result (T2991): the Holmes pages do not give a clean red
 
 On the Fortune June 2014 page nothing went red on Check (Supported or No clear record). On the WSJDLive page two sentences went red but their sources do not support the verdict, so do not film them. Keep the Enron Broadband claim as a GREEN (Supported) contrast only. For a guaranteed red card see the recommendation at the end of submission/lens-demo-pages.md (round 3).
+
+## Scene: a careful reader in 2014 could have caught these (0.1.5, T2992)
+
+Order on screen: (1) open the Fortune cover story of 12 June 2014 (https://fortune.com/2014/06/12/theranos-blood-holmes/) with the Lens side panel closed. (2) Analyze: the mode bar says On-device. (3) Purple "Red flag" cards appear next to the green and amber ones. (4) Click a red-flag card: the sentence flashes on the page. (5) Click Check on the 70-tests card, then show "As known on <date>" and the source list. (6) Only at the very end, say what happened later.
+
+What Lens raises on that page, from the text alone (no hindsight, nothing outside the page): "Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger." (Extraordinary claim, key evidence missing: a seller's claim about its own product, ten times what a finger prick does in the field, and no study, regulator approval or named validator in the text); the line where Holmes will only say the company uses "the same fundamental chemical methods" (Evasive answer); "Precisely how Theranos accomplishes all these amazing feats is a trade secret." (Secrecy as a feature); and her reply that peer-review publication of validation studies is unnecessary because the methods are the same (Evasive answer).
+
+Narration (read what is on screen, say nothing the cards do not say): "Nothing here needed hindsight. A careful reader in 2014 could have caught these: a big claim with no evidence, an answer that does not answer, and secrecy offered as the reason nothing can be checked." Do NOT say fraud, and do not say Lens predicted anything.
+
+On Check, as known on 12 June 2014: the engine confirms that Fortune reported the 70-tests claim; it does not test whether it is true. Read the verdict off your screen. Most sources the engine returns carry no date: the panel then says "(sources undated, so not all could be tested against this date)" and marks each one "undated". Say so if it is on screen. The public signal of the time that you may mention (verified 2026-11-24): John Ioannidis, "Stealth research: is biomedical innovation happening outside the peer-reviewed literature?", JAMA 2015;313(7):663-664 (February 2015): a PubMed search of 5 January 2015 found no Theranos papers; it used Theranos as the case. It is dated February 2015, so it is not "known on 12 June 2014": mention it as a later, public, peer-reviewed echo, never as part of the 2014 check.
+
+Reveal at the end only: the later conviction (Elizabeth Holmes was found guilty in January 2022).
+
+Backup page (WSJDLive interview, October 2015): Lens flags three lines: "There are a lot of elements of our work that have been conflated through these two pieces." and "People just didn't understand what we actually do." (Evasive answer) and "We have never used commercially available lab equipment for finger-stick based tests." (Extraordinary claim). Do NOT film Check on that page (T2991: the engine reads it as Contradicted for the wrong reason).

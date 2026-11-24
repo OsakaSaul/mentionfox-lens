@@ -25,3 +25,11 @@ test("runWorkerCheck: sends only claim, domain and date; maps busy and failures"
   await assert.rejects(runWorkerCheck({ claim: "x" }, async () => ({ ok: false, status: 503, json: async () => ({}) })), (e) => e.code === "not_available");
   await assert.rejects(runWorkerCheck({ claim: "x" }, async () => { throw new TypeError("Failed to fetch"); }), (e) => e.code === "not_available");
 });
+
+test("as-of: the server's as_of date and per-source undated marks come through; a bad date is dropped", () => {
+  const r = normalizeCheck({ verdict: "supported", reason: "x", as_of: "2014-06-12", sources: [{ url: "https://a.com/1", title: "A", undated: true }, { url: "https://b.com/2", title: "B" }] });
+  assert.equal(r.asOf, "2014-06-12");
+  assert.deepEqual(r.sources.map((s) => s.undated), [true, false]);
+  assert.equal(normalizeCheck({ verdict: "supported", reason: "x", as_of: "last week" }).asOf, "");
+  assert.equal(normalizeCheck({ verdict: "supported", reason: "x" }).asOf, "");
+});

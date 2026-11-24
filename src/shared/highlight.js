@@ -2,12 +2,13 @@
 // Fallback: CSS Custom Highlight API (no DOM mutation, safe for frameworks that own the DOM such as React).
 import { buildIndex, findQuote, segmentsForRange } from "./match.js";
 
-const COLORS = { specific: "#34D399", vague: "#F5C542" };
+const COLORS = { specific: "#34D399", vague: "#F5C542", redflag: "#D946EF" };
+const FILL = { specific: "rgba(52,211,153,0.32)", vague: "rgba(245,197,66,0.38)", redflag: "rgba(217,70,239,0.30)" };
 
 function styleMark(el, kind) {
   // CSSOM writes stay allowed under strict page CSP, unlike style attributes parsed from markup.
-  el.style.backgroundColor = kind === "vague" ? "rgba(245,197,66,0.38)" : "rgba(52,211,153,0.32)";
-  el.style.boxShadow = `0 0 0 2px ${kind === "vague" ? "rgba(245,197,66,0.38)" : "rgba(52,211,153,0.32)"}`;
+  el.style.backgroundColor = FILL[kind] || FILL.specific;
+  el.style.boxShadow = `0 0 0 2px ${FILL[kind] || FILL.specific}`;
   el.style.borderRadius = "3px";
   el.style.color = "inherit";
   el.style.borderBottom = `2px solid ${COLORS[kind]}`;
@@ -111,6 +112,7 @@ export class Highlighter {
     if (hasHighlightApi(this.win)) {
       this.win.CSS.highlights.delete("mfl-specific");
       this.win.CSS.highlights.delete("mfl-vague");
+      this.win.CSS.highlights.delete("mfl-redflag");
       this.win.CSS.highlights.delete("mfl-flash");
     }
   }

@@ -17,6 +17,7 @@
   --ring: #1A2040;
   --pill-specific-bg: #D8F6EA; --pill-specific-fg: #0B6B47;
   --pill-vague-bg: #FDF0C4; --pill-vague-fg: #7A5A00;
+  --pill-redflag-bg: #F6D9FA; --pill-redflag-fg: #7E1D8F; --flag: #C026D3;
   --pill-contradicted-bg: #FBD9D6; --pill-contradicted-fg: #9B1C14; --pill-none-bg: #E5E7EB; --pill-none-fg: #374151; --red: #C62828; --grey: #8A8F98;
   --device-bg: #DFF7EC; --device-fg: #0B6B47;
   --cloud-bg: #FFE7D6; --cloud-fg: #9A3B08;
@@ -30,6 +31,7 @@
     --ring: #F5C542;
     --pill-specific-bg: rgba(52,211,153,0.16); --pill-specific-fg: #5FE3B3;
     --pill-vague-bg: rgba(245,197,66,0.16); --pill-vague-fg: #F5D470;
+    --pill-redflag-bg: rgba(217,70,239,0.18); --pill-redflag-fg: #F0ABFC; --flag: #E879F9;
     --pill-contradicted-bg: rgba(248,113,113,0.2); --pill-contradicted-fg: #FCA5A5; --pill-none-bg: rgba(156,163,175,0.2); --pill-none-fg: #D1D5DB; --red: #F87171; --grey: #9CA3AF;
     --device-bg: rgba(52,211,153,0.16); --device-fg: #5FE3B3;
     --cloud-bg: rgba(242,122,58,0.18); --cloud-fg: #FFA46E;
@@ -102,12 +104,16 @@ footer { padding: 4px 16px 20px; }
 .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
 .pill-specific { background: var(--pill-specific-bg); color: var(--pill-specific-fg); }
 .pill-vague { background: var(--pill-vague-bg); color: var(--pill-vague-fg); }
+.pill-redflag { background: var(--pill-redflag-bg); color: var(--pill-redflag-fg); }
+.check-asof { display: block; margin: 4px 0; font-size: 12px; font-weight: 700; color: var(--text-dim); }
+.tag-unsourced { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; background: var(--surface-2); color: var(--text-dim); border: 1px solid var(--border); }
 .empty { color: var(--text-dim); padding: 12px 0; }
 
 .claims { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .claim { display: block; width: 100%; text-align: left; font: inherit; color: inherit; background: var(--surface); border: 2px solid var(--border); border-left-width: 8px; border-radius: var(--radius); padding: 12px 14px; cursor: pointer; box-shadow: var(--shadow); }
 .claim[data-kind="specific"] { border-left-color: var(--green); }
 .claim[data-kind="vague"] { border-left-color: var(--gold); }
+.claim[data-kind="redflag"] { border-left-color: var(--flag); }
 .claim:hover { border-color: var(--orange); }
 .claim .quote { display: block; font-weight: 600; margin: 8px 0 4px; }
 .claim .why { display: block; color: var(--text-dim); font-size: 13px; }

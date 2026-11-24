@@ -1,4 +1,4 @@
-PASS  extension loads and service worker starts  foehpjhlmbefhnaominonkckhicmneeb
+PASS  extension loads and service worker starts  dglehjccekdgpffnbhajoonbbpcikhdk
 PASS  linkedin-profile: analyze completes  Done in 0.1 seconds on-device: 5 claims, 1 not found on the page. First claim in 0.0 seconds. Click a claim to jump to it.
 PASS  linkedin-profile: highlights wrapped in the page  8 marks
 PASS  linkedin-profile: mode bar shown (mock: device)  On-device · 0.1 seconds
@@ -52,10 +52,10 @@ PASS  cloud when unavailable: status line  Done in 6.4 seconds on Cloud: 3 claim
 PASS  on-device failed then cloud: bar 'Cloud (on-device failed) · N seconds'  Cloud (on-device failed) · 3.2 seconds
 PASS  downloadable: Download button shown with tooltip
 PASS  after Download click: chip shows percent and button is gone
-PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":34.299999999813735,"clicked":false}
+PASS  warm-up: the on-device session is created when the panel opens, before any Analyze click  {"at":32.79999999888241,"clicked":false}
 PASS  streaming: the first card is on screen while the run is still going  Finding claims: chunk 1 of 8, 0 claims so far...
 PASS  streaming: highlights land on the page while the run is still going  7 marks
-PASS  streaming: first card appears at least one chunk-time before the run ends  first card +405 ms, done +5719 ms
+PASS  streaming: first card appears at least one chunk-time before the run ends  first card +393 ms, done +5717 ms
 PASS  progress: 'chunk N of M, K claims so far' is shown and counts up  Finding claims: chunk 1 of 8, 0 claims so far... | Finding claims: chunk 2 of 8, 1 claim so far... | Finding claims: chunk 3 of 8, 2 claims so far... | Finding claims: chunk 4 of 8, 3 claims so far... | Finding claims: chunk 5 of 8, 4 claims so far... | Finding claims: chunk 6 of 8, 5 claims so far...
 PASS  debug export: Ctrl+Shift+D shows 'Debug copied'
 PASS  chunks: about 800 characters each, 5 to 10 chunks for the first 6,000 characters  544,772,772,699,712,688,784,846
@@ -72,7 +72,7 @@ PASS  'Analyze more of this page' button is offered
 PASS  Analyze more: the next window adds claims to the list, ids continue  c1,c2,c3,c4,c5,c6,c7,c8,c9,c10
 PASS  Analyze more: a new window of chunks is analysed  653,650,758,763,638,666,757,519,577
 PASS  Analyze more: old highlights stay, new ones are added  10 highlighted
-PASS  cloud: one call, same main-content extraction, 12,000-character budget  14130 chars of prompt
+PASS  cloud: one call, same main-content extraction, 12,000-character budget  14912 chars of prompt
 PASS  cloud: bar 'Cloud · 3.1 seconds'  Cloud · 3.1 seconds
 PASS  cloud: 'First claim in X seconds' also shown, and the more button is offered
 PASS  check: every specific card has a Check button, vague cards have none  2 buttons, 2 specific
