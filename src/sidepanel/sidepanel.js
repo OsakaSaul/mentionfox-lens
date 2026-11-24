@@ -7,6 +7,7 @@ import { setSelfNames, deriveSelfNames, reconcileKind } from "../shared/anchors.
 import { applyRedFlags, signalLabel } from "../shared/redflags.js";   // T2992
 import { buildDeepPrompt, buildDeepCards, DEEP_PAGE_CHARS, DEEP_MAX_CLAIMS } from "../shared/deep.js";   // T3003
 import { pickCards, cardSummary, MORE_ROW_TIP } from "../shared/quality.js";
+import { friendlyError } from "../shared/errors.js";   // T3007
 import { debugReset, debugSet, debugSnapshot } from "../shared/debug.js";
 import { geoScore, geoBand, GEO_BANDS, GEO_DIMENSION_LABELS } from "../shared/geo.js";
 import { modeInfo, statusLine, chipState, formatSeconds } from "../shared/mode.js";
@@ -555,7 +556,7 @@ async function analyze({ more = false, deep = false } = {}) {
     for (const id of ["claimsMode", "geoMode"]) if ($(id).dataset.mode === "pending") $(id).hidden = true;
     $("rerun").hidden = false;
     $("more").hidden = !(state.remaining > 200) || !state.claims.length;
-    setStatus(friendlyError(err), true);
+    setStatus(friendlyError(err, { deep }), true);
   } finally {
     btn.disabled = false; $("deep").disabled = false; $("analyze").disabled = false;
     $("rerun").disabled = false;
@@ -574,14 +575,6 @@ function firstBlocksText(blocks, indices, max) {
     n += blocks[i].length + 1;
   }
   return out.join("\n");
-}
-
-function friendlyError(err) {
-  const m = String(err?.message || err);
-  if (/app.?check|403|permission|PERMISSION/i.test(m)) return "The cloud fallback was refused (App Check or key restriction). On-device analysis still works where supported. Details: " + m.slice(0, 160);
-  if (/quota|429|RESOURCE/i.test(m)) return "The free cloud quota is used up for now. Try again later or use a browser with the on-device model.";
-  if (/network|fetch|Failed to fetch/i.test(m)) return "Could not reach the cloud fallback. Check your connection.";
-  return m.slice(0, 240);
 }
 
 /* Hidden debug export: Ctrl+Shift+D copies the last run (text length, chunks, raw model answers, reconcile decisions) as JSON. */

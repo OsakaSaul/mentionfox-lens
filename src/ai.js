@@ -5,6 +5,7 @@ import { initializeAppCheck, CustomProvider } from "firebase/app-check";
 import { getAI, getGenerativeModel, GoogleAIBackend, InferenceMode, InferenceSource, Schema } from "firebase/ai";
 import { firebaseConfig as baseConfig } from "./firebase-config.js";
 import { parseModelJson } from "./shared/parse.js";
+import { withTimeout } from "./shared/errors.js";
 import { DEVICE_SYSTEM, DEVICE_CLAIMS_SCHEMA, buildDeviceChunkPrompt } from "./shared/prompts.js";
 
 /* __FIREBASE_OVERRIDE__ and __APPCHECK_DEBUG_TOKEN__ are replaced at build time (scripts/build.mjs). */
@@ -126,7 +127,7 @@ export async function runTask({ key, schema, prompt, normalize, deviceStatus, on
   let retried = false;
   const attempt = async (mode) => {
     const model = getModel(key, schema, mode);
-    const result = await model.generateContent(prompt);
+    const result = await withTimeout(model.generateContent(prompt));   // T3007: no silent hang
     const response = result.response;
     const text = response.text();
     let source = response.inferenceSource;
