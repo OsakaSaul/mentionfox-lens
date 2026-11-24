@@ -1,0 +1,209 @@
+{
+  "fixture": "enron-ar2000-energy.html",
+  "source_url": null,
+  "run_at": "2026-11-24T00:23:28.259Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Enron: 2000 Annual Report",
+    "url": "http://127.0.0.1:50121/",
+    "textLength": 1528,
+    "rawChars": 1952,
+    "rootTag": "BODY",
+    "blocks": 5
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 8300,
+    "first_ms": 8366,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Enron Energy Services recorded its first profitable quarter as expected at the end of 1999, and continued to grow rapidly through 2000, with increasing profits in all four quarters of 2000 and aggregate recurring income before interest and taxes (IBIT) of $103 million for the year.\",\n      \"kind\": \"specific\",\n      \"why\": \"This can be verified by checking the $103 million income figure for 2000.\"\n    },\n    {\n      \"quote\": \"The value of our contracts in 2000 totaled more than $16 billion, increasing Enron Energy Services’ cumulative contract value to more than $30 billion since late 1997.\",\n      \"kind\": \"specific\",\n      \"why\": \"The $16 billion and $30 billion contract values can be checked against financial records.\"\n    },\n    {\n      \"quote\": \"Additionally, 2000 was marked by increased activity in Europe – an untapped market for energy outsourcing.\",\n      \"kind\": \"specific\",\n      \"why\": \"The claim of increased activity in Europe during the year 2000 is verifiable.\"\n    },\n    {\n      \"quote\": \"Retail energy earnings will be fueled by the rapid growth of our U.S. and European businesses and the strong execution and extension of existing contracts.\",\n      \"kind\": \"specific\",\n      \"why\": \"This can be checked by reviewing regional business growth and contract execution in 2001.\"\n    },\n    {\n      \"quote\": \"Our comprehensive energy out-sourcing product has proven an exceptionally effective way for companies to reduce their costs, manage risks of energy price volatility, improve their energy infrastructure and focus resources on their core businesses.\",\n      \"kind\": \"vague\",\n      \"why\": \"It lacks specific factual anchors and relies on subjective praise of the outsourcing product.\"\n    },\n    {\n      \"quote\": \"This success reflects growing acceptance of Enron’s energy outsourcing product – acceptance that has meant an increasing rate of new contracting.\",\n      \"kind\": \"vague\",\n      \"why\": \"It is a vague statement relying on unquantified success and acceptance without specific metrics.\"\n    },\n    {\n      \"quote\": \"Our retail energy success in 2000 also reflects our strong emphasis on contract execution and implementation and on excellence in customer service.\",\n      \"kind\": \"vague\",\n      \"why\": \"It relies on subjective claims of excellence and strong emphasis without specific verification metrics.\"\n    },\n    {\n      \"quote\": \"We are positioned to dramatically increase our profitability in 2001.\",\n      \"kind\": \"vague\",\n      \"why\": \"It contains subjective and forward-looking statements about profitability without giving exact figures.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Enron Energy Services recorded its first profitable quarter as expected at the end of 1999, and continued to grow rapidly through 2000, with increasing profits in all four quarters of 2000 and aggregate recurring income before interest and taxes (IBIT) of $103 million for the year.",
+        "kind": "specific",
+        "why": "This can be verified by checking the $103 million income figure for 2000."
+      },
+      {
+        "id": "c2",
+        "quote": "The value of our contracts in 2000 totaled more than $16 billion, increasing Enron Energy Services’ cumulative contract value to more than $30 billion since late 1997.",
+        "kind": "specific",
+        "why": "The $16 billion and $30 billion contract values can be checked against financial records."
+      },
+      {
+        "id": "c3",
+        "quote": "Additionally, 2000 was marked by increased activity in Europe – an untapped market for energy outsourcing.",
+        "kind": "specific",
+        "why": "The claim of increased activity in Europe during the year 2000 is verifiable."
+      },
+      {
+        "id": "c4",
+        "quote": "Retail energy earnings will be fueled by the rapid growth of our U.S. and European businesses and the strong execution and extension of existing contracts.",
+        "kind": "specific",
+        "why": "This can be checked by reviewing regional business growth and contract execution in 2001."
+      },
+      {
+        "id": "c5",
+        "quote": "Our comprehensive energy out-sourcing product has proven an exceptionally effective way for companies to reduce their costs, manage risks of energy price volatility, improve their energy infrastructure and focus resources on their core businesses.",
+        "kind": "vague",
+        "why": "It lacks specific factual anchors and relies on subjective praise of the outsourcing product."
+      },
+      {
+        "id": "c6",
+        "quote": "This success reflects growing acceptance of Enron’s energy outsourcing product – acceptance that has meant an increasing rate of new contracting.",
+        "kind": "vague",
+        "why": "It is a vague statement relying on unquantified success and acceptance without specific metrics."
+      },
+      {
+        "id": "c7",
+        "quote": "Our retail energy success in 2000 also reflects our strong emphasis on contract execution and implementation and on excellence in customer service.",
+        "kind": "specific",
+        "why": "Names a date (in 2000) that a reader can check against a public source.",
+        "note": "",
+        "overridden": true,
+        "anchor": {
+          "type": "date",
+          "text": "in 2000"
+        }
+      },
+      {
+        "id": "c8",
+        "quote": "We are positioned to dramatically increase our profitability in 2001.",
+        "kind": "specific",
+        "why": "Names a date (in 2001) that a reader can check against a public source.",
+        "note": "",
+        "overridden": true,
+        "anchor": {
+          "type": "date",
+          "text": "in 2001"
+        }
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "anchors"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "anchors"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "anchors"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "anchors"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c5",
+      "text": "Our comprehensive energy out-sourcing\nproduct has proven an exceptionally\neffective way for companies to reduce their costs,\nmanage risks of energy price volatility, improve\ntheir energy infrastructure and focus resources\non their core businesses"
+    },
+    {
+      "id": "c1",
+      "text": "Enron Energy Services recorded its first prof-itable\nquarter as expected at the end of 1999, and\ncontinued to grow rapidly through 2000, with\nincreasing profits in all four quarters of 2000 and\naggregate recurring income before interest and\ntaxes (IBIT) of $103 million for the year"
+    },
+    {
+      "id": "c2",
+      "text": "The value of\nour contracts in 2000 totaled more than $16 billion,\nincreasing Enron Energy Services� cumulative contract\nvalue to more than $30 billion since late 1997"
+    },
+    {
+      "id": "c6",
+      "text": "This success reflects growing acceptance of\nEnron�s energy outsourcing product � acceptance\nthat has meant an increasing rate of new contracting"
+    },
+    {
+      "id": "c7",
+      "text": "Our retail energy success in 2000 also reflects\nour strong emphasis on contract execution and\nimplementation and on excellence in customer\nservice"
+    },
+    {
+      "id": "c3",
+      "text": "Additionally, 2000 was marked by increased\nactivity in Europe � an untapped market for\nenergy outsourcing"
+    },
+    {
+      "id": "c8",
+      "text": "We are positioned to dramatically increase our\nprofitability in 2001"
+    },
+    {
+      "id": "c4",
+      "text": "Retail energy earnings will be\nfueled by the rapid growth of our U.S. and European\nbusinesses and the strong execution and extension\nof existing contracts"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 6567,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Enron\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Enron Energy Services\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Enron Energy Services is the retail arm of Enron serving commercial and industrial sectors.\",\n    \"Enron Energy Services recorded aggregate recurring income before interest and taxes (IBIT) of $103 million in 2000.\",\n    \"The value of Enron Energy Services contracts in 2000 totaled more than $16 billion.\",\n    \"Enron Energy Services achieved a cumulative contract value of more than $30 billion since late 1997.\",\n    \"Enron Energy Services recorded its first profitable quarter at the end of 1999.\"\n  ],\n  \"missing\": [\n    \"Specific details regarding the nature of the increased activity in Europe.\",\n    \"Definitions or examples of the energy infrastructure improvements provided to clients.\",\n    \"The total number of business users or clients served in 2000.\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"Additionally, 2000 was marked by increased activity in Europe \\u2014 an untapped market for energy outsourcing.\\\", add specific examples of the European activities.\",\n    \"In the sentence \\\"Our comprehensive energy out-sourcing product has proven an exceptionally effective way for companies to reduce their costs, manage risks of energy price volatility, improve their energy infrastructure and focus resources on their core businesses.\\\", add a specific definition of the infrastructure improvements.\",\n    \"In the section discussing contract growth, add the total number of clients or business users served by Enron Energy Services in 2000.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 3,\n    \"structure\": 3,\n    \"trust_signals\": 1,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Enron",
+          "type": "company"
+        },
+        {
+          "name": "Enron Energy Services",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Enron Energy Services is the retail arm of Enron serving commercial and industrial sectors.",
+        "Enron Energy Services recorded aggregate recurring income before interest and taxes (IBIT) of $103 million in 2000.",
+        "The value of Enron Energy Services contracts in 2000 totaled more than $16 billion.",
+        "Enron Energy Services achieved a cumulative contract value of more than $30 billion since late 1997.",
+        "Enron Energy Services recorded its first profitable quarter at the end of 1999."
+      ],
+      "missing": [
+        "Specific details regarding the nature of the increased activity in Europe.",
+        "Definitions or examples of the energy infrastructure improvements provided to clients.",
+        "The total number of business users or clients served in 2000."
+      ],
+      "fixes": [
+        "In the sentence \"Additionally, 2000 was marked by increased activity in Europe — an untapped market for energy outsourcing.\", add specific examples of the European activities.",
+        "In the sentence \"Our comprehensive energy out-sourcing product has proven an exceptionally effective way for companies to reduce their costs, manage risks of energy price volatility, improve their energy infrastructure and focus resources o",
+        "In the section discussing contract growth, add the total number of clients or business users served by Enron Energy Services in 2000."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 3,
+        "structure": 3,
+        "trust_signals": 1,
+        "ambiguity": 3
+      }
+    }
+  }
+}

@@ -73,3 +73,56 @@ Legally sensitive content on the pages themselves:
 - Cloud path only (Gemini Nano was unavailable on the build machine). Claims 4 to 10 per page, 3.3 to 4.5 seconds per claims call.
 - Variation: Enron Vision and values returned 8 claims four times (6 amber each) and 4 and 5 claims twice (2 and 3 amber). WeWork Our Mission always had at least 5 amber. If a take is thin, press Run again.
 - Patrick Collison, Wikipedia (live, 2026-11-23): 8 claims, 8 green, 0 amber, 8 of 8 found on the page.
+
+---
+
+# Round 2 (task T2986, 2026-11-24): pages with SPECIFIC claims
+
+Saul's feedback on 0.1.2: the WeWork mission page gives only "values that cannot be checked" amber cards. He wants pages that state specific things which later proved false. Method as in round 1 (Wayback `id_` raw bytes in `fixtures/demo/`, current main code, cloud path, `node scripts/live-probe.mjs --no-build --fixture <file>`, runs in `docs/demo/t2986-*`, three runs each).
+
+## What Lens can and cannot say (read before recording)
+
+Lens does NOT detect false claims. A specific claim (a number, a date, a named thing) comes out as a green "checkable" card; Lens does not check it. The contradiction comes from the public record, which the owner states aloud or shows in a second tab. Round 2 pages therefore show mostly GREEN specific cards, not amber. Say: "Lens finds the claims you can check. This one, we checked." Do not say Lens found the lie.
+
+## Result
+
+| Rank | Page | Archive URL (open this) | Claims | Specific (green) / vague (amber) | Verdict |
+|---|---|---|---|---|---|
+| 1 | Enron 2000 Annual Report, "Enron Broadband Services" (snapshot 7 May 2001) | https://web.archive.org/web/20010507225240/http://www4.enron.com:80/corp/investors/annuals/2000/broadband.html | 8, 4, 5 (3 runs) | 3 / 5, 3 / 1, 3 / 2 | TOP PICK for the story: network and "video on demand" claims later named in a DOJ indictment. |
+| 2 | Enron 2000 Annual Report, "Enron Energy Services" (snapshot 7 May 2001) | https://web.archive.org/web/20010507230423/http://www4.enron.com:80/corp/investors/annuals/2000/energy.html | 8, 9, 8 (3 runs) | 4 / 4, 5 / 4, 4 / 4 | TOP 2 for the dollar figures ($103 million, $16 billion, $30 billion). |
+
+Both pages are plain static HTML, about 2,000 characters of text, all in the first screen. Not browser-tested in Chromium for the toolbar (round 1 measured the same 67 px toolbar on other Enron snapshots). These two are from the same Enron annual report, so they are one company, not two. Honest note: the contradiction for rank 2 is weaker than for rank 1 (see below).
+
+Specific claims on the pages (exact text, green in all runs):
+Broadband:
+1. "The build-out of Enron's 18,000-mile global fiber network is near completion, bandwidth intermediation transaction volume is growing exponentially, and we are testing the first commercially sound premium content-on-demand service."
+2. "We currently operate 25 pooling points: 18 in the United States, and one each in Tokyo, London, Brussels, Amsterdam, Paris, Dusseldorf and Frankfurt."
+3. "We expect to add at least 10 more in 2001."
+Energy Services:
+1. "Enron Energy Services recorded its first profitable quarter as expected at the end of 1999, and continued to grow rapidly through 2000, with increasing profits in all four quarters of 2000 and aggregate recurring income before interest and taxes (IBIT) of $103 million for the year."
+2. "The value of our contracts in 2000 totaled more than $16 billion, increasing Enron Energy Services' cumulative contract value to more than $30 billion since late 1997."
+3. "Retail energy earnings will be fueled by the rapid growth of our U.S. and European businesses and the strong execution and extension of existing contracts."
+
+## Public record that contradicts them (state as "later reported / alleged / pleaded", never "fraud" unless a court found it)
+
+| Claim | Public record | URL | Status (curl, 2026-11-24) |
+|---|---|---|---|
+| Broadband network and content-on-demand "testing" | DOJ, 26 Mar 2003: two Enron Broadband executives indicted for securities fraud, conspiracy and false statements about the division. Later: Kenneth Rice pleaded guilty to securities fraud; Joseph Hirko pleaded guilty (2008) to one count of wire fraud over statements about the technical viability of the division. | https://www.justice.gov/archive/opa/pr/2003/March/03_crm_191.htm ; sentencing: https://www.fbi.gov/houston/press-releases/2009/ho092809-1.htm | both 200 |
+| Energy Services "increasing profits" | SEC complaints and releases allege Enron moved a large part of EES business into Enron North America in 2001 and hid EES losses (over $700 million in Q1 2001, over $300 million more in Q2) while saying EES performed profitably. These concern 2001, not the 2000 figure itself. The 2000 $103 million figure was not shown wrong by what I fetched. | https://www.sec.gov/litigation/litreleases/lr18435.htm ; https://www.sec.gov/litigation/complaints/comp18403.htm | 403 to curl, opens in a browser (same as the SEC page in round 1). Not independently opened by me. |
+
+I did NOT find, and do not claim, a source saying the 2000 EES profit number was false. Use the Broadband page for the "later proved false" story; use the Energy page only for "specific dollar claims Lens marks checkable".
+
+## Tried and dropped in round 2
+
+- Luckin Coffee Q3 2019 results (PR Newswire and company pages): no Wayback snapshot found for the release URLs I tried.
+- Wirecard press and investor pages: closest snapshots are 2010 and 2013, before any alleged cash problem; not used.
+- Nikola home (Aug 2020): the fetch timed out (HTTP 000); not retried. Nikola pages from round 1 were already dropped.
+- VW "Clean Diesel" (vw.com Jetta page, Aug 2015, saved as `fixtures/demo/vw-jetta-2015.html`): a product page with a 46 mpg line; the clean-diesel claim is a label, little to check. Saved, not probed.
+- FTX US home (Oct 2022, `fixtures/demo/ftxus-home-oct2022.html`): about 5,000 characters, mostly marketing ("safe and easy way", "over 1 million users"); no custody/segregation statement. Saved, not probed.
+- Wirecard 2013 investor page saved, not probed (wrong period).
+- Theranos: round 1 candidates only; no new snapshot tried.
+- Enron "Financial highlights" page: figures are images, no text.
+
+## Verification
+
+Archive URLs of the two picks returned 200 when fetched as raw bytes (`id_`) on 2026-11-24; the plain Archive URLs above are the same snapshots without `id_`. Run counts are from `docs/demo/t2986-*/result.json`.

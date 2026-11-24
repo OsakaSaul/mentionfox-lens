@@ -1,0 +1,225 @@
+{
+  "fixture": "enron-ar2000-broadband.html",
+  "source_url": null,
+  "run_at": "2026-11-24T00:24:04.158Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "Enron: 2000 Annual Report",
+    "url": "http://127.0.0.1:56391/",
+    "textLength": 2031,
+    "rawChars": 2512,
+    "rootTag": "BODY",
+    "blocks": 12
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 7844,
+    "first_ms": 7872,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"The build-out of Enrons 18,000-mile global fiber network is near completion, bandwidth intermediation transaction volume is growing exponentially, and we are testing the first commercially sound premium content-on-demand service.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim mentions the 18,000-mile global fiber network as a checkable anchor.\",\n      \"summary\": \"Enron reported significant progress in their global fiber network build-out and testing of new services.\"\n    },\n    {\n      \"quote\": \"We currently operate 25 pooling points: 18 in the United States, and one each in Tokyo, London, Brussels, Amsterdam, Paris, Dusseldorf and Frankfurt.\",\n      \"kind\": \"specific\",\n      \"why\": \"This statement provides specific numbers and locations for pooling points as checkable anchors.\"\n    },\n    {\n      \"quote\": \"We expect to add at least 10 more in 2001.\",\n      \"kind\": \"specific\",\n      \"why\": \"This claim includes the year 2001 and a specific quantity as checkable anchors.\"\n    },\n    {\n      \"quote\": \"Enron Broadband Services made excellent progress executing its business plan in 2000.\",\n      \"kind\": \"vague\",\n      \"why\": \"This statement uses subjective praise and lacks checkable anchors despite mentioning the year 2000.\"\n    },\n    {\n      \"quote\": \"Clearly, the Enron business model is working in the broadband market.\",\n      \"kind\": \"vague\",\n      \"why\": \"This claim relies entirely on subjective judgment without any specific checkable anchors.\"\n    },\n    {\n      \"quote\": \"Deploy the most open, efficient global broadband network, the Enron Intelligent Network.\",\n      \"kind\": \"vague\",\n      \"why\": \"This goal statement uses subjective superlatives and contains no verifiable quantitative anchors.\"\n    },\n    {\n      \"quote\": \"Be the worlds largest marketer of bandwidth and network services.\",\n      \"kind\": \"vague\",\n      \"why\": \"This objective relies on unmeasurable claims about being the world's largest.\"\n    },\n    {\n      \"quote\": \"Be the worlds largest provider of premium content delivery services.\",\n      \"kind\": \"vague\",\n      \"why\": \"This goal statement uses superlative praise without providing verifiable market share numbers.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "The build-out of Enrons 18,000-mile global fiber network is near completion, bandwidth intermediation transaction volume is growing exponentially, and we are testing the first commercially sound premium content-on-demand service.",
+        "kind": "specific",
+        "why": "This claim mentions the 18,000-mile global fiber network as a checkable anchor.",
+        "summary": "Enron reported significant progress in their global fiber network build-out and testing of new services."
+      },
+      {
+        "id": "c2",
+        "quote": "We currently operate 25 pooling points: 18 in the United States, and one each in Tokyo, London, Brussels, Amsterdam, Paris, Dusseldorf and Frankfurt.",
+        "kind": "specific",
+        "why": "This statement provides specific numbers and locations for pooling points as checkable anchors."
+      },
+      {
+        "id": "c3",
+        "quote": "We expect to add at least 10 more in 2001.",
+        "kind": "specific",
+        "why": "This claim includes the year 2001 and a specific quantity as checkable anchors."
+      },
+      {
+        "id": "c4",
+        "quote": "Enron Broadband Services made excellent progress executing its business plan in 2000.",
+        "kind": "specific",
+        "why": "Names a date (in 2000) that a reader can check against a public source.",
+        "note": "contains a subjective word: excellent",
+        "overridden": true,
+        "anchor": {
+          "type": "date",
+          "text": "in 2000"
+        }
+      },
+      {
+        "id": "c5",
+        "quote": "Clearly, the Enron business model is working in the broadband market.",
+        "kind": "vague",
+        "why": "This claim relies entirely on subjective judgment without any specific checkable anchors."
+      },
+      {
+        "id": "c6",
+        "quote": "Deploy the most open, efficient global broadband network, the Enron Intelligent Network.",
+        "kind": "specific",
+        "why": "Names a named place, person or organisation (Enron Intelligent Network.) that a reader can check against a public source.",
+        "note": "",
+        "overridden": true,
+        "anchor": {
+          "type": "name",
+          "text": "Enron Intelligent Network."
+        }
+      },
+      {
+        "id": "c7",
+        "quote": "Be the worlds largest marketer of bandwidth and network services.",
+        "kind": "vague",
+        "why": "This objective relies on unmeasurable claims about being the world's largest."
+      },
+      {
+        "id": "c8",
+        "quote": "Be the worlds largest provider of premium content delivery services.",
+        "kind": "vague",
+        "why": "This goal statement uses superlative praise without providing verifiable market share numbers."
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "run"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "window"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "window"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c4",
+      "text": "Enron Broadband Services made excellent\nprogress executing its business plan in 2000"
+    },
+    {
+      "id": "c1",
+      "text": "build-out of Enron�s 18,000-mile global fiber\nnetwork is near completion, bandwidth intermediation\ntransaction volume is growing exponentially,\nand we are testing the first commercially\nsound premium content-on-demand service"
+    },
+    {
+      "id": "c5",
+      "text": "Clearly, the Enron business model is working in\nthe broadband market"
+    },
+    {
+      "id": "c6",
+      "text": "Deploy the most open, efficient global broadband\nnetwork, the Enron Intelligent Network"
+    },
+    {
+      "id": "c7",
+      "text": "Be the world�s largest marketer of bandwidth and\nnetwork services."
+    },
+    {
+      "id": "c7",
+      "text": "Be the world�s largest provider of"
+    },
+    {
+      "id": "c8",
+      "text": "Be the world�s largest provider of"
+    },
+    {
+      "id": "c8",
+      "text": " premium content\ndelivery services."
+    },
+    {
+      "id": "c8",
+      "text": "The Enron Intelligent Network"
+    },
+    {
+      "id": "c2",
+      "text": "We currently operate 25 pooling\npoints: 18 in the United States, and one each\nin Tokyo, London, Brussels, Amsterdam, Paris,\nDusseldorf and Frankfurt"
+    },
+    {
+      "id": "c3",
+      "text": "We expect to add at\nleast 10 more in 2001"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 7944,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Enron Broadband Services\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Enron Intelligent Network\",\n      \"type\": \"product\"\n    },\n    {\n      \"name\": \"Broadband Operating System\",\n      \"type\": \"product\"\n    }\n  ],\n  \"facts\": [\n    \"Enron Broadband Services operates 25 pooling points globally, with 18 in the United States and the rest internationally.\",\n    \"The build-out of Enron's 18,000-mile global fiber network is near completion.\",\n    \"The Enron Intelligent Network operates as a network of networks providing switching capacity.\",\n    \"The proprietary Broadband Operating System automates the transaction process from capacity request to billing and funds transfer.\",\n    \"The company plans to add at least 10 more pooling points in 2001.\"\n  ],\n  \"missing\": [\n    \"Financial metrics or revenue figures for Enron Broadband Services in 2000\",\n    \"Specific dates for when the 18,000-mile fiber network build-out is expected to be fully completed\"\n  ],\n  \"fixes\": [\n    \"In the sentence \\\"The build-out of Enron's 18,000-mile global fiber network is near completion...\\\", add the specific completion date.\",\n    \"In the sentence \\\"We expect to add at least 10 more pooling points in 2001.\\\", add the projected financial investment or cost for these additions.\",\n    \"In the section detailing the pooling points, add the specific cities for the international locations outside of Tokyo, London, Brussels, Amsterdam, Paris, Dusseldorf, and Frankfurt to fully account for all 25 locations.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 3,\n    \"structure\": 4,\n    \"trust_signals\": 1,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Enron Broadband Services",
+          "type": "company"
+        },
+        {
+          "name": "Enron Intelligent Network",
+          "type": "product"
+        },
+        {
+          "name": "Broadband Operating System",
+          "type": "product"
+        }
+      ],
+      "facts": [
+        "Enron Broadband Services operates 25 pooling points globally, with 18 in the United States and the rest internationally.",
+        "The build-out of Enron's 18,000-mile global fiber network is near completion.",
+        "The Enron Intelligent Network operates as a network of networks providing switching capacity.",
+        "The proprietary Broadband Operating System automates the transaction process from capacity request to billing and funds transfer.",
+        "The company plans to add at least 10 more pooling points in 2001."
+      ],
+      "missing": [
+        "Financial metrics or revenue figures for Enron Broadband Services in 2000",
+        "Specific dates for when the 18,000-mile fiber network build-out is expected to be fully completed"
+      ],
+      "fixes": [
+        "In the sentence \"The build-out of Enron's 18,000-mile global fiber network is near completion...\", add the specific completion date.",
+        "In the sentence \"We expect to add at least 10 more pooling points in 2001.\", add the projected financial investment or cost for these additions.",
+        "In the section detailing the pooling points, add the specific cities for the international locations outside of Tokyo, London, Brussels, Amsterdam, Paris, Dusseldorf, and Frankfurt to fully account for all 25 locations."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 3,
+        "structure": 4,
+        "trust_signals": 1,
+        "ambiguity": 3
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+date: 2026-11-24T00:24:32.351Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: enron-ar2000-broadband.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 11.3 seconds on Cloud: 4 claims. First claim in 5.0 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 5.0 seconds
+page body text length: 2587
+claims: 4, highlighted: 4, claims 4967 ms, geo 6310 ms
+T2963 log: chars before extraction 2512, after 2031 (12 blocks, root BODY); cloud window 2031 of budget 12000 chars, 1 cloud call; on-device plan: 3 chunks of about 800 chars over 2031 chars; claims 4; first claim in 5.0 seconds (cloud: arrives with the single answer), claims call 5.0 seconds, AI view 6.3 seconds; matched 4/4 (100%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
