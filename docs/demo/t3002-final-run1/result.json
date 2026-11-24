@@ -1,0 +1,285 @@
+{
+  "fixture": null,
+  "source_url": "https://web.archive.org/web/20140805154020/http://fortune.com/2014/06/12/theranos-blood-holmes/",
+  "run_at": "2026-11-24T04:32:56.773Z",
+  "model_path": "Firebase AI Logic, cloud (PREFER_ON_DEVICE; on-device unavailable in this Chromium)",
+  "page": {
+    "title": "This CEO’s out for blood - Fortune",
+    "url": "https://web.archive.org/web/20140805154020/http://fortune.com/2014/06/12/theranos-blood-holmes/",
+    "textLength": 33346,
+    "rawChars": 34767,
+    "rootTag": "ARTICLE",
+    "blocks": 91
+  },
+  "claims": {
+    "source": "in_cloud",
+    "ms": 3737,
+    "first_ms": 3820,
+    "retried": false,
+    "raw": "{\n  \"claims\": [\n    {\n      \"quote\": \"Now she’s 30, and her private, Palo Alto-based corporation, called Theranos–the name is an amalgam of the words “therapy” and “diagnosis”–has 500 employees and has raised more than $400 million from equity sales to investors who have effectively valued the company at more than $9 billion.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable numbers include her age, employee count, funding raised, and company valuation.\"\n    },\n    {\n      \"quote\": \"Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable industry figures include the market size, total tests performed, and percentage of medical decisions.\"\n    },\n    {\n      \"quote\": \"Medicare and Medicaid each pay roughly $10 billion annually on reimbursements for these tests.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable amounts include the annual Medicare and Medicaid reimbursement figures.\"\n    },\n    {\n      \"quote\": \"It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable figures include the number of blood tests currently and planned to be offered.\"\n    },\n    {\n      \"quote\": \"The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer.”\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable details include the number of tests performed and the sample volume collected.\"\n    },\n    {\n      \"quote\": \"Its phlebotomists currently take physician-ordered blood draws (and saliva, urine, feces, and other samples) at collection centers the company operates at its headquarters in Palo Alto and at 21 Walgreens–one in Palo Alto and the rest in Phoenix.\",\n      \"kind\": \"specific\",\n      \"why\": \"Checkable locations include the headquarters and the specific number of Walgreens collection centers.\"\n    },\n    {\n      \"quote\": \"Precisely how Theranos accomplishes all these amazing feats is a trade secret.\",\n      \"kind\": \"redflag\",\n      \"why\": \"Secrecy is given as the reason nothing can be checked about how the technology works.\",\n      \"signal\": \"secrecy\"\n    },\n    {\n      \"quote\": \"“I knew she was different,” Robertson told me in an interview.\",\n      \"kind\": \"vague\",\n      \"why\": \"This statement relies entirely on subjective praise with no checkable anchor.\"\n    }\n  ]\n}",
+    "normalized": [
+      {
+        "id": "c1",
+        "quote": "Now she’s 30, and her private, Palo Alto-based corporation, called Theranos–the name is an amalgam of the words “therapy” and “diagnosis”–has 500 employees and has raised more than $400 million from equity sales to investors who have effectively valued the company at more than $9 billion.",
+        "kind": "specific",
+        "why": "Checkable numbers include her age, employee count, funding raised, and company valuation."
+      },
+      {
+        "id": "c2",
+        "quote": "Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions.",
+        "kind": "specific",
+        "why": "Checkable industry figures include the market size, total tests performed, and percentage of medical decisions."
+      },
+      {
+        "id": "c3",
+        "quote": "Medicare and Medicaid each pay roughly $10 billion annually on reimbursements for these tests.",
+        "kind": "specific",
+        "why": "Checkable amounts include the annual Medicare and Medicaid reimbursement figures."
+      },
+      {
+        "id": "c4",
+        "quote": "It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe.",
+        "kind": "redflag",
+        "why": "A big claim from the seller about its own product, with no study, approval or named validator in the text.",
+        "signal": "extraordinary_claim"
+      },
+      {
+        "id": "c5",
+        "quote": "The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer.”",
+        "kind": "redflag",
+        "why": "A big claim from the seller about its own product, with no study, approval or named validator in the text.",
+        "signal": "extraordinary_claim"
+      },
+      {
+        "id": "c6",
+        "quote": "Its phlebotomists currently take physician-ordered blood draws (and saliva, urine, feces, and other samples) at collection centers the company operates at its headquarters in Palo Alto and at 21 Walgreens–one in Palo Alto and the rest in Phoenix.",
+        "kind": "specific",
+        "why": "Checkable locations include the headquarters and the specific number of Walgreens collection centers."
+      },
+      {
+        "id": "c7",
+        "quote": "Precisely how Theranos accomplishes all these amazing feats is a trade secret.",
+        "kind": "redflag",
+        "signal": "secrecy",
+        "why": "Secrecy is given as the reason nothing can be checked about how the technology works."
+      },
+      {
+        "id": "c8",
+        "quote": "“I knew she was different,” Robertson told me in an interview.",
+        "kind": "vague",
+        "why": "This statement relies entirely on subjective praise with no checkable anchor."
+      },
+      {
+        "quote": "Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger.",
+        "kind": "redflag",
+        "signal": "extraordinary_claim",
+        "why": "A big claim from the seller about its own product, with no study, approval or named validator in the text.",
+        "id": "c9"
+      },
+      {
+        "quote": "Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs do.",
+        "kind": "redflag",
+        "signal": "evasive_answer",
+        "why": "The speaker gives a generic answer where a specific one was asked for.",
+        "id": "c10"
+      },
+      {
+        "quote": "Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods” as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate.",
+        "kind": "redflag",
+        "signal": "evasive_answer",
+        "why": "The speaker gives a generic answer where a specific one was asked for.",
+        "id": "c11"
+      }
+    ]
+  },
+  "highlight": [
+    {
+      "id": "c1",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c2",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c3",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c4",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c5",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c6",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c7",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c8",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c9",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c10",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    },
+    {
+      "id": "c11",
+      "found": true,
+      "method": "wrap",
+      "tier": "exact"
+    }
+  ],
+  "highlighted_text": [
+    {
+      "id": "c8",
+      "text": "I knew she was different,” Robertson told me in an interview"
+    },
+    {
+      "id": "c9",
+      "text": "Theranos can run as many as 70 tests on a sample this size, obtained by pricking a finger"
+    },
+    {
+      "id": "c1",
+      "text": "Now she’s 30, and her private, Palo Alto-based corporation, called Theranos–the name is an amalgam of the words “therapy” and “diagnosis”–has 500 employees and has raised more than $400 million from equity sales to investors who have effectively valued the company at more than $9 billion"
+    },
+    {
+      "id": "c2",
+      "text": "Theranos today is a potentially highly disruptive upstart in America’s $73 billion diagnostic-lab industry, which performs nearly 10 billion tests a year and is estimated to provide the basis for about 70% of doctors’ medical decisions"
+    },
+    {
+      "id": "c3",
+      "text": "Medicare and Medicaid each pay roughly $10 billion annually on reimbursements for these tests"
+    },
+    {
+      "id": "c4",
+      "text": "It currently offers more than 200–and is ramping up to offer more than 1,000–of the most commonly ordered blood diagnostic tests, all without the need for a syringe"
+    },
+    {
+      "id": "c5",
+      "text": "The company has performed as many as 70 different tests from a single draw of 25 to 50 microliters collected in a tiny vial the size of an electric fuse, which Holmes has dubbed a “nanotainer"
+    },
+    {
+      "id": "c7",
+      "text": "Precisely how Theranos accomplishes all these amazing feats is a trade secret"
+    },
+    {
+      "id": "c10",
+      "text": "Holmes will only say–and this is more than she has ever said before–that her company uses “the same fundamental chemical methods” as existing labs do"
+    },
+    {
+      "id": "c6",
+      "text": "Its phlebotomists currently take physician-ordered blood draws (and saliva, urine, feces, and other samples) at collection centers the company operates at its headquarters in Palo Alto and at 21 Walgreens–one in Palo Alto and the rest in Phoenix"
+    },
+    {
+      "id": "c11",
+      "text": "Holmes counters that because, as noted, her tests employ “the same fundamental chemical methods” as existing tests, peer-review publication of validation studies is both unnecessary and inappropriate"
+    }
+  ],
+  "geo": {
+    "source": "in_cloud",
+    "ms": 2749,
+    "retried": false,
+    "raw": "{\n  \"entities\": [\n    {\n      \"name\": \"Elizabeth Holmes\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Channing Robertson\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Theranos\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Walgreens\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Genome Institute in Singapore\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Centers for Medicare & Medicaid Services\",\n      \"type\": \"other\"\n    },\n    {\n      \"name\": \"Greg Wasson\",\n      \"type\": \"person\"\n    },\n    {\n      \"name\": \"Alliance Boots\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"UCSF Medical Center\",\n      \"type\": \"company\"\n    },\n    {\n      \"name\": \"Quest Diagnostics\",\n      \"type\": \"company\"\n    }\n  ],\n  \"facts\": [\n    \"Elizabeth Holmes founded Theranos in 2003 after dropping out of Stanford University.\",\n    \"Theranos has raised more than $400 million from equity sales, valuing the company at over $9 billion.\",\n    \"The company operates collection centers at its Palo Alto headquarters and at 21 Walgreens stores.\",\n    \"Theranos tests require only a few drops of blood, about 1/100th to 1/1,000th of the amount normally required.\",\n    \"Prices for Theranos tests are set to never exceed half the Medicare reimbursement rate for each procedure.\",\n    \"The company manufactures its analytical systems in a 262,000-square-foot facility in Newark, California.\"\n  ],\n  \"missing\": [\n    \"The specific technical mechanism or chemical methods Theranos uses to process small blood samples\",\n    \"Photographs or detailed visual descriptions of the Theranos analytical system devices\",\n    \"The names of all investors who contributed to the $400 million raised by the company\",\n    \"Published peer-reviewed validation studies supporting the accuracy of the blood tests\"\n  ],\n  \"fixes\": [\n    \"In the sentence beginning with \\\"Precisely how Theranos accomplishes\\\", add the name of the author or publication that reviewed the trade secret methods if available.\",\n    \"In the sentence beginning with \\\"Holmes declines to explain how they work\\\", add the specific year the Newark manufacturing facility was opened.\",\n    \"In the sentence beginning with \\\"The most frequent criticism is\\\", add the specific title and institutional affiliation of Richard Bender.\"\n  ],\n  \"ratings\": {\n    \"entity_clarity\": 4,\n    \"fact_density\": 4,\n    \"structure\": 3,\n    \"trust_signals\": 3,\n    \"ambiguity\": 3\n  }\n}",
+    "normalized": {
+      "entities": [
+        {
+          "name": "Elizabeth Holmes",
+          "type": "person"
+        },
+        {
+          "name": "Channing Robertson",
+          "type": "person"
+        },
+        {
+          "name": "Theranos",
+          "type": "company"
+        },
+        {
+          "name": "Walgreens",
+          "type": "company"
+        },
+        {
+          "name": "Genome Institute in Singapore",
+          "type": "company"
+        },
+        {
+          "name": "Centers for Medicare & Medicaid Services",
+          "type": "other"
+        },
+        {
+          "name": "Greg Wasson",
+          "type": "person"
+        },
+        {
+          "name": "Alliance Boots",
+          "type": "company"
+        },
+        {
+          "name": "UCSF Medical Center",
+          "type": "company"
+        },
+        {
+          "name": "Quest Diagnostics",
+          "type": "company"
+        }
+      ],
+      "facts": [
+        "Elizabeth Holmes founded Theranos in 2003 after dropping out of Stanford University.",
+        "Theranos has raised more than $400 million from equity sales, valuing the company at over $9 billion.",
+        "The company operates collection centers at its Palo Alto headquarters and at 21 Walgreens stores.",
+        "Theranos tests require only a few drops of blood, about 1/100th to 1/1,000th of the amount normally required.",
+        "Prices for Theranos tests are set to never exceed half the Medicare reimbursement rate for each procedure.",
+        "The company manufactures its analytical systems in a 262,000-square-foot facility in Newark, California."
+      ],
+      "missing": [
+        "The specific technical mechanism or chemical methods Theranos uses to process small blood samples",
+        "Photographs or detailed visual descriptions of the Theranos analytical system devices",
+        "The names of all investors who contributed to the $400 million raised by the company",
+        "Published peer-reviewed validation studies supporting the accuracy of the blood tests"
+      ],
+      "fixes": [
+        "In the sentence beginning with \"Precisely how Theranos accomplishes\", add the name of the author or publication that reviewed the trade secret methods if available.",
+        "In the sentence beginning with \"Holmes declines to explain how they work\", add the specific year the Newark manufacturing facility was opened.",
+        "In the sentence beginning with \"The most frequent criticism is\", add the specific title and institutional affiliation of Richard Bender."
+      ],
+      "ratings": {
+        "entity_clarity": 4,
+        "fact_density": 4,
+        "structure": 3,
+        "trust_signals": 3,
+        "ambiguity": 3
+      }
+    }
+  }
+}

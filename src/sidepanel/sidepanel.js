@@ -353,6 +353,7 @@ async function analyze({ more = false } = {}) {
       const ex = await send(tab.id, { type: "extract" });
       if (!ex?.ok || ex.page.textLength < 80) throw new Error("Not enough readable text on this page.");
       state.page = ex.page;
+      $("noscriptNote").hidden = !ex.page.fromNoscript;   // T3002
       state.covered = new Set();
       state.claims = [];
       state.results = new Map();
@@ -472,8 +473,10 @@ async function analyze({ more = false } = {}) {
     // T2992 RED FLAGS: signals a careful reader could have caught on the page's own date, judged from the text alone. The rules (and Saul's calibration: no citation alone is never a flag) are in shared/redflags.js;
     // the model's own red-flag cards are re-checked there, the flags it missed are added, and an ordinary unsourced figure gets a small grey tag.
     try {
-      const seenText = page.blocks.filter((_, i) => state.covered.has(i)).join("\n");
-      const rf = applyRedFlags(state.claims, seenText, { company: (claimDomain(page.url) || "").split(".")[0], merge: mergeClaims, reconcile: reconcileKind });
+      // T3002: on a picked ARTICLE body the rules read the whole article (deterministic and cheap), not only the window the model analysed: a flagged line at the edge of the window must not depend on where the window ends. Long wiki pages and guessed roots keep the analysed-window rule
+      const articleRoot = !!page.rootKind && page.rootKind !== "legacy";   // an article body was confidently picked (not Wikipedia, not a guessed root)
+      const seenText = (articleRoot ? page.blocks : page.blocks.filter((_, i) => state.covered.has(i))).join("\n");
+      const rf = applyRedFlags(state.claims, seenText, { company: (claimDomain(page.url) || "").split(".")[0], title: page.title, merge: mergeClaims, reconcile: reconcileKind });
       if (rf.changed) {
         showCards();
         const h2 = await send(tab.id, { type: "highlight", claims: state.claims });

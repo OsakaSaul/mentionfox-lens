@@ -40,14 +40,23 @@ const PUFFERY = /\b(will be|going to be|are going to|is going to|aim(?:s)? to be
 export const isPuffery = (s) => PUFFERY.test(s) && !/\d/.test(s);
 
 // ---------- (3) the evidence such a claim normally comes with ----------
-const EVIDENCE = /\b(peer[- ]reviewed|published in|journal|study|studies|clinical trial|randomi[sz]ed|trial|FDA|cleared by|approved by|approval|regulator|validated|validation|independent(?:ly)?|audited|audit|according to|data (?:show|from)|researchers? at|university|institute|reported by|filing|10-k|SEC)\b/i;
-const WITHHELD = /\b(not (?:been )?(?:published|peer[- ]reviewed)|unpublished|haven'?t published|have not published|don'?t publish|do not publish|no peer[- ]reviewed|without (?:peer )?review|stealth)\b/i;
+const EVIDENCE = /\b(peer[- ]reviewed|published in|journal|study|studies|clinical trial|randomi[sz]ed|trial|FDA|cleared by|approved by|approval|regulator|validated|validation|independent(?:ly)?(?!\s+(?:labs?|laborator\w+|hospitals?|clinics?|providers?|firms?|companies|retailers?|pharmac\w+|prices?))|audited|audit|according to|data (?:show|from)|researchers? at|university|institute|reported by|filing|10-k|SEC)\b/i;
+const WITHHELD = /\b(not (?:been )?(?:published|peer[- ]reviewed)|unpublished|haven'?t published|have not published|don'?t publish|do not publish|no peer[- ]reviewed|without (?:peer )?review|peer[- ]review\w*[^.]{0,80}(?:unnecessary|inappropriate|not needed)|(?:declin|refus)\w+ to (?:publish|share|release|disclose)|stealth)\b/i;
 
 // ---------- (2) the speaker benefits if believed ----------
 const SELLER_VOICE = /\b(we|our|us|my|i)\b/i;
 const SELLER_ATTRIB = /\b(founder|co-?founder|ceo|chief executive|president|the company|the startup|its (?:technology|system|platform|product|devices?|tests?)|she says|he says|says (?:she|he|it|the company)|claims? (?:it|that)|said (?:she|he)|boasts?|touts?|promises|insists?)\b/i;
+// T3002: an article that PROFILES a company or its founder speaks in the journalist's voice, but a capability it states about that subject ("Theranos can run as many as 70 tests",
+// "It currently offers more than 200 ...") is the company's own claim as reported: rule (2) holds when the sentence names the profiled subject, or opens with "it/the company", and
+// presents a capability or an offering. Rules (1) and (3) still have to hold.
+const CAPABILITY = /\b(can|could|will|is able to|are able to|offers?|offered|offering|provides?|performs?|performed|runs?|ran|delivers?|ramping up to offer|plans? to offer)\b/i;
+const COMPANY_LEAD = /^(?:it|its|the company|the startup|the firm)\b/i;
+function namesSubject(sentence, subjects) {
+  return (subjects || []).some((n) => n && new RegExp("\\b" + String(n).replace(/[^a-z0-9]/gi, "") + "\\b", "i").test(sentence.replace(/[^a-z0-9 ]/gi, " ")));
+}
 function sellerBenefits(sentence, ctx) {
   if (SELLER_VOICE.test(sentence) || SELLER_ATTRIB.test(sentence)) return true;
+  if (CAPABILITY.test(sentence) && (namesSubject(sentence, ctx && ctx.subjects) || (ctx && ctx.subjects && ctx.subjects.length && COMPANY_LEAD.test(sentence.trim())))) return true;
   const name = ctx && ctx.company;
   return !!(name && name.length >= 3 && new RegExp("\\b" + name.replace(/[^a-z0-9]/gi, "") + "\\b", "i").test(sentence.replace(/[^a-z0-9 ]/gi, "")));
 }
@@ -56,9 +65,11 @@ function sellerBenefits(sentence, ctx) {
 function extraordinaryVsField(s) {
   const cues = [];
   // many results from a minimal sample: "70 tests from a finger prick", "dozens of diseases from one drop of blood"
-  let m = /\b(\d[\d,]*|dozens|hundreds|thousands)\s+(?:different\s+)?(tests?|diseases?|conditions?|assays?|cancers?|diagnoses|results?|analytes?|biomarkers?)\b[^.]{0,60}\b(?:from|with|using|on)\s+(?:a|one|just one|a single|a few|a tiny|one tiny)\s+(?:single\s+)?(?:tiny\s+)?(?:finger[- ]?prick|drop|sample|swab|scan|photo|image)\b/i.exec(s);
+  let m = /\b(\d[\d,]*|dozens|hundreds|thousands)\s+(?:different\s+)?(tests?|diseases?|conditions?|assays?|cancers?|diagnoses|results?|analytes?|biomarkers?)\b[^.]{0,60}\b(?:from|with|using|on)\s+(?:a|one|just one|a single|a few|a tiny|one tiny)\s+(?:single\s+)?(?:tiny\s+)?(?:finger[- ]?prick|drop|sample|swab|scan|photo|image|draw|vial|microliters?)\b/i.exec(s);
   if (m) { const n = Number(String(m[1]).replace(/,/g, "")); if (!(Number.isFinite(n) && n < 10)) cues.push("many results from one tiny sample"); }
-  if (/\bas many as (\d[\d,]*)\b/i.test(s) && /\b(finger[- ]?prick|single drop|one drop|one sample|a few drops)\b/i.test(s)) cues.push("many results from one tiny sample");
+  if (/\bas many as (\d[\d,]*)\b/i.test(s) && /\b(finger[- ]?prick(?:ing)?|pricking a finger|single drop|one drop|one sample|a few drops|single draw|microliters?|nanotainer|tiny vial)\b/i.test(s)) cues.push("many results from one tiny sample");
+  // "offers more than 200 tests, all without the need for a syringe": a long menu with no blood draw, against how labs work
+  if (/\d[\d,]*[^.]{0,80}\b(?:tests?|assays?)\b[^.]{0,120}\bwithout (?:the need for )?(?:a |any )?(?:syringe|needle|blood draw|venipuncture)\b/i.test(s)) cues.push("many tests without a blood draw");
   // about ten times the norm
   m = /\b(\d[\d,]*)\s*(?:x|times)\s+(?:faster|cheaper|more accurate|smaller|better|more efficient|less)\b/i.exec(s);
   if (m && Number(String(m[1]).replace(/,/g, "")) >= 8) cues.push("ten times the norm");
@@ -80,7 +91,9 @@ export function extraordinaryTest(sentence, ctx = {}) {
   const extraordinary = cues.length > 0;
   const benefits = extraordinary && sellerBenefits(s, ctx);
   const near = String(ctx.neighbours || "");
-  const evidenceAbsent = extraordinary && !EVIDENCE.test(s) && !EVIDENCE.test(near);
+  // T3002: evidence that the text says is WITHHELD or declined ("peer-review publication ... is unnecessary and inappropriate") is not evidence present
+  const present = (t) => EVIDENCE.test(t) && !WITHHELD.test(t);
+  const evidenceAbsent = extraordinary && !present(s) && (Array.isArray(ctx.neighbourList) ? !ctx.neighbourList.some(present) : !present(near));
   return { fires: extraordinary && benefits && evidenceAbsent, extraordinary, benefits, evidenceAbsent, cues };
 }
 
@@ -114,6 +127,21 @@ export function isUnsourced(sentence) {
   return !isPuffery(s) && EXACT_FIGURE.test(s) && COMPANY_VOICE.test(s) && !ATTRIBUTION.test(s) && !EVIDENCE.test(s);   // the company speaking about itself (we, our, us): an author's "I" or a quoted person is not
 }
 
+const NOT_A_NAME = new Set("the this that these those with from when while after before there their they about over more most many some such what which where because however today also still just only even than then them were was are has have had been being would could should will can may might one two three four five and but for not its his her she him who whom whose into onto upon each every both either neither another other others".split(" ").concat("monday tuesday wednesday thursday friday saturday sunday january february march april may june july august september october november december medicare medicaid photograph company".split(" ")));
+/** T3002: the one or two names an article is about (a company, its founder): the capitalised words that recur through the text (15 times or more, or 6 times and named in the lead or title). Never the publisher (ctx.company is the site). */
+export function profiledSubjects(text, ctx = {}) {
+  const t = String(text || "");
+  const counts = new Map();
+  for (const m of t.matchAll(/(?<![A-Za-z])[A-Z][a-z]{3,}(?![A-Za-z])/g)) {
+    const w = m[0];
+    if (NOT_A_NAME.has(w.toLowerCase())) continue;
+    counts.set(w, (counts.get(w) || 0) + 1);
+  }
+  const lead = t.slice(0, 1800) + " " + String(ctx.title || "");
+  const publisher = String(ctx.company || "").toLowerCase();
+  return [...counts.entries()].filter(([w, n]) => (n >= 15 || (n >= 6 && lead.includes(w))) && w.toLowerCase() !== publisher).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([w]) => w);   // a name that recurs 15+ times is what the article is about wherever it first appears
+}
+
 /** Every flag and every unsourced sentence of a page text. flags: [{quote, signal, why}], unsourced: [quote]. */
 export function detect(text, ctx = {}) {
   const sents = sentencesOf(stripMarkers(String(text || "")));
@@ -121,10 +149,12 @@ export function detect(text, ctx = {}) {
   const seen = new Set();
   const add = (quote, signal, why) => { const k = norm(quote) + "|" + signal; if (!seen.has(k)) { seen.add(k); flags.push({ quote, signal, why }); } };
   const firstCount = new Map();
+  const subjects = ctx.subjects || profiledSubjects(sents.join(" "), ctx);
   sents.forEach((s, i) => {
     if (isPuffery(s)) return;
-    const near = [sents[i - 2], sents[i - 1], sents[i + 1], sents[i + 2]].filter(Boolean).join(" ");
-    const t = extraordinaryTest(s, { ...ctx, neighbours: near });
+    const neighbourList = [sents[i - 2], sents[i - 1], sents[i + 1], sents[i + 2]].filter(Boolean);
+    const near = neighbourList.join(" ");
+    const t = extraordinaryTest(s, { ...ctx, subjects, neighbours: near, neighbourList });
     if (t.fires) add(s, "extraordinary_claim", "A big claim from the seller about its own product, with no study, approval or named validator in the text.");
     const ev = evasive(s, sents[i - 1]);
     if (ev) add(s, "evasive_answer", "The speaker " + ev + ".");
@@ -155,6 +185,7 @@ const contains = (a, b) => { const x = norm(a), y = norm(b); return !!x && !!y &
  *  - a green card whose sentence is an unsourced exact figure gets unsourced: true (a small grey tag).
  * ctx: {company} (the site's own name, from the domain), merge(existing, incoming) -> added claims (mergeClaims), reconcile(claim) -> claim.
  */
+const MAX_FRESH_FLAGS = 8;
 export function applyRedFlags(claims, pageText, ctx = {}) {
   const { flags, unsourced } = detect(pageText, ctx);
   const sents = sentencesOf(stripMarkers(String(pageText || "")));
@@ -165,7 +196,7 @@ export function applyRedFlags(claims, pageText, ctx = {}) {
     const i = sents.findIndex((s) => contains(s, c.quote));
     const near = i >= 0 ? [sents[i - 2], sents[i - 1], sents[i + 1], sents[i + 2]].filter(Boolean).join(" ") : "";
     const holds = flags.some((f) => contains(f.quote, c.quote) && (!c.signal || f.signal === c.signal))
-      || (c.signal === "extraordinary_claim" && extraordinaryTest(c.quote, { ...ctx, neighbours: near }).fires);
+      || (c.signal === "extraordinary_claim" && extraordinaryTest(c.quote, { ...ctx, subjects: ctx.subjects || profiledSubjects(sents.join(" "), ctx), neighbours: near }).fires);
     if (isPuffery(c.quote) || !holds) {
       const back = ctx.reconcile ? ctx.reconcile({ ...c, kind: "specific" }) : { ...c, kind: /\d/.test(c.quote) ? "specific" : "vague" };
       Object.assign(c, back); delete c.signal; res.demoted++; res.changed = true;
@@ -179,6 +210,7 @@ export function applyRedFlags(claims, pageText, ctx = {}) {
       if (c.kind !== "redflag" || c.signal !== f.signal) { c.kind = "redflag"; c.signal = f.signal; c.why = f.why; delete c.note; delete c.overridden; res.flagged++; res.changed = true; }
     } else fresh.push({ quote: f.quote, kind: "redflag", signal: f.signal, why: f.why });
   }
+  if (fresh.length > MAX_FRESH_FLAGS) fresh.length = MAX_FRESH_FLAGS;   // T3002: the rules read the whole page; a very long page cannot turn into a wall of red
   if (fresh.length) {
     const added = ctx.merge ? ctx.merge(claims, fresh) : fresh.map((x, i) => { const y = { ...x, id: "c" + (claims.length + i + 1) }; claims.push(y); return y; });
     res.added = added.length; res.flagged += added.length; if (added.length) res.changed = true;

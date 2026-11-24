@@ -122,3 +122,13 @@ On Check, as known on 12 June 2014: the engine confirms that Fortune reported th
 Reveal at the end only: the later conviction (Elizabeth Holmes was found guilty in January 2022).
 
 Backup page (WSJDLive interview, October 2015): Lens flags three lines: "There are a lot of elements of our work that have been conflated through these two pieces." and "People just didn't understand what we actually do." (Evasive answer) and "We have never used commercially available lab equipment for finger-stick based tests." (Extraordinary claim). Do NOT film Check on that page (T2991: the engine reads it as Contradicted for the wrong reason).
+
+## Fortune 2014 scene: setup (T3002, Lens 0.1.7)
+
+The archived Fortune page hides its article inside a no-script block, so with JavaScript ON the page looks empty. Setup, once, before recording:
+1. Chrome > Settings > Privacy and security > Site settings > JavaScript > "Customize behavior" > "Not allowed to use JavaScript" > Add: `[*.]web.archive.org`. (Lens still runs: extensions are not blocked by this setting.)
+2. chrome://extensions: reload Lens (0.1.7).
+3. Open exactly: https://web.archive.org/web/20140805154020/http://fortune.com/2014/06/12/theranos-blood-holmes/ (the June 2014 snapshots are cut-off copies with no article; 20140805 is the earliest that works; the as-of date the extension reads from it is 2014-08-05, not 2014-06-12). The article is visible, no Wayback toolbar overlays it.
+4. Open the Lens panel, click Analyze. Expect 11 to 12 cards, all of which highlight on the page, and 6 red flags every time: "Theranos can run as many as 70 tests ... pricking a finger", "It currently offers more than 200 ... without the need for a syringe", "The company has performed as many as 70 different tests from a single draw ...", "Precisely how Theranos accomplishes all these amazing feats is a trade secret", and both "same fundamental chemical methods" lines.
+5. After recording, set the JavaScript setting back for web.archive.org.
+Do NOT use Check on the "It currently offers more than 200 ..." card on camera: it starts with "It", the engine cannot tell which service is meant, and answered "No clear record". If scripts are left ON, Lens falls back to the page's no-script copy (note shown in the panel) and "Show on page" cannot highlight.

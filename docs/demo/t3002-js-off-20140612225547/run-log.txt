@@ -1,0 +1,11 @@
+date: 2026-11-24T04:10:41.756Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+url: https://web.archive.org/web/20140612225547/http://fortune.com/2014/06/12/theranos-blood-holmes/
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Not enough readable text on this page.
+claims mode badge: (no result badge: no model answer)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

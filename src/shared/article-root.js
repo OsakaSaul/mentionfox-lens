@@ -21,7 +21,8 @@ function visibleLen(el) {
   const w = doc.createTreeWalker(el, 4 /* SHOW_TEXT */);
   let n = 0;
   for (let x = w.nextNode(); x; x = w.nextNode()) {
-    if (x.parentElement && x.parentElement.closest("script,style,noscript,template")) continue;
+    // T3002: a text node directly inside <noscript> is the unparsed copy (scripts on) and is not visible; elements inside a noscript are drawn when scripts are off
+    if (x.parentElement && (x.parentElement.closest("script,style,template") || x.parentElement.tagName === "NOSCRIPT")) continue;
     n += x.nodeValue.replace(/\s+/g, " ").trim().length;
   }
   return n;

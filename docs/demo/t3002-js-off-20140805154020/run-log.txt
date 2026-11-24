@@ -1,0 +1,20 @@
+date: 2026-11-24T04:17:15.925Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+url: https://web.archive.org/web/20140805154020/http://fortune.com/2014/06/12/theranos-blood-holmes/
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 6.7 seconds on Cloud: 9 claims, 8 not found on the page. First claim in 3.8 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 3.8 seconds
+page body text length: 33959
+claims: 9, highlighted: 0, claims 3798 ms, geo 2920 ms
+T2963 log: chars before extraction 1106, after 33346 (91 blocks, root ARTICLE); cloud window 11808 of budget 12000 chars, 1 cloud call; on-device plan: 8 chunks of about 800 chars over 5568 chars; claims 9; first claim in 3.8 seconds (cloud: arrives with the single answer), claims call 3.8 seconds, AI view 2.9 seconds; matched 0/9 (0%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.

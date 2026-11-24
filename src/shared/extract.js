@@ -143,7 +143,7 @@ export function extractMainBlocks(doc, opts = {}) {
   const hidden = dropInvisible(root, clone); // only rendered, visible text is analysed
   const host = doc.createElement("div"); // keeps `closest()` and sibling walks working for a detached clone
   host.append(clone);
-  removeAll(host, ALWAYS_REMOVE);
+  removeAll(host, ALWAYS_REMOVE, (el) => !(el.tagName === "NOSCRIPT" && el.firstElementChild));   // T3002: a <noscript> with real elements (page scripts off) is drawn: keep it
   removeAll(host, WIKI_REMOVE);
   removeTailSections(host);
   removeAll(host, BOILERPLATE_SMALL, (el) => textOf(el).length < SMALL_LIMIT && !el.querySelector("article, main, h1"));

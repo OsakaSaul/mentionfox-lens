@@ -161,3 +161,4 @@ footer { padding: 4px 16px 20px; }
 .check-error { flex-basis: 100%; color: var(--pill-contradicted-fg); }
 .check-sources { flex-basis: 100%; margin: 0; padding-left: 18px; font-size: 13px; }
 .checkmode { display: inline-block; padding: 2px 10px; border-radius: 999px; color: #FFFFFF; font-size: 12px; font-weight: 700; }
+.note-box { margin: 0 0 10px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-dim); font-size: 12.5px; }

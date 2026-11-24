@@ -3,6 +3,7 @@
 // It never sends anything anywhere: results only go back to the side panel through chrome.runtime messaging.
 import { Highlighter } from "./shared/highlight.js";
 import { extractMainBlocks } from "./shared/extract.js";
+import { noscriptArticle } from "./shared/noscript.js";   // T3002
 
 (() => {
   if (window.__mflLoaded) return;
@@ -27,8 +28,11 @@ import { extractMainBlocks } from "./shared/extract.js";
 
   /** Main content only (no nav, infobox, references, table of contents ...), as ordered text blocks; see shared/extract.js. */
   function extract() {
-    const ex = extractMainBlocks(document);
-    return { title: document.title || "", url: location.href, blocks: ex.blocks, anchorText: viewportAnchor(), textLength: ex.chars, rawChars: ex.rawChars, rootTag: ex.rootTag };
+    const seen = extractMainBlocks(document);
+    // T3002: an archived page that hides its article in <noscript> (page scripts on): read the no-script copy; highlights cannot land on it
+    const alt = noscriptArticle(document, extractMainBlocks, location.hostname, seen.chars);
+    const ex = alt || seen;
+    return { title: document.title || "", url: location.href, blocks: ex.blocks, anchorText: alt ? "" : viewportAnchor(), textLength: ex.chars, rawChars: ex.rawChars, rootTag: ex.rootTag, rootKind: ex.rootKind, ...(alt ? { fromNoscript: true } : {}) };
   }
 
   function startObserver() {

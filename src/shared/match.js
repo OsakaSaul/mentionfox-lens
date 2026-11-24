@@ -32,6 +32,8 @@ export function collectTextNodes(root, { includeMarks = true } = {}) {
   const walker = doc.createTreeWalker(root, 1 | 4 /* SHOW_ELEMENT | SHOW_TEXT */, {
     acceptNode(n) {
       if (n.nodeType === 1) {
+        // T3002: with page scripts OFF (Chrome's per-site setting) a <noscript> holds real elements and is drawn: its text is visible and can be marked. With scripts ON its content is one unparsed text node: skipped.
+        if (n.tagName.toUpperCase() === "NOSCRIPT" && n.firstElementChild) return 3;
         if (SKIP_TAGS.has(n.tagName.toUpperCase()) || n.hasAttribute("data-mfl-ui") || isHidden(n)) return 2; // REJECT subtree
         if (!includeMarks && n.classList?.contains("mfl-hl")) return 3; // SKIP element, keep children
         return 3; // SKIP (descend)

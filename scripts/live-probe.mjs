@@ -51,6 +51,12 @@ await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const port = server.address().port;
 
 const dir = resolve(os.tmpdir(), "mfl-probe-" + Date.now());
+// T3002: --js-off <host>: Chrome's per-site "JavaScript blocked" setting for that host (what the owner sets in Settings > Privacy > Site settings), written into the fresh profile before launch.
+// Extension content scripts and chrome.scripting still run; the page's own scripts do not, so a <noscript> article is drawn.
+if (opt("--js-off")) {
+  mkdirSync(join(dir, "Default"), { recursive: true });
+  writeFileSync(join(dir, "Default", "Preferences"), JSON.stringify({ profile: { content_settings: { exceptions: { javascript: { [`[*.]${opt("--js-off")},*`]: { last_modified: "13300000000000000", setting: 2 } } } } } }));
+}
 const flags = argv.includes("--nano-flags") ? ["--enable-features=PromptAPIForGeminiNano,OptimizationGuideOnDeviceModel,AIPromptAPI"] : [];
 const ctx = await chromium.launchPersistentContext(dir, {
   executablePath: exe, headless: false, viewport: { width: 1280, height: 900 },
