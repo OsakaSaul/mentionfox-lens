@@ -98,3 +98,9 @@ All pages are opened in tabs BEFORE recording (tab 1 Enron, tab 2 WeWork, tab 3 
 2. Wait until the chip turns green: "On-device model ready" (it updates by itself).
 3. On-device take: press "Run again" next to the status line. The bar is teal: "On-device · X seconds" and the status line says "Done in X seconds on-device: N claims."
 4. The same mode bar sits at the top of Claim X-ray and AI view.
+
+## Optional scene: Check one claim (0.1.3, only after a real Check returns a verdict)
+
+STATUS: the Check button works against a mocked search in tests, but the real grounded call returned 429 (quota) on the free Spark plan on 2026-11-24. Do not record this scene until the owner has enabled billing (T2987 report) and one real Check shows a verdict on your take.
+
+After Analyze on the Enron Broadband page (https://web.archive.org/web/20010507225240/http://www4.enron.com:80/corp/investors/annuals/2000/broadband.html), the analysis ran on-device (mode bar, teal). Point at a green Specific and checkable card and click Check. The mode bar line on the result says "Cloud · N seconds": web search always runs in the cloud. Say: "Analysis stayed on my device. Check sends just this one sentence to a web search." Read the colour and the reason off your screen; say only what the card says. Never say fraud. Do not click Check on more than the 5 free ones; "3 of 5 free checks left today" is on screen.

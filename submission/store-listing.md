@@ -55,14 +55,14 @@ MentionFox Lens analyses the text of the page the user is viewing, only when the
 
 ## Permission justifications
 
-Checked against manifest.json (version 0.1.1): the permissions are exactly activeTab, scripting and sidePanel. There is no storage permission, no host permissions and no content_scripts entry.
+Checked against manifest.json (version 0.1.3): the permissions are exactly activeTab, scripting, sidePanel and storage (storage only keeps the daily Check counter on this device). There are no host permissions and no content_scripts entry.
 
 | Permission | Justification (draft) |
 | --- | --- |
 | activeTab | Lets Lens read and highlight the current tab only after the user clicks the extension, so it never touches other tabs. |
 | scripting | Injects the code that extracts the page text and draws the highlights in the current tab after the user clicks (chrome.scripting.executeScript on the active tab). |
 | sidePanel | Shows the list of claims, the GEO lens results and the mode badge in Chrome's side panel. |
-| storage | Not requested. Lens stores nothing. (Delete this row from the dashboard form.) |
+| storage | Keeps one small counter on this device: how many free Check clicks were used today. Nothing else is stored; no page text, no claims. |
 | Host permissions for the Firebase AI Logic cloud endpoint | Not declared. The cloud fallback request is made by the Firebase SDK from the side panel and worked in the live runs without host permissions. |
 | Content scripts on all pages | Not used. The manifest has no content_scripts; Lens injects its script into the active tab on demand with activeTab. |
 
@@ -70,7 +70,7 @@ Remote code: none. All code is in the package; the Firebase SDK is bundled by es
 
 ## Data usage disclosures (Developer Dashboard privacy tab)
 
-Answers for the form (checked against the code: no analytics, telemetry or storage).
+Answers for the form (checked against the code: no analytics or telemetry; local storage only for the daily Check counter).
 
 - Does the extension collect or use user data? Yes, in this limited way: the text of the current page is processed when the user clicks.
 - Data types: Website content (the text of the current page, processed on the user's device when the on-device model is available; sent to Google's Firebase AI Logic cloud endpoint only when the on-device model is not available).
@@ -111,7 +111,7 @@ Marquee: Spot the claims. Check what is checkable. / Highlights the claims on an
 1. Chrome Web Store account, developer fee and listing (your step; no account was created by this work).
 2. Category choice in the dashboard (Productivity or Search Tools).
 3. Upload the images from store/ (swap in real on-device captures if you take them).
-4. Delete the storage row in the dashboard's permission form: the manifest does not request it.
+4. In the dashboard's permission form, justify the storage row: it only holds the daily Check counter.
 5. Privacy policy URL: https://foxapis.com/lens/privacy/ was checked on 2026-11-23 and is live (HTTP 200, titled "MentionFox Lens Privacy"). Re-read it against the data disclosures above before submitting.
 6. Replace screenshot 4 (and ideally 5) with real captures from your Chrome with the on-device model: the shipped ones are mock-state renders of the real UI, not an on-device run.
 7. The release build has no App Check attestation provider, so cloud calls from the store build are rejected until an attestation path is added (a dev build with a registered debug token works). Decide before submitting; the on-device path is unaffected.

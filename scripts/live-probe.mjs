@@ -84,6 +84,17 @@ try {
   const badge = await panel.locator("#claimsMode .mode-main").first().textContent().catch(() => "(no result badge: no model answer)");
   out(`claims mode badge: ${badge}`);
   const last = await panel.evaluate(() => window.__lensLast || null);
+  if (opt("--check-url") !== null || argv.includes("--check")) {
+    // T2987: click Check on the first specific card (one real grounded call). --check-url pretends the page URL is a Wayback snapshot (dev build hook).
+    if (opt("--check-model")) await panel.evaluate((m) => { self.__lensCheckModel = m; }, opt("--check-model"));
+    if (opt("--check-url")) await panel.evaluate((u) => { window.__lensCheckUrl = u; }, opt("--check-url"));
+    await panel.locator("button.check-btn").first().click();
+    await panel.waitForFunction(() => document.querySelector(".pill[data-verdict]") || document.querySelector(".check-error"), null, { timeout: 90000 }).catch(() => {});
+    const ck = await panel.evaluate(() => { const li = document.querySelector("li[data-verdict]:not([data-verdict=''])") || document.querySelector(".checkrow"); return { quote: li?.querySelector(".quote")?.textContent, row: li?.querySelector(".checkrow")?.innerText }; });
+    out(`CHECK quote: ${ck.quote}`);
+    out(`CHECK result: ${String(ck.row).split(String.fromCharCode(10)).join(" | ")}`);
+    if (outDir) await panel.screenshot({ path: join(outDir, "panel-check.png") });
+  }
   if (outDir && last) {
     const pageText = await page.evaluate(() => document.body.innerText.length);
     out(`page body text length: ${pageText}`);

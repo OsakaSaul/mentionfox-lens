@@ -1,0 +1,24 @@
+date: 2026-11-24T00:42:17.737Z
+browser: 151.0.7922.34 (C:\Users\ritekit\AppData\Local\ms-playwright\chromium-1234\chrome-win64\chrome.exe)
+extra flags: none
+fixture: wirecard-claim-test.html
+LanguageModel.availability(): unavailable
+chip: On-device not available on this device: using cloud
+status after Analyze: Done in 4.7 seconds on Cloud: 2 claims. First claim in 2.7 seconds. Click a claim to jump to it.
+claims mode badge: Cloud · 2.7 seconds
+CHECK quote: undefined
+CHECK result: undefined
+page body text length: 372
+claims: 2, highlighted: 2, claims 2661 ms, geo 2058 ms
+T2963 log: chars before extraction 369, after 351 (3 blocks, root BODY); cloud window 351 of budget 12000 chars, 1 cloud call; on-device plan: 1 chunks of about 800 chars over 351 chars; claims 2; first claim in 2.7 seconds (cloud: arrives with the single answer), claims call 2.7 seconds, AI view 2.1 seconds; matched 2/2 (100%)
+console (first 12 lines, token redacted):
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [log] Firebase App Check debug token: <debug-token>
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [warning] Unable to create a text session because the service is not running.
+  [error] Failed to load resource: the server responded with a status of 429 ()
+  [warning] [lens-check] failed: AI: Error fetching from https://firebasevertexai.googleapis.com/v1beta/projects/mentionfox-lens/models/gemini-3.8-flash:generateContent: [429 ] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: htt

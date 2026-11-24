@@ -17,6 +17,7 @@
   --ring: #1A2040;
   --pill-specific-bg: #D8F6EA; --pill-specific-fg: #0B6B47;
   --pill-vague-bg: #FDF0C4; --pill-vague-fg: #7A5A00;
+  --pill-contradicted-bg: #FBD9D6; --pill-contradicted-fg: #9B1C14; --pill-none-bg: #E5E7EB; --pill-none-fg: #374151; --red: #C62828; --grey: #8A8F98;
   --device-bg: #DFF7EC; --device-fg: #0B6B47;
   --cloud-bg: #FFE7D6; --cloud-fg: #9A3B08;
   --radius: 14px;
@@ -29,6 +30,7 @@
     --ring: #F5C542;
     --pill-specific-bg: rgba(52,211,153,0.16); --pill-specific-fg: #5FE3B3;
     --pill-vague-bg: rgba(245,197,66,0.16); --pill-vague-fg: #F5D470;
+    --pill-contradicted-bg: rgba(248,113,113,0.2); --pill-contradicted-fg: #FCA5A5; --pill-none-bg: rgba(156,163,175,0.2); --pill-none-fg: #D1D5DB; --red: #F87171; --grey: #9CA3AF;
     --device-bg: rgba(52,211,153,0.16); --device-fg: #5FE3B3;
     --cloud-bg: rgba(242,122,58,0.18); --cloud-fg: #FFA46E;
     --orange-ink: #FFA46E;
@@ -139,3 +141,18 @@ footer { padding: 4px 16px 20px; }
 
 .block ul.ents { display: flex; padding: 0; }
 .claim .why.note { font-size: 12px; font-style: italic; }
+
+.pill-contradicted { background: var(--pill-contradicted-bg); color: var(--pill-contradicted-fg); }
+.pill-supported { background: var(--pill-specific-bg); color: var(--pill-specific-fg); }
+.pill-none { background: var(--pill-none-bg); color: var(--pill-none-fg); }
+.claims li[data-verdict="contradicted"] .claim { border-left-color: var(--red); }
+.claims li[data-verdict="supported"] .claim { border-left-color: var(--green); }
+.claims li[data-verdict="none"] .claim { border-left-color: var(--grey); }
+.checkrow { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; padding: 6px 4px 0 14px; }
+.check-btn { font-size: 13px; padding: 6px 12px; }
+.check-quota { font-size: 12px; color: var(--text-dim); }
+.check-reason { flex-basis: 100%; }
+.check-error { flex-basis: 100%; color: var(--pill-contradicted-fg); }
+.check-sources { flex-basis: 100%; margin: 0; padding-left: 18px; font-size: 13px; }
+.checkmode { display: inline-block; padding: 2px 10px; border-radius: 999px; color: #FFFFFF; font-size: 12px; font-weight: 700; }
+.check-suggest { flex-basis: 100%; width: 100%; height: 48px; border: 0; background: transparent; color-scheme: light; }

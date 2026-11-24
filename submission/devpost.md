@@ -41,7 +41,7 @@ Code pointers (all in the public repo): src/ai.js has getAiInstance() (App Check
 - Firebase AI Logic (hybrid inference, on-device preferred, cloud fallback)
 - Gemini Nano via Chrome built-in AI
 - Firebase App Check (debug token provider for submission)
-- Chrome Extension Manifest V3 (side panel, a content script injected on demand with activeTab and scripting, a service worker; permissions are only activeTab, scripting and sidePanel)
+- Chrome Extension Manifest V3 (side panel, a content script injected on demand with activeTab and scripting, a service worker; permissions are only activeTab, scripting, sidePanel and storage; storage keeps the daily Check counter)
 - esbuild for bundling the Firebase SDK into the package (no remote code)
 - Unit tests (106 pass) for JSON parsing, extraction, chunked streaming, the five matcher tiers, the anchor rule, the mode bar text, the GEO score, the manifest rules and real-run regression; a Playwright end-to-end run with a mocked model; a live probe against the real cloud path
 - Built with Claude Code
@@ -55,8 +55,12 @@ On-device availability: Gemini Nano needs Chrome 139 or newer, enabled flags and
 - On-device speed work: on-device analysis reads the main content only, about 6,000 characters per press (the lead plus the viewport), in chunks of about 1,500 characters, streaming each claim card and highlight as it is written, with a warm-up when the panel opens and an Analyze more of this page button. Measured on the owner's Chrome with Gemini Nano: On-device · {{ON_DEVICE_SECONDS}} seconds in total, first claim in {{ON_DEVICE_FIRST_CLAIM_SECONDS}} seconds. The streaming logic is also proven with a mock model.
 - Runs end to end through Firebase AI Logic with App Check: on four real pages the cloud path returned claims in about 3.1 to 4.1 seconds and the AI view in about 2.5 to 2.8 seconds; the claims call took about 3.5 to 3.6 seconds on the Bankman-Fried, Collison and Theranos pages (cloud, measured on the build machine, one run each).
 - 36 of 36 returned claims on the four real pages, and 8 of 8 on each of the Wikipedia and Theranos runs of the new prompt, were real text from the page and were highlighted in place; none were invented. Some are weak (bare statistics) and some labels are debatable; see the run notes.
-- Free, MIT licensed, public repo, no account, no MentionFox backend, permissions limited to activeTab, scripting and sidePanel.
+- Free, MIT licensed, public repo, no account, no MentionFox backend, permissions limited to activeTab, scripting, sidePanel and storage.
 - No on-device accuracy figure is claimed; the on-device timings above are the owner's own measurement.
+
+## Check button (0.1.3, T2987)
+
+Every Specific and checkable card has a Check button. It sends only that one sentence, the site's domain and, on a web.archive.org page, the snapshot date to the cloud model with Grounding with Google Search, and the card turns red (Contradicted, reason and up to 3 sources), green with a tick (Supported) or grey (No clear record). 5 free checks a day per install; after that the button becomes a link to MentionFox. Lens still never claims a sentence is false on its own: the verdict comes from the web search results. STATUS: needs the Firebase project on the Blaze plan before it works live (see the T2987 report); do not describe it as shipped until the real call returns a verdict.
 
 ## What is next
 

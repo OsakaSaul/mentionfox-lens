@@ -14,7 +14,7 @@ test("manifest is MV3 with required keys", () => {
   assert.equal(manifest.background.service_worker, "background.js");
 });
 test("permissions are minimal and there are no host permissions", () => {
-  const allowed = new Set(["activeTab", "scripting", "sidePanel"]);
+  const allowed = new Set(["activeTab", "scripting", "sidePanel", "storage"]);
   for (const p of manifest.permissions) assert.ok(allowed.has(p), `unexpected permission ${p}`);
   for (const p of allowed) assert.ok(manifest.permissions.includes(p), `missing ${p}`);
   assert.equal(manifest.host_permissions, undefined);
