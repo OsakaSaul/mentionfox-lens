@@ -5,6 +5,7 @@
 // never touched, and it reads text through the same text-node walker as the highlighter (buildIndex), so every quote the model
 // copies from these blocks can be found again on the live page.
 import { buildIndex } from "./match.js";
+import { pickArticleRoot, cleanArticle, dropInvisible } from "./article-root.js";   // T2998: article body only
 
 /** Elements that never hold article text. */
 const ALWAYS_REMOVE = "script,style,noscript,template,svg,canvas,iframe,form,button,select,input,textarea,dialog,audio,video,object,embed,nav,aside,footer," +
@@ -129,17 +130,24 @@ function collapseSourceWhitespace(host) {
  * Extract the main content of a page as ordered text blocks (paragraphs, list items, quotes).
  * doc: a Document. Returns {blocks, rootTag, rawChars, chars}. rawChars is the visible text of the whole body before extraction.
  */
-export function extractMainBlocks(doc) {
+export function extractMainBlocks(doc, opts = {}) {
+  const { useArticleRoot = true, clean = true } = opts;
   const body = doc.body;
   const rawChars = buildIndex(body).text.length;
-  const root = pickMainRoot(doc);
+  // T2998: Wikipedia keeps its own rule; every other page first looks for the ARTICLE BODY (articleBody, the <article> with the real H1, JSON-LD to locate it, the densest text block)
+  const wiki = doc.querySelector("#mw-content-text");
+  const picked = !useArticleRoot || (wiki && textOf(wiki).length > 400) ? null : pickArticleRoot(doc);
+  const root = picked ? picked.root : pickMainRoot(doc);
+  const rootKind = picked ? picked.kind : "legacy";
   const clone = root.cloneNode(true);
+  const hidden = dropInvisible(root, clone); // only rendered, visible text is analysed
   const host = doc.createElement("div"); // keeps `closest()` and sibling walks working for a detached clone
   host.append(clone);
   removeAll(host, ALWAYS_REMOVE);
   removeAll(host, WIKI_REMOVE);
   removeTailSections(host);
   removeAll(host, BOILERPLATE_SMALL, (el) => textOf(el).length < SMALL_LIMIT && !el.querySelector("article, main, h1"));
+  const furniture = clean ? cleanArticle(host, !!picked) : {};   // inside a confirmed article the full list; elsewhere only tickers and ad slots // tickers, promos, related and headline lists, ads, the Wayback toolbar
   collapseSourceWhitespace(host);
   const { text } = buildIndex(host);
   const blocks = [];
@@ -150,7 +158,11 @@ export function extractMainBlocks(doc) {
     prev = t;
     for (const piece of splitLong(t)) blocks.push(piece);
   }
-  return { blocks, rootTag: root.tagName, rawChars, chars: blocks.reduce((n, b) => n + b.length + 1, 0) };
+  // T2998: text OUTSIDE the chosen root (a ticker line, a promo, a story on another subject) is never read at all. coherenceGuard() (article-root.js) is kept as a tested helper for a root
+  // that could only be guessed; it is NOT applied by default because on a correct root it cut real numbered quotes of an interview.
+  const out = blocks;
+  const guarded = 0;
+  return { blocks: out, rootTag: root.tagName, rootKind, rawChars, chars: out.reduce((n, b) => n + b.length + 1, 0), hiddenDropped: hidden, furniture, guarded };
 }
 
 const norm = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
