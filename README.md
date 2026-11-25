@@ -9,7 +9,7 @@ Every run shows a large colour **mode bar** at the top of both results tabs (tea
 
 Built for the [#BuildHybridAI 2026 hackathon](https://firebasehybridaihackathon.devpost.com/) with **Firebase AI Logic hybrid inference**: the model runs on-device with **Gemini Nano in Chrome** when it is available, and falls back to the cloud when it is not.
 
-Free to use. No account, no paywall, and nothing about the page goes to MentionFox servers. The one exception is the optional Check button (below), which sends a single sentence, its site and its archive date to our own server (api.foxapis.com) to verify that one claim. The two links at the bottom of the panel open MentionFox in a new tab and are the only upsell: "Verify these claims against public registers" goes to the MentionFox Source Check page (`/source-check`) and "Find contact details for a decision maker" goes to the MentionFox Find Contact tool (`/tools/find-contact`), both with `utm_source=lens&utm_medium=extension&utm_campaign=hybridai`.
+Free to use. No account, no paywall, and nothing about the page goes to MentionFox servers. The one exception, only in builds with the Check button turned on (off since 0.2.0), is that button (below), which sends a single sentence, its site and its archive date to our own server (api.foxapis.com) to verify that one claim. The two links at the bottom of the panel open MentionFox in a new tab and are the only upsell: "Verify these claims against public registers" goes to the MentionFox Source Check page (`/source-check`) and "Find contact details for a decision maker" goes to the MentionFox Find Contact tool (`/tools/find-contact`), both with `utm_source=lens&utm_medium=extension&utm_campaign=hybridai`.
 
 <!-- Screenshots: add real captures from a Chrome with the on-device model (see "What the owner must test"). -->
 | Claim X-ray | AI view | Highlights in place |
@@ -64,6 +64,8 @@ Permissions: `activeTab`, `scripting`, `sidePanel`. Nothing else.
 
 ## Judges' path
 
+For the hackathon, follow [TESTING.md](TESTING.md). The steps below are the older developer path.
+
 1. **Clone and build.**
    ```bash
    git clone https://github.com/OsakaSaul/mentionfox-lens.git
@@ -84,6 +86,8 @@ Permissions: `activeTab`, `scripting`, `sidePanel`. Nothing else.
 **What was and was not verified:** the cloud path (App Check with a registered debug token, Firebase AI Logic, structured output, highlighting, UI) was run for real on 2026-11-23, see "Run log" and [`docs/real-runs/NOTES.md`](docs/real-runs/NOTES.md). The on-device path was **not** run by the authors (the available Chromium 151 reports Gemini Nano as unavailable); it is implemented against the SDK's documented hybrid API and needs a real Chrome with Gemini Nano to confirm.
 
 ## Check button (T2989)
+
+Since 0.2.0 the Check button is hidden: the builds, the screenshots in the demo and the panel text do not include it, because its answers were not consistent between runs. The code is kept; a build made with the environment variable LENS_SHOW_CHECK=true turns it back on. The text below, and other mentions of Check in this file, describe that build.
 
 Check calls `POST https://api.foxapis.com/v1/lens/check` on the FoxAPIs backend (no key, no sign-in, no credits). The route accepts `{claim, domain, snapshot_date}` from a Chrome extension origin only (anything else is 403), runs the claims-check engine inside the backend, and returns `{verdict, reason, sources}` (at most 3 sources, one per site). A global cap of 100 checks per UTC day is counted in the database (over it: 429 "Web checks are busy today"; a failed check gives its slot back). The sentence is never logged. `lens-check/` (a Cloudflare Worker from T2988) is no longer used.
 

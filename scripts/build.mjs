@@ -3,7 +3,7 @@
 //   npm run build:dev   dev build (App Check debug token from .env.local, or the SDK prints a fresh one)
 //   npm run build:e2e   dev build + test mock (test harness only)
 import { build } from "esbuild";
-import { cpSync, mkdirSync, rmSync, readFileSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, rmSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -11,6 +11,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolve(root, "dist");
 const dev = process.argv.includes("--dev");
 const e2e = process.argv.includes("--e2e");
+const showCheck = process.env.LENS_SHOW_CHECK === "true"; // T3010: the Check button is off unless asked for
 
 function readEnv() {
   const p = resolve(root, ".env.local");
@@ -38,6 +39,7 @@ const common = {
   target: "chrome139",
   platform: "browser",
   minify: !dev,
+  minifySyntax: true, // also in dev builds, so code behind an off flag is left out of the bundle
   sourcemap: dev ? "inline" : false,
   legalComments: "none",
   logLevel: "info",
@@ -46,6 +48,7 @@ const common = {
     __APPCHECK_DEBUG_TOKEN__: JSON.stringify(dev ? env.APPCHECK_DEBUG_TOKEN || "" : ""),
     __DEV_BUILD__: JSON.stringify(dev),
     __E2E__: JSON.stringify(e2e),
+    __SHOW_CHECK__: JSON.stringify(showCheck),
   },
 };
 
@@ -61,7 +64,8 @@ await build({
 });
 
 cpSync(resolve(root, "manifest.json"), resolve(dist, "manifest.json"));
-cpSync(resolve(root, "src/sidepanel/sidepanel.html"), resolve(dist, "sidepanel.html"));
+const panelHtml = readFileSync(resolve(root, "src/sidepanel/sidepanel.html"), "utf8");
+writeFileSync(resolve(dist, "sidepanel.html"), panelHtml.replace(/<!--check-start-->([\s\S]*?)<!--check-end-->/g, (_, inner) => (showCheck ? inner : "")));
 cpSync(resolve(root, "src/sidepanel/ui.css"), resolve(dist, "ui.css"));
 cpSync(resolve(root, "src/popup/popup.html"), resolve(dist, "popup.html"));
 cpSync(resolve(root, "src/content.css"), resolve(dist, "content.css"));

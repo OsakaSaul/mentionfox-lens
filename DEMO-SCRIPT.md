@@ -1,4 +1,4 @@
-# MentionFox Lens: demo video script (version 0.1.9)
+# MentionFox Lens: demo video script (version 0.2.0)
 
 Under 3 minutes (the contest only judges the first 3:00). English. Upload to YouTube as Public, then paste the link into Devpost.
 
@@ -6,11 +6,11 @@ The message from start to finish: Lens shows signals a careful reader could have
 
 ## Before you press record
 
-1. Chrome desktop, with Lens loaded from the build you tested (TESTING.md).
+1. Chrome desktop. Open chrome://extensions and click the reload arrow on MentionFox Lens, so it shows version 0.2.0 (your own build in the dist folder).
 2. Block JavaScript for the Web Archive, so the archived page does not blank itself:
    type chrome://settings/content/javascript in the address bar, find "Not allowed to use JavaScript", click Add, type [*.]web.archive.org, click Add.
 3. Open the Lens side panel once so it is ready: puzzle-piece icon, MentionFox Lens, then "Open Lens side panel".
-4. Before the real take, click Deep scan once to confirm your build can reach the cloud: the plain release zip may be refused (see TESTING.md).
+4. Before the real take, click Deep scan once to confirm your build reaches the cloud. Use your own dist build or the judges zip, not the public release zip.
 5. In a second tab, have the Justice Department page open: https://www.justice.gov/usao-ndca/us-v-elizabeth-holmes-et-al
 6. In a third tab, have the code open: https://github.com/OsakaSaul/mentionfox-lens
 
@@ -49,31 +49,23 @@ Click: "Show on page" on the 70-tests card ("Theranos can run as many as 70 test
 
 Say: "One click takes me to the exact sentence. Nothing is paraphrased. These are the article's own words."
 
-## Beat 5: ask for proof (1:30 to 2:00)
-
-Do NOT click Check in this video. In our test runs its verdict on this sentence kept changing, and one run showed a green Supported tick. Stay on the red card.
-
-Click: nothing. Point at the 70-tests card and the one-line reason under the quote.
-
-Say: "Under each flag is one line saying why. A flag does not say the sentence is false. It says: before you believe this, ask for proof. In 2014, that was the question to ask."
-
-## Beat 6: Quick private scan, one line (2:00 to 2:10)
+## Beat 5: Quick private scan, one line (1:30 to 1:45)
 
 Click: "Quick private scan". Only do this beat if the bar under it will say On-device in your browser; test it before recording. If it says Cloud, skip the click and cut this beat.
 
 Say: "There is also a lighter Quick private scan that runs on my own device, so the page stays in my browser."
 
-## Beat 7: the reveal (2:10 to 2:30)
+## Beat 6: the reveal (1:45 to 2:10)
 
 Click: the Justice Department tab. Scroll to the sentence beginning "On January 3, 2022".
 
 Say: "In January 2022, a federal jury convicted Elizabeth Holmes of defrauding investors. Lens did not need to know that. It read a 2014 page and pointed at what was missing."
 
-## Beat 8: close (2:30 to 2:45)
+## Beat 7: close (2:10 to 2:30)
 
 Click: the GitHub tab.
 
-Say: "MentionFox Lens is free and open source. It will not tell you what to believe. It shows you where to ask for proof. The code is on GitHub."
+Say: "MentionFox Lens is free and open source. A flag does not say a sentence is false. It shows you where to ask for proof. The code is on GitHub."
 
 ## If something goes wrong
 

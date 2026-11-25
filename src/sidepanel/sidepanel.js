@@ -31,7 +31,9 @@ function h(tag, attrs = {}, ...kids) {
 $("linkVerify").href = VERIFY_CLAIMS_URL;
 $("linkPeople").href = DECISION_MAKERS_URL;
 
-let engine = { runTask, initDevice, probeDevice, warmDevice, streamChunk: streamDeviceChunk, runCheck: runWorkerCheck };
+// T3010: Check is hidden unless the build sets LENS_SHOW_CHECK=true (scripts/build.mjs). Off: no button, no row, no storage read, no call.
+// Written out at each use so esbuild can drop the Check code from the bundle.
+let engine = { runTask, initDevice, probeDevice, warmDevice, streamChunk: streamDeviceChunk, runCheck: (typeof __SHOW_CHECK__ !== "undefined" && __SHOW_CHECK__) ? runWorkerCheck : null };
 let state = { tabId: null, claims: [], results: new Map(), page: null, covered: new Set(), remaining: 0, warm: null };
 
 /* ---------- status helpers ---------- */
@@ -196,7 +198,7 @@ function renderClaims(claims, results) {
     );
     if (found) card.addEventListener("click", () => jump(c.id));
     const li = h("li", {}, card);
-    if ((c.kind === "specific" || c.kind === "redflag") && found) {
+    if ((typeof __SHOW_CHECK__ !== "undefined" && __SHOW_CHECK__) && (c.kind === "specific" || c.kind === "redflag") && found) {
       const row = h("div", { class: "checkrow" });
       li.append(row);
       checkRows.set(c.quote, { c, row, li });
@@ -292,7 +294,7 @@ async function doCheck(quote) {
   }
   renderAllCheckRows();
 }
-readStoredQuota().then((q) => { quotaNow = quotaState(q); renderAllCheckRows(); });
+if ((typeof __SHOW_CHECK__ !== "undefined" && __SHOW_CHECK__)) readStoredQuota().then((q) => { quotaNow = quotaState(q); renderAllCheckRows(); });
 
 async function jump(id) {
   try {
