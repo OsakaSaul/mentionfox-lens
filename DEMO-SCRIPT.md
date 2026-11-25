@@ -10,7 +10,7 @@ The message from start to finish: Lens shows signals a careful reader could have
 2. Block JavaScript for the Web Archive, so the archived page does not blank itself:
    type chrome://settings/content/javascript in the address bar, find "Not allowed to use JavaScript", click Add, type [*.]web.archive.org, click Add.
 3. Open the Lens side panel once so it is ready: puzzle-piece icon, MentionFox Lens, then "Open Lens side panel".
-4. You get 5 free checks a day. One take uses one. Before the real take, click Deep scan once to confirm your build can reach the cloud: the plain release zip may be refused (see TESTING.md).
+4. Before the real take, click Deep scan once to confirm your build can reach the cloud: the plain release zip may be refused (see TESTING.md).
 5. In a second tab, have the Justice Department page open: https://www.justice.gov/usao-ndca/us-v-elizabeth-holmes-et-al
 6. In a third tab, have the code open: https://github.com/OsakaSaul/mentionfox-lens
 
@@ -49,21 +49,13 @@ Click: "Show on page" on the 70-tests card ("Theranos can run as many as 70 test
 
 Say: "One click takes me to the exact sentence. Nothing is paraphrased. These are the article's own words."
 
-## Beat 5: Check the 70-tests flag (1:30 to 2:00)
+## Beat 5: ask for proof (1:30 to 2:00)
 
-Click: the "Check" button on that same card. Wait for the verdict (about 8 seconds in our test run; cut it in the edit).
+Do NOT click Check in this video. In our test runs its verdict on this sentence kept changing, and one run showed a green Supported tick. Stay on the red card.
 
-The verdict on this sentence has changed between our test runs. Read your screen, then say the matching line.
+Click: nothing. Point at the 70-tests card and the one-line reason under the quote.
 
-Say: "Check sends only this one sentence, the site name and the archive date, and searches for a public record."
-
-If it says Contradicted, say: "Today the record contradicts it, and here is a source I can open. That is today's verdict. In 2014 the honest signal was simply: show me the evidence."
-
-If it says anything else, say: "No clear independent record for this one. So the honest signal is the same as in 2014: show me the evidence."
-
-Click: the source link under the verdict, if there is one. Mention its date only if you can see it and it is after June 2014.
-
-(The panel shows today's verdict only. It does not print an as-of-2014 verdict, so do not claim one.)
+Say: "Under each flag is one line saying why. A flag does not say the sentence is false. It says: before you believe this, ask for proof. In 2014, that was the question to ask."
 
 ## Beat 6: Quick private scan, one line (2:00 to 2:10)
 
@@ -86,5 +78,4 @@ Say: "MentionFox Lens is free and open source. It will not tell you what to beli
 ## If something goes wrong
 
 - The archived page is blank: JavaScript is not blocked yet. Redo step 2, then reload.
-- "Web checks are busy today" or "not available": record beat 5 later.
 - Deep scan is refused: you are on a build that cannot reach the cloud. See TESTING.md.

@@ -22,7 +22,7 @@ MentionFox Lens is a free, open-source Chrome extension. It reads the page you a
 
 Deep scan reads the whole article in the cloud, in one pass. Red flags come first: extraordinary claims with the key evidence missing, evasive answers, secrecy offered as a feature, and numbers that disagree. Below them, claims are marked "specific and checkable" or "vague or puffery", each with a one-line reason. "Show on page" jumps to the exact sentence and highlights it.
 
-Check takes one specific claim and searches for a public record. It answers Contradicted, Supported or No clear record, with up to 3 sources you can open. There are 5 free checks a day per install, and a shared daily cap of 100 across all users.
+Check takes one specific claim and searches for a public record. It answers Contradicted, Supported or No clear record, with up to 3 sources you can open. It is experimental: the same sentence can get a different answer on another run, so read the sources before you rely on it. There are 5 free checks a day per install, and a shared daily cap of 100 across all users.
 
 Quick private scan reads the first part of the page, on your device when your browser has the built-in model. It is lighter than Deep scan.
 
@@ -46,7 +46,7 @@ Archived pages. The 2014 article blanks itself when its old scripts run, so the 
 
 Noise. Early runs treated tickers, promos, related links and the Web Archive toolbar as claims. Lens now reads the article body only.
 
-Hindsight. It is easy to make a tool look clever about a famous fraud. The red-flag rules look only at what the page itself says and leaves out. Check sends the archive date along with the sentence, but the panel currently shows today's verdict only.
+Hindsight. It is easy to make a tool look clever about a famous fraud. The red-flag rules look only at what the page itself says and leaves out. Check, which searches the record, is separate, and the panel does not show a verdict as of the page's date.
 
 Quoting. Models reword what they quote. The five-tier matcher ties each card back to real text on the page, and a card says so when it cannot.
 
@@ -55,8 +55,6 @@ On-device limits. The built-in model is not available on every machine, includin
 ## Accomplishments that we're proud of
 
 On the archived 2014 Fortune article, three separate Deep scan test runs each returned 7 red flags, and all three included the same four signals: the "1/100th to 1/1,000th" blood amount, as many as 70 tests from 25 to 50 microliters, the trade secret, and "the same fundamental chemical methods". Deep scan took between 4.7 and 5.7 seconds in those runs.
-
-In a later test run, Check on the 70-tests sentence returned Contradicted, citing Wall Street Journal reporting. That is a verdict from today's record, and it has varied between runs.
 
 It is free, MIT licensed, needs no account, and asks for four permissions.
 

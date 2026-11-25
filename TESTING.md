@@ -49,7 +49,7 @@ You can remove this entry when you finish testing.
 What you should see: a blue Cloud bar with the time taken (about 5 to 6 seconds in our test runs), a one-line summary of counts, and red flags at the top of the list. In our three test runs there were 7 red flags, including the 1/100th to 1/1,000th blood amount, as many as 70 tests from 25 to 50 microliters, the trade secret, and "the same fundamental chemical methods". Counts and wording can differ a little between runs.
 
 4. Click Show on page on a card. The page scrolls to that sentence and highlights it.
-5. Click Check on the 70-tests card. A verdict appears with any sources. It is a verdict from today's record, not as of 2014, and it has varied between runs on this sentence.
+5. Optional: click Check on a specific claim card. It searches for a public record. It is experimental: the same sentence can get a different answer on another run, including a wrong one, so read the sources. It does not show a verdict as of the page's date.
 
 ## Limits
 
