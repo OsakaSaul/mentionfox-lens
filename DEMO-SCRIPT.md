@@ -4,6 +4,11 @@ Under 3 minutes (the contest only judges the first 3:00). English. Upload to You
 
 The message from start to finish: Lens shows signals a careful reader could have caught in 2014. It is not hindsight.
 
+## The video that is uploaded (checked 2026-11-27, T3197)
+
+https://www.youtube.com/watch?v=9V4l8CaBxpA : public, 1 minute 34 seconds, English. It shows one cloud Deep scan (5.6 seconds on screen). No On-device bar is shown and no quick scan is run.
+Two things in it go further than what has been seen on this computer and should be fixed before submitting: (1) at about 1:01 to 1:10 the voice says the quick private scan runs on my own device, so the page stays in my browser; (2) the video description says the quick private scan runs on your own device, so the page never leaves your browser. The extension itself says: on your device when your browser supports it, otherwise the cloud.
+
 ## On this computer: no on-device shot
 
 Chrome on this computer reports the graphics processor as blocked for the on-device model. Do not show or say anything runs on the device. Skip Beat 5. If your existing video shows an On-device bar or says a scan runs on your device, tell Claude before submitting: the video has to match what the extension does.
