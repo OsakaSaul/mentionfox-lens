@@ -16,6 +16,10 @@ In June 2014 Fortune put Theranos on its cover. The article said the company cou
 
 We wanted a tool that points at lines like those while you are reading. Not hindsight, and not a lie detector: signals a careful reader could have caught on the day.
 
+## Value proposition
+
+Anyone reading a company's page, a profile or a pitch can see, while reading, which sentences to ask proof for. It is free, needs no account, and shows whether each run stayed on the device or went to the cloud.
+
 ## What it does
 
 MentionFox Lens is a free, open-source Chrome extension. It reads the page you are on, only when you click.
@@ -27,6 +31,10 @@ Quick private scan reads the first part of the page, on your device when your br
 AI view shows how an AI assistant would summarise the page: what it would pick up, what is missing or unclear, three fixes and a score.
 
 Lens never calls a sentence false by its own judgment. A red flag means "ask for proof".
+
+## What we built during the submission period
+
+The project is new: the repository's first commit is dated 23 November 2026, inside the submission period, and it holds the whole history. During the period we built the extension, the hybrid path with Firebase AI Logic (on device first, cloud as the fallback, plus the cloud-only Deep scan), the red-flag rules, reading only the article body, the quote matcher and highlighting, and the tests. We used AI coding assistants (Claude Code) and standard libraries (Firebase JavaScript SDK, esbuild, Playwright). One feature that is switched off in this release, Check, calls a server of ours at foxapis.com that is not part of this repository.
 
 ## How we built it
 

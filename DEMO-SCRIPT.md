@@ -4,6 +4,14 @@ Under 3 minutes (the contest only judges the first 3:00). English. Upload to You
 
 The message from start to finish: Lens shows signals a careful reader could have caught in 2014. It is not hindsight.
 
+## First, once: can your Chrome run the on-device model?
+
+The contest is judged on how the entry uses on-device and cloud together, so a take that shows "On-device" matters.
+
+1. Type chrome://on-device-internals in the address bar and press Enter. (If Chrome says the page is disabled, follow the one switch it names, then open it again.)
+2. Find where the page shows the model's status (it may be a tab named Model Status) and read it. If it offers a download, start it and wait until it is ready. Chrome asks for at least 22 GB of free disk, and either a graphics card with more than 4 GB of memory or 16 GB of RAM with 4 processor cores.
+3. Open any article, open the Lens side panel and click Quick private scan. If the bar says On-device, keep Beat 5. If it says Cloud, send us the Model Status text before recording.
+
 ## Before you press record
 
 1. Chrome desktop. Open chrome://extensions and click the reload arrow on MentionFox Lens, so it shows version 0.2.0 (your own build in the dist folder).
