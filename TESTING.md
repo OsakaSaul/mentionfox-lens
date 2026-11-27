@@ -1,16 +1,16 @@
 # Testing MentionFox Lens (for judges)
 
-Version 0.2.0. Chrome desktop, version 139 or newer.
+Version 0.2.1. Chrome desktop, version 139 or newer.
 
 ## Which zip to use
 
-Judges: download lens-0.2.0-judges.zip from the private link in the testing instructions field of our Devpost submission. This build can reach the cloud, so Deep scan works. Please do not share the link or the zip.
+Judges: download lens-0.2.1-judges.zip from the private link in the testing instructions field of our Devpost submission. This build can reach the cloud, so Deep scan works. Please do not share the link or the zip.
 
-The public zip on the GitHub release (lens-0.2.0.zip) contains no cloud access credential. While Firebase App Check enforcement is on, Deep scan and the cloud version of Quick private scan are refused in that build: you get a short failure message and no cards. Only the on-device Quick private scan can work there, and only if your Chrome has the built-in model ready. The authors have not been able to run that on-device path.
+The public zip on the GitHub release (lens-0.2.1.zip) contains no cloud access credential. While Firebase App Check enforcement is on, Deep scan and the cloud version of Quick private scan are refused in that build: you get a short failure message and no cards. Only the on-device Quick private scan can work there, and only if your Chrome has the built-in model ready. The authors have not been able to run that on-device path.
 
 ## Install
 
-1. Download lens-0.2.0-judges.zip from the private link.
+1. Download lens-0.2.1-judges.zip from the private link.
 2. Unzip it into its own folder.
 3. Type chrome://extensions in the address bar and press Enter.
 4. Turn on Developer mode (top right).
