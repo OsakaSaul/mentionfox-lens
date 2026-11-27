@@ -2,7 +2,7 @@
 
 Under 3 minutes (the contest only judges the first 3:00). English. Upload to YouTube as Public, then paste the link into Devpost.
 
-The message from start to finish: Lens shows signals a careful reader could have caught in 2014. It is not hindsight.
+The message from start to finish: while you read, Lens shows which sentences to ask proof for. It works on any article. The video uses a made-up page, so no real company or person is on screen.
 
 ## First, once: can your Chrome run the on-device model?
 
@@ -14,22 +14,17 @@ The contest is judged on how the entry uses on-device and cloud together, so a t
 
 ## Before you press record
 
-1. Chrome desktop. Open chrome://extensions and click the reload arrow on MentionFox Lens, so it shows version 0.2.0 (your own build in the dist folder).
-2. Block JavaScript for the Web Archive, so the archived page does not blank itself:
-   type chrome://settings/content/javascript in the address bar, find "Not allowed to use JavaScript", click Add, type [*.]web.archive.org, click Add.
-3. Open the Lens side panel once so it is ready: puzzle-piece icon, MentionFox Lens, then "Open Lens side panel".
-4. Before the real take, click Deep scan once to confirm your build reaches the cloud. Use your own dist build or the judges zip, not the public release zip.
-5. In a second tab, have the Justice Department page open: https://www.justice.gov/usao-ndca/us-v-elizabeth-holmes-et-al
-6. In a third tab, have the code open: https://github.com/OsakaSaul/mentionfox-lens
-
-Say only what is on your screen. Counts, seconds and wording change a little between runs. If a flag below is not there, skip its line.
+1. Chrome desktop. Open chrome://extensions and click the reload arrow on MentionFox Lens, so it shows version 0.2.0 (your own build in the dist folder, or the judges zip, not the public release zip).
+2. Open https://foxapis.com/demo/lens-sample/ and open the Lens side panel: puzzle-piece icon, MentionFox Lens, then "Open Lens side panel".
+3. Practice once: click Deep scan and note which red cards appear. Nobody has run Lens on this page yet, so this practice run is the first look. Say only what is on your screen; if a kind of flag below is not there, skip its line. Counts, seconds and wording change a little between runs.
+4. Frame the recording on the page and the side panel only: no bookmarks bar, no other tabs' titles, no other extensions' icons.
+5. In a second tab have the code open for the last beat: https://github.com/OsakaSaul/mentionfox-lens . If you would rather keep every logo out of frame, skip the click and just say the address.
 
 ## Beat 1: the hook (0:00 to 0:20)
 
-Click: paste this address and press Enter.
-https://web.archive.org/web/20140805154020/http://fortune.com/2014/06/12/theranos-blood-holmes/
+Click: the tab with the sample article. Rest on the yellow line at the top for a moment.
 
-Say: "June 2014. Fortune puts Theranos on its cover. This is the archived page, saved that August. Nothing had gone wrong in public yet. Could a careful reader have seen a problem, using only what was on this page?"
+Say: "This article is made up for the demo: the company, the people and the paper. It reads like many pitches and profiles. Which sentences should you ask for proof of?"
 
 ## Beat 2: Deep scan (0:20 to 0:35)
 
@@ -37,45 +32,45 @@ Click: the "Deep scan" button.
 
 Say: "This is MentionFox Lens. I click Deep scan, and the cloud model reads the whole article in one pass."
 
-(Cut the waiting in the edit. It took about 6 seconds in our test run.)
+(Cut the waiting in the edit.)
 
-## Beat 3: red flags at the top (0:35 to 1:20)
+## Beat 3: red flags at the top (0:35 to 1:25)
 
-Click: nothing. Point at the red cards at the top of the list.
+Click: nothing. Point at each red card as you talk about it. Use only the lines whose flag is on screen.
 
-Say: "Red flags come first. Here: tests done on one hundredth to one thousandth of the usual amount of blood. That is an extraordinary claim, and the page gives no key evidence for it."
+Extraordinary claim, say: "An extraordinary claim: a very big result, and the page gives no key evidence for it."
 
-Say: "As many as seventy different tests from 25 to 50 microliters. Same problem."
+Numbers that disagree, say: "The page gives two different numbers for the same thing. Lens puts that near the top."
 
-Say: "How is it done? The article says that is a trade secret. Lens flags secrecy offered as a feature."
+Secrecy, say: "The method is kept secret, and the secrecy is offered as the reason to trust it."
 
-Say: "And when pressed, the company only says it uses the same fundamental chemical methods as other labs. Lens flags that as an evasive answer."
+Evasive answer, say: "Asked a direct question, the answer talks about something else."
 
-## Beat 4: Show on page (1:20 to 1:30)
+## Beat 4: Show on page (1:25 to 1:40)
 
-Click: "Show on page" on the 70-tests card ("Theranos can run as many as 70 tests...").
+Click: "Show on page" on one red card.
 
-Say: "One click takes me to the exact sentence. Nothing is paraphrased. These are the article's own words."
+Say: "One click takes me to the exact sentence, in the article's own words."
 
-## Beat 5: Quick private scan, one line (1:30 to 1:45)
+## Beat 5: checkable or puffery (1:40 to 1:55)
+
+Click: scroll the list down to one card marked specific and checkable, then one marked vague or puffery.
+
+Say: "Below the flags, Lens separates claims you can check, with a number or a date, from praise you cannot."
+
+## Beat 6: Quick private scan, one line (1:55 to 2:10)
 
 Click: "Quick private scan". Only do this beat if the bar under it will say On-device in your browser; test it before recording. If it says Cloud, skip the click and cut this beat.
 
 Say: "There is also a lighter Quick private scan that runs on my own device, so the page stays in my browser."
 
-## Beat 6: the reveal (1:45 to 2:10)
-
-Click: the Justice Department tab. Scroll to the sentence beginning "On January 3, 2022".
-
-Say: "In January 2022, a federal jury convicted Elizabeth Holmes of defrauding investors. Lens did not need to know that. It read a 2014 page and pointed at what was missing."
-
 ## Beat 7: close (2:10 to 2:30)
 
-Click: the GitHub tab.
+Click: the code tab, or stay on the article.
 
-Say: "MentionFox Lens is free and open source. A flag does not say a sentence is false. It shows you where to ask for proof. The code is on GitHub."
+Say: "MentionFox Lens is free and open source, and it works on any article. A flag does not say a sentence is false. It shows you where to ask for proof."
 
 ## If something goes wrong
 
-- The archived page is blank: JavaScript is not blocked yet. Redo step 2, then reload.
 - Deep scan is refused: you are on a build that cannot reach the cloud. See TESTING.md.
+- A flag you expected is missing: skip its line. Do not add words Lens did not show.

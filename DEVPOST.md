@@ -12,9 +12,11 @@ See what a careful reader would question on any page
 
 ## Inspiration
 
-In June 2014 Fortune put Theranos on its cover. The article said the company could run dozens of tests on a tiny blood sample, called the method a trade secret, and reported a founder who would say little about how it worked. Those lines were on the page for anyone to read. In January 2022 a federal jury convicted Elizabeth Holmes of defrauding investors.
+Many pages that ask for your trust carry their own warning signs: a very large result with no evidence beside it, two numbers that do not agree, a method kept secret, a direct question answered with something else. Those lines are on the page for anyone to read, and they are easy to read past.
 
-We wanted a tool that points at lines like those while you are reading. Not hindsight, and not a lie detector: signals a careful reader could have caught on the day.
+We wanted a tool that points at them while you are reading. Not hindsight, and not a lie detector: signals a careful reader could catch on the day.
+
+Lens works on any article. The demo uses a made-up page, with an invented company, people and publication, to keep the video free of other people's trademarks and likenesses: https://foxapis.com/demo/lens-sample/
 
 ## Value proposition
 
@@ -46,11 +48,11 @@ The extension is Manifest V3 with four permissions (activeTab, scripting, sidePa
 
 ## Challenges we ran into
 
-Archived pages. The 2014 article blanks itself when its old scripts run, so the demo blocks JavaScript for the Web Archive, and Lens can fall back to the page's no-script copy.
+Archived pages. Some saved copies of old articles blank themselves when their old scripts run, so Lens can fall back to the page's no-script copy.
 
 Noise. Early runs treated tickers, promos, related links and the Web Archive toolbar as claims. Lens now reads the article body only.
 
-Hindsight. It is easy to make a tool look clever about a famous fraud. The red-flag rules look only at what the page itself says and leaves out.
+Hindsight. It is easy to make a tool look clever after the facts are out. The red-flag rules look only at what the page itself says and leaves out.
 
 Quoting. Models reword what they quote. The five-tier matcher ties each card back to real text on the page, and a card says so when it cannot.
 
@@ -58,7 +60,7 @@ On-device limits. The built-in model is not available on every machine, includin
 
 ## Accomplishments that we're proud of
 
-On the archived 2014 Fortune article, three separate Deep scan test runs each returned 7 red flags, and all three included the same four signals: the "1/100th to 1/1,000th" blood amount, as many as 70 tests from 25 to 50 microliters, the trade secret, and "the same fundamental chemical methods". Deep scan took between 4.7 and 5.7 seconds in those runs.
+In testing on one saved long magazine article from 2014, three separate Deep scan runs each returned 7 red flags, and the same four signals appeared in all three: two very large technical claims, a method held as a trade secret, and an answer that did not address the question. Deep scan took between 4.7 and 5.7 seconds in those runs.
 
 It is free, MIT licensed, needs no account, and asks for four permissions.
 
@@ -88,6 +90,6 @@ Testing instructions: TESTING.md in the repository
 
 Privacy policy: https://foxapis.com/lens/privacy/
 
-Source for the 2022 conviction: https://www.justice.gov/usao-ndca/us-v-elizabeth-holmes-et-al
+Demo page (made up): https://foxapis.com/demo/lens-sample/
 
 Demo video: add the YouTube link after uploading
