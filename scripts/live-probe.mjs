@@ -1,7 +1,7 @@
 // Real (unmocked) run of the DEV build in Chromium against a fixture page. Records what actually happens:
 // LanguageModel availability, the mode badge, errors from the cloud fallback (App Check, key restrictions).
 //   node scripts/live-probe.mjs                          default fixture, writes docs/live-probe.txt
-//   node scripts/live-probe.mjs --fixture <file>         any saved HTML page (e.g. fixtures/real/founder-bio.html);
+//   node scripts/live-probe.mjs --fixture <file>         any HTML file;
 //                                                        writes docs/real-runs/<name>/ (run-log.txt, result.json, screenshots)
 //   options: --out <dir>  --no-build  --nano-flags
 // Needs a dev build with APPCHECK_DEBUG_TOKEN in .env.local (gitignored). The token is redacted from every output.

@@ -242,25 +242,25 @@ try {
 
   // ---- Speed (T2963): warm-up, main-content extraction, chunked streaming, progress, first claim, Analyze more. MOCK on-device model: it proves the
   // ---- streaming and progress logic of the extension, NOT the speed of Gemini Nano. ----
-  const SBF = "wikipedia-sam-bankman-fried";
+  const SBF = "made-up/encyclopedia-rowan";
   const sbfUrl = `http://127.0.0.1:${port}/${SBF}`;
   const sbfPage = await ctx.newPage();
   await sbfPage.goto(sbfUrl);
   const sbfTab = await sw.evaluate(async (u) => (await chrome.tabs.query({ url: u + "*" }))[0].id, sbfUrl);
   const sbfClaims = (arr) => ({ claims: { claims: arr.map(([quote, kind = "specific"]) => ({ quote, kind, why: "A date, number or name a reader can check against a public source." })) }, geo: MOCKS["company-site"].geo });
   const setA = sbfClaims([
-    ["Samuel Benjamin Bankman-Fried (born March 5, 1992), commonly known as SBF, is an American entrepreneur convicted of fraud."],
-    ["In November 2022, as evidence of potential fraud began to surface, depositors quickly withdrew their assets from FTX, forcing the company into bankruptcy."],
-    ["He graduated from the Massachusetts Institute of Technology in 2014 with a bachelor's degree in physics and a minor in mathematics."],
-    ["In the summer of 2013, Bankman-Fried worked as an intern at Jane Street Capital, a proprietary trading firm, trading international ETFs."],
-    ["By 2021, Bankman-Fried owned approximately 90 percent of Alameda Research."],
-    ["Bankman-Fried founded the FTX cryptocurrency derivatives exchange in April 2019; it opened for business the following month."],
-    ["In September 2021, Bankman-Fried and the entire senior staff of FTX moved from Hong Kong to the Bahamas."],
-    ["His parents are Barbara Fried and Joseph Bankman, both professors at Stanford Law School."],
+    ["Rowan Elias Ashcombe (born March 5, 1992), commonly known as REA, is an American entrepreneur who founded the Quillex digital-asset exchange and was later convicted of fraud."],
+    ["In November 2022 both businesses failed within the same week, after customers asked for their money back and Quillex could not pay it."],
+    ["Ashcombe studied physics at the Redmont Institute of Technology from 2010 to 2014 and added a minor in mathematics."],
+    ["During his third year he took a summer job at a trading firm in New York, which offered him a full-time position after graduation."],
+    ["By the end of 2018 it employed about thirty people and had moved its main office twice."],
+    ["Quillex opened in May 2019."],
+    ["The company moved its headquarters to a Caribbean island in 2021, citing clearer rules for exchanges."],
+    ["Both of his parents taught law at Calloway University, and the family lived a short walk from the campus."],
   ]);
   const setB = sbfClaims([
-    ["Bankman-Fried attended Canada/USA Mathcamp, a summer program for mathematically talented high-school students."],
-    ["He attended high school at the elite private Crystal Springs Uplands School in Hillsborough, California."],
+    ["He attended a private school in the next town and spent two summers at a mathematics camp."],
+    ["As a child he preferred board games and puzzles to team sports, according to a profile published in 2021."],
   ]);
   const sp = await ctx.newPage();
   await sp.addInitScript((a) => { window.__MFL_MOCK__ = a.m; window.__MFL_CHUNK_MS__ = 700; }, { m: setA });
@@ -339,7 +339,7 @@ try {
   await cp.click("#analyze");
   await cp.waitForFunction(() => /^Done/.test(document.getElementById("status").textContent), null, { timeout: 30000 });
   const cloudPrompt = await cp.evaluate(() => window.__mflPrompts.claims);
-  check("cloud: one call, same main-content extraction, 12,000-character budget", cloudPrompt.length > 12000 && cloudPrompt.length < 16000 && !/28 languages|Toggle the table of contents|Edit links/.test(cloudPrompt) && /Samuel Benjamin Bankman-Fried \(born March 5, 1992\)/.test(cloudPrompt), `${cloudPrompt.length} chars of prompt`);
+  check("cloud: one call, same main-content extraction, 12,000-character budget", cloudPrompt.length > 12000 && cloudPrompt.length < 16000 && !/28 languages|Toggle the table of contents|Edit links/.test(cloudPrompt) && /Rowan Elias Ashcombe \(born March 5, 1992\)/.test(cloudPrompt), `${cloudPrompt.length} chars of prompt`);
   check("cloud: bar 'Cloud · 3.1 seconds'", (await txt(cp, "#claimsMode .mode-main")) === "Cloud · 3.1 seconds", await txt(cp, "#claimsMode .mode-main"));
   check("cloud: 'First claim in X seconds' also shown, and the more button is offered", /^First claim in \d+\.\d seconds$/.test(await txt(cp, "#claimsMode .mode-first")) && (await cp.locator("#more").isVisible()));
   await cp.close();

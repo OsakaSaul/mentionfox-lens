@@ -1,0 +1,20 @@
+{
+ "note": "Hand-written test claims about a made-up page. Not model output.",
+ "claims": [
+  {
+   "quote": "it had raised $14 million in a Series A round led by Harrow Lane Partners"
+  },
+  {
+   "quote": "The Austin company, founded in 2016, will use the money to double its engineering team to 40 people."
+  },
+  {
+   "quote": "Its software forecasts street flooding from rain-gauge readings and maps of the drainage network."
+  },
+  {
+   "quote": "it had warned them of overflows during storms in September 2022"
+  },
+  {
+   "quote": "the company expected to become profitable in 2025"
+  }
+ ]
+}

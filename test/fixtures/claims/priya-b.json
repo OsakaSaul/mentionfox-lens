@@ -1,0 +1,20 @@
+{
+ "note": "Hand-written test claims about a made-up page. Not model output.",
+ "claims": [
+  {
+   "quote": "Priya Lindqvist (born 9 September 1988) is a Swedish entrepreneur"
+  },
+  {
+   "quote": "The service opened to the public in 2011 after a year of private testing with about fifty shops."
+  },
+  {
+   "quote": "It opened offices in Berlin and Singapore in 2015."
+  },
+  {
+   "quote": "She learned to fly small aircraft in 2014"
+  },
+  {
+   "quote": "She co-founded a research institute in 2021"
+  }
+ ]
+}

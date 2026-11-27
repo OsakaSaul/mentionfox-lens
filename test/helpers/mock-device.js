@@ -12,6 +12,6 @@ export function mockDeviceModel(chunk, mode = "plausible", system = DEVICE_SYSTE
   const wantsEvery = /EVERY claim/.test(system) && mode !== "terse";
   let picked;
   if (!wantsEvery) picked = sens.slice(0, mode === "terse" ? 1 : 2).map((q) => ({ quote: q, kind: "specific", why: "A reader can check this against a public source." }));
-  else picked = sens.slice(0, 12).map((q) => ({ quote: q, kind: PRAISE.test(q) && !/\bEnron\b/.test(q) ? "vague" : "specific", why: "A reader can check what is said." }));
+  else picked = sens.slice(0, 12).map((q) => ({ quote: q, kind: PRAISE.test(q) && !/\bCalderon\b/.test(q) ? "vague" : "specific", why: "A reader can check what is said." }));
   return JSON.stringify({ claims: picked });
 }

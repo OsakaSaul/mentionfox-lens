@@ -11,12 +11,12 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const load = (file) => new JSDOM(readFileSync(resolve(root, file), "utf8").replace(/<script\b[\s\S]*?<\/script\s*>/gi, "")).window.document;
 const joined = (ex) => ex.blocks.join("\n");
 
-test("Wikipedia SBF: infobox, nav, language list, table of contents and tail sections are gone; the lead stays", () => {
-  const doc = load("test/fixtures/wikipedia-sam-bankman-fried.html");
+test("encyclopedia article (long): infobox, nav, language list, table of contents and tail sections are gone; the lead stays", () => {
+  const doc = load("test/fixtures/made-up/encyclopedia-rowan.html");
   const ex = extractMainBlocks(doc);
   const t = joined(ex);
-  assert.match(ex.blocks[0], /^Samuel Benjamin Bankman-Fried \(born March 5, 1992\), commonly known as SBF, is an American entrepreneur/);
-  for (const gone of ["Bankman-Fried in 2021", "Toggle the table of contents", "28 languages", "Afrikaans", "Edit links", "Jump to content", "From Wikipedia, the free encyclopedia", "American entrepreneur and fraudster (born 1992)"]) {
+  assert.match(ex.blocks[0], /^Rowan Elias Ashcombe \(born March 5, 1992\), commonly known as REA, is an American entrepreneur/);
+  for (const gone of ["Ashcombe in 2021", "Toggle the table of contents", "28 languages", "Afrikaans", "Edit links", "Jump to content", "From Openpedia, the free encyclopedia", "American entrepreneur and fraudster (born 1992)", "REFERENCE-ITEM", "NAVBOX"]) {
     assert.ok(!t.includes(gone), "should be gone: " + gone);
   }
   assert.ok(!/^(Notes|References|External links)$/m.test(t));
@@ -24,18 +24,18 @@ test("Wikipedia SBF: infobox, nav, language list, table of contents and tail sec
   assert.ok(ex.blocks.length > 20);
 });
 
-test("Wikipedia Collison: the lead is kept, short fragments and menu lines are dropped", () => {
-  const ex = extractMainBlocks(load("test/fixtures/wikipedia-patrick-collison.html"));
-  assert.match(ex.blocks[0], /^Patrick Collison \(born 9 September 1988\) is an Irish entrepreneur/);
+test("encyclopedia article (short): the lead is kept, short fragments and menu lines are dropped", () => {
+  const ex = extractMainBlocks(load("test/fixtures/made-up/encyclopedia-priya.html"));
+  assert.match(ex.blocks[0], /^Priya Lindqvist \(born 9 September 1988\) is a Swedish entrepreneur/);
   assert.ok(ex.blocks.every((b) => b.length >= 20));
   assert.ok(ex.rawChars > ex.chars);
 });
 
-test("Theranos press release: the article is kept; the site menu and share bar are dropped", () => {
-  const doc = load("fixtures/demo/theranos-1.html");
+test("company press release: the article is kept; the site menu and share bar are dropped", () => {
+  const doc = load("test/fixtures/made-up/veridrop-release.html");
   const ex = extractMainBlocks(doc);
   const t = joined(ex);
-  assert.match(t, /PALO ALTO, Cal\. \(July 2, 2015\)/);
+  assert.match(t, /REDMONT, Ore\. \(July 2, 2015\)/);
   assert.match(t, /HSV-1 test costs \$9\.07/);
   assert.ok(ex.rawChars > ex.chars);
   const raw = buildIndex(doc.body).text;
@@ -84,22 +84,22 @@ test("cookie banner and a share bar are dropped; a small related-stories list to
 });
 
 test("every extracted block can still be found on the live page by the shared matcher (quotes stay matchable)", () => {
-  const doc = load("test/fixtures/wikipedia-patrick-collison.html");
+  const doc = load("test/fixtures/made-up/encyclopedia-priya.html");
   const ex = extractMainBlocks(doc);
   const index = buildIndex(doc.body);
   for (const b of ex.blocks.slice(0, 15)) assert.ok(findQuote(index.text, b.slice(0, 160)), "not found: " + b.slice(0, 60));
 });
 
 test("extraction does not touch the live document", () => {
-  const doc = load("test/fixtures/wikipedia-sam-bankman-fried.html");
+  const doc = load("test/fixtures/made-up/encyclopedia-rowan.html");
   const before = doc.body.innerHTML.length;
   extractMainBlocks(doc);
   assert.equal(doc.body.innerHTML.length, before);
 });
 
 test("extraction is deterministic", () => {
-  const a = extractMainBlocks(load("test/fixtures/wikipedia-sam-bankman-fried.html"));
-  const b = extractMainBlocks(load("test/fixtures/wikipedia-sam-bankman-fried.html"));
+  const a = extractMainBlocks(load("test/fixtures/made-up/encyclopedia-rowan.html"));
+  const b = extractMainBlocks(load("test/fixtures/made-up/encyclopedia-rowan.html"));
   assert.deepEqual(a.blocks, b.blocks);
 });
 
@@ -164,7 +164,7 @@ test("findAnchorIndex locates the block holding the viewport text", () => {
 });
 
 test("chunkBlocks: about 1,500 characters, cut only at sentence boundaries, nothing lost", () => {
-  const doc = load("test/fixtures/wikipedia-sam-bankman-fried.html");
+  const doc = load("test/fixtures/made-up/encyclopedia-rowan.html");
   const ex = extractMainBlocks(doc);
   const w = pickWindow(ex.blocks, { budget: 6000 });
   const blocks = w.indices.map((i) => ex.blocks[i]);

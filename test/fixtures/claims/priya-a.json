@@ -1,0 +1,20 @@
+{
+ "note": "Hand-written test claims about a made-up page. Not model output.",
+ "claims": [
+  {
+   "quote": "She founded the company in 2010 with her brother."
+  },
+  {
+   "quote": "At sixteen she won a national science prize"
+  },
+  {
+   "quote": "The company raised 20 million dollars in 2012"
+  },
+  {
+   "quote": "In 2016 a funding round valued Meridel at 9 billion dollars"
+  },
+  {
+   "quote": "Meridel employed about 7,000 people in 2023"
+  }
+ ]
+}

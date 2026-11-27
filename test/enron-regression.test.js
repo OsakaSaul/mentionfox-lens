@@ -12,13 +12,13 @@ import { reconcileDecision, setSelfNames, deriveSelfNames } from "../src/shared/
 import { debugReset, debugSnapshot } from "../src/shared/debug.js";
 import { mockDeviceModel } from "./helpers/mock-device.js";
 
-const ENRON_URL = "https://web.archive.org/web/20010124060900/http://www4.enron.com:80/corp/inside/vision/";
-const doc = () => new JSDOM(readFileSync(new URL("./fixtures/enron-vision.html", import.meta.url), "utf8")).window.document;
+const ENRON_URL = "https://web.archive.org/web/20010124060900/http://www4.calderon.example:80/corp/inside/vision/";
+const doc = () => new JSDOM(readFileSync(new URL("./fixtures/made-up/calderon-vision.html", import.meta.url), "utf8")).window.document;
 
 const AMBER_LINES = [
-  "That's why we employ the best and the brightest people.",
-  "Together we're creating the leading energy company in the world.",
-  "We believe in the inherent wisdom of open markets.",
+  "That's why we hire only the most talented people we can find.",
+  "Together we're building the most forward-looking energy company anywhere.",
+  "We believe in the lasting good sense of free and open markets.",
 ];
 
 test("extract: hand-wrapped table-and-font HTML keeps whole sentences, drops labels and the footer", () => {
@@ -31,14 +31,14 @@ test("extract: hand-wrapped table-and-font HTML keeps whole sentences, drops lab
 });
 
 test("deriveSelfNames: finds the company in a web.archive.org address and in the title", () => {
-  const n = deriveSelfNames({ title: "Enron: Vision and values -- What we believe", url: ENRON_URL });
-  assert.ok(n.includes("enron"), JSON.stringify(n));
+  const n = deriveSelfNames({ title: "Calderon: Vision and values -- What we believe", url: ENRON_URL });
+  assert.ok(n.includes("calderon"), JSON.stringify(n));
   assert.ok(!n.includes("archive") && !n.includes("web"));
 });
 
 test("reconcile: puffery stays amber, with or without the company name known, whatever the model said", () => {
   for (const names of [true, false]) {
-    setSelfNames(names ? deriveSelfNames({ title: "Enron: Vision and values", url: ENRON_URL }) : []);
+    setSelfNames(names ? deriveSelfNames({ title: "Calderon: Vision and values", url: ENRON_URL }) : []);
     for (const q of AMBER_LINES) for (const kind of ["vague", "specific"]) {
       const r = reconcileDecision({ id: "c1", quote: q, kind, why: "x" });
       assert.equal(r.claim.kind, "vague", `${names} ${kind}: ${q} -> ${r.decision.reason}`);
@@ -49,8 +49,8 @@ test("reconcile: puffery stays amber, with or without the company name known, wh
 });
 
 test("reconcile: puffery that names its own company is not anchored by the company name", () => {
-  setSelfNames(deriveSelfNames({ title: "Enron: Vision and values", url: ENRON_URL }));
-  for (const q of ["Enron is a laboratory of innovation.", "Enron Corp. is the leading energy company in the world.", "We work with customers in a long-term partnership with Enron."]) {
+  setSelfNames(deriveSelfNames({ title: "Calderon: Vision and values", url: ENRON_URL }));
+  for (const q of ["Calderon is a workshop for new ideas.", "Calderon Corp. is the leading energy company in the world.", "We work with customers in a long-term partnership with Calderon."]) {
     const r = reconcileDecision({ id: "c1", quote: q, kind: "specific", why: "x" });
     assert.equal(r.claim.kind, "vague", q + " -> " + r.decision.reason);
   }
@@ -58,12 +58,12 @@ test("reconcile: puffery that names its own company is not anchored by the compa
 });
 
 test("reconcile: do not over-correct, true factual sentences stay green", () => {
-  setSelfNames(deriveSelfNames({ title: "Enron: Vision and values", url: ENRON_URL }));
+  setSelfNames(deriveSelfNames({ title: "Calderon: Vision and values", url: ENRON_URL }));
   for (const q of [
-    "Enron was founded in 1985 through the merger of Houston Natural Gas and InterNorth.",
+    "Calderon was founded in 1986 through the merger of Redmont Gas and NorthPipe.",
     "The company reported revenues of $100.8 billion in 2000.",
-    "In 2001, Enron filed for bankruptcy in New York.",
-    "Samuel Benjamin Bankman-Fried was born on March 5, 1992, in Stanford, California.",
+    "In 2003, Calderon filed for bankruptcy in New York.",
+    "Rowan Elias Ashcombe was born on March 5, 1992, in Marlow, Oregon.",
   ]) {
     const r = reconcileDecision({ id: "c1", quote: q, kind: "specific", why: "x" });
     assert.equal(r.claim.kind, "specific", q + " -> " + r.decision.reason);
@@ -73,8 +73,8 @@ test("reconcile: do not over-correct, true factual sentences stay green", () => 
   setSelfNames([]);
 });
 
-test("pipeline: extract -> chunk -> prompt -> parse -> reconcile on the Enron page lists the page, and the amber lines stay amber", async () => {
-  setSelfNames(deriveSelfNames({ title: "Enron: Vision and values", url: ENRON_URL }));
+test("pipeline: extract -> chunk -> prompt -> parse -> reconcile on the values page lists the page, and the amber lines stay amber", async () => {
+  setSelfNames(deriveSelfNames({ title: "Calderon: Vision and values", url: ENRON_URL }));
   const ex = extractMainBlocks(doc());
   const win = pickWindow(ex.blocks, { budget: DEVICE_WINDOW_CHARS });
   assert.equal(win.remaining, 0, "the whole values text is inside the on-device window");
@@ -106,7 +106,7 @@ test("device prompt asks for every claim and for labelled puffery, and names the
 
 test("debug snapshot holds no keys or config", () => {
   debugReset({ version: "0.1.2", mode: "cloud", url: "https://example.com/" });
-  normalizeClaims({ claims: [{ quote: "We believe in the inherent wisdom of open markets.", kind: "specific", why: "x" }] });
+  normalizeClaims({ claims: [{ quote: "We believe in the lasting good sense of free and open markets.", kind: "specific", why: "x" }] });
   const s = JSON.stringify(debugSnapshot());
   assert.doesNotMatch(s, /apiKey|token|secret|appId/i);
   assert.deepEqual(Object.keys(debugSnapshot()).sort(), ["chunks", "decisions", "extractedChars", "mode", "notes", "rawPerChunk", "url", "version", "windowChars"]);

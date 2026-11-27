@@ -1,0 +1,188 @@
+{
+ "note": "Hand-written example results about made-up pages, used only to draw the store images. Not model output.",
+ "priya": {
+  "claims": {
+   "claims": [
+    {
+     "quote": "She founded the company in 2010 with her brother.",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "The company raised 20 million dollars in 2012",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "In 2016 a funding round valued Meridel at 9 billion dollars",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "Meridel employed about 7,000 people in 2023",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "At sixteen she won a national science prize",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    }
+   ]
+  },
+  "geo": {
+   "entities": [
+    {
+     "name": "Priya Lindqvist",
+     "type": "person"
+    },
+    {
+     "name": "Meridel",
+     "type": "company"
+    }
+   ],
+   "facts": [
+    "Meridel was founded in 2010.",
+    "Meridel employed about 7,000 people in 2023."
+   ],
+   "missing": [
+    "No source for the 2016 valuation."
+   ],
+   "fixes": [
+    "Link a source for the valuation.",
+    "Name the prize.",
+    "Date the employee count."
+   ],
+   "ratings": {
+    "entity_clarity": 3,
+    "fact_density": 3,
+    "structure": 3,
+    "trust_signals": 2,
+    "ambiguity": 2
+   }
+  }
+ },
+ "rowan": {
+  "claims": {
+   "claims": [
+    {
+     "quote": "Quillex opened in May 2019.",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "The company raised $900 million in July 2021 in a funding round that valued it at $18 billion.",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "Ashcombe studied physics at the Redmont Institute of Technology from 2010 to 2014",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "Quillex stopped paying withdrawals on November 8 and filed for bankruptcy protection three days later.",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "Quillex was once among the larger exchanges of its kind",
+     "kind": "vague",
+     "why": "Praise with no date, number or source a reader could check."
+    }
+   ]
+  },
+  "geo": {
+   "entities": [
+    {
+     "name": "Rowan Ashcombe",
+     "type": "person"
+    },
+    {
+     "name": "Quillex",
+     "type": "company"
+    }
+   ],
+   "facts": [
+    "Quillex opened in May 2019."
+   ],
+   "missing": [
+    "No link to the court record."
+   ],
+   "fixes": [
+    "Link the judgment.",
+    "Name the investors.",
+    "Give the size of the shortfall."
+   ],
+   "ratings": {
+    "entity_clarity": 3,
+    "fact_density": 3,
+    "structure": 3,
+    "trust_signals": 2,
+    "ambiguity": 2
+   }
+  }
+ },
+ "release": {
+  "claims": {
+   "claims": [
+    {
+     "quote": "Veridrop operates collection rooms in 41 pharmacy stores in Oregon and Nevada",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "an HSV-1 test costs $9.07 at every Veridrop collection room",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "The list covers more than 200 tests and will be reviewed twice a year.",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "It employs about 500 people.",
+     "kind": "specific",
+     "why": "A date, number or name a reader can check against a public source."
+    },
+    {
+     "quote": "A person should know what a test costs before agreeing to it",
+     "kind": "vague",
+     "why": "Praise with no date, number or source a reader could check."
+    }
+   ]
+  },
+  "geo": {
+   "entities": [
+    {
+     "name": "Veridrop",
+     "type": "company"
+    },
+    {
+     "name": "Dana Marlowe",
+     "type": "person"
+    }
+   ],
+   "facts": [
+    "Veridrop operates collection rooms in 41 pharmacy stores."
+   ],
+   "missing": [
+    "No list of the 41 stores.",
+    "No source for the prices."
+   ],
+   "fixes": [
+    "Publish the store list.",
+    "Link the full price list.",
+    "Date the employee count."
+   ],
+   "ratings": {
+    "entity_clarity": 3,
+    "fact_density": 3,
+    "structure": 3,
+    "trust_signals": 2,
+    "ambiguity": 2
+   }
+  }
+ }
+}

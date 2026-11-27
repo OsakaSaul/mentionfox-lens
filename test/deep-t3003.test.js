@@ -9,19 +9,19 @@ const { buildDeepCards, buildDeepPrompt, DEEP_PAGE_CHARS } = await import("../sr
 const { pickCards, cardSummary, isAttributionFragment, MAX_GREEN_SHOWN } = await import("../src/shared/quality.js");
 const { normalizeClaims } = await import("../src/shared/parse.js");
 
-const html = readFileSync(new URL("../fixtures/demo/holmes-fortune-2014-wayback-20141231-unwrapped.html", import.meta.url), "utf8");
-const RECORDED = readFileSync(new URL("./fixtures/deep-fortune-recorded.json", import.meta.url), "utf8");   // a real cloud answer (T3003 run)
+const html = readFileSync(new URL("./fixtures/made-up/harbor-archived-plain.html", import.meta.url), "utf8");
+const RECORDED = readFileSync(new URL("./fixtures/deep-answer.json", import.meta.url), "utf8");   // hand-written in the shape the cloud model returns, about the made-up article
 const LINES = {
   a: "tests can be performed on just a few drops of blood, or about 1/100th to 1/1,000th",
   b: "performed as many as 70 different tests from a single draw of 25 to 50 microliters",
   c: "Its prices are often a half to a quarter of what independent labs charge",
-  d: "Precisely how Theranos accomplishes all these amazing feats is a trade secret",
+  d: "Precisely how Veridrop accomplishes all of this is a trade secret",
 };
 const blocks = () => extractMainBlocks(new JSDOM(html).window.document).blocks;
 const find = (cards, frag) => cards.find((c) => c.quote.includes(frag));
 
-test("T3003 Deep scan path, recorded cloud answer: (a) (b) (d) are red flags, (c) is not", { skip: !JSDOM }, () => {
-  const cards = buildDeepCards(RECORDED, blocks(), { title: "This CEO's out for blood" });
+test("T3003 Deep scan path, a saved answer: (a) (b) (d) are red flags, (c) is not", { skip: !JSDOM }, () => {
+  const cards = buildDeepCards(RECORDED, blocks(), { title: "This founder wants your blood" });
   for (const k of ["a", "b", "d"]) assert.equal(find(cards, LINES[k])?.kind, "redflag", k);
   assert.equal(find(cards, LINES.d).signal, "secrecy");
   assert.notEqual(find(cards, LINES.c)?.kind, "redflag", "price undercut: unsourced tag, not red");
@@ -30,7 +30,7 @@ test("T3003 Deep scan path, recorded cloud answer: (a) (b) (d) are red flags, (c
 });
 
 test("T3003 rule layer alone (empty cloud answer) still flags (a) (b) (d)", { skip: !JSDOM }, () => {
-  const cards = buildDeepCards([], blocks(), { title: "This CEO's out for blood" });
+  const cards = buildDeepCards([], blocks(), { title: "This founder wants your blood" });
   for (const k of ["a", "b", "d"]) assert.equal(find(cards, LINES[k])?.kind, "redflag", k);
   assert.notEqual(find(cards, LINES.c)?.kind, "redflag");
 });

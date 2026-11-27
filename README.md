@@ -16,7 +16,7 @@ Free to use. No account, no paywall, and nothing about the page goes to MentionF
 |---|---|---|
 | ![Claim X-ray placeholder](docs/screenshots/e2e-sidepanel-claims.png) | ![AI view placeholder](docs/screenshots/e2e-sidepanel-ai-view.png) | ![Highlights placeholder](docs/screenshots/e2e-linkedin-page-highlights.png) |
 
-The screenshots above are **test-harness captures with a mocked model on a synthetic fixture page** (see "Verification"). They show the UI, not real model output. Real captures from the real cloud path on four real pages are in [`docs/real-runs/`](docs/real-runs/) (each folder has `panel-claims.png`, `page-highlights.png`, `panel-geo.png`); they show the **Cloud** mode (their screenshots predate the larger mode bar), because on-device Gemini Nano could not run on the build machine.
+The screenshots above are **test-harness captures with a mocked model on a synthetic fixture page** (see "Verification"). They show the UI, not real model output. The real cloud path was also run on saved real pages; what was measured is written up in [`docs/real-runs/NOTES.md`](docs/real-runs/NOTES.md). On 2026-11-27 the saved copies of other sites' pages, and the screenshots and raw results made from them, were removed from this repository (T3188).
 
 ## How hybrid inference is used
 
@@ -129,12 +129,12 @@ The token lives only in `.env.local` and in dev bundles under `dist/` (gitignore
 npm test          # 79 unit tests (parsing, matching, GEO score, manifest, real-run regression)
 npm run e2e       # loads the built extension in Chromium against HTML fixtures; model MOCKED
 node scripts/live-probe.mjs   # real, unmocked run of the dev build; writes docs/live-probe.txt
-node scripts/live-probe.mjs --fixture fixtures/real/founder-bio.html   # same, on a saved real page; writes docs/real-runs/founder-bio/ (raw model JSON, screenshots)
+node scripts/live-probe.mjs --fixture <page.html>   # same, on an HTML file of your own; writes docs/real-runs/<name>/ (raw model JSON, screenshots)
 ```
 
 Unit tests cover: prompt and JSON parsing with fenced, trailing-text, trailing-comma, truncated and garbage output; claim-to-range matching (whitespace, NBSP, case, curly quotes, dashes, footnote markers, the five matcher tiers incl. a renamed name and a paraphrase, multi-element ranges, re-render recovery, Custom Highlight API fallback), the checkable-anchor override and safe truncation of reasons, a regression test with two real sentences on a saved Wikipedia page (`test/fixtures/wikipedia-*.html`) against four HTML fixtures shaped like a LinkedIn profile, an X post, a company site and a news article; the GEO score and bands; and manifest rules (MV3, permission allow-list, no host permissions, CSP, no remote scripts, no eval in the bundle, tooltips and accessible names on every control, no model names in UI strings).
 
-The fixtures in `test/fixtures/` are **hand-written approximations of those layouts**, not saved copies of real pages. Separately, `fixtures/real/` holds four saved real public pages (a founder bio, a press release, a company homepage, a news article; URLs and dates in `fixtures/real/README.md`) used for the real runs below. Nothing was logged in to. Real LinkedIn and X markup changes often; the matcher works on rendered text, not class names, which is why it should survive that, but it has not been run on the live sites.
+The fixtures in `test/fixtures/` are **hand-written approximations of those layouts**, not saved copies of real pages. The pages in `test/fixtures/made-up/` are invented for the tests (companies, people, publications and figures), and the claim lists in `test/fixtures/claims/` are hand-written, not model output. On 2026-11-27 the saved copies of other sites' pages, and the screenshots and raw results made from them, were removed from this repository (T3188). Nothing was logged in to. Real LinkedIn and X markup changes often, so treat their tests as layout tests only.
 
 The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content script is injected on demand, claims are wrapped in place, a click on a claim scrolls to and flashes the exact text, clear removes everything, and the mode bar renders in all four states (cloud while the model downloads, cloud when unavailable, on-device, on-device failed then cloud) with the download percent chip (0, 42, 100) turning green. Screenshots of each state: `docs/demo/mode-states/`. **The model is mocked there**, so it says nothing about model quality or about Gemini Nano.
 
@@ -145,7 +145,7 @@ The e2e run (`docs/e2e-run.txt`) verifies the extension loads, the content scrip
 | On-device (Gemini Nano) | **Not run.** The Chromium used for CI (version 151) exposes `LanguageModel` but reports `availability() = unavailable`, with or without the Prompt API feature flags, so no on-device answer was produced. | `docs/live-probe.txt`, `docs/live-probe-nano-flags.txt` |
 | Cloud fallback (Firebase AI Logic, App Check debug token registered) | **Run for real.** `node scripts/live-probe.mjs` returned "Done. 8 claims, 1 not found on the page" (the model altered one quote on the synthetic company page, so it was listed but not highlighted) with the badge **Cloud**; then four real pages were analysed (claims in about 3.0 to 4.1 seconds, AI view about 2.3 to 2.8 seconds): 36 of 36 returned claims found and highlighted, none invented. Prompts were tuned on these runs. Weaknesses are listed honestly in the run notes. | `docs/live-probe.txt`, `docs/real-runs/NOTES.md`, `docs/real-runs/*/result.json` |
 | Extension shell (mocked model) | 31 of 31 checks pass | `docs/e2e-run.txt` |
-| Real pages | Four real pages saved and run through the cloud path. LinkedIn and X were **not** tested live (no logins). | `fixtures/real/`, `docs/real-runs/` |
+| Real pages | Four real pages were run through the cloud path on 2026-11-23 (numbers in the notes). Their saved copies are no longer in the repository. LinkedIn and X were **not** tested live (no logins). | `docs/real-runs/NOTES.md` |
 
 ### What the owner must test in Chrome (on-device path)
 
@@ -183,8 +183,8 @@ src/sidepanel/           side panel UI (html, css, js)
 src/popup/               toolbar popup launcher
 src/content.js           injected on demand: text extraction + highlighting
 src/shared/              prompts, JSON parsing, text matching, highlighter, GEO score, links
-fixtures/real/           four saved real pages for the real runs
-docs/real-runs/          raw model output, screenshots and notes from the real runs
+test/fixtures/made-up/   invented pages the tests run on
+docs/real-runs/NOTES.md  what was measured on real pages (the copies and raw results are not kept)
 submission/              store listing and demo page notes
 src/e2e-mock.js          test-harness model mock (only in `build:e2e`)
 scripts/                 build, debug token, e2e, live probe

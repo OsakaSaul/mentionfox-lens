@@ -71,15 +71,15 @@ test("window tier: reordered quote with 80% of its words in one sentence", () =>
 });
 
 /* ---------- fixtures: the owner's two examples on the real page ---------- */
-const OWNER_1 = "Sam Bankman-Fried was born on March 5, 1992, to upper-class Jewish parents in Stanford, California.[1][15][16]";
-const OWNER_2 = "Bankman-Fried was sued by the new owners of FTX, to return assets Sam had given the couple in the form of cash and a home valued at over $32 million.";
+const OWNER_1 = "Rowan Ashcombe was born on March 5, 1992, to upper-class Danish parents in Marlow, Oregon.[1][15][16]";
+const OWNER_2 = "Ashcombe was sued by the new owners of Quillex, to return assets Rowan had given the couple in the form of cash and a home valued at over $32 million.";
 
 for (const [label, quote, expectStart] of [
-  ["footnotes + Samuel Benjamin", OWNER_1, "Samuel Benjamin Bankman-Fried was born on March 5, 1992"],
-  ["paraphrase", OWNER_2, "Both of his parents were sued by the new owners of FTX"],
+  ["footnotes + full name", OWNER_1, "Rowan Elias Ashcombe was born on March 5, 1992"],
+  ["paraphrase", OWNER_2, "Both of his parents were sued by the new owners of Quillex"],
 ]) {
-  test(`Bankman-Fried fixture, owner example (${label}): matched, highlighted and jumpable through ONE matcher`, () => {
-    const dom = load("wikipedia-sam-bankman-fried");
+  test(`encyclopedia fixture, owner example (${label}): matched, highlighted and jumpable through ONE matcher`, () => {
+    const dom = load("made-up/encyclopedia-rowan");
     const doc = dom.window.document;
     const idx = buildIndex(doc.body);
     const hit = findQuote(idx.text, quote);
@@ -104,16 +104,16 @@ for (const [label, quote, expectStart] of [
   });
 }
 
-test("Bankman-Fried fixture: highlight wraps text around a footnote sup without breaking the DOM", () => {
-  const dom = load("wikipedia-sam-bankman-fried");
+test("encyclopedia fixture: highlight wraps text around a footnote sup without breaking the DOM", () => {
+  const dom = load("made-up/encyclopedia-rowan");
   const doc = dom.window.document;
   const before = doc.body.textContent;
   const idx = buildIndex(doc.body);
   // a quote that spans a footnote marker in the middle of two sentences
-  const hit = findQuote(idx.text, "Samuel Benjamin Bankman-Fried was born on March 5, 1992");
+  const hit = findQuote(idx.text, "Rowan Elias Ashcombe was born on March 5, 1992");
   assert.ok(hit);
   const hl = new Highlighter(doc, dom.window);
-  assert.equal(hl.apply({ id: "c9", quote: "Samuel Benjamin Bankman-Fried was born on March 5, 1992, to upper-class Jewish parents in Stanford, California.[1]", kind: "vague", why: "" }).found, true);
+  assert.equal(hl.apply({ id: "c9", quote: "Rowan Elias Ashcombe was born on March 5, 1992, to upper-class Danish parents in Marlow, Oregon.[1]", kind: "vague", why: "" }).found, true);
   hl.clear();
   assert.equal(doc.body.textContent, before, "clear() restores the exact text");
 });
@@ -128,8 +128,8 @@ test("segmentsForRange skips marker text inside a range", () => {
   assert.ok(segs.every((s) => !/^[\[\]1]$/.test(s.node.nodeValue.slice(s.from, s.to))));
 });
 
-test("every claim-sized sentence from the Collison fixture matches exactly (sanity: matcher is not blind)", () => {
-  const dom = load("wikipedia-patrick-collison");
+test("every claim-sized sentence from the short encyclopedia fixture matches exactly (sanity: matcher is not blind)", () => {
+  const dom = load("made-up/encyclopedia-priya");
   const idx = buildIndex(dom.window.document.body);
   const sentences = idx.text.split(/(?<=\.)\s+/).filter((x) => x.length > 40 && x.length < 250);
   assert.ok(sentences.length >= 5);

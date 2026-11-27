@@ -97,31 +97,30 @@ test("a company page is NOT treated as a news page: a small block among many is 
   assert.ok(text(r).includes("Answer 12"), "the whole FAQ stays");
 });
 
-test("fixture: the live Fortune page (saved raw HTML) gives the article only", () => {
-  const r = extractMainBlocks(dom(fixture("fixtures/demo/fortune-live-2014-theranos.html"), "https://fortune.com/2014/06/12/theranos-blood-holmes/"));
+test("fixture: a live news page with furniture inside <main> gives the article only", () => {
+  const r = extractMainBlocks(dom(fixture("test/fixtures/made-up/harbor-live.html"), "https://harborweekly.example/2014/06/12/veridrop/"));
   const t = text(r);
   assert.equal(r.rootTag, "ARTICLE");
-  for (const gone of ["Bessent", "Nvidia", "Fortune 500 Innovation Forum", "Join Fortune 500 leaders", "Add Fortune on Google", "Elon Musk spends"]) assert.ok(!t.includes(gone), "dropped: " + gone);
-  assert.ok(t.includes("In the fall of 2003, Elizabeth Holmes") && t.includes("as many as 70 tests") && t.includes("trade secret"));
-  assert.ok(r.chars > 30000 && r.chars < 36000, "article length " + r.chars);
+  for (const gone of ["Vexley", "Orbitron", "Harbor 500 Innovation Forum", "Join Harbor 500 leaders", "Add Harbor on Google", "Lorcan Dusk spends"]) assert.ok(!t.includes(gone), "dropped: " + gone);
+  assert.ok(t.includes("In the spring of 2008 Dana Marlowe") && t.includes("as many as 70 tests") && t.includes("trade secret"));
+  assert.ok(r.chars > 4000 && r.chars < 5000, "article length " + r.chars);
 });
 
-test("fixture: the web.archive.org copy of the 2014 page gives the article only", () => {
-  const r = extractMainBlocks(dom(fixture("fixtures/demo/fortune-wayback-2014-theranos.html"), "https://web.archive.org/web/20140612000000/http://fortune.com/2014/06/12/theranos-blood-holmes/"));
+test("fixture: an archived copy of a news page, with the archive's toolbar, gives the article only", () => {
+  const r = extractMainBlocks(dom(fixture("test/fixtures/made-up/harbor-archived.html"), "https://web.archive.org/web/20140612000000/http://harborweekly.example/2014/06/12/veridrop/"));
   const t = text(r);
-  assert.ok(t.startsWith("June 12, 2014") && t.includes("In the fall of 2003") && t.includes("as many as 70 tests"));
-  for (const gone of ["Wayback", "Internet Archive", "Donate", "Bessent", "Innovation Forum"]) assert.ok(!t.includes(gone), "dropped: " + gone);
+  assert.ok(t.startsWith("June 12, 2014") && t.includes("In the spring of 2008") && t.includes("as many as 70 tests"));
+  for (const gone of ["Wayback", "Internet Archive", "Donate", "Vexley", "Innovation Forum"]) assert.ok(!t.includes(gone), "dropped: " + gone);
 });
 
-test("no regression: Enron, WeWork, Wikipedia (Collison) and the Fyre FAQ extract exactly what they did before", () => {
+test("no regression: a table-and-font page, a mission page, an encyclopedia article, a long FAQ and a press release extract exactly these blocks", () => {
   const n = (p, url) => { const r = extractMainBlocks(dom(fixture(p), url || "https://example.com/x")); return [r.chars, r.blocks.length]; };
-  assert.deepEqual(n("test/fixtures/enron-vision.html"), [2296, 12]);
-  assert.deepEqual(n("fixtures/demo/enron-vision-values.html"), [2296, 12]);
-  assert.deepEqual(n("fixtures/demo/enron-inside.html"), [2498, 14]);
-  assert.deepEqual(n("fixtures/demo/wework-mission-2019.html"), [1705, 11]);
-  assert.deepEqual(n("test/fixtures/wikipedia-patrick-collison.html"), [7516, 25]);
-  assert.deepEqual(n("fixtures/demo/fyre-faq.html"), [18139, 195]);
-  assert.deepEqual(n("fixtures/demo/theranos-1.html"), [11689, 26]);
+  assert.deepEqual(n("test/fixtures/made-up/calderon-vision.html"), [2310, 12]);
+  assert.deepEqual(n("test/fixtures/made-up/calderon-inside.html"), [1429, 7]);
+  assert.deepEqual(n("test/fixtures/made-up/brightlane-mission.html"), [1257, 12]);
+  assert.deepEqual(n("test/fixtures/made-up/encyclopedia-priya.html"), [1825, 11]);
+  assert.deepEqual(n("test/fixtures/made-up/emberfest-faq.html"), [23526, 180]);
+  assert.deepEqual(n("test/fixtures/made-up/veridrop-release.html"), [2001, 14]);
 });
 
 test("coherenceGuard (helper for a guessed root): a ticker line on someone else's story goes, the story and its first lines stay", () => {

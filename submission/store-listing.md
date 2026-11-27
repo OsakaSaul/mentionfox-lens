@@ -87,7 +87,7 @@ Note for the reviewer field: the on-device path sends nothing off the machine. T
 
 Package: release/mentionfox-lens-0.1.1.zip (version 0.1.1), built by `powershell -File scripts/package.ps1` from the release build. manifest.json is at the zip root, 13 files, no source maps, no .env files, no App Check debug token. The zip is not committed: the owner builds it, or uses the copy in the main checkout release/ folder.
 
-Images are in store/ (made by `node scripts/store-images.mjs`; 24-bit PNG, no alpha). Page text, claims and AI-view text are the saved real runs in docs/real-runs/ on real saved pages (Wikipedia Patrick Collison, Wikipedia Sam Bankman-Fried, archived Theranos FDA press release). The test mock supplies only the mode state.
+Images are in store/ (made by `node scripts/store-images.mjs`; 24-bit PNG, no alpha). The pages shown are made up (test/fixtures/made-up) and the claims and AI-view text are hand-written examples (test/fixtures/claims/store-examples.json), drawn by the real extension with a stand-in model; no run time is shown. Each large screenshot says "Example on a made-up page".
 
 | File | Size | Shows |
 | --- | --- | --- |

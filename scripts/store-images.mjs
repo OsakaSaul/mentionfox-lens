@@ -1,6 +1,6 @@
 // Renders the Chrome Web Store images into store/ from the built extension (dev + e2e mock build, used for rendering only).
-// Claims and AI-view text come from the saved real runs in docs/real-runs/ on the saved real pages; the mock only supplies
-// the state (mode bar, download chip). Nothing here is shipped in the zip. Usage: node scripts/store-images.mjs
+// The pages are made up (test/fixtures/made-up) and the claims and AI-view text are hand-written examples (T3188): nothing on these
+// images is another site's page or real model output, and no run time is shown. Nothing here is shipped in the zip. Usage: node scripts/store-images.mjs
 import { spawnSync } from "node:child_process";
 import { createServer } from "node:http";
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
@@ -30,15 +30,9 @@ function findChromium() {
   for (const d of dirs) { const p = join(base, d, "chrome-win64/chrome.exe"); if (existsSync(p)) return p; }
 }
 
-function real(run) {
-  const r = JSON.parse(readFileSync(resolve(root, "docs/real-runs", run, "result.json"), "utf8"));
-  return { claims: JSON.parse(r.claims.raw), geo: JSON.parse(r.geo.raw) };
-}
-const RUNS = {
-  collison: { ...real("t2960-patrick-collison"), file: resolve(root, "test/fixtures/wikipedia-patrick-collison.html") },
-  sbf: { ...real("t2960-sam-bankman-fried"), file: resolve(root, "test/fixtures/wikipedia-sam-bankman-fried.html") },
-  theranos: { ...real("t2960-theranos-1"), file: resolve(root, "fixtures/demo/theranos-1.html") },
-};
+const EXAMPLES = JSON.parse(readFileSync(resolve(root, "test/fixtures/claims/store-examples.json"), "utf8"));
+const made = (key, file) => ({ ...EXAMPLES[key], file: resolve(root, "test/fixtures/made-up", file + ".html") });
+const RUNS = { priya: made("priya", "encyclopedia-priya"), rowan: made("rowan", "encyclopedia-rowan"), release: made("release", "veridrop-release") };
 
 const server = createServer((req, res) => {
   const k = req.url.replace(/^\/|\?.*$/g, "");
@@ -59,7 +53,7 @@ const sw = ctx.serviceWorkers()[0] || (await ctx.waitForEvent("serviceworker", {
 const extId = new URL(sw.url()).host;
 
 const PW = 840, PH = 650, SW = 380;
-const FORBIDDEN = /\b(gemini|nano|claude|openai|firebase)\b/i; // whole words: the Theranos page itself names a "Nanotainer" product
+const FORBIDDEN = /\b(gemini|nano|claude|openai|firebase)\b/i; // whole words
 const texts = [];
 
 async function capture(key, { mock, ms, tab = "claims", jump = null, progress = null }) {
@@ -86,6 +80,9 @@ async function capture(key, { mock, ms, tab = "claims", jump = null, progress = 
   await panel.evaluate(() => document.getElementById("privacy")?.remove());
   // The mock has no real first-claim time: drop that sentence from the status line in the images.
   await panel.evaluate(() => { const st = document.getElementById("status"); st.textContent = st.textContent.replace(/ First claim in [0-9.]+ seconds./, ""); });
+  // no real run happened, so no run time is shown
+  await panel.evaluate(() => document.querySelectorAll(".mode-main .nw").forEach((e) => { const p = e.previousSibling; if (p && p.nodeType === 3 && p.nodeValue.trim() === "·") p.remove(); e.remove(); }));
+  await panel.evaluate(() => { const w = document.createTreeWalker(document.body, 4); for (let n = w.nextNode(); n; n = w.nextNode()) n.nodeValue = n.nodeValue.replace(/\s*·\s*[0-9.]+ seconds/g, "").replace(/ in [0-9.]+ seconds/g, "").replace(/First claim in [0-9.]+ seconds\.?/g, ""); });
   await page.waitForTimeout(400);
   texts.push(await panel.evaluate(() => document.body.innerText));
   const pageShot = await page.screenshot();
@@ -119,21 +116,21 @@ async function render(name, w, h, html) {
 const screenshot = (name, headline, sub, shots) => render(name, 1280, 800, `
   <div style="position:absolute;left:36px;top:22px;right:36px;display:flex;align-items:center;gap:18px">
     <div class="brand"><img src="${icon}"></div>
-    <div><div class="h" style="font-size:36px">${headline}</div><div class="sub" style="font-size:18px;margin-top:4px">${sub}</div></div>
+    <div><div class="h" style="font-size:36px">${headline}</div><div class="sub" style="font-size:18px;margin-top:4px">${sub} <span style="opacity:.7">Example on a made-up page.</span></div></div>
   </div>
   <div class="frame" style="left:24px;top:112px;width:${PW}px;height:${PH}px"><img src="${b64(shots.pageShot)}"></div>
   <div class="frame" style="left:${24 + PW + 16}px;top:112px;width:${SW}px;height:${PH}px"><img src="${b64(shots.panelShot)}"></div>`);
 
-let s = await capture("collison", { mock: "cloud", ms: 3301 });
+let s = await capture("priya", { mock: "cloud", ms: 3301 });
 await screenshot("screenshot-1-claim-xray.png", "Spot the claims. <em>Check what is checkable.</em>", "Every factual claim is highlighted in place and labelled specific or vague.", s);
 const s1 = s;
-s = await capture("sbf", { mock: "cloud", ms: 3619, jump: 2 });
+s = await capture("rowan", { mock: "cloud", ms: 3619, jump: 2 });
 await screenshot("screenshot-2-jump-to-claim.png", "Click a claim. <em>The page jumps to that sentence.</em>", "A reason sits next to each claim, so you know what to verify first.", s);
-s = await capture("theranos", { mock: "cloud", ms: 3519, tab: "geo" });
+s = await capture("release", { mock: "cloud", ms: 3519, tab: "geo" });
 await screenshot("screenshot-3-ai-view.png", "See the page <em>the way an AI assistant would.</em>", "People, companies and facts it picks up, what is missing, three fixes and a 0 to 100 score.", s);
-s = await capture("collison", { mock: "available", ms: 2100 });
+s = await capture("priya", { mock: "available", ms: 2100 });
 await screenshot("screenshot-4-on-device.png", "Private when it can be. <em>On-device first.</em>", "When your Chrome has its built-in model, the analysis stays on your computer.", s);
-s = await capture("theranos", { mock: "downloading", ms: 3519, progress: 0.42 });
+s = await capture("release", { mock: "downloading", ms: 3519, progress: 0.42 });
 await screenshot("screenshot-5-never-blocked.png", "Never stuck waiting. <em>Cloud fills in while it downloads.</em>", "The panel shows the download percent and which mode answered.", s);
 
 await render("promo-tile-440x280.png", 440, 280, `
