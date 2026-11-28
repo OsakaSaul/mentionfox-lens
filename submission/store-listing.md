@@ -28,16 +28,12 @@ GEO lens
 Shows how an AI assistant would summarise the page: the people, companies and products it would pick up, the facts it would state, what is missing or ambiguous, three concrete fixes, and a score from 0 to 100 with what each point means.
 
 Private by design
-Lens uses Firebase AI Logic hybrid inference. When your Chrome has its built-in on-device model (Gemini Nano), the analysis runs on your computer, the mode bar says "On-device · N seconds" and "Your page stayed in this browser." When it does not, Lens falls back to the cloud through Firebase AI Logic and the bar says "Cloud · N seconds". Either way you can see which mode ran and how many seconds it took.
-
-Nothing from the page is sent to MentionFox. No account, no sign-up, no ads. Lens only reads the page when you click.
+The Quick private scan runs on your computer when your Chrome has its built-in on-device model: nothing from the page leaves your computer, and the panel says On-device. Deep scan, and the Quick private scan when there is no on-device model, send the page text to our server, where an AI provider working for us reads it, only when you click; the panel says Cloud. Our server does not store the text. The AI provider may keep it for a short time under its own terms. To enforce a free daily limit, Lens also sends a random install ID, and our server sees your IP address; the limit counters keep only scrambled forms of both and are deleted after about two days. No account, no sign-up, no ads, and nothing is sold.
 
 Free and open source
 Lens is free to use, with no paywall inside it, and the source code is public on GitHub under the MIT license: https://github.com/OsakaSaul/mentionfox-lens
 
 Optional links to MentionFox (for example the MentionFox Source Check page, or Find Contact) open in a new tab. You never need them.
-
-Built for the #BuildHybridAI hackathon with Firebase AI Logic.
 
 Privacy policy: https://foxapis.com/lens/privacy/
 
@@ -55,37 +51,35 @@ MentionFox Lens analyses the text of the page the user is viewing, only when the
 
 ## Permission justifications
 
-Checked against manifest.json (version 0.1.4): the permissions are exactly activeTab, scripting, sidePanel and storage (storage only keeps the daily Check counter on this device). There are no host permissions and no content_scripts entry.
+Checked against manifest.json (version 0.2.2): the permissions are exactly activeTab, scripting, sidePanel and storage. There are no host permissions and no content_scripts entry.
 
-| Permission | Justification (draft) |
+| Permission | Justification |
 | --- | --- |
-| activeTab | Lets Lens read and highlight the current tab only after the user clicks the extension, so it never touches other tabs. |
-| scripting | Injects the code that extracts the page text and draws the highlights in the current tab after the user clicks (chrome.scripting.executeScript on the active tab). |
-| sidePanel | Shows the list of claims, the GEO lens results and the mode badge in Chrome's side panel. |
-| storage | Keeps one small counter on this device: how many free Check clicks were used today. Nothing else is stored; no page text, no claims. |
-| Host permissions for the Firebase AI Logic cloud endpoint and the Check server | Not declared. The cloud fallback request is made by the Firebase SDK from the side panel and worked in the live runs without host permissions. The Check button calls our own server (api.foxapis.com) with an ordinary fetch; the server answers with CORS headers for Chrome extension origins only. |
-| Content scripts on all pages | Not used. The manifest has no content_scripts; Lens injects its script into the active tab on demand with activeTab. |
+| activeTab | Lets Lens read and highlight the current tab only after the user opens it, so it never touches other tabs. |
+| scripting | Adds the code that reads the page text and draws the highlights to that tab (chrome.scripting.executeScript on the active tab). |
+| sidePanel | Shows the claims, the AI view and the mode bar in Chrome's side panel. |
+| storage | Keeps small settings in the browser, including a random install ID used only for the free daily limit. No page text or claims are stored. |
+| Host permissions | Not declared. Cloud scans are an ordinary request from the side panel to our server, which answers with the needed headers for this extension only. |
+| Content scripts on all pages | Not used. Lens adds its script to the active tab on demand. |
 
-Remote code: none. All code is in the package; the Firebase SDK is bundled by esbuild, and a unit test checks the manifest CSP and that the bundle has no eval or remote scripts.
+Remote code: none. All code is in the package, bundled by esbuild, and a unit test checks the manifest CSP and that the bundle has no eval or remote scripts.
 
 ## Data usage disclosures (Developer Dashboard privacy tab)
 
-Answers for the form (checked against the code: no analytics or telemetry; local storage only for the daily Check counter; the Check button sends one sentence to our own server, which keeps a record of the check as described on the privacy page).
+- Does the extension collect or use user data? Yes.
+- Tick **Website content**: the text (and, for the AI view, the title) of the current page, sent to our server for Deep scan and for the Quick scan when there is no on-device model.
+- Tick **Location**: our server sees the IP address (the dashboard lists IP address under Location). Used only for the daily limit.
+- Tick **Personally identifiable information** (the cautious choice): a random install ID, created by the extension, used only for the daily limit. It is not a name or an email.
+- Do not tick: health, financial and payment, authentication, personal communications, web history, user activity.
+- Sold to third parties: No. Used for purposes unrelated to the single purpose: No. Used for creditworthiness or lending: No.
+- Certify all three Limited Use statements. The AI provider working for us processes the page text only to provide the feature.
+- Privacy policy URL: https://foxapis.com/lens/privacy/
 
-- Does the extension collect or use user data? Yes, in this limited way: the text of the current page is processed when the user clicks.
-- Data types: Website content (the text of the current page, processed on the user's device when the on-device model is available; sent to Google's Firebase AI Logic cloud endpoint only when the on-device model is not available).
-- Personally identifiable information, health, financial, authentication, location, web history, user activity (clicks and keystrokes), personal communications: not collected by Lens. The build has no analytics or telemetry.
-- Is data sold to third parties? No.
-- Is data used for purposes unrelated to the single purpose? No.
-- Is data used to determine creditworthiness or for lending? No.
-- Data sent to MentionFox services: only when the user clicks Check on one claim: that single sentence, the site's domain and the web-archive snapshot date, sent to our own server (api.foxapis.com) to verify the claim; the server code does not log the sentence, but our checking service saves a record of each check (the sentence inside a short fixed note with the domain and date, the verdict, the reason and the source links) in its database with no automatic deletion yet, not linked to the user, browser or any account; its web searches made from the sentence are cached for 30 days; a daily total of checks is counted; the sentence is passed to a search provider and an AI provider that work for us. The record of a sentence is deleted on request (hello@foxapis.com). Nothing else, and never the page. Stated in full at https://foxapis.com/lens/privacy/ (updated 2026-11-24).
-- Certification: the three Limited Use statements apply (use only for the single purpose, no transfer except to provide the feature or as required by law, no human reading).
+Reviewer note: on-device Quick scan sends nothing off the machine. Cloud scans go to our server, which has a free daily limit per install, per address and in total; if the reviewer sees "Free daily limit reached, try again tomorrow", the limit for the day is used up.
 
-Note for the reviewer field: the on-device path sends nothing off the machine. The cloud fallback sends the page text to Google through Firebase AI Logic with App Check, subject to Google's terms.
+## Package and images (version 0.2.2)
 
-## Package and images (built by scripts, version 0.1.1)
-
-Package: release/mentionfox-lens-0.1.1.zip (version 0.1.1), built by `powershell -File scripts/package.ps1` from the release build. manifest.json is at the zip root, 13 files, no source maps, no .env files, no App Check debug token. The zip is not committed: the owner builds it, or uses the copy in the main checkout release/ folder.
+Package: lens-0.2.2.zip on the GitHub release v0.2.2, the same content `powershell -File scripts/package.ps1` builds from the release build. manifest.json is at the zip root, 13 files, no source maps, no .env files, no debug token. Cloud scans work from the store install; an unpacked copy of the zip has a different extension id and our server refuses its cloud scans.
 
 Images are in store/ (made by `node scripts/store-images.mjs`; 24-bit PNG, no alpha). The pages shown are made up (test/fixtures/made-up) and the claims and AI-view text are hand-written examples (test/fixtures/claims/store-examples.json), drawn by the real extension with a stand-in model; no run time is shown. Each large screenshot says "Example on a made-up page".
 
@@ -111,7 +105,6 @@ Marquee: Spot the claims. Check what is checkable. / Highlights the claims on an
 1. Chrome Web Store account, developer fee and listing (your step; no account was created by this work).
 2. Category choice in the dashboard (Productivity or Search Tools).
 3. Upload the images from store/ (swap in real on-device captures if you take them).
-4. In the dashboard's permission form, justify the storage row: it only holds the daily Check counter.
+4. In the dashboard's permission form, use the storage row above.
 5. Privacy policy URL: https://foxapis.com/lens/privacy/ was checked on 2026-11-23 and is live (HTTP 200, titled "MentionFox Lens Privacy"). Re-read it against the data disclosures above before submitting.
 6. Replace screenshot 4 (and ideally 5) with real captures from your Chrome with the on-device model: the shipped ones are mock-state renders of the real UI, not an on-device run.
-7. The release build has no App Check attestation provider, so cloud calls from the store build are rejected until an attestation path is added (a dev build with a registered debug token works). Decide before submitting; the on-device path is unaffected.

@@ -1,6 +1,6 @@
 {
   "name": "mentionfox-lens",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Free open-source Chrome extension: claim X-ray and AI-readiness check, on-device first with Firebase AI Logic hybrid inference",
   "scripts": {
     "build": "node scripts/build.mjs",

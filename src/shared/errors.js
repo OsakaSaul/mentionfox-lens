@@ -12,6 +12,7 @@ export function withTimeout(promise, ms = CLOUD_TIMEOUT_MS) {
 export function friendlyError(err, { deep = false } = {}) {
   const m = String(err?.message || err);
   const next = deep ? "Deep scan is not available right now." : "Quick private scan could not run on this computer. Try Deep scan.";
+  if (/Free daily limit reached/.test(m)) return "Free daily limit reached, try again tomorrow"; // T3230: our server's daily cap
   if (/app.?check|40[13]|permission|api.?key/i.test(m)) return deep ? next + " The cloud model refused this copy of Lens." : next;
   if (/quota|429|RESOURCE/i.test(m)) return "The free cloud quota is used up for now. Try again later.";
   if (/timed out/i.test(m)) return deep ? next + " The cloud took too long to answer." : next;

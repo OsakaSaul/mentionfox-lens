@@ -1,0 +1,23 @@
+# lens-api (T3230): the cloud side of the public Lens build. Deploy: npx wrangler@4 deploy   Secret: ANTHROPIC_API_KEY
+name = "lens-api"
+main = "src/index.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[observability]
+enabled = true
+
+[vars]
+# The Web Store item. Add unpacked test ids here, comma separated, when needed.
+ALLOWED_ORIGINS = "chrome-extension://nfoakcmabfgnepdolgoddmnlaeacdijd"
+CAP_INSTALL = "10"
+CAP_IP = "20"
+CAP_ALL = "100"
+
+[[durable_objects.bindings]]
+name = "COUNTER"
+class_name = "Counter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Counter"]

@@ -7,6 +7,12 @@ import { firebaseConfig as baseConfig } from "./firebase-config.js";
 import { parseModelJson } from "./shared/parse.js";
 import { withTimeout } from "./shared/errors.js";
 import { DEVICE_SYSTEM, DEVICE_CLAIMS_SCHEMA, buildDeviceChunkPrompt } from "./shared/prompts.js";
+import { runProxy } from "./shared/proxy.js";
+
+/* T3230: in the public build every cloud answer comes from our own server (shared/proxy.js), so the SDK is used on the device only.
+   Dev builds (and the judges zip) keep the Firebase AI Logic hybrid path. */
+const USE_PROXY = typeof __USE_PROXY__ !== "undefined" && __USE_PROXY__;
+const LOCAL_MODE = USE_PROXY ? InferenceMode.ONLY_ON_DEVICE : InferenceMode.PREFER_ON_DEVICE;
 
 /* __FIREBASE_OVERRIDE__ and __APPCHECK_DEBUG_TOKEN__ are replaced at build time (scripts/build.mjs). */
 const OVERRIDE = typeof __FIREBASE_OVERRIDE__ !== "undefined" ? __FIREBASE_OVERRIDE__ : {};
@@ -108,7 +114,7 @@ const progressListeners = new Set();
 export function initDevice(schema, onProgress) {
   if (onProgress) progressListeners.add(onProgress);
   if (deviceInit) return deviceInit;
-  const model = getModel("init", schema, InferenceMode.PREFER_ON_DEVICE);
+  const model = getModel("init", schema, LOCAL_MODE);
   const fan = (p) => progressListeners.forEach((fn) => { try { fn(p); } catch { /* UI listener failed */ } });
   deviceInit = model
     .initializeDeviceModel(fan)
@@ -122,8 +128,9 @@ export function initDevice(schema, onProgress) {
  *  source: "on_device" | "in_cloud" (from response.inferenceSource)
  *  inferred: true only when the SDK did not report a source and we guessed from availability.
  */
-export async function runTask({ key, schema, prompt, normalize, deviceStatus, onlyCloud = false }) {   // onlyCloud (T3003, Deep scan): never the on-device model
+export async function runTask({ key, schema, prompt, normalize, deviceStatus, onlyCloud = false, cloud }) {   // onlyCloud (T3003, Deep scan): never the on-device model
   const t0 = performance.now();
+  if (USE_PROXY) return runPublicTask({ key, schema, prompt, normalize, deviceStatus, onlyCloud, cloud, t0 });
   let retried = false;
   const attempt = async (mode) => {
     const model = getModel(key, schema, mode);
@@ -153,6 +160,23 @@ export async function runTask({ key, schema, prompt, normalize, deviceStatus, on
   return { value, source: out.source, inferred: out.inferred, ms: Math.round(performance.now() - t0), retried, raw: out.text };
 }
 
+/** T3230, public build: the on-device model when it is ready, otherwise (or when its answer is unusable) our server. Same return shape as runTask. */
+async function runPublicTask({ key, schema, prompt, normalize, deviceStatus, onlyCloud, cloud, t0 }) {
+  const done = (value, raw, source, retried) => ({ value, source, inferred: false, ms: Math.round(performance.now() - t0), retried, raw });
+  let retried = false;
+  if (!onlyCloud && deviceStatus === "available") {
+    try {
+      const result = await withTimeout(getModel(key, schema, InferenceMode.ONLY_ON_DEVICE).generateContent(prompt));
+      const text = result.response.text();
+      return done(normalize(parseModelJson(text)), text, InferenceSource.ON_DEVICE, false);
+    } catch {
+      retried = true;
+    }
+  }
+  const text = await runProxy(cloud, { storage: chrome.storage.local });
+  return done(normalize(parseModelJson(text)), text, InferenceSource.IN_CLOUD, retried);
+}
+
 /**
  * The on-device claims model: the short system prompt rides along as the Prompt API's system initial prompt (the SDK's on-device adapter
  * ignores systemInstruction), and as the cloud systemInstruction in case the SDK routes a call to the cloud.
@@ -160,7 +184,7 @@ export async function runTask({ key, schema, prompt, normalize, deviceStatus, on
  */
 function createDeviceClaimsModel() {
   return getGenerativeModel(getAiInstance(), {
-    mode: InferenceMode.PREFER_ON_DEVICE,
+    mode: LOCAL_MODE,
     systemInstruction: DEVICE_SYSTEM,
     onDeviceParams: {
       createOptions: {
@@ -218,7 +242,7 @@ export async function streamDeviceChunk(chunkText, onText) {
     try { onText(text); } catch { /* UI callback failed: keep streaming */ }
   }
   if (!source) { try { source = (await response).inferenceSource; } catch { /* no source */ } }
-  return { text, source: source || InferenceSource.IN_CLOUD, ms: Math.round(performance.now() - t0), firstTokenMs };
+  return { text, source: source || (USE_PROXY ? InferenceSource.ON_DEVICE : InferenceSource.IN_CLOUD), ms: Math.round(performance.now() - t0), firstTokenMs };
 }
 
 export { InferenceSource };

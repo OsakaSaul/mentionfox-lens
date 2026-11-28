@@ -8,6 +8,8 @@ Judges: download lens-0.2.1-judges.zip from the private link in the testing inst
 
 The public zip on the GitHub release (lens-0.2.1.zip) contains no cloud access credential. While Firebase App Check enforcement is on, Deep scan and the cloud version of Quick private scan are refused in that build: you get a short failure message and no cards. Only the on-device Quick private scan can work there, and only if your Chrome has the built-in model ready. The authors have not been able to run that on-device path.
 
+A newer public release, v0.2.2, is the Chrome Web Store build: its cloud scans go to our own server and work only from the store install, so an unpacked copy cannot use the cloud. It is not the judging build. Judges should keep using lens-0.2.1-judges.zip.
+
 ## Install
 
 1. Download lens-0.2.1-judges.zip from the private link.

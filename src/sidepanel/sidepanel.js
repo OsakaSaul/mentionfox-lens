@@ -389,7 +389,7 @@ async function analyze({ more = false, deep = false } = {}) {
       renderModePending("claimsMode");
       $("claimsEmpty").textContent = "Deep scan: reading the whole article...";
       setStatus("Deep scan: the cloud is reading the whole article...");
-      const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildDeepPrompt(page.blocks.join(String.fromCharCode(10))), normalize: (v) => normalizeClaims(v, { max: DEEP_MAX_CLAIMS }), deviceStatus: "unavailable", onlyCloud: true });
+      const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildDeepPrompt(page.blocks.join(String.fromCharCode(10))), normalize: (v) => normalizeClaims(v, { max: DEEP_MAX_CLAIMS }), deviceStatus: "unavailable", onlyCloud: true, cloud: { mode: "deep", text: page.blocks.join(String.fromCharCode(10)) } });
       window.__lensDeepRaw = String(r.raw ?? "");   // recorded by scripts/live-probe.mjs --deep for the unit tests
       const cards = buildDeepCards(r.value, page.blocks, { title: page.title, url: page.url });
       mergeClaims(state.claims, cards);
@@ -473,7 +473,7 @@ async function analyze({ more = false, deep = false } = {}) {
         // Every on-device chunk failed: the cloud redoes the window (labelled "on-device failed").
         setStatus("The on-device model could not answer. Trying the cloud...");
         const cloudWin = pickWindow(page.blocks, { budget: MAX_PAGE_CHARS, covered: new Set(), anchorIdx });
-        const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildClaimsPrompt(cloudWin.text), normalize: normalizeClaims, deviceStatus });
+        const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildClaimsPrompt(cloudWin.text), normalize: normalizeClaims, deviceStatus, cloud: { mode: "quick", text: cloudWin.text } });
         mergeClaims(state.claims, r.value);
         if (!more) { const h = await send(tab.id, { type: "highlight", claims: state.claims }); state.results = new Map((h?.results || []).map((x) => [x.id, x])); }
         onFirst();
@@ -486,7 +486,7 @@ async function analyze({ more = false, deep = false } = {}) {
       cres.failedChunks = run.failed;
     } else {
       setStatus("Finding claims...");
-      const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildClaimsPrompt(win.text), normalize: normalizeClaims, deviceStatus });
+      const r = await engine.runTask({ key: "claims", schema: CLAIMS_SCHEMA, prompt: buildClaimsPrompt(win.text), normalize: normalizeClaims, deviceStatus, cloud: { mode: "quick", text: win.text } });
       const added = mergeClaims(state.claims, r.value);
       showCards();
       onFirst();
@@ -533,7 +533,7 @@ async function analyze({ more = false, deep = false } = {}) {
     if (!more) {
       setStatus("Checking how an AI assistant would read this page...");
       const geoText = onDevice ? firstBlocksText(page.blocks, win.indices, DEVICE_GEO_CHARS) : win.text;
-      gres = await engine.runTask({ key: "geo", schema: GEO_SCHEMA, prompt: buildGeoPrompt(geoText, { title: page.title }), normalize: normalizeGeo, deviceStatus });
+      gres = await engine.runTask({ key: "geo", schema: GEO_SCHEMA, prompt: buildGeoPrompt(geoText, { title: page.title }), normalize: normalizeGeo, deviceStatus, cloud: { mode: "geo", text: geoText, title: page.title } });
       const ginfo = modeInfo({ source: gres.source, ms: gres.ms, deviceStatus, retried: gres.retried });
       renderGeo(gres.value, ginfo);
       infos = [cinfo, ginfo];

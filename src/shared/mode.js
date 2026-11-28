@@ -1,6 +1,8 @@
 // Pure helpers for the hybrid-inference UI: mode bar, status line, on-device chip. No DOM, unit tested (test/mode.test.js).
 
 export const HYBRID_TIP = "Lens prefers the private on-device model in your browser and falls back to the cloud when it is not ready.";
+// T3230: the public build's cloud is our own server, so its tooltips name nothing
+const CLOUD_NAME = typeof __USE_PROXY__ !== "undefined" && __USE_PROXY__ ? "" : " (Firebase AI Logic)";
 
 /** 3200 -> "3.2 seconds". Missing or bad input gives "". Always the word, never "s". */
 export function formatSeconds(ms) {
@@ -32,13 +34,13 @@ export function modeInfo({ source, ms, deviceStatus, retried = false, firstMs = 
   if (deep) {   // T3003: Deep scan always runs in the cloud, over the whole article
     return {
       mode: "cloud", label: "Cloud · deep scan", seconds, firstSeconds, first: "", text: seconds ? `Cloud · deep scan · ${seconds}` : "Cloud · deep scan",
-      tip: "Deep scan: the cloud model read the whole article in one pass (Firebase AI Logic). The page text was sent only because you clicked Deep scan.",
+      tip: `Deep scan: the cloud model read the whole article in one pass${CLOUD_NAME}. The page text was sent only because you clicked Deep scan.`,
       sub: "The whole article, read in one pass.", scan: "Cloud · deep scan · the whole article",
     };
   }
   const tip = onDevice
     ? `${HYBRID_TIP} This answer came from the on-device model, so the page text stayed in your browser.`
-    : `${HYBRID_TIP} This answer came from the cloud (Firebase AI Logic)${reason ? ": " + reason : ""}.`;
+    : `${HYBRID_TIP} This answer came from the cloud${CLOUD_NAME}${reason ? ": " + reason : ""}.`;
   return {
     mode: onDevice ? "on_device" : reason ? "cloud_fallback" : "cloud",
     label,

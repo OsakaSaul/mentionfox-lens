@@ -47,6 +47,7 @@ const common = {
     __FIREBASE_OVERRIDE__: JSON.stringify(override),
     __APPCHECK_DEBUG_TOKEN__: JSON.stringify(dev ? env.APPCHECK_DEBUG_TOKEN || "" : ""),
     __DEV_BUILD__: JSON.stringify(dev),
+    __USE_PROXY__: JSON.stringify(!dev), // T3230: the public build's cloud path is our own server; dev builds keep Firebase AI Logic
     __E2E__: JSON.stringify(e2e),
     __SHOW_CHECK__: JSON.stringify(showCheck),
   },
@@ -65,7 +66,11 @@ await build({
 
 cpSync(resolve(root, "manifest.json"), resolve(dist, "manifest.json"));
 const panelHtml = readFileSync(resolve(root, "src/sidepanel/sidepanel.html"), "utf8");
-writeFileSync(resolve(dist, "sidepanel.html"), panelHtml.replace(/<!--check-start-->([\s\S]*?)<!--check-end-->/g, (_, inner) => (showCheck ? inner : "")));
+// T3230: the public build sends cloud text to our own server, so its privacy line says that. The dev build keeps the line it has.
+const PRIVACY_DEV = "sends the page text to Firebase AI Logic, only when you click. Nothing goes to MentionFox.";
+const PRIVACY_PUBLIC = "sends the page text to our server, where an AI provider working for us reads it, only when you click. Our server does not store the text; it counts requests to enforce a free daily limit.";
+if (!panelHtml.includes(PRIVACY_DEV)) throw new Error("privacy line not found in sidepanel.html");
+writeFileSync(resolve(dist, "sidepanel.html"), (dev ? panelHtml : panelHtml.replace(PRIVACY_DEV, PRIVACY_PUBLIC)).replace(/<!--check-start-->([\s\S]*?)<!--check-end-->/g, (_, inner) => (showCheck ? inner : "")));
 cpSync(resolve(root, "src/sidepanel/ui.css"), resolve(dist, "ui.css"));
 cpSync(resolve(root, "src/popup/popup.html"), resolve(dist, "popup.html"));
 cpSync(resolve(root, "src/content.css"), resolve(dist, "content.css"));
